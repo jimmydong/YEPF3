@@ -1,0 +1,3496 @@
+/***********************  2015-01-22 14:56:12 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:51
+[Debug:flog]NULL
+
+/***********************  2015-01-22 14:56:15 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:51
+[Debug:flog]NULL
+
+/***********************  2015-01-22 14:56:16 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:51
+[Debug:flog]array (
+  'errcode' => 40003,
+  'errmsg' => 'invalid openid',
+)
+
+/***********************  2015-01-22 14:56:17 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:51
+[Debug:flog]array (
+  'errcode' => 40003,
+  'errmsg' => 'invalid openid',
+)
+
+/***********************  2015-01-22 14:56:18 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:51
+[Debug:flog]NULL
+
+/***********************  2015-01-22 14:56:21 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:51
+[Debug:flog]array (
+  'errcode' => 40003,
+  'errmsg' => 'invalid openid',
+)
+
+/***********************  2015-01-22 14:56:21 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:51
+[Debug:flog]array (
+  'errcode' => 40003,
+  'errmsg' => 'invalid openid',
+)
+
+/***********************  2015-01-22 14:56:26 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:51
+[Debug:flog]array (
+  'errcode' => 40003,
+  'errmsg' => 'invalid openid',
+)
+
+/***********************  2015-01-22 15:17:30 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:51
+[Debug:flog]NULL
+
+/***********************  2015-01-22 15:17:36 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:51
+[Debug:flog]NULL
+
+/***********************  2015-01-22 15:17:39 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:51
+[Debug:flog]NULL
+
+/***********************  2015-01-22 15:17:41 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:51
+[Debug:flog]array (
+  'errcode' => 40003,
+  'errmsg' => 'invalid openid',
+)
+
+/***********************  2015-01-22 15:18:39 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:52
+[Debug:flog]NULL
+
+/***********************  2015-01-22 15:18:44 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:52
+[Debug:flog]NULL
+
+/***********************  2015-01-22 15:18:47 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:52
+[Debug:flog]NULL
+
+/***********************  2015-01-22 15:18:49 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:52
+[Debug:flog]array (
+  'errcode' => 40003,
+  'errmsg' => 'invalid openid',
+)
+
+/***********************  2015-01-22 15:21:33 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:53
+[Debug:flog]NULL
+
+/***********************  2015-01-22 15:21:37 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:53
+[Debug:flog]NULL
+
+/***********************  2015-01-22 15:21:39 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:53
+[Debug:flog]NULL
+
+/***********************  2015-01-22 15:21:41 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:53
+[Debug:flog]array (
+  'errcode' => 40003,
+  'errmsg' => 'invalid openid',
+)
+
+/***********************  2015-01-22 15:22:44 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:53
+[Debug:flog]NULL
+
+/***********************  2015-01-22 15:22:47 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:53
+[Debug:flog]NULL
+
+/***********************  2015-01-22 15:22:49 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:53
+[Debug:flog]NULL
+
+/***********************  2015-01-22 15:22:51 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:53
+[Debug:flog]array (
+  'errcode' => 40003,
+  'errmsg' => 'invalid openid',
+)
+
+/***********************  2015-01-22 15:37:39 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:56
+[Debug:flog]array (
+  'errcode' => 41001,
+  'errmsg' => 'access_token missing',
+)
+
+/***********************  2015-01-22 15:37:59 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:57
+[Debug:flog]array (
+  'errcode' => 41001,
+  'errmsg' => 'access_token missing',
+)
+
+/***********************  2015-01-22 15:45:37 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:57
+[Debug:flog]NULL
+
+/***********************  2015-01-22 15:45:38 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:57
+[Debug:flog]NULL
+
+/***********************  2015-01-22 15:45:39 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:57
+[Debug:flog]NULL
+
+/***********************  2015-01-22 15:45:40 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:57
+[Debug:flog]array (
+  'errcode' => 40003,
+  'errmsg' => 'invalid openid',
+)
+
+/***********************  2015-01-22 15:46:30 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:58
+[Debug:flog]NULL
+
+/***********************  2015-01-22 15:47:03 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:58
+[Debug:flog]NULL
+
+/***********************  2015-01-22 15:51:28 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:57
+[Debug:flog]'{"subscribe":1,"openid":"oI0qit89IbLs366U__EVIa3-y2Ws","nickname":"光辉","sex":1,"language":"zh_CN","city":"","province":"\\n140.207.124.185","country":"","headimgurl":"http:\\/\\/wx.qlogo.cn\\/mmopen\\/Q3auHgzwzM7zicWjQkgicJyPF5yicBw6UElusqlgqyTceYrUpJ6VHv6p8EiaO5VGQOfnV3nIR61Fv2viaQJoiccb5zIKBhxxZI2omicesGeBC9ibXGA\\/0","subscribe_time":1411718174,"unionid":"olDC4t6OfMFYm99c-JMmJaKvXU7I","remark":""}'
+
+/***********************  2015-01-22 15:51:29 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:57
+[Debug:flog]'{"subscribe":1,"openid":"oI0qit3-06Fr4_xqu8ppBSabVMYY","nickname":"祎祎","sex":2,"language":"zh_CN","city":"","province":"\\n140.207.55.110","country":"","headimgurl":"http:\\/\\/wx.qlogo.cn\\/mmopen\\/qibVZq1byZdgmVxsY5mRHE5ZBZ7780qSv3elcVj4shcxO4M15Rm2RSPWFqmMKcOeVrv5KrImDHG9VGu9DKVtveoRrJiaCQCHic4\\/0","subscribe_time":1418022407,"unionid":"olDC4t0hVR0kE-C-R5Z1dHQoGaiM","remark":""}'
+
+/***********************  2015-01-22 15:51:29 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:57
+[Debug:flog]'{"subscribe":1,"openid":"oI0qit-0ZDk7UVQlJOqyT1ZHeXJk","nickname":"心安","sex":2,"language":"zh_CN","city":"","province":"\\n140.207.124.188","country":"","headimgurl":"http:\\/\\/wx.qlogo.cn\\/mmopen\\/pIa0iau7UU9iaCoyFp33RNl2wNeW8qBQX2kmyvRxV8LfHBSbS9dgpxeI0nv8dqckumHsqAStqkT94wJp82FubmQmgMCSXCGDRG\\/0","subscribe_time":1418002401,"unionid":"olDC4t-S4xsjm_nkswNxVrRjV8VM","remark":""}'
+
+/***********************  2015-01-22 15:51:31 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:57
+[Debug:flog]'{"errcode":40003,"errmsg":"invalid openid"}'
+
+/***********************  2015-01-22 15:56:55 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:58
+[Debug:flog]'{"subscribe":1,"openid":"oI0qit89IbLs366U__EVIa3-y2Ws","nickname":"光辉","sex":1,"language":"zh_CN","city":"","province":"\\n140.207.124.185","country":"","headimgurl":"http:\\/\\/wx.qlogo.cn\\/mmopen\\/Q3auHgzwzM7zicWjQkgicJyPF5yicBw6UElusqlgqyTceYrUpJ6VHv6p8EiaO5VGQOfnV3nIR61Fv2viaQJoiccb5zIKBhxxZI2omicesGeBC9ibXGA\\/0","subscribe_time":1411718174,"unionid":"olDC4t6OfMFYm99c-JMmJaKvXU7I","remark":""}'
+
+/***********************  2015-01-22 15:56:56 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:58
+[Debug:flog]'{"subscribe":1,"openid":"oI0qit3-06Fr4_xqu8ppBSabVMYY","nickname":"祎祎","sex":2,"language":"zh_CN","city":"","province":"\\n140.207.55.110","country":"","headimgurl":"http:\\/\\/wx.qlogo.cn\\/mmopen\\/qibVZq1byZdgmVxsY5mRHE5ZBZ7780qSv3elcVj4shcxO4M15Rm2RSPWFqmMKcOeVrv5KrImDHG9VGu9DKVtveoRrJiaCQCHic4\\/0","subscribe_time":1418022407,"unionid":"olDC4t0hVR0kE-C-R5Z1dHQoGaiM","remark":""}'
+
+/***********************  2015-01-22 15:56:56 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:58
+[Debug:flog]'{"subscribe":1,"openid":"oI0qit-0ZDk7UVQlJOqyT1ZHeXJk","nickname":"心安","sex":2,"language":"zh_CN","city":"","province":"\\n140.207.124.188","country":"","headimgurl":"http:\\/\\/wx.qlogo.cn\\/mmopen\\/pIa0iau7UU9iaCoyFp33RNl2wNeW8qBQX2kmyvRxV8LfHBSbS9dgpxeI0nv8dqckumHsqAStqkT94wJp82FubmQmgMCSXCGDRG\\/0","subscribe_time":1418002401,"unionid":"olDC4t-S4xsjm_nkswNxVrRjV8VM","remark":""}'
+
+/***********************  2015-01-22 15:56:57 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:58
+[Debug:flog]'{"errcode":40003,"errmsg":"invalid openid"}'
+
+/***********************  2015-01-22 15:58:16 ***********************/
+Debug::flog: /weichat/step6.php
+Called in D:\xampp\htdocs\weichat\step6.php:61
+[Debug:flog]'{"errcode":40003,"errmsg":"invalid openid"}'
+
+/***********************  2015-01-22 20:17:37 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:37 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:38 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:38 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:39 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:39 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:40 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:40 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:41 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:41 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:41 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:42 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:43 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:43 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:43 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:44 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:44 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:44 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:45 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:45 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:45 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:46 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:46 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:47 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:47 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:47 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:48 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:48 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:48 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:49 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:49 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:50 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:50 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:50 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:51 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:51 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:51 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:52 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:52 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:52 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:53 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:53 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:54 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:54 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:54 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:54 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:55 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:55 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:56 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:56 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:56 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:57 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:58 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:58 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:58 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:58 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:59 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:59 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:17:59 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:00 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:00 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:01 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:01 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:01 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:02 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:03 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:03 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:03 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:04 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:04 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:05 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:05 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:06 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:06 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:06 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:06 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:07 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:07 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:07 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:08 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:08 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:08 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:09 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:09 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:09 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:10 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:13 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:13 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:14 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:14 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:15 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:15 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:15 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:16 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:16 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:16 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:17 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:17 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:18 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:18 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:18 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:19 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:19 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:20 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:20 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:20 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:21 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:21 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:21 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:22 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:22 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:22 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:23 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:23 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:24 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:24 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:25 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:25 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:25 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:26 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:26 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:26 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:27 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:27 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:28 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:28 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:29 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:29 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:29 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:29 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:30 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:30 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:30 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:31 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:31 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:32 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:32 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:33 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:33 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:33 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:34 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:34 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:35 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:35 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:36 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:36 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:37 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:37 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:37 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:38 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:38 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:39 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:39 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:40 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:40 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:40 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:41 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:41 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:42 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:42 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:42 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:43 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:43 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:44 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:44 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:44 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:45 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:46 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:46 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:47 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:47 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:47 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:47 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:48 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:48 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:49 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:49 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:49 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:50 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:50 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:50 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:51 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:51 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:52 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:52 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:53 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:54 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:54 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:54 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:55 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:55 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:55 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:56 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:57 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:58 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:58 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:58 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:59 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:18:59 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:00 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:00 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:00 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:01 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:01 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:01 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:02 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:02 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:03 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:03 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:03 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:04 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:04 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:04 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:05 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:05 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:05 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:06 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:06 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:06 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:07 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:07 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:08 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:08 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:08 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:09 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:09 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:10 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:10 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:10 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:11 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:11 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:11 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:12 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:12 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:13 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:13 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:13 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:13 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:14 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:14 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:15 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:15 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:16 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:16 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:16 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:16 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:17 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:17 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:17 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:18 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:18 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:18 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:19 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:19 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:19 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:20 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:20 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:21 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:21 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:22 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:22 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:22 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:23 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:24 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:24 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:24 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:25 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:25 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:26 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:26 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:27 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:27 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:27 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:28 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:28 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:29 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:29 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:29 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:30 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:30 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:31 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:31 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:32 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:32 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:33 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:33 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:34 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:34 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:34 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:35 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:35 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:35 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:36 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:36 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:36 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:37 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:37 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:38 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:38 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:38 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:39 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:39 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:39 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:40 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:40 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:40 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:41 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:41 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:42 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:42 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:43 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:43 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:43 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:44 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:44 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:45 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:45 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:45 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:46 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:46 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:47 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:47 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:47 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:48 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:48 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:48 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:49 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:49 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:49 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:49 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:50 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:50 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:51 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:51 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:52 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:52 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:52 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:53 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:53 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:54 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:54 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:54 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:55 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:55 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:55 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:56 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:56 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:56 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:57 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:57 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:58 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:58 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:58 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:59 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:19:59 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:00 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:00 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:00 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:01 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:01 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:01 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:01 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:02 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:02 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:02 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:03 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:03 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:04 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:04 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:04 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:05 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:05 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:06 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:06 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:06 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:07 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:07 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:07 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:08 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:08 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:09 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:09 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:09 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:10 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:10 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:11 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:11 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:12 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:12 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:13 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:13 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:13 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:13 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:14 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:14 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:15 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:15 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:16 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:16 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:17 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:17 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:17 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:18 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:18 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:19 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:19 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:19 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:20 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:20 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:21 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:21 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:21 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:21 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:22 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:22 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:23 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:23 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:23 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:24 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:24 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:24 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:25 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:25 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:25 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:26 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:26 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:27 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:27 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:27 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:28 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:28 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:28 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:29 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:29 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:30 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:30 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:30 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:31 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:31 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:31 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:32 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:32 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:33 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:33 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:33 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:34 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:34 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:34 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:35 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:36 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:36 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:36 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:37 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:37 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:37 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:38 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:38 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:38 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:39 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:39 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:40 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:40 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:41 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:41 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:41 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:42 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:42 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:42 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:43 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:43 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:44 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:44 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:44 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:48 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:48 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:49 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:49 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:49 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:50 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:50 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:50 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:51 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:51 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:52 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:52 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:52 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:53 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:53 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:53 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:54 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:54 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:55 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:55 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:55 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:56 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:56 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:57 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:57 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:58 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:58 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:58 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:59 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:59 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:20:59 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:00 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:00 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:00 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:01 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:01 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:01 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:02 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:02 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:03 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:03 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:03 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:04 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:04 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:05 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:05 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:06 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:06 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:07 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:07 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:08 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:08 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:08 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:09 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:09 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:09 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:10 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:10 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:10 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:14 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:14 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:15 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:15 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:15 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:16 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:16 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:17 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:17 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:17 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:18 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:18 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:18 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:19 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:19 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:19 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:20 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:20 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:20 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:21 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:22 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:23 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:23 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:23 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:24 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:24 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:24 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:25 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:25 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:25 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:26 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:26 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:27 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:27 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:27 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:28 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:28 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:29 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:29 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:30 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:30 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:31 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:31 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:31 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:32 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:32 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:32 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:33 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:33 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:33 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:34 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:34 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:34 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:35 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:35 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:36 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:36 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:36 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:37 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:37 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:37 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:38 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:38 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:39 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:40 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:40 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:40 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:41 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:41 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:42 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:43 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:43 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:44 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:44 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:44 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":40001,"errmsg":"invalid credential"}'
+
+/***********************  2015-01-22 20:21:45 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:45 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:45 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:46 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:46 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:47 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:47 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:47 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:48 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:48 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:48 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:49 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:49 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:50 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:50 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:50 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:51 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:51 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:52 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:52 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:53 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:53 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:53 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:54 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:54 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:54 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:55 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:55 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:55 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:56 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:56 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:57 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:57 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:57 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:58 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:58 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:58 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:59 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:59 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:21:59 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:22:00 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:22:00 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:22:01 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+
+/***********************  2015-01-22 20:22:01 ***********************/
+Debug::flog: /weichat/fensi.php
+Called in D:\xampp\htdocs\weichat\include.php:37
+[Debug:flog]'{"errcode":42001,"errmsg":"access_token expired"}'
+

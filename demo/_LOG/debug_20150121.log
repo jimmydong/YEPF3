@@ -1,0 +1,77 @@
+/***********************  2015-01-21 09:38:11 ***********************/
+Debug::flog: /weichat/step3.php
+Called in D:\xampp\htdocs\weichat\step3.php:45
+[Debug:flog]array (
+  'brokerid' => '08336a11-4b51-427f-8a03-243962d1894d',
+)
+
+/***********************  2015-01-21 17:59:15 ***********************/
+Debug::flog: /weichat/step3.php
+Called in D:\xampp\htdocs\weichat\step3.php:49
+[Debug:flog]array (
+  'subscribe' => 0,
+  'openid' => 'oI0qit_--xImtkedlFSku8aqoAJ0',
+  'unionid' => 'olDC4twVIBUu6HVGuP7YaGaMUUUA',
+  'brokerid' => '4dbfed6e-6142-4969-8e2d-95568fe500a0',
+)
+
+/***********************  2015-01-21 17:59:19 ***********************/
+Debug::flog: /weichat/step3.php
+Called in D:\xampp\htdocs\weichat\step3.php:49
+[Debug:flog]array (
+  'subscribe' => 0,
+  'openid' => 'oI0qit--oqL0EGpVovB_Gb6dMHJE',
+  'unionid' => 'olDC4t0IiAYrGv8onTUrglMLqY28',
+  'brokerid' => 'f972aab8-6bf0-43d5-bce2-d3a450ca89fd',
+)
+
+/***********************  2015-01-21 17:59:20 ***********************/
+Debug::flog: /weichat/step3.php
+Called in D:\xampp\htdocs\weichat\step3.php:49
+[Debug:flog]array (
+  'subscribe' => 0,
+  'openid' => 'oI0qit--Qw5WcOl1yNpoidAOEc9k',
+  'unionid' => 'olDC4t0cnQANHedbh0xQ84awzhBM',
+  'brokerid' => 'f985a540-7067-4931-afdd-be44ec38ad0c',
+)
+
+/***********************  2015-01-21 17:59:22 ***********************/
+Debug::flog: /weichat/step3.php
+Called in D:\xampp\htdocs\weichat\step3.php:49
+[Debug:flog]array (
+  'subscribe' => 0,
+  'openid' => 'oI0qit0xCP--IYYzeDCwASkF1DQQ',
+  'unionid' => 'olDC4t-yzj35jnZ6Zx3vjh_sY0nk',
+  'brokerid' => 'fe808b0d-f0f7-4994-946b-bdb369c6be49',
+)
+
+/***********************  2015-01-21 17:59:22 ***********************/
+Debug::flog: /weichat/step3.php
+Called in D:\xampp\htdocs\weichat\step3.php:49
+[Debug:flog]array (
+  'subscribe' => 0,
+  'openid' => 'oI0qit0Y05dKb--yNq46C4fjIfkM',
+  'unionid' => 'olDC4tzmTNc0aDNAxYM5Tkl4nXa4',
+  'brokerid' => '5e82a6a8-8c9b-4e13-a71d-92b51d1157bc',
+)
+
+/***********************  2015-01-21 17:59:23 ***********************/
+Debug::flog: /weichat/step3.php
+Called in D:\xampp\htdocs\weichat\step3.php:49
+[Debug:flog]array (
+  'subscribe' => 0,
+  'openid' => 'oI0qit10hw--lfCLpB0ywFPzfWT0',
+  'unionid' => 'olDC4tx6CO20PoeMFe-3eQ2VgzuA',
+  'brokerid' => '9cdf86dd-835c-4206-a32f-31c19451cf6d',
+)
+
+/***********************  2015-01-21 17:59:23 ***********************/
+Debug::flog: /weichat/step3.php
+Called in D:\xampp\htdocs\weichat\step3.php:49
+[Debug:flog]array (
+  'subscribe' => 0,
+  'openid' => 'oI0qit14U--2EFAObxISo7h5YLlQ',
+  'unionid' => 'olDC4t0Q6lzR9ici2BBFNuU936V8',
+  'brokerid' => 'd09d3c16-1adf-4be7-af11-46b8cbc9e67d',
+)
+

@@ -1,0 +1,35 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; 服务器端配置文件DEMO
+; 
+; 【注意】使用段落对配置项进行区分
+; 文件默认部署在/YOKA/CONF下，由YEPF框架调用。新增配置参数： 
+; 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;全局设定
+[yoka]
+	ENV_VERSION	= '3.0(2014-09-17 10:50:00)'
+
+;项目设定
+[leju]
+	MDB_SERVER	= '127.0.0.1:3306'
+	MDB_USER	= 'leju'
+	MDB_PASS	= 'leju2015'
+	MDB_DB		= 'leju'
+
+[LOCAL]
+	MDB_SERVER	= '127.0.0.1:3306'
+	MDB_USER	= 'leju'
+	MDB_PASS	= 'leju2015'
+	MDB_DB		= 'leju'
+	
+	SDB_SERVER	= '127.0.0.1:3306'
+	SDB_USER	= 'leju'
+	SDB_PASS	= 'leju2015'
+	SDB_DB		= 'leju'
+
+;memcache
+[COMMON]
+		CACHE_HOST = '127.0.0.1' 
+		CACHE_PORT = '11211' 
