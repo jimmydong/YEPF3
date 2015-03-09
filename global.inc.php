@@ -33,6 +33,8 @@ if(PHP_VERSION < '5.3.0')
 }
 define('YEPF_VERSION','3.0');
 
+if(!defined('YEPF_PATH'))define('YEPF_PATH', dirname(__FILE__));
+
 //默认将显示错误关闭
 ini_set('display_errors', false);
 //默认将读外部文件的自动转义关闭
