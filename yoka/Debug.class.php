@@ -629,14 +629,14 @@ class Debug
 				self::fb(array('Utility Variables',
 						array(
 								array('name', 'values'),
-								array('YOKA-ENV.ini',\yoka\Conf::$ENV),
+								//array('YOKA-ENV.ini',\yoka\Conf::$ENV),
 								array('GET Variables', $_GET),
 								array('POST Variables', $_POST),
-								array('Custom Defined Functions', $functions['user']),
-								array('Include Files', get_included_files()),
-								array('Defined Constants', $constants['user']),
 								array('SESSION Variables', $sessions),
-								array('SERVER Variables', $_SERVER),
+								//array('Custom Defined Functions', $functions['user']),
+								//array('Include Files', get_included_files()),
+								array('Defined Constants', $constants['user']),
+								//array('SERVER Variables', $_SERVER),
 						)
 				), FirePHP::TABLE );
 			default: 
