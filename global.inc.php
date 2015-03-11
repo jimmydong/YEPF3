@@ -81,8 +81,8 @@ class YEPFCore {
       		 */
 			$class_name = str_replace('\\', DIRECTORY_SEPARATOR, $class_name);
         	$class_path = getCustomConstants('CUSTOM_CLASS_PATH') . DIRECTORY_SEPARATOR . $class_name.'.class.php';
-        	$class_path2 = getCustomConstants('CUSTOM_CLASS_PATH') . DIRECTORY_SEPARATOR . $class_name.'.lib.php';
-        	if(file_exists($class_path)) {
+        	$class_path2 = getCustomConstants('CUSTOM_CLASS_PATH') . DIRECTORY_SEPARATOR . strtolower($class_name).'.lib.php';
+		if(file_exists($class_path)) {
         		return include_once($class_path);
         	}elseif(file_exists($class_path2)){
         		return include_once($class_path2);
