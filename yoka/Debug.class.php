@@ -233,8 +233,8 @@ class Debug
 	 */
 	static public function flog($label, $results = '', $caller = '')
 	{
-		if(!$result){
-			$result = $label;
+		if(!$results){
+			$results = $label;
 			$label = 'Debug:flog';
 		}
 		if(false === self::$open) return false;
