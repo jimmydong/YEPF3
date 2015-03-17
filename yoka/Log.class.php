@@ -19,7 +19,10 @@ class Log
 	 */
 	protected function __construct()
 	{
-		$this->path = getCustomConstants('LOG_PATH');
+		$path = getCustomConstants('LOG_PATH');
+		if(file_exists($path))$this->path=$path;
+		elseif(file_exists('/WORK/LOG'))$this->path='/WORK/LOG';
+		else $this->path=dirname(dirname(__FILE__)). DIRECTORY_SEPARATOR . 'demo' . DIRECTORY_SEPARATOR . '_LOG';
 	}
 	/**
 	 * @name getInstance
