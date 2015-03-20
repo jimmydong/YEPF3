@@ -261,7 +261,7 @@ class DB
 		if(self::$debug)Debug::db($this->db_host, $this->db_name, $sql, Debug::getTime() - $begin_microtime, $this->db->errorInfo());
 		if($this->pdo){
 			if($return_statement) return $this->statement;
-			if($this->statement->errorCode() === '00000')return true;
+			if($this->statement && $this->statement->errorCode() === '00000')return true;
 			else return false;
 		}else return $status;
 	}
