@@ -157,7 +157,7 @@ class Utility
 	 * @author 曹晓冬
 	 * @createtime 2009-03-30
 	 */
-	function getClientIp()
+	public static function getClientIp()
 	{
 		if(getenv('HTTP_CLIENT_IP') && strcasecmp(getenv('HTTP_CLIENT_IP'), 'unknown')) {
 			$onlineip = getenv('HTTP_CLIENT_IP');
@@ -178,7 +178,7 @@ class Utility
 	 * @author 曹晓冬
 	 * @createtime 2009-03-30
 	 **/
-	function redirect($url)
+	public static function redirect($url)
 	{
 		if(!empty($url))
 		{
@@ -196,7 +196,7 @@ class Utility
 	 * @author 曹晓冬
 	 * @createtime 2009-03-30
 	 */
-	function cutstr($string, $length, $suffix = '')
+	public static function cutstr($string, $length, $suffix = '')
 	{
 		$p	=	0;
 		$j	=	0;
@@ -260,7 +260,7 @@ class Utility
 	 * @author wangyi yz124s@hotmail.com
 	 * @return Array XML节点的数据，数组形式返回
 	 */
-	function getXmlData($strXml) {
+	public static function getXmlData($strXml) {
 		$pos = strpos($strXml, 'xml');
 		if ($pos) {
 			$xmlCode = simplexml_load_string($strXml,'SimpleXMLElement', LIBXML_NOCDATA);
@@ -277,7 +277,7 @@ class Utility
 	 * @author wangyi yz124s@hotmail.com
 	 * @return Array 节点的数据
 	 */
-	function get_object_vars_final($obj){
+	public static function get_object_vars_final($obj){
 		if(is_object($obj)){
 			$obj=get_object_vars($obj);
 		}
@@ -298,7 +298,7 @@ class Utility
 	 * @param string $addstring 字串的附加码.建议为用户ID
 	 * @createtime 2009-04-13 08:23
 	 */
-	function getFormHash($addstring = '')
+	public static function getFormHash($addstring = '')
 	{
 		static $hash ;
 		if(empty($hash))
@@ -313,7 +313,7 @@ class Utility
 	/**
 	 * @name simpleHeader
 	 */
-	function simpleHeader($title = ''){
+	public static function simpleHeader($title = ''){
 		header("Cache-Control: no-cache, must-revalidate");
 		header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
 		print <<< end_of_string
@@ -334,7 +334,7 @@ end_of_string;
 	 * @param unknown_type $msg
 	 * @param unknown_type $isok
 	 */
-    public function jsonResult($msg, $isok = true) {
+    public static public function jsonResult($msg, $isok = true) {
         $ret['msg'] = $msg;
         if (true == $isok) {
             $ret['ret'] = 'ok';
