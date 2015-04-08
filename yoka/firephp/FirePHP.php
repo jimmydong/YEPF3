@@ -1199,7 +1199,11 @@ class FirePHP {
         if (function_exists('json_encode')
            && $this->options['useNativeJsonEncode']!=false) {
     
-            return json_encode($Object);
+            $re =  json_encode($Object);
+//hack by jimmy
+if($re) return $re;
+var_dump($Object);
+//var_dump(debug_backtrace(5));
         } else {
             return $this->json_encode($Object);
         }

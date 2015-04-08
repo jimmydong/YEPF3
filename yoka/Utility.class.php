@@ -334,7 +334,7 @@ end_of_string;
 	 * @param unknown_type $msg
 	 * @param unknown_type $isok
 	 */
-    public static public function jsonResult($msg, $isok = true) {
+    public static function jsonResult($msg, $isok = true) {
         $ret['msg'] = $msg;
         if (true == $isok) {
             $ret['ret'] = 'ok';

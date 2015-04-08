@@ -503,6 +503,7 @@ class Debug
 				break;
 		}
 		//Thrift执行时间
+/*
 		switch(self::$debug_level)
 		{
 			case self::YEPF_DEBUG_NONE:
@@ -538,7 +539,7 @@ class Debug
 				}
 			default: 
 				break;
-		}
+		}*/
 		//Template执行时间
 		switch(self::$debug_level)
 		{
