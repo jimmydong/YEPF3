@@ -171,7 +171,8 @@ class DB
 		$sql = "INSERT INTO `".$table_name."` SET " ;
 		foreach ($info as $k => $v)
 		{
-			if($addslashes) $s .= '`'.$k . "` = '" . addslashes($v) . "',";
+			if($v === null) $s .= "`{$k}` = NULL,";
+			elseif($addslashes) $s .= '`'.$k . "` = '" . addslashes($v) . "',";
 			else $s .= '`'.$k . "` = '" . $v . "',";
 		}
 		$sql .= substr($s, 0, -1);
@@ -227,7 +228,8 @@ class DB
 		$sql = "UPDATE `".$table_name."` SET " ;
 		foreach ($info as $k => $v)
 		{
-			if($addslashes)$s .= '`'.$k . "` = '" . addslashes($v) . "',";
+			if($v === null) $s .= "`{$k}` = NULL,";
+			elseif($addslashes)$s .= '`'.$k . "` = '" . addslashes($v) . "',";
 			else $s .= '`'.$k . "` = '" . $v . "',";
 		}
 		$sql .= substr($s, 0, -1);

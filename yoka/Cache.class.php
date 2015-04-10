@@ -108,8 +108,9 @@ class Cache implements \yoka\CacheInterface
     	$begin_microtime = Debug::getTime();
         $cacheKey = $this->getKey($cacheKey);
         if(empty($cacheKey)) return false;
-        Debug::cache($this->serverlist, $cacheKey, Debug::getTime() - $begin_microtime, 'add');
-        return $this->cache->add($cacheKey, $cacheValue, 0, $lifetime);
+        $re = $this->cache->add($cacheKey, $cacheValue, 0, $lifetime);
+        Debug::cache($this->serverlist, $cacheKey, Debug::getTime() - $begin_microtime, 'add', $re);
+        return $re;
     }
     /**
 	 * @name set
@@ -127,10 +128,10 @@ class Cache implements \yoka\CacheInterface
     	$cacheKey = $this->getKey($cacheKey);
     	if(empty($cacheKey)) return false;
         if($this->cache->set($cacheKey, $cacheValue, 0, $lifetime)){
-        	Debug::cache($this->serverlist, $cacheKey, Debug::getTime() - $begin_microtime, 'set');
+        	Debug::cache($this->serverlist, $cacheKey, Debug::getTime() - $begin_microtime, 'set', true);
             return true;
         }
-        Debug::cache($this->serverlist, $cacheKey, Debug::getTime() - $begin_microtime, 'set');
+        Debug::cache($this->serverlist, $cacheKey, Debug::getTime() - $begin_microtime, 'set', false);
         return false;
     }
     /**
@@ -185,7 +186,7 @@ class Cache implements \yoka\CacheInterface
         	}
             else $returnValue = $cacheValue;
         }
-        Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, $returnValue);
+        Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'get', $returnValue);
         return $returnValue;
     }
 	
