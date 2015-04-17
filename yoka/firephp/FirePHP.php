@@ -1198,8 +1198,8 @@ class FirePHP {
         
         if (function_exists('json_encode')
            && $this->options['useNativeJsonEncode']!=false) {
-    
-            return json_encode($Object, JSON_UNESCAPED_UNICODE);
+            #return json_encode($Object, JSON_UNESCAPED_UNICODE);
+            return json_encode($Object);
         } else {
             return $this->json_encode($Object);
         }
