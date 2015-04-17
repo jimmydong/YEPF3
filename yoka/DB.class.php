@@ -457,8 +457,8 @@ class DB
 	 */
 	public function err($sql = '')
 	{
-		if(self::$debug)Debug::db($this->db_host, $this->db_name, $sql, 'Mysql Errno: ' . $t[0], 'Mysql Error:' . $t[2]);
 		$t = $this->getError();
+		if(self::$debug)Debug::db($this->db_host, $this->db_name, $sql, 'Mysql Errno: ' . $t[0], 'Mysql Error:' . $t[2]);
 		throw new Exception($t[2]);
 	}
 	
@@ -578,25 +578,29 @@ class DB
                 }elseif(strtolower($k) === '$or' || ($strict == false && strtolower($k) === 'or')){
 					$re[] = ' (' . self::_buildQuery($v, $trim, $strict, 'OR', $addslashes) . ') '; 
                 }else{
-	                //以下为单一条件
-	                $k2=key($v);$v2=$v[$k2];
-	                if($debug)Debug::log($k2,$v2);
-	                if($addslashes) $v2 = addslashes($v2);
-	                if(strtolower($k2) === '$like' || ($strict == false && strtolower($k2) === 'like')){
-						$re[] = self::_buildCol($k) . " LIKE '$v2' "; 
-	                }elseif(strtolower($k2) === '$gt' || ($strict == false && strtolower($k2) === 'gt')){
-						$re[] = self::_buildCol($k) . " > '$v2' "; 
-	                }elseif(strtolower($k2) === '$ge' || ($strict == false && strtolower($k2) === 'ge')){
-						$re[] = self::_buildCol($k) . " >= '$v2' "; 
-	                }elseif(strtolower($k2) === '$lt' || ($strict == false && strtolower($k2) === 'lt')){
-						$re[] = self::_buildCol($k) . " < '$v2' "; 
-	                }elseif(strtolower($k2) === '$le' || ($strict == false && strtolower($k2) === 'le')){
-						$re[] = self::_buildCol($k) . " <= '$v2' "; 
-	                }elseif(strtolower($k2) === '$ne' || ($strict == false && strtolower($k2) === 'ne')){
-						$re[] = self::_buildCol($k) . " <> '$v2' "; 
-	                }else{
-	                	$re[] = self::_buildQuery($v, $trim, $strict, 'AND', $addslashes);
-	                }
+                	reset($v);
+                	while(current($v)){
+		                //以下为单一条件
+		                $k2=key($v);$v2=$v[$k2];
+		                if($debug)Debug::log($k2,$v2);
+		                if($addslashes) $v2 = addslashes($v2);
+		                if(strtolower($k2) === '$like' || ($strict == false && strtolower($k2) === 'like')){
+							$re[] = self::_buildCol($k) . " LIKE '$v2' "; 
+		                }elseif(strtolower($k2) === '$gt' || ($strict == false && strtolower($k2) === 'gt')){
+							$re[] = self::_buildCol($k) . " > '$v2' "; 
+		                }elseif(strtolower($k2) === '$ge' || ($strict == false && strtolower($k2) === 'ge')){
+							$re[] = self::_buildCol($k) . " >= '$v2' "; 
+		                }elseif(strtolower($k2) === '$lt' || ($strict == false && strtolower($k2) === 'lt')){
+							$re[] = self::_buildCol($k) . " < '$v2' "; 
+		                }elseif(strtolower($k2) === '$le' || ($strict == false && strtolower($k2) === 'le')){
+							$re[] = self::_buildCol($k) . " <= '$v2' "; 
+		                }elseif(strtolower($k2) === '$ne' || ($strict == false && strtolower($k2) === 'ne')){
+							$re[] = self::_buildCol($k) . " <> '$v2' "; 
+		                }else{
+		                	$re[] = self::_buildQuery($v, $trim, $strict, 'AND', $addslashes);
+		                }
+		                next($v);
+                	}
                 }
             }else{
             	//简单条件

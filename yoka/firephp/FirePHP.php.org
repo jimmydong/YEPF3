@@ -1199,7 +1199,11 @@ class FirePHP {
         if (function_exists('json_encode')
            && $this->options['useNativeJsonEncode']!=false) {
     
-            return json_encode($Object, JSON_UNESCAPED_UNICODE);
+            $re =  json_encode($Object);
+//hack by jimmy
+if($re) return $re;
+var_dump($Object);
+//var_dump(debug_backtrace(5));
         } else {
             return $this->json_encode($Object);
         }
@@ -1734,7 +1738,7 @@ class FirePHP {
                 $this->json_objectStack[] = $var;
 
                 // treat it like a regular array
-                $elements = array_map(array($this, 'jsonEncode'), $var);
+                $elements = array_map(array($this, 'json_encode'), $var);
 
                 array_pop($this->json_objectStack);
 
@@ -1791,13 +1795,13 @@ class FirePHP {
             $value['GLOBALS'] = '** Recursion **';
         }
     
-        $encoded_value = $this->jsonEncode($value);
+        $encoded_value = $this->json_encode($value);
 
         if ($encoded_value instanceof Exception) {
             return $encoded_value;
         }
 
-        return $this->jsonEncode(strval($name)) . ':' . $encoded_value;
+        return $this->json_encode(strval($name)) . ':' . $encoded_value;
     }
 
     /**
