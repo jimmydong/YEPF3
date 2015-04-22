@@ -1199,10 +1199,18 @@ class FirePHP {
         if (function_exists('json_encode')
            && $this->options['useNativeJsonEncode']!=false) {
             #return json_encode($Object, JSON_UNESCAPED_UNICODE);
-            return json_encode($Object);
+            $re = json_encode($Object);
         } else {
-            return $this->json_encode($Object);
+            $re = $this->json_encode($Object);
         }
+	//hack by jimmy.dong@gmail.com  - in case None Utf-8
+	if(!$re){
+		if($Object['Class']=='ErrorException' && $Object['Trace']){
+			unset($Object['Trace']);
+			 return $this->jsonEncode($Object, $skipObjectEncode);
+		}
+	}
+        return $re?:'{"Class":"Exception","Message":"JsonEncodeError - Not Utf-8","File":"","Line":0,"Type":"throw","Trace":[]}';
     }
 
     /**
