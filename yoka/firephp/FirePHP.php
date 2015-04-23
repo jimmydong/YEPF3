@@ -1395,7 +1395,7 @@ class FirePHP {
                 $return[$key] = $this->encodeObject($val, 1, $ArrayDepth + 1, $MaxDepth + 1);
             }
         } else {
-        	if(is_string($Object) && strlen($Object) > $this->options['maxLength']) $Object = substr($Object, 0, $this->options['maxLength']) . ' ... ... (string length:'. strlen($Object) .')';
+        	if(is_string($Object) && strlen($Object) > $this->options['maxLength']) $Object = mb_substr($Object, 0, $this->options['maxLength']) . ' ... ... (string length:'. strlen($Object) .')';
             if($this->DEBUG_IS_UTF8) return $Object;
         	if (self::is_utf8($Object)) {
                 return $Object;
