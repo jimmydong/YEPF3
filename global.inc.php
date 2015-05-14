@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * YEPF3.0框架代码(2.0版本改进)
  * @name global.inc.php
