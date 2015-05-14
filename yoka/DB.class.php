@@ -171,6 +171,7 @@ class DB
 		$sql = "INSERT INTO `".$table_name."` SET " ;
 		foreach ($info as $k => $v)
 		{
+			$k = trim($k);
 			if($v === null) $s .= "`{$k}` = NULL,";
 			elseif($addslashes) $s .= '`'.$k . "` = '" . addslashes($v) . "',";
 			else $s .= '`'.$k . "` = '" . $v . "',";
@@ -228,6 +229,7 @@ class DB
 		$sql = "UPDATE `".$table_name."` SET " ;
 		foreach ($info as $k => $v)
 		{
+			$k = trim($k);
 			if($v === null) $s .= "`{$k}` = NULL,";
 			elseif($addslashes)$s .= '`'.$k . "` = '" . addslashes($v) . "',";
 			else $s .= '`'.$k . "` = '" . $v . "',";
