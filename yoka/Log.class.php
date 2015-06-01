@@ -108,7 +108,7 @@ class Log
 		
 		$log_obj = self::getInstance();
 		$filename = "debug_" . date("Ymd") . ".log";
-		$fp = fopen($log_obj->path . DIRECTORY_SEPARATOR . $filename);
+		$fp = fopen($log_obj->path . DIRECTORY_SEPARATOR . $filename, 'a');
 		flock($fp, LOCK_EX);
 		fwrite($fp, $string);
 		flock($fp, LOCK_UN);

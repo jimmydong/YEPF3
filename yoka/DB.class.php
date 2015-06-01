@@ -65,7 +65,7 @@ class DB
 	/**
 	 * @desc 记录到错误日志
 	 */
-	static $log_error = false;
+	static $log_error = true;
 	static $log_filename;
 	
 	/**
@@ -507,11 +507,11 @@ class DB
 			$caller = $t[0]['file'].' , line:'.$t[0]['line'];
 			
 			$string  = "#[".date('Y-m-d H:i:s')."] " . $sql . "\n";
-			$string .= "#{$caller} ";
+			$string .= " - {$caller} ";
 			$string .= $result;
 			$string .= "\n";
 			
-			$fp = fopen(self::$log_filename);
+			$fp = fopen(self::$log_filename, "a");
 			flock($fp, LOCK_EX);
 			fwrite($fp, $string);
 			flock($fp, LOCK_UN);
