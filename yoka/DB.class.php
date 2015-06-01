@@ -62,6 +62,11 @@ class DB
 	 * @desc 记录到debug
 	 */
 	static $debug = 1; //默认全显示
+	/**
+	 * @desc 记录到错误日志
+	 */
+	static $log_error = false;
+	static $log_filename;
 	
 	/**
 	 * @name __construct
@@ -93,6 +98,14 @@ class DB
 				$this->db_name = $database;
 			}
 		}
+		
+		if(self::$log_error){
+			$t = getCustomConstants('LOG_PATH');
+			if(file_exists($path))$path=$t;
+			elseif(file_exists('/WORK/LOG'))$path='/WORK/LOG';
+			else $path=dirname(dirname(__FILE__)). DIRECTORY_SEPARATOR . 'demo' . DIRECTORY_SEPARATOR . '_LOG';
+			self::$log_filename = $path . DIRECTORY_SEPARATOR . 'sql_error_' . date('Ym') . '.log';
+		}
 	}
 	/**
      * @name getInstance
@@ -103,7 +116,7 @@ class DB
      * @return object instance of Cache
      * @access public
      **/
-	public static function getInstance($item = 'default', $master = true)
+	public static function getInstance($item, $master = true)
 	{
     	global $CACHE;
     	$obj = self::$instance;
@@ -177,7 +190,9 @@ class DB
 			else $s .= '`'.$k . "` = '" . $v . "',";
 		}
 		$sql .= substr($s, 0, -1);
-		return $this->exec($sql);
+		$re = $this->exec($sql);
+		if(!$re)$this->logError($sql, $re);
+		return $re;
 	}
 	/**
 	 * @name delete
@@ -198,7 +213,10 @@ class DB
 		$sql = "DELETE FROM `". $table_name ."` WHERE " . $where ;
 		$re = $this->exec($sql);
 		if($compat) return true;
-		else return $re;
+		else{
+			$this->logError($sql, $compat);
+			return $re;
+		}
 	}
 	/**
 	 * @name insertId
@@ -208,8 +226,10 @@ class DB
 	 **/
 	public function insertId()
 	{
-		if($this->pdo) return $this->db->lastInsertId();
-		else return $this->db->insertId();
+		if($this->pdo) $re = $this->db->lastInsertId();
+		else $re = $this->db->insertId();
+		if(!$re)$this->logError($sql, $re);
+		return $re;
 	}
 	
 	/**
@@ -235,7 +255,11 @@ class DB
 			else $s .= '`'.$k . "` = '" . $v . "',";
 		}
 		$sql .= substr($s, 0, -1);
-		if($where == '') return false;
+		if($where == ''){
+			//禁止无条件更新!
+			$this->logError($sql, 'no where');
+			return false;
+		}
 		$sql .= " WHERE " . $where ;
 		$re = $this->exec($sql);
 		if($compat) return true;
@@ -264,10 +288,12 @@ class DB
 		}
 		if(self::$debug)Debug::db($this->db_host, $this->db_name, $sql, Debug::getTime() - $begin_microtime, $this->db->errorInfo());
 		if($this->pdo){
-			if($return_statement) return $this->statement;
-			if($this->statement && $this->statement->errorCode() === '00000')return true;
-			else return false;
-		}else return $status;
+			if($return_statement) $re = $this->statement;
+			if($this->statement && $this->statement->errorCode() === '00000')$re = true;
+			else $re = false;
+		}else $re = $status;
+		if(!$re)$this->logError($sql, $re);
+		return $re;
 	}
 	
 	/**
@@ -289,6 +315,7 @@ class DB
 			return false;
 		}
 		if(self::$debug)Debug::db($this->db_host, $this->db_name, $query, Debug::getTime() - $begin_microtime, $info);
+		if(!$info)$this->logError($sql, $info);
 		return $info;
 	}
 	/**
@@ -328,6 +355,7 @@ class DB
 			return false;
 		}
 		if(self::$debug)Debug::db($this->db_host, $this->db_name, $sql, Debug::getTime() - $begin_microtime, $info);
+		if(!$info)$this->logError($sql, $info);
 		return $info;
 	}
 
@@ -360,6 +388,7 @@ class DB
 				$return = $info[0] ;
 			}
 			if(self::$debug)Debug::db($this->db_host, $this->db_name, $sql, Debug::getTime() - $begin_microtime, $return);
+			if(!$return)$this->logError($sql, $info);
 			return $return;
 		}
 	}
@@ -400,6 +429,7 @@ class DB
 			return false;
 		}
 		if(self::$debug)Debug::db($this->db_host, $this->db_name, $sql, Debug::getTime() - $begin_microtime, $info);
+		if(!$info)$this->logError($sql, $info);
 		return $info;
 	}
 	/**
@@ -442,14 +472,16 @@ class DB
 			$errstr .= "Mysql Errno: ".$e->getCode()."\n" ;
 			$errstr .= "Mysql Error: ".$e->getMessage()."\n" ;
 			$errstr .= "SQL Statement: " . $sql . "\n" ;
-			Log::sysLog('mysql', $errstr);
-			if(Debug::$open)
-			{
-				die(nl2br($errstr));
-			}
+			$this->logError($sql, $errstr);
+			
+			Log::sysLog('mysql', $errstr); //默认记录系统错误
+			//if(Debug::$open)
+			//{
+			//	die(nl2br($errstr));
+			//}
 		}
 		$t = $this->getError();
-		throw new Exception($t[2] . '[' . $sql . ']');
+		throw new Exception($t[2] . '[' . $errstr . ']');
 	}
 	/**
 	 * 主动出发一个异常
@@ -461,9 +493,33 @@ class DB
 	{
 		$t = $this->getError();
 		if(self::$debug)Debug::db($this->db_host, $this->db_name, $sql, 'Mysql Errno: ' . $t[0], 'Mysql Error:' . $t[2]);
+		$this->logError('err: '.$sql, $t[2]);
 		throw new Exception($t[2]);
 	}
-	
+	/**
+	 * 记录错误日志
+	 * @param string $sql
+	 * @param string $result
+	 */
+	public function logError($sql, $result = ''){
+		if(self::$log_error){
+			$t = debug_backtrace(1);
+			$caller = $t[0]['file'].' , line:'.$t[0]['line'];
+			
+			$string  = "#[".date('Y-m-d H:i:s')."] " . $sql . "\n";
+			$string .= "#{$caller} ";
+			$string .= $result;
+			$string .= "\n";
+			
+			$fp = fopen(self::$log_filename);
+			flock($fp, LOCK_EX);
+			fwrite($fp, $string);
+			flock($fp, LOCK_UN);
+			fclose($fp);
+		}else{
+			//do nothing
+		}
+	}
 	/**
 	 * 如果连接已经断开，则新建连接；
 	 * 如果连接还存在，但是已经超时，关闭后再重新连接

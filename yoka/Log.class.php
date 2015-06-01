@@ -86,7 +86,9 @@ class Log
 	}
 	
 	/**
-	 * 默认文件日志
+	 * 默认文件日志（记录到_LOG/debug_%Y%m%d.log）
+	 * @param string $s1  title
+	 * @param string $s2  msg
 	 */
 	static public function flog($s1, $s2 = null){
 		if($s2){
@@ -100,7 +102,7 @@ class Log
 		$caller = $t[0]['file'].' , line:'.$t[0]['line'];
 		
 		$string  = "#[".date('Y-m-d H:i:s')."] " . $title . "\n";
-		$string .= "#{$caller}";
+		$string .= "#{$caller} ";
 		$string .= $msg;
 		$string .= "\n";
 		
