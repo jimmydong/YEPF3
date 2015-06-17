@@ -355,7 +355,7 @@ class DB
 			return false;
 		}
 		if(self::$debug)Debug::db($this->db_host, $this->db_name, $sql, Debug::getTime() - $begin_microtime, $info);
-		if(!$info)$this->logError($sql, $info);
+		//if(!$info)$this->logError($sql, $info);
 		return $info;
 	}
 
@@ -429,7 +429,7 @@ class DB
 			return false;
 		}
 		if(self::$debug)Debug::db($this->db_host, $this->db_name, $sql, Debug::getTime() - $begin_microtime, $info);
-		if(!$info)$this->logError($sql, $info);
+		//if(!$info)$this->logError($sql, $info);
 		return $info;
 	}
 	/**
@@ -506,9 +506,9 @@ class DB
 			$t = debug_backtrace(1);
 			$caller = $t[0]['file'].' , line:'.$t[0]['line'];
 			
-			$string  = "#[".date('Y-m-d H:i:s')."] " . $sql . "\n";
-			$string .= " - {$caller} ";
-			$string .= $result;
+			$string  = "#[".date('Y-m-d H:i:s')."] " . $caller . "\n";
+			$string .= " - {$sql} ";
+			$string .= " - " . $result;
 			$string .= "\n";
 			
 			$fp = fopen(self::$log_filename, "a");

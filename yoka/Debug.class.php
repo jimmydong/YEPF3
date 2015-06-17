@@ -57,7 +57,7 @@ class Debug
 	 * @var array
 	 */
 	static $db_table = array();
-	static $db_log	 = false;		//记录数据库操作（insert/update/delete）到文件
+	static $db_log	 = true;		//记录数据库操作（insert/update/delete）到文件
 	static $debug_log = false;		//记录调试信息到文件
 	/**
 	 * @desc 缓存查询执行时间数组

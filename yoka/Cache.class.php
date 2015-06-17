@@ -146,8 +146,10 @@ class Cache implements \yoka\CacheInterface
     	$cacheKey = $this->getKey($cacheKey);
     	if(empty($cacheKey)) return false;
         if($this->cache->delete($cacheKey)){
-            return true;
+        	Debug::cache($this->serverlist, $cacheKey, Debug::getTime() - $begin_microtime, 'del', true);
+        	return true;
         }
+        Debug::cache($this->serverlist, $cacheKey, Debug::getTime() - $begin_microtime, 'del', false);
         return false;
     }
     /**
