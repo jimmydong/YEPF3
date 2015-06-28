@@ -17,6 +17,8 @@ use Memcached;
 class Cache implements \yoka\CacheInterface
 {
 	/* Memcache扩展的类型： Memcache or Memcached */
+	const TYPE_MEMCACHE=1;
+	const TYPE_MEMCACHED=2;
 	private $memcacheType;
 	/**
 	 * 实例化数组
@@ -49,8 +51,8 @@ class Cache implements \yoka\CacheInterface
 	
     private function __construct($item = '', $serverList = array(), $type = 'memcached')
     {
-    	if(class_exists('Memcached') && method_exists('Memcached', 'setOption')) $this->memcacheType = 'Memcached';
-    	else $this->memcacheType = 'Memcache';
+    	if(class_exists('Memcached') && method_exists('Memcached', 'setOption')) $this->memcacheType = self::TYPE_MEMCACHED;
+    	else $this->memcacheType = self::TYPE_MEMCACHE;
     	
     	if('memcached' == $type)
     	{
@@ -127,7 +129,12 @@ class Cache implements \yoka\CacheInterface
     	$begin_microtime = Debug::getTime();
     	$cacheKey = $this->getKey($cacheKey);
     	if(empty($cacheKey)) return false;
-        if($this->cache->set($cacheKey, $cacheValue, 0, $lifetime)){
+    	if($this->memcacheType == self::TYPE_MEMCACHE){
+    		$re = $this->cache->set($cacheKey, $cacheValue, 0, $lifetime); //注意：Memcache::set多一个参数compress
+    	}else{
+    		$re = $this->cache->set($cacheKey, $cacheValue, $lifetime);
+    	}
+        if($re){
         	Debug::cache($this->serverlist, $cacheKey, Debug::getTime() - $begin_microtime, 'set', true);
             return true;
         }
