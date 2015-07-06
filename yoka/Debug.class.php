@@ -57,7 +57,7 @@ class Debug
 	 * @var array
 	 */
 	static $db_table = array();
-	static $db_log	 = true;		//记录数据库操作（insert/update/delete）到文件
+	static $db_log	 = false;		//记录数据库操作（insert/update/delete）到文件
 	static $debug_log = false;		//记录调试信息到文件
 	/**
 	 * @desc 缓存查询执行时间数组
@@ -496,14 +496,13 @@ class Debug
 						$cache_total_times += $v[2];
 						$i++;
 					}
-					array_unshift(self::$cache_table, array('Server', 'Cache Key', 'Time','Method','Results'));
+					array_unshift(self::$cache_table, array('Server', 'Cache Key', 'Time','Results', 'Method'));
 					self::fb(array($i.' Cache queries took '.$cache_total_times.' seconds', self::$cache_table), FirePHP::TABLE );
 				}
 			default: 
 				break;
 		}
 		//Thrift执行时间
-/*
 		switch(self::$debug_level)
 		{
 			case self::YEPF_DEBUG_NONE:
@@ -539,7 +538,7 @@ class Debug
 				}
 			default: 
 				break;
-		}*/
+		}
 		//Template执行时间
 		switch(self::$debug_level)
 		{
@@ -654,9 +653,7 @@ class Debug
 					if(preg_match('/insert|update|delete/i',$v[3])) $string .= "|----  ".$v[1]."  ".$v[2]."  ".$v[3]."  ".$v[4]."  ----|\n";
 				}
 				if($string){
-					$t = debug_backtrace(1);
-					$caller = $t[0][file].':'.$t[0][line];
-					$string = 	"Request: " . $_SERVER['REQUEST_URI'] . "\nCalled in ". $caller . "\n" . $string;
+					$string = 	"Request: " . $_SERVER['REQUEST_URI'] . "\n" . $string . date('Y-m-d_').rand(100000,999999);
 					$filename = "debug_db_" . date("Ymd") . ".log";
 					Log::customLog($filename, $string);
 				}
