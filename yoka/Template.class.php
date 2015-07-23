@@ -40,7 +40,7 @@ class Template extends Smarty
 		$this->setCacheDir(getCustomConstants('COMPILER_PATH'));
 		$this->tpl_type = getCustomConstants('TEMPLATE_TYPE');
 
-		//注册静态化函数
+		//注册自定义函数
 		if(function_exists('template_url_encode')){
 			$this->registerPlugin('function', 'url', 'template_url_encode');
 		}
@@ -50,15 +50,15 @@ class Template extends Smarty
 		if(function_exists('template_cutstr_encode')){
 			$this->registerPlugin('function', 'cutstr', 'template_cutstr_encode');
 		}
-
 	    if(function_exists('template_thumb_encode')){
             $this->registerPlugin('function', 'thumb', 'template_thumb_encode');
         }   
        	if(function_exists('template_widget_encode')){
         	$this->registerPlugin('function', 'widget', 'template_widget_encode');
 		}
-		if(function_exists('template_cdn_encode')){
-			$this->registerPlugin('function', 'cdn', 'template_cdn_encode');
+		//注册自定义修饰器
+		if(function_exists('template_cdn_modifier')){
+			$this->registerPlugin('modifier', 'cdn', 'template_cdn_modifier');
 		}
 		
 		//传入变量
