@@ -51,16 +51,13 @@ class Template extends Smarty
 			$this->registerPlugin('function', 'cutstr', 'template_cutstr_encode');
 		}
 
-	    if(function_exists('template_thumb_encode')){
-            $this->registerPlugin('function', 'thumb', 'template_thumb_encode');
-        }   
-       	if(function_exists('template_widget_encode')){
-        	$this->registerPlugin('function', 'widget', 'template_widget_encode');
+	        if(function_exists('template_thumb_encode')){
+        	    $this->registerPlugin('function', 'thumb', 'template_thumb_encode');
+        	}   
+       		if(function_exists('template_widget_encode')){
+            		$this->registerPlugin('function', 'widget', 'template_widget_encode');
 		}
-		if(function_exists('template_cdn_encode')){
-			$this->registerPlugin('function', 'cdn', 'template_cdn_encode');
-		}
-		
+
 		//传入变量
 		if($response) $this->fit_sprite($response);
 		
