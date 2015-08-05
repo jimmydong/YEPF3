@@ -49,9 +49,9 @@ class Memcached
 	 * @access public
 	 *
 	 */
-    public function add($key, $val, $expire = 0)
+    public function add($key, $val, $flag = 0, $expire = 0)
     {
-        if($this->memcached->add($key, $val, 0, $expire)){
+        if($this->memcached->add($key, $val, $flag, $expire)){
             return true;
         }
         return false;
@@ -68,13 +68,13 @@ class Memcached
 	 * @access public
 	 *
 	 */
-    public function set($key, $val, $expire = 0)
+    public function set($key, $val, $flag = 0, $expire = 0)
     {
     	if (!is_string($key))
     	{
     		return false;
     	}
-        if($this->memcached->set($key, $val, 0, $expire)){
+        if($this->memcached->set($key, $val, $flag, $expire)){
             return true;
         }
         return false;

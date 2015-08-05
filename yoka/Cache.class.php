@@ -108,7 +108,7 @@ class Cache implements \yoka\CacheInterface
     	$begin_microtime = Debug::getTime();
         $cacheKey = $this->getKey($cacheKey);
         if(empty($cacheKey)) return false;
-        $re = $this->cache->add($cacheKey, $cacheValue, 0, $lifetime);
+        $re = $this->cache->add($cacheKey, $cacheValue, $lifetime);
         Debug::cache($this->serverlist, $cacheKey, Debug::getTime() - $begin_microtime, 'add', $re);
         return $re;
     }
@@ -127,7 +127,7 @@ class Cache implements \yoka\CacheInterface
     	$begin_microtime = Debug::getTime();
     	$cacheKey = $this->getKey($cacheKey);
     	if(empty($cacheKey)) return false;
-        if($this->cache->set($cacheKey, $cacheValue, 0, $lifetime)){
+        if($this->cache->set($cacheKey, $cacheValue, $lifetime)){
         	Debug::cache($this->serverlist, $cacheKey, Debug::getTime() - $begin_microtime, 'set', true);
             return true;
         }
