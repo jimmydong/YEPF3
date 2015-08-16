@@ -65,8 +65,12 @@ class DB
 	/**
 	 * @desc 记录到错误日志
 	 */
-	static $log_error = true;
+	static $log_error = false;
 	static $log_filename;
+	/**
+	 * @desc 保存连接参数
+	 */
+	private $connect_param;
 	
 	/**
 	 * @name __construct
@@ -92,6 +96,11 @@ class DB
 				else $this->db = new PDO($uri,$user,$password,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));  
 				$this->db_host = $host ;
 				$this->db_name = $database;
+				$this->connect_param = array(
+						'uri' => $uri,
+						'user'=> $user,
+						'password' => $password,
+				);
 			}else{
 				$this->db = new \yoka\Mysql($host, $user , $password, $database, $charset, $pconnect) ;
 				$this->db_host = $host ;
@@ -116,7 +125,7 @@ class DB
      * @return object instance of Cache
      * @access public
      **/
-	public static function getInstance($item, $master = true)
+	public static function getInstance($item = 'default', $master = true)
 	{
     	global $CACHE;
     	$obj = self::$instance;
@@ -355,7 +364,7 @@ class DB
 			return false;
 		}
 		if(self::$debug)Debug::db($this->db_host, $this->db_name, $sql, Debug::getTime() - $begin_microtime, $info);
-		//if(!$info)$this->logError($sql, $info);
+		if(!$info)$this->logError($sql, $info);
 		return $info;
 	}
 
@@ -429,7 +438,7 @@ class DB
 			return false;
 		}
 		if(self::$debug)Debug::db($this->db_host, $this->db_name, $sql, Debug::getTime() - $begin_microtime, $info);
-		//if(!$info)$this->logError($sql, $info);
+		if(!$info)$this->logError($sql, $info);
 		return $info;
 	}
 	/**
@@ -506,12 +515,12 @@ class DB
 			$t = debug_backtrace(1);
 			$caller = $t[0]['file'].' , line:'.$t[0]['line'];
 			
-			$string  = "#[".date('Y-m-d H:i:s')."] " . $caller . "\n";
-			$string .= " - {$sql} ";
-			$string .= " - " . $result;
+			$string  = "#[".date('Y-m-d H:i:s')."] " . $sql . "\n";
+			$string .= " - {$caller} ";
+			$string .= $result;
 			$string .= "\n";
 			
-			$fp = fopen(self::$log_filename, "a");
+			$fp = fopen(self::$log_filename, 'a');
 			flock($fp, LOCK_EX);
 			fwrite($fp, $string);
 			flock($fp, LOCK_UN);
@@ -529,7 +538,7 @@ class DB
 	 */
 	public function reconnect($force_newconnect = true)
 	{
-		if($this->pdo) return false; //本方法仅供旧模式使用
+		if($this->pdo) return $this->db = new PDO($this->connect_param['uri'],$this->connect_param['user'],$this->connect_param['password'],array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
 		return $this->db->reconnect($force_newconnect);
 	}
 
