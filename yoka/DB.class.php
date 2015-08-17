@@ -298,7 +298,7 @@ class DB
 		if(self::$debug)Debug::db($this->db_host, $this->db_name, $sql, Debug::getTime() - $begin_microtime, $this->db->errorInfo());
 		if($this->pdo){
 			if($return_statement) $re = $this->statement;
-			if($this->statement && $this->statement->errorCode() === '00000')$re = true;
+			elseif($this->statement && $this->statement->errorCode() === '00000')$re = true;
 			else $re = false;
 		}else $re = $status;
 		if(!$re)$this->logError($sql, $re);
@@ -308,7 +308,7 @@ class DB
 	/**
 	 * @name fetch
 	 * @desc 对query结果获取一行数据
-	 * @desc 提醒： PDO模式可以使用迭代器方式：  foreach($db->query("select * from test") as $row){ ... } 
+	 * @desc 提醒： PDO模式可以使用迭代器方式：  foreach($db->query("select * from test", true) as $row){ ... } 
 	 **/
 	public function fetch()
 	{
