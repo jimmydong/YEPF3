@@ -65,7 +65,7 @@ class DB
 	/**
 	 * @desc 记录到错误日志
 	 */
-	static $log_error = false;
+	static $log_error = true;
 	static $log_filename;
 	/**
 	 * @desc 保存连接参数
@@ -136,7 +136,10 @@ class DB
     		$list = array();
 			if(isset($CACHE['db'][$item]))
 			{
-				$key = $master === true ? 'master' : 'slave';
+				if($master === true || $master == 'master') $key = 'master';
+				elseif($master === false || $master == 'slave') $key = 'slave';
+				else $key = $master; //eg: 'stat'
+				
 				$max = count($CACHE['db'][$item][$key]);
 				$rand = rand(0, $max - 1);
 				$config = $CACHE['db'][$item][$key][$rand];
