@@ -195,7 +195,7 @@ class Cache implements \yoka\CacheInterface
 	/**
 	 * 计数器类的数字自增长
 	 */
-	public function increment($key, $value)
+	public function increment($key, $value = 1)
 	{
 		$key = $this->getKey($key);
 		return $this->cache->increment($key, $value);
@@ -245,7 +245,13 @@ class Cache implements \yoka\CacheInterface
      */
     public function __call($method, $args)
     {
-    	return $this->cache->$method($args[0],$args[1],$args[2]);
+    	switch(count($args)){
+    		case 1 : $re = $this->cache->$method($args[0]);break;	
+    		case 2 : $re = $this->cache->$method($args[0],$args[1]);break;	
+    		case 3 : $re = $this->cache->$method($args[0],$args[1],$args[2]);break;
+    		default: 	$re = $this->cache->$method();break;
+    	}
+    	
     }
 }
 ?>
