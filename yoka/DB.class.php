@@ -71,6 +71,7 @@ class DB
 	 * @desc 保存连接参数
 	 */
 	private $connect_param;
+	static $timeout = 1;
 	
 	/**
 	 * @name __construct
@@ -92,8 +93,8 @@ class DB
 				//兼容原有参数格式
 				$t = explode(':', $host);
 				$uri = "mysql:host={$t[0]};dbname={$database}" . ($t[1]?';port='.$t[1]:'');
-				if($pconnect) $this->db = new PDO($uri,$user,$password, array( PDO::ATTR_PERSISTENT => true, PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
-				else $this->db = new PDO($uri,$user,$password,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));  
+				if($pconnect) $this->db = new PDO($uri,$user,$password, array( PDO::ATTR_PERSISTENT => true, PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'", PDO::ATTR_TIMEOUT => self::$timeout));
+				else $this->db = new PDO($uri,$user,$password,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'", PDO::ATTR_TIMEOUT => self::$timeout));  
 				$this->db_host = $host ;
 				$this->db_name = $database;
 				$this->connect_param = array(
