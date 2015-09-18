@@ -328,7 +328,7 @@ class DB
 			return false;
 		}
 		if(self::$debug)Debug::db($this->db_host, $this->db_name, $query, Debug::getTime() - $begin_microtime, $info);
-		if(!$info)$this->logError($sql, $info);
+		//if(!$info)$this->logError($sql, $info);
 		return $info;
 	}
 	/**
@@ -368,7 +368,7 @@ class DB
 			return false;
 		}
 		if(self::$debug)Debug::db($this->db_host, $this->db_name, $sql, Debug::getTime() - $begin_microtime, $info);
-		if(!$info)$this->logError($sql, $info);
+		//if(!$info)$this->logError($sql, $info);
 		return $info;
 	}
 
@@ -401,7 +401,7 @@ class DB
 				$return = $info[0] ;
 			}
 			if(self::$debug)Debug::db($this->db_host, $this->db_name, $sql, Debug::getTime() - $begin_microtime, $return);
-			if(!$return)$this->logError($sql, $info);
+			//if(!$return)$this->logError($sql, $info);
 			return $return;
 		}
 	}
@@ -438,11 +438,12 @@ class DB
 		}
 		catch (Exception $e)
 		{
+			
 			$this->halt($e, $sql);
 			return false;
 		}
 		if(self::$debug)Debug::db($this->db_host, $this->db_name, $sql, Debug::getTime() - $begin_microtime, $info);
-		if(!$info)$this->logError($sql, $info);
+		//if(!$info)$this->logError($sql, $info);
 		return $info;
 	}
 	/**
