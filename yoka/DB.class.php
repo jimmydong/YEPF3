@@ -224,11 +224,15 @@ class DB
 			return false;
 		}
 		$sql = "DELETE FROM `". $table_name ."` WHERE " . $where ;
+		try{
 		$re = $this->exec($sql);
-		if($compat) return true;
-		else{
-			$this->logError($sql, $compat);
-			return $re;
+			if($compat) return true;
+			else{
+				return $re;
+			}
+		}catch(\Exception $e){
+			$this->halt($e, $sql);
+			return false;
 		}
 	}
 	/**
