@@ -496,7 +496,7 @@ class Debug
 						$cache_total_times += $v[2];
 						$i++;
 					}
-					array_unshift(self::$cache_table, array('Server', 'Cache Key', 'Time','Results', 'Method'));
+					array_unshift(self::$cache_table, array('Server', 'Cache Key', 'Time', 'Method', 'Results'));
 					self::fb(array($i.' Cache queries took '.$cache_total_times.' seconds', self::$cache_table), FirePHP::TABLE );
 				}
 			default: 
