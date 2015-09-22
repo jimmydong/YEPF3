@@ -220,7 +220,7 @@ class Debug
 		}elseif($caller == 'full'){
 			$caller = debug_backtrace(5);
 		}
-		if($results == 'Temporary Value'){
+		if($results === 'Temporary Value'){
            array_push(self::$log_table, array('[临时调试]', $label, $caller));
         }else array_push(self::$log_table, array($label, $results, $caller));
 	}
