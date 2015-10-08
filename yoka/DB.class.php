@@ -141,6 +141,10 @@ class DB
 				elseif($master === false || $master == 'slave') $key = 'slave';
 				else $key = $master; //eg: 'stat'
 				
+				if(!is_array($CACHE['db'][$item][$key])){
+					throw new \Exception('数据库配置错误: ', $item . ',' . $key);
+				}
+				
 				$max = count($CACHE['db'][$item][$key]);
 				$rand = rand(0, $max - 1);
 				$config = $CACHE['db'][$item][$key][$rand];
