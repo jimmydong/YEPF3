@@ -60,6 +60,9 @@ class Template extends Smarty
 		if(function_exists('template_cdn_modifier')){
 			$this->registerPlugin('modifier', 'cdn', 'template_cdn_modifier');
 		}
+		if(function_exists('template_xid_modifier')){
+			$this->registerPlugin('modifier', 'xid', 'template_xid_modifier');
+		}
 		
 		//传入变量
 		if($response) $this->fit_sprite($response);
