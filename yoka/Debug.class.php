@@ -726,7 +726,7 @@ class Debug
 				$db = \yoka\DB::getInstance(self::$mysql_log['db'], self::$mysql_log['master']);
 				if($db){
 					foreach (self::$db_table as $v){
-						$values[] = "('db','','','','" .addslashes($v[0]). "','" .addslashes($v[1]). "','" .addslashes($v[2]). "','" .addslashes($v[3]). "','" .addslashes($v[4]). "')";
+						$values[] = "('db','','','','" .addslashes($v[0]). "','" .addslashes($v[1]). "','" .addslashes($v[2]). "','" .addslashes($v[3]). "','" .addslashes(var_export($v[4], true)). "')";
 					}
 					foreach (self::$log_table as $v){
 						$values[] = "('log','".addslashes($v[0])."','".addslashes(var_export($v[1], true))."','".addslashes($v[2])."','','','','','')";
