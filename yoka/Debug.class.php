@@ -59,6 +59,8 @@ class Debug
 	static $db_table = array();
 	static $db_log	 = false;		//记录数据库操作（insert/update/delete）到文件
 	static $debug_log = false;		//记录调试信息到文件
+	static $mysql_log = false;		//将debug_log记录到数据库中 array('db'=>'default','master'=>'true')
+	
 	/**
 	 * @desc 缓存查询执行时间数组
 	 * @var array
@@ -657,7 +659,7 @@ class Debug
 					$filename = "debug_db_" . date("Ymd") . ".log";
 					Log::customLog($filename, $string);
 				}
-			}				
+			}
 		}
 		
 
@@ -698,6 +700,44 @@ class Debug
 			}
 			$filename = "debug_" . date("Ymd") . ".log";
 			Log::customLog($filename, $string);
+		}
+		
+		if(is_array(self::$mysql_log)){
+			/**
+			 * CREATE TABLE IF NOT EXISTS `debug_log` (
+				  `id` bigint(20) NOT NULL,
+				  `type` varchar(64) NOT NULL,
+				  `label` varchar(200) NOT NULL,
+				  `results` text NOT NULL,
+				  `caller` varchar(200) NOT NULL,
+				  `ip` varchar(200) NOT NULL,
+				  `db` varchar(200) NOT NULL,
+				  `time` float(10,6) NOT NULL,
+				  `query` text NOT NULL,
+				  `query_results` text NOT NULL,
+				  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+				  `remark` varchar(200) NOT NULL
+				) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+				ALTER TABLE `debug_log` ADD PRIMARY KEY (`id`);
+				ALTER TABLE `debug_log` MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+			 */
+			$sql = '';
+			try{
+				$db = \yoka\DB::getInstance(self::$mysql_log['db'], self::$mysql_log['master']);
+				if($db){
+					foreach (self::$db_table as $v){
+						$values[] = "('db','','','','" .addslashes($v[0]). "','" .addslashes($v[1]). "','" .addslashes($v[2]). "','" .addslashes($v[3]). "','" .addslashes($v[4]). "')";
+					}
+					foreach (self::$log_table as $v){
+						$values[] = "('log','".addslashes($v[0])."','".addslashes($v[1])."','".addslashes($v[2])."','','','','','')";
+					}
+					$sql = "INSERT INTO debug_log (`type`,`label`,`results`,`caller`,`ip`,`db`,`time`,`query`,`query_results`) VALUES " . implode(',', $values);
+					$db->query($sql);
+				}
+			}catch(\Exception $e){
+				//do nothing
+				Log::customLog($filename, "[Debug Error] write to mysql_log fail. db:". self::$mysql_log['db'] . "(" . self::$mysql_log['master'] . ") " . $sql);
+			}
 		}
 	}
 }

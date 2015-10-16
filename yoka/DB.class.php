@@ -142,7 +142,7 @@ class DB
 				else $key = $master; //eg: 'stat'
 				
 				if(!is_array($CACHE['db'][$item][$key])){
-					throw new \Exception('数据库配置错误: ', $item . ',' . $key);
+					throw new \Exception('数据库配置错误: ' . $item . ',' . $key);
 				}
 				
 				$max = count($CACHE['db'][$item][$key]);
@@ -290,7 +290,7 @@ class DB
 	 * @name query
 	 * @desc 执行一条SQL语句，得到Statement
 	 * @param string $sql 要执行的sql语句
-	 * @param boolean $return_statment 兼容mysql返回true/false OR  PDO模式返回statement
+	 * @param boolean $return_statement 兼容mysql返回true/false OR  PDO模式返回statement
 	 * @return resource
 	 * @access public
 	 **/
@@ -576,7 +576,7 @@ class DB
 	public function close()
 	{
 		if($this->pdo){
-			if($this->statment)$this->statment->closeCursor();
+			if($this->statement)$this->statement->closeCursor();
 			$this->statement = null;
 			$this->db = null;
 		}else return $this->db->close();
@@ -715,12 +715,12 @@ class DB
 			$this->err($sql);
 			return false;
 		}
-		$all = $this->statment->rowCount();
-		echo "<p>查询『".$querystring."』,共 $all 条：";
+		$all = $this->statement->rowCount();
+		echo "<p>查询『".$sql."』,共 $all 条：";
 		
 		$colorflag=0;
 		$first_flag = true;
-		while($row = $this->statment->fetch(PDO::FETCH_ASSOC) && $counter++ < 100){
+		while( ($row = $this->statement->fetch(PDO::FETCH_ASSOC)) && $counter++ < 100){
 			if($first_flag){
 				echo "<table border=0><tr bgcolor=#AAAAAE>";
 				foreach($row as $key=> $val)
@@ -745,7 +745,7 @@ class DB
 		  	echo "</tr>";
 		}
 		echo "</table>";
-		$this->statment->closeCursor();
+		$this->statement->closeCursor();
 		$this->statement = null;
 	}
 	function fquery($Query_String) {
