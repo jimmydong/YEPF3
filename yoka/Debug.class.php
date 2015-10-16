@@ -57,10 +57,11 @@ class Debug
 	 * @var array
 	 */
 	static $db_table = array();
+	static $log_mysql = false;			//日志数据库配置 array('db'=>'default','master'=>'true')
 	static $db_log	 = false;			//记录数据库操作（insert/update/delete）到文件
-	static $db_log_mysql = false;		//记录到数据库中 array('db'=>'default','master'=>'true')
+	static $db_log_mysql = false;		//记录到数据库中 
 	static $debug_log = false;			//记录调试信息到文件
-	static $debug_log_mysql = false;	//记录到数据库中 array('db'=>'default','master'=>'true')
+	static $debug_log_mysql = false;	//记录到数据库中 
 	
 	/**
 	 * @desc 缓存查询执行时间数组
@@ -702,8 +703,8 @@ class Debug
 			$filename = "debug_" . date("Ymd") . ".log";
 			Log::customLog($filename, $string);
 		}
-		
-		if(is_array(self::$db_log_mysql) || is_array(self::$debug_log_mysql)){
+		//file_put_contents('/tmp/debug.log', json_encode(self::$log_mysql) . "\n" , FILE_APPEND);
+		if(is_array(self::$log_mysql)){
 			/**
 			 * CREATE TABLE IF NOT EXISTS `debug_log` (
 				  `id` bigint(20) NOT NULL,
@@ -722,9 +723,9 @@ class Debug
 				ALTER TABLE `debug_log` ADD PRIMARY KEY (`id`);
 				ALTER TABLE `debug_log` MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 			 */
-			$sql = '';
+			$sql = ''; $values = array();
 			try{
-				$db = \yoka\DB::getInstance(self::$mysql_log['db'], self::$mysql_log['master']);
+				$db = \yoka\DB::getInstance(self::$log_mysql['db'], self::$log_mysql['master']);
 				if($db){
 					if(self::$db_log_mysql)foreach (self::$db_table as $v){
 						if(! preg_match('/insert|update|delete/i',$v[3])) continue; //全部记录太大了
