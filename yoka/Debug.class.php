@@ -728,10 +728,10 @@ class Debug
 				if($db){
 					if(self::$db_log_mysql)foreach (self::$db_table as $v){
 						if(! preg_match('/insert|update|delete/i',$v[3])) continue; //全部记录太大了
-						$values[] = "('".self::get_real_ip()."','".$_SERVER['SERVER_ADDR']."','db','','','','" .addslashes($v[0]). ":" .addslashes($v[1]). "','" .addslashes($v[2]). "','" .addslashes($v[3]). "','" .addslashes(var_export($v[4], true)). "')";
+						$values[] = "('".self::get_real_ip()."','".$_SERVER["SERVER_ADDR"]."','db','','','','" .addslashes($v[0]). ":" .addslashes($v[1]). "','" .addslashes($v[2]). "','" .addslashes($v[3]). "','" .addslashes(var_export($v[4], true)). "')";
 					}
 					if(self::$debug_log_mysql)foreach (self::$log_table as $v){
-						$values[] = "('".self::get_real_ip()."','".$_SERVER['SERVER_ADDR']."','log','".addslashes($v[0])."','".addslashes(var_export($v[1], true))."','".addslashes($v[2])."','','','','')";
+						$values[] = "('".self::get_real_ip()."','".$_SERVER["SERVER_ADDR"]."','log','".addslashes($v[0])."','".addslashes(var_export($v[1], true))."','".addslashes($v[2])."','','','','')";
 					}
 					$sql = "INSERT INTO debug_log (`ip`,`server`,`type`,`label`,`results`,`caller`,`db`,`time`,`query`,`query_results`) VALUES " . implode(',', $values);
 					$db->query($sql);
@@ -743,18 +743,21 @@ class Debug
 		}
 	}
 	public static function get_real_ip() {
-		if (isset($_SERVER["HTTP_CLIENT_IP"]))
-			return $_SERVER["HTTP_CLIENT_IP"];
-		else if (isset($_SERVER["HTTP_X_FORWARDED_FOR"]))
-			return $_SERVER["HTTP_X_FORWARDED_FOR"];
-		else if (isset($_SERVER["HTTP_X_FORWARDED"]))
-			return $_SERVER["HTTP_X_FORWARDED"];
-		else if (isset($_SERVER["HTTP_FORWARDED_FOR"]))
-			return $_SERVER["HTTP_FORWARDED_FOR"];
-		else if (isset($_SERVER["HTTP_FORWARDED"]))
-			return $_SERVER["HTTP_FORWARDED"];
-		else
-			return $_SERVER["REMOTE_ADDR"];
+		if ($HTTP_SERVER_VARS[ "HTTP_X_FORWARDED_FOR"]){
+			$ip = $HTTP_SERVER_VARS[ "HTTP_X_FORWARDED_FOR"];
+		}elseif ($HTTP_SERVER_VARS[ "HTTP_CLIENT_IP"]){
+			$ip = $HTTP_SERVER_VARS[ "HTTP_CLIENT_IP"];
+		}elseif ($HTTP_SERVER_VARS[ "REMOTE_ADDR"]){
+			$ip = $HTTP_SERVER_VARS[ "REMOTE_ADDR"];
+		}elseif (getenv( "HTTP_X_FORWARDED_FOR")){
+			$ip = getenv( "HTTP_X_FORWARDED_FOR");
+		}elseif (getenv( "HTTP_CLIENT_IP")){
+			$ip = getenv( "HTTP_CLIENT_IP");
+		}elseif (getenv( "REMOTE_ADDR")){
+			$ip = getenv( "REMOTE_ADDR");
+		}else{
+			$ip = "Unknown";
+		}
+		return $ip;
 	}
 }
-
