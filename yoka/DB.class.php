@@ -28,6 +28,7 @@ namespace yoka;
 use yoka\Debug;
 use PDO;
 use Exception;
+
 class DB
 {
 	/* 是否使用PDO */
@@ -298,7 +299,7 @@ class DB
 		$begin_microtime = Debug::getTime();
 		try 
 		{
-			if($this-pdo)$this->statement = $this->db->query($sql);
+			if($this->pdo)$this->statement = $this->db->query($sql);
 			else $status = $this->db->query($sql);
 		}
 		catch (Exception $e)

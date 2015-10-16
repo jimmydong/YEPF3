@@ -726,10 +726,10 @@ class Debug
 				$db = \yoka\DB::getInstance(self::$mysql_log['db'], self::$mysql_log['master']);
 				if($db){
 					foreach (self::$db_table as $v){
-						$values[] = "('".$this->get_real_ip()."','db','','','','" .addslashes($v[0]). ":" .addslashes($v[1]). "','" .addslashes($v[2]). "','" .addslashes($v[3]). "','" .addslashes(var_export($v[4], true)). "')";
+						$values[] = "('".self::get_real_ip()."','db','','','','" .addslashes($v[0]). ":" .addslashes($v[1]). "','" .addslashes($v[2]). "','" .addslashes($v[3]). "','" .addslashes(var_export($v[4], true)). "')";
 					}
 					foreach (self::$log_table as $v){
-						$values[] = "('".$this->get_real_ip()."','log','".addslashes($v[0])."','".addslashes(var_export($v[1], true))."','".addslashes($v[2])."','','','','')";
+						$values[] = "('".self::get_real_ip()."','log','".addslashes($v[0])."','".addslashes(var_export($v[1], true))."','".addslashes($v[2])."','','','','')";
 					}
 					$sql = "INSERT INTO debug_log (`ip`,`type`,`label`,`results`,`caller`,`db`,`time`,`query`,`query_results`) VALUES " . implode(',', $values);
 					$db->query($sql);
@@ -740,7 +740,7 @@ class Debug
 			}
 		}
 	}
-	function get_real_ip() {
+	public static function get_real_ip() {
 		if (isset($_SERVER["HTTP_CLIENT_IP"]))
 			return $_SERVER["HTTP_CLIENT_IP"];
 		else if (isset($_SERVER["HTTP_X_FORWARDED_FOR"]))
