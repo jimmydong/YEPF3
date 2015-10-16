@@ -57,9 +57,10 @@ class Debug
 	 * @var array
 	 */
 	static $db_table = array();
-	static $db_log	 = false;		//记录数据库操作（insert/update/delete）到文件
-	static $debug_log = false;		//记录调试信息到文件
-	static $mysql_log = false;		//将debug_log记录到数据库中 array('db'=>'default','master'=>'true')
+	static $db_log	 = false;			//记录数据库操作（insert/update/delete）到文件
+	static $db_log_mysql = false;		//记录到数据库中 array('db'=>'default','master'=>'true')
+	static $debug_log = false;			//记录调试信息到文件
+	static $debug_log_mysql = false;	//记录到数据库中 array('db'=>'default','master'=>'true')
 	
 	/**
 	 * @desc 缓存查询执行时间数组
@@ -702,7 +703,7 @@ class Debug
 			Log::customLog($filename, $string);
 		}
 		
-		if(is_array(self::$mysql_log)){
+		if(is_array(self::$db_log_mysql) || is_array(self::$debug_log_mysql)){
 			/**
 			 * CREATE TABLE IF NOT EXISTS `debug_log` (
 				  `id` bigint(20) NOT NULL,
@@ -725,13 +726,13 @@ class Debug
 			try{
 				$db = \yoka\DB::getInstance(self::$mysql_log['db'], self::$mysql_log['master']);
 				if($db){
-					foreach (self::$db_table as $v){
-						$values[] = "('".self::get_real_ip()."','db','','','','" .addslashes($v[0]). ":" .addslashes($v[1]). "','" .addslashes($v[2]). "','" .addslashes($v[3]). "','" .addslashes(var_export($v[4], true)). "')";
+					if(self::$db_log_mysql)foreach (self::$db_table as $v){
+						$values[] = "('".self::get_real_ip()."','".$_SERVER['SERVER_ADDR']."','db','','','','" .addslashes($v[0]). ":" .addslashes($v[1]). "','" .addslashes($v[2]). "','" .addslashes($v[3]). "','" .addslashes(var_export($v[4], true)). "')";
 					}
-					foreach (self::$log_table as $v){
-						$values[] = "('".self::get_real_ip()."','log','".addslashes($v[0])."','".addslashes(var_export($v[1], true))."','".addslashes($v[2])."','','','','')";
+					if(self::$debug_log_mysql)foreach (self::$log_table as $v){
+						$values[] = "('".self::get_real_ip()."','".$_SERVER['SERVER_ADDR']."','log','".addslashes($v[0])."','".addslashes(var_export($v[1], true))."','".addslashes($v[2])."','','','','')";
 					}
-					$sql = "INSERT INTO debug_log (`ip`,`type`,`label`,`results`,`caller`,`db`,`time`,`query`,`query_results`) VALUES " . implode(',', $values);
+					$sql = "INSERT INTO debug_log (`ip`,`server`,`type`,`label`,`results`,`caller`,`db`,`time`,`query`,`query_results`) VALUES " . implode(',', $values);
 					$db->query($sql);
 				}
 			}catch(\Exception $e){
