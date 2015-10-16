@@ -727,6 +727,7 @@ class Debug
 				$db = \yoka\DB::getInstance(self::$mysql_log['db'], self::$mysql_log['master']);
 				if($db){
 					if(self::$db_log_mysql)foreach (self::$db_table as $v){
+						if(! preg_match('/insert|update|delete/i',$v[3])) continue; //全部记录太大了
 						$values[] = "('".self::get_real_ip()."','".$_SERVER['SERVER_ADDR']."','db','','','','" .addslashes($v[0]). ":" .addslashes($v[1]). "','" .addslashes($v[2]). "','" .addslashes($v[3]). "','" .addslashes(var_export($v[4], true)). "')";
 					}
 					if(self::$debug_log_mysql)foreach (self::$log_table as $v){
