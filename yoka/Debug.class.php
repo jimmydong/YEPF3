@@ -706,11 +706,11 @@ class Debug
 			/**
 			 * CREATE TABLE IF NOT EXISTS `debug_log` (
 				  `id` bigint(20) NOT NULL,
+				  `ip` varchar(200) NOT NULL,
 				  `type` varchar(64) NOT NULL,
 				  `label` varchar(200) NOT NULL,
 				  `results` text NOT NULL,
 				  `caller` varchar(200) NOT NULL,
-				  `ip` varchar(200) NOT NULL,
 				  `db` varchar(200) NOT NULL,
 				  `time` float(10,6) NOT NULL,
 				  `query` text NOT NULL,
@@ -726,12 +726,12 @@ class Debug
 				$db = \yoka\DB::getInstance(self::$mysql_log['db'], self::$mysql_log['master']);
 				if($db){
 					foreach (self::$db_table as $v){
-						$values[] = "('db','','','','" .addslashes($v[0]). "','" .addslashes($v[1]). "','" .addslashes($v[2]). "','" .addslashes($v[3]). "','" .addslashes(var_export($v[4], true)). "')";
+						$values[] = "('".$this->get_real_ip()."','db','','','','" .addslashes($v[0]). ":" .addslashes($v[1]). "','" .addslashes($v[2]). "','" .addslashes($v[3]). "','" .addslashes(var_export($v[4], true)). "')";
 					}
 					foreach (self::$log_table as $v){
-						$values[] = "('log','".addslashes($v[0])."','".addslashes(var_export($v[1], true))."','".addslashes($v[2])."','','','','','')";
+						$values[] = "('".$this->get_real_ip()."','log','".addslashes($v[0])."','".addslashes(var_export($v[1], true))."','".addslashes($v[2])."','','','','')";
 					}
-					$sql = "INSERT INTO debug_log (`type`,`label`,`results`,`caller`,`ip`,`db`,`time`,`query`,`query_results`) VALUES " . implode(',', $values);
+					$sql = "INSERT INTO debug_log (`ip`,`type`,`label`,`results`,`caller`,`db`,`time`,`query`,`query_results`) VALUES " . implode(',', $values);
 					$db->query($sql);
 				}
 			}catch(\Exception $e){
@@ -739,6 +739,20 @@ class Debug
 				Log::customLog($filename, "[Debug Error] write to mysql_log fail. db:". self::$mysql_log['db'] . "(" . self::$mysql_log['master'] . ") " . $sql);
 			}
 		}
+	}
+	function get_real_ip() {
+		if (isset($_SERVER["HTTP_CLIENT_IP"]))
+			return $_SERVER["HTTP_CLIENT_IP"];
+		else if (isset($_SERVER["HTTP_X_FORWARDED_FOR"]))
+			return $_SERVER["HTTP_X_FORWARDED_FOR"];
+		else if (isset($_SERVER["HTTP_X_FORWARDED"]))
+			return $_SERVER["HTTP_X_FORWARDED"];
+		else if (isset($_SERVER["HTTP_FORWARDED_FOR"]))
+			return $_SERVER["HTTP_FORWARDED_FOR"];
+		else if (isset($_SERVER["HTTP_FORWARDED"]))
+			return $_SERVER["HTTP_FORWARDED"];
+		else
+			return $_SERVER["REMOTE_ADDR"];
 	}
 }
 
