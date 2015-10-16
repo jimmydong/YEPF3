@@ -729,7 +729,7 @@ class Debug
 						$values[] = "('db','','','','" .addslashes($v[0]). "','" .addslashes($v[1]). "','" .addslashes($v[2]). "','" .addslashes($v[3]). "','" .addslashes($v[4]). "')";
 					}
 					foreach (self::$log_table as $v){
-						$values[] = "('log','".addslashes($v[0])."','".addslashes($v[1])."','".addslashes($v[2])."','','','','','')";
+						$values[] = "('log','".addslashes($v[0])."','".addslashes(var_export($v[1], true))."','".addslashes($v[2])."','','','','','')";
 					}
 					$sql = "INSERT INTO debug_log (`type`,`label`,`results`,`caller`,`ip`,`db`,`time`,`query`,`query_results`) VALUES " . implode(',', $values);
 					$db->query($sql);

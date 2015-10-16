@@ -28,7 +28,6 @@ namespace yoka;
 use yoka\Debug;
 use PDO;
 use Exception;
-
 class DB
 {
 	/* 是否使用PDO */
