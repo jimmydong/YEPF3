@@ -739,7 +739,7 @@ class Debug
 				}
 			}catch(\Exception $e){
 				//do nothing
-				Log::customLog($filename, "[Debug Error] write to mysql_log fail. db:". self::$mysql_log['db'] . "(" . self::$mysql_log['master'] . ") " . $sql);
+				Log::customLog($filename, "[Debug Error] write to mysql_log fail. " . $sql);
 			}
 		}
 	}
