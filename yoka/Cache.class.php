@@ -172,7 +172,8 @@ class Cache implements \yoka\CacheInterface
 		$key = $this->getKey($cacheKey);
 		if(empty($key)) return false;
 		$begin_microtime = Debug::getTime();
-        $cacheValue = $this->cache->get($key);
+        if(is_array($key) && $this->memcacheType == 'Memcached') $cacheValue = $this->cache->getMulti($key);
+        else $cacheValue = $this->cache->get($key);
         if($cacheValue !== FALSE){
         	if(is_array($cacheKey))
         	{
