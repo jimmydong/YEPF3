@@ -135,6 +135,33 @@ class Cache implements \yoka\CacheInterface
         return false;
     }
     /**
+     * 批量读取
+     * @param array $keys
+     */
+    public function getMulti($keys){
+    	return $this->get($keys);
+    }
+    /**
+     * 批量设置
+     * @param array $arr
+     * @param number $expiration
+     */
+    public function setMulti($arr, $expiration = 0){
+    	$begin_microtime = Debug::getTime();
+    	if(!is_array($arr)){
+    		Debug::cache($this->serverlist, $arr, Debug::getTime() - $begin_microtime, 'setMulti', false);
+        	return false;
+    	}
+    	foreach($arr as $k=>$v){
+    		$key = $this->getKey($k);
+    		$new[$key] = $v;
+    	}
+    	if($this->memcacheType == 'Memcached') $this->cache->setMulti($new, $expiration);
+    	else foreach($new as $k=>$v) $this->cache->set($k,$v,$expiration);
+    	Debug::cache($this->serverlist, $arr, Debug::getTime() - $begin_microtime, 'setMulti', true);
+    	return true;
+    }
+    /**
      * @name clear
      * @desc 将数据在缓冲中清除
      * @param string $cacheKey 要清除的字符串
