@@ -57,11 +57,29 @@ class Debug
 	 * @var array
 	 */
 	static $db_table = array();
-	static $log_mysql = false;			//日志数据库配置 array('db'=>'default','master'=>'true')
 	static $db_log	 = false;			//记录数据库操作（insert/update/delete）到文件
-	static $db_log_mysql = false;		//记录到数据库中 
 	static $debug_log = false;			//记录调试信息到文件
-	static $debug_log_mysql = false;	//记录到数据库中 
+	/** 日志表格式
+	 * CREATE TABLE IF NOT EXISTS `debug_log` (
+	 `id` bigint(20) NOT NULL,
+	 `ip` varchar(200) NOT NULL,
+	 `type` varchar(64) NOT NULL,
+	 `label` varchar(200) NOT NULL,
+	 `results` text NOT NULL,
+	 `caller` varchar(200) NOT NULL,
+	 `db` varchar(200) NOT NULL,
+	 `time` float(10,6) NOT NULL,
+	 `query` text NOT NULL,
+	 `query_results` text NOT NULL,
+	 `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	 `remark` varchar(200) NOT NULL
+	 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+	 ALTER TABLE `debug_log` ADD PRIMARY KEY (`id`);
+	 ALTER TABLE `debug_log` MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+	 */
+	static $log_mysql = false;			//日志数据库配置 array('db'=>'default','master'=>'true')
+	static $db_log_mysql = false;		//记录到数据库中 
+	static $debug_log_mysql = false;	//记录到数据库中
 	
 	/**
 	 * @desc 缓存查询执行时间数组
@@ -255,6 +273,41 @@ class Debug
 		Log::customLog($filename, $string);
 		return true;
 	}
+	
+	/**
+	 * 即时写入日志数据库（self::$debug_log_mysql必须已有设置）
+	 * @param unknown $label
+	 * @param string $result
+	 * @param string $caller
+	 */
+	static public function dlog($label, $result = '', $caller = '')
+	{
+		if($caller == ''){
+			$t = debug_backtrace(1);
+			$caller = $t[0][file].':'.$t[0][line];
+		}
+		if(! is_array(self::$debug_log_mysql)) {
+		 	self::log('dlog Error','Not define self::$debug_log_mysql, called by {$caller}');
+		 	return;
+		}else{
+		 	$sql = ''; $values = array();
+		 	try{
+		 		$db = \yoka\DB::getInstance(self::$log_mysql['db'], self::$log_mysql['master']);
+		 		$sql = "INSERT INTO debug_log SET 
+		 					`ip` = '".self::get_real_ip()."',
+		 					`server` = '".$_SERVER["SERVER_ADDR"]."',
+		 					`type` = 'dlog',
+		 					`label` = '".addslashes($label)."',
+		 					`results` = '".addslashes($result)."',
+		 					`caller` = ''";
+		 		$db->query($sql);
+		 	}catch(\Exception $e){
+		 		//do nothing
+		 		Log::customLog($filename, "[Debug Error] write to mysql_log fail. " . $sql);
+		 	}
+		}
+	}
+	
 	/**
 	 * @name db
 	 * @desc 记录数据库查询操作执行时间
@@ -705,24 +758,6 @@ class Debug
 		}
 		//file_put_contents('/tmp/debug.log', json_encode(self::$log_mysql) . "\n" , FILE_APPEND);
 		if(is_array(self::$log_mysql)){
-			/**
-			 * CREATE TABLE IF NOT EXISTS `debug_log` (
-				  `id` bigint(20) NOT NULL,
-				  `ip` varchar(200) NOT NULL,
-				  `type` varchar(64) NOT NULL,
-				  `label` varchar(200) NOT NULL,
-				  `results` text NOT NULL,
-				  `caller` varchar(200) NOT NULL,
-				  `db` varchar(200) NOT NULL,
-				  `time` float(10,6) NOT NULL,
-				  `query` text NOT NULL,
-				  `query_results` text NOT NULL,
-				  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-				  `remark` varchar(200) NOT NULL
-				) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-				ALTER TABLE `debug_log` ADD PRIMARY KEY (`id`);
-				ALTER TABLE `debug_log` MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
-			 */
 			$sql = ''; $values = array();
 			try{
 				$db = \yoka\DB::getInstance(self::$log_mysql['db'], self::$log_mysql['master']);
