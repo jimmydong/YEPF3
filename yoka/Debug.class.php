@@ -299,7 +299,7 @@ class Debug
 		 					`type` = 'dlog',
 		 					`label` = '".addslashes($label)."',
 		 					`results` = '".addslashes($result)."',
-		 					`caller` = ''";
+		 					`caller` = '{$caller}'";
 		 		$db->query($sql);
 		 	}catch(\Exception $e){
 		 		//do nothing
