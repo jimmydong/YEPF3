@@ -287,7 +287,7 @@ class Debug
 			$caller = $t[0][file].':'.$t[0][line];
 		}
 		if(! is_array(self::$debug_log_mysql)) {
-		 	self::log('dlog Error','Not define self::$debug_log_mysql, called by {$caller}');
+		 	self::log('dlog Error','Not define self::$debug_log_mysql, called by ' . $caller);
 		 	return;
 		}else{
 		 	$sql = ''; $values = array();
