@@ -286,7 +286,7 @@ class Debug
 			$t = debug_backtrace(1);
 			$caller = $t[0][file].':'.$t[0][line];
 		}
-		if(! is_array(self::$debug_log_mysql)) {
+		if(! is_array(self::$log_mysql)) {
 		 	self::log('dlog Error','Not define self::$debug_log_mysql, called by ' . $caller);
 		 	return;
 		}else{
@@ -700,7 +700,7 @@ class Debug
 				break;
 		}
 		
-		/*---------记录数据库改变情况-------------------------*/
+		/*---------记录数据库改变情况到日志文件-------------------------*/
 		if(self::$db_log){
 			$string = '';
 			if(!empty(self::$db_table))
@@ -718,7 +718,7 @@ class Debug
 		}
 		
 
-		/*---------记录用户定制调试信息至日志文件中------------*/
+		/*---------记录调试信息至日志文件中------------*/
 		if(self::$debug_log)
 		if(false !== self::$open &&(count(self::$log_table) > 1 || count(self::$time_table) > 1))
 		{
@@ -757,6 +757,8 @@ class Debug
 			Log::customLog($filename, $string);
 		}
 		//file_put_contents('/tmp/debug.log', json_encode(self::$log_mysql) . "\n" , FILE_APPEND);
+		
+		/*---------记录调试信息至日志数据库中------------*/
 		if(is_array(self::$log_mysql)){
 			$sql = ''; $values = array();
 			try{
