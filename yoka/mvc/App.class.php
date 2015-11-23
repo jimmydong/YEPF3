@@ -42,12 +42,12 @@ class App {
 			$obj->{$this->_action}($request, $response);
 			$obj->after($this->_controller, $this->_action);
 		} catch (Exception $e) {
+			\yoka\Debug::log('Error',$e);
+			\yoka\Debug::flog('*** Exception ***', $e);
 			if (method_exists($obj, 'error')) {
 				//$obj->error($request, $response, $e);
 				$obj->error($e->getMessage());
 			}
-			\yoka\Debug::log('Error',$e);
-			\yoka\Debug::flog('*** Exception ***', $e);
 			echo "System Error:  Please contact customer service.";
 			
 		}
