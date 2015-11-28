@@ -771,8 +771,10 @@ class Debug
 					if(self::$debug_log_mysql)foreach (self::$log_table as $v){
 						$values[] = "('".self::get_real_ip()."','".$_SERVER["SERVER_ADDR"]."','log','".addslashes($v[0])."','".addslashes(var_export($v[1], true))."','".addslashes($v[2])."','','','','')";
 					}
-					$sql = "INSERT INTO debug_log (`ip`,`server`,`type`,`label`,`results`,`caller`,`db`,`time`,`query`,`query_results`) VALUES " . implode(',', $values);
-					$db->query($sql);
+					if(count($values) > 0){
+						$sql = "INSERT INTO debug_log (`ip`,`server`,`type`,`label`,`results`,`caller`,`db`,`time`,`query`,`query_results`) VALUES " . implode(',', $values);
+						$db->query($sql);
+					}
 				}
 			}catch(\Exception $e){
 				//do nothing
