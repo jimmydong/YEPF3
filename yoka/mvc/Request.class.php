@@ -6,8 +6,8 @@ use \Exception;
 class Request {
 	
 	private static $_instance;
-	private static $FLAG_MAGIC_QUOTES = true;
-	private $allowModify = false;
+	public $allowModify = false;
+	public static $FLAG_MAGIC_QUOTES = true;
 	
 	
 	private function __construct() {}
