@@ -6,6 +6,7 @@ use \Exception;
 class Request {
 	
 	private static $_instance;
+	private static $FLAG_MAGIC_QUOTES = true;
 	private $allowModify = false;
 	
 	
@@ -68,6 +69,7 @@ class Request {
 	}
 	
 	public function __get($key) {
+		if(self::$FLAG_MAGIC_QUOTES === false)return $this->getUnMagic($key);
 		return $this->getRequest($key);
 	}
 
