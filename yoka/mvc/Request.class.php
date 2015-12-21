@@ -59,6 +59,12 @@ class Request {
 	public function getNoMagic($key, $default=''){
 		return $this->getUnMagic($key, $default);
 	}
+	public function unMagic($key, $default=''){
+		return $this->getUnMagic($key, $default);
+	}
+	public function noMagic($key, $default=''){
+		return $this->getUnMagic($key, $default);
+	}
 	public function _stripslashesRecursive($data){
 		if(is_array($data)){
 			foreach($data as $key=> $val){
