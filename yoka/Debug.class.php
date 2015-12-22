@@ -802,7 +802,7 @@ class Debug
 					$db->query($sql);
 				}
 			}catch(\Exception $e){
-				//do nothing
+				$filename = "debug_db_" . date("Ymd") . ".log";
 				Log::customLog($filename, "[Debug Error] write to mysql_log fail. " . $sql);
 			}
 		}
