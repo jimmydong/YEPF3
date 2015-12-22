@@ -79,7 +79,33 @@ class Debug
 	 */
 	static $log_mysql = false;			//日志数据库配置 array('db'=>'default','master'=>'true')
 	static $db_log_mysql = false;		//记录到数据库中 
-	static $debug_log_mysql = false;	//记录到数据库中
+	static $debug_log_mysql = false;	//记录到数据库中。所需表结构见下：
+	/*
+	 数据库表结构
+	 CREATE TABLE IF NOT EXISTS `debug_log` (
+	 `id` bigint(20) NOT NULL,
+	 `server` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+	 `ip` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+	 `type` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+	 `db` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+	 `time` float(10,6) NOT NULL,
+	 `query` text COLLATE utf8_unicode_ci NOT NULL,
+	 `query_results` text COLLATE utf8_unicode_ci NOT NULL,
+	 `label` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+	 `results` text COLLATE utf8_unicode_ci NOT NULL,
+	 `caller` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+	 `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	 `remark` varchar(200) COLLATE utf8_unicode_ci NOT NULL
+	 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+	
+	 ALTER TABLE `debug_log`
+	 ADD PRIMARY KEY (`id`),
+	 ADD KEY `server` (`server`,`create_time`),
+	 ADD KEY `type` (`type`,`create_time`),
+	 ADD KEY `ip` (`ip`,`create_time`),
+	 ADD KEY `label` (`label`,`create_time`),
+	 ADD KEY `create_time` (`create_time`);
+	*/	
 	
 	/**
 	 * @desc 缓存查询执行时间数组
@@ -303,6 +329,7 @@ class Debug
 		 		$db->query($sql);
 		 	}catch(\Exception $e){
 		 		//do nothing
+		 		$filename = "debug_db_" . date("Ymd") . ".log";
 		 		Log::customLog($filename, "[Debug Error] write to mysql_log fail. " . $sql);
 		 	}
 		}
@@ -771,10 +798,8 @@ class Debug
 					if(self::$debug_log_mysql)foreach (self::$log_table as $v){
 						$values[] = "('".self::get_real_ip()."','".$_SERVER["SERVER_ADDR"]."','log','".addslashes($v[0])."','".addslashes(var_export($v[1], true))."','".addslashes($v[2])."','','','','')";
 					}
-					if(count($values) > 0){
-						$sql = "INSERT INTO debug_log (`ip`,`server`,`type`,`label`,`results`,`caller`,`db`,`time`,`query`,`query_results`) VALUES " . implode(',', $values);
-						$db->query($sql);
-					}
+					$sql = "INSERT INTO debug_log (`ip`,`server`,`type`,`label`,`results`,`caller`,`db`,`time`,`query`,`query_results`) VALUES " . implode(',', $values);
+					$db->query($sql);
 				}
 			}catch(\Exception $e){
 				//do nothing
