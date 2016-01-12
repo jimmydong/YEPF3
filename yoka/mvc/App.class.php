@@ -39,7 +39,14 @@ class App {
 			throw new Exception("'$controller' has not method '{$this->_action}' ");
 		try {
 			$obj->before($this->_controller, $this->_action);
-			$obj->{$this->_action}($request, $response);
+			$re = $obj->{$this->_action}($request, $response);
+			if(is_string($re))echo $re;
+			elseif(is_array($re)){echo "<pre>";print_r($re);echo "</pre>";}
+			elseif(is_bool($re)){
+				if(!$re) \yoka\Debug::flog('MVC _c='.$this->_controller.' _a='.$this->_action, 'return false, maybe there is something wrong');
+			}else{
+				//do nothing
+			}
 			$obj->after($this->_controller, $this->_action);
 		} catch (Exception $e) {
 			\yoka\Debug::log('Error',$e);

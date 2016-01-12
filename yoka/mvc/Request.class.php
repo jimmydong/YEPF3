@@ -6,7 +6,13 @@ use \Exception;
 class Request {
 	
 	private static $_instance;
+	/**
+	 * 允许修改传入参数
+	 */
 	public $allowModify = false;
+	/**
+	 * 自动进行add_slashes
+	 */
 	public static $FLAG_MAGIC_QUOTES = true;
 	
 	
