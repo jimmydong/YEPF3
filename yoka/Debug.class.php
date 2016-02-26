@@ -275,9 +275,9 @@ class Debug
 	/**
 	 * 即时写入日志文件（在无法正常输出Debug回调时使用）
 	 * Enter description here ...
-	 * @param unknown_type $label
-	 * @param unknown_type $results
-	 * @param unknown_type $caller
+	 * @param string $label
+	 * @param mixed $results
+	 * @param string $caller
 	 */
 	static public function flog($label, $results = '', $caller = '')
 	{
@@ -798,8 +798,10 @@ class Debug
 					if(self::$debug_log_mysql)foreach (self::$log_table as $v){
 						$values[] = "('".self::get_real_ip()."','".$_SERVER["SERVER_ADDR"]."','log','".addslashes($v[0])."','".addslashes(var_export($v[1], true))."','".addslashes($v[2])."','','','','')";
 					}
-					$sql = "INSERT INTO debug_log (`ip`,`server`,`type`,`label`,`results`,`caller`,`db`,`time`,`query`,`query_results`) VALUES " . implode(',', $values);
-					$db->query($sql);
+					if($values){
+						$sql = "INSERT INTO debug_log (`ip`,`server`,`type`,`label`,`results`,`caller`,`db`,`time`,`query`,`query_results`) VALUES " . implode(',', $values);
+						$db->query($sql);
+					}
 				}
 			}catch(\Exception $e){
 				$filename = "debug_db_" . date("Ymd") . ".log";
