@@ -174,7 +174,6 @@ class DB
 	{
 		//兼容非PDO模式
 		if($this->pdo == false) return $this->query($sql);
-		
 		$begin_microtime = Debug::getTime();
 		try 
 		{
