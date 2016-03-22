@@ -66,6 +66,9 @@ class Template extends Smarty
 		if(function_exists('template_lang_modifier')){
 			$this->registerPlugin('modifier', 'lang', 'template_lang_modifier');
 		}
+		if(function_exists('template_trans_modifier')){
+			$this->registerPlugin('modifier', 'trans', 'template_lang_modifier');
+		}
 		
 		/*--------------- 传入变量 ------------------*/
 		if($response) $this->fit_sprite($response);
