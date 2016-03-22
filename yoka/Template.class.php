@@ -40,7 +40,7 @@ class Template extends Smarty
 		$this->setCacheDir(getCustomConstants('COMPILER_PATH'));
 		$this->tpl_type = getCustomConstants('TEMPLATE_TYPE');
 
-		//注册自定义函数
+		/*----------------- 注册自定义函数 ----------------*/
 		if(function_exists('template_url_encode')){
 			$this->registerPlugin('function', 'url', 'template_url_encode');
 		}
@@ -56,15 +56,18 @@ class Template extends Smarty
        	if(function_exists('template_widget_encode')){
         	$this->registerPlugin('function', 'widget', 'template_widget_encode');
 		}
-		//注册自定义修饰器
+		/*--------------- 注册自定义修饰器 -------------*/
 		if(function_exists('template_cdn_modifier')){
 			$this->registerPlugin('modifier', 'cdn', 'template_cdn_modifier');
 		}
 		if(function_exists('template_xid_modifier')){
 			$this->registerPlugin('modifier', 'xid', 'template_xid_modifier');
 		}
+		if(function_exists('template_lang_modifier')){
+			$this->registerPlugin('modifier', 'lang', 'template_lang_modifier');
+		}
 		
-		//传入变量
+		/*--------------- 传入变量 ------------------*/
 		if($response) $this->fit_sprite($response);
 		
 		if(class_exists('\yoka\Debug')){
