@@ -1,0 +1,81 @@
+<?php
+namespace yoka\mvc;
+
+use \Exception;
+
+class Request {
+	
+	private static $_instance;
+	private $allowModify = false;
+	
+	
+	private function __construct() {}
+	
+	public static function getInstance() {
+		if (!self::$_instance)
+			self::$_instance = new self();
+		return self::$_instance;
+	}
+
+	public function get($index = '', $default='') {
+        if($index === '' || $default === '')
+            return $_GET;
+		return isset($_GET[$index])? $_GET[$index]:$default;
+	}
+
+	public function post($index, $default='') {
+		return isset($_POST[$index])? $_POST[$index]:$default;
+	}
+	
+	public function getRequest($index, $default='') {
+		return isset($_REQUEST[$index])? $_REQUEST[$index]:$default;
+	}
+	
+	public function cookie($index) {
+		return isset($_COOKIE[$index])? $_COOKIE[$index]:'';
+	}
+	
+	public function ModifyGet(array $get) {
+		$this->allowModify = true;
+		
+		foreach ($get as $k=>$v)
+			$this->$k = $v;
+		
+		$this->allowModify = false;
+	}
+	
+	/**
+	 * 获取非magic_quotes状态的数据
+	 * Enter description here ...
+	 * @param unknown_type $key
+	 * @param unknown_type $default
+	 */
+	public function getUnMagic($key, $default=''){
+		$data = $this->getRequest($key, $default);
+		if(get_magic_quotes_runtime())return $data;
+		else return $this->_stripslashesRecursive($data);
+	}
+	public function getNoMagic($key, $default=''){
+		return $this->getUnMagic($key, $default);
+	}
+	public function _stripslashesRecursive($data){
+		if(is_array($data)){
+			foreach($data as $key=> $val){
+				$re[$key] = self::_stripslashesRecursive($val);
+			}
+			return $re;
+		}else return stripslashes($data);
+	}
+	
+	public function __get($key) {
+		return $this->getRequest($key);
+	}
+
+	public function __set($k, $v) {
+		if ($this->allowModify)
+			$this->$k = $v;
+		else
+			throw new Exception('set value to const!');
+		
+	}
+}
