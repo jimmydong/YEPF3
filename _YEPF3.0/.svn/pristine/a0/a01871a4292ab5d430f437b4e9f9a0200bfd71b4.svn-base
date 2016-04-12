@@ -1,6 +1,0 @@
-<{include file='include/header.html'}>
-<body>
-<h3>Admin</h3>
-<{$hello}>
-</body>
-</html>
