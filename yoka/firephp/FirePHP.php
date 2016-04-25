@@ -741,7 +741,7 @@ class FirePHP {
     public function fb($Object)
     {
     	if(\yoka\Debug::$open == false){
-    		var_export($Object);
+    		throw $Object;
     		return;
     	}
         if($this instanceof FirePHP_Insight && method_exists($this, '_logUpgradeClientMessage')) {
