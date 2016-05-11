@@ -310,8 +310,12 @@ class DB
 		if(self::$debug)Debug::db($this->db_host, $this->db_name, $sql, Debug::getTime() - $begin_microtime, $this->db->errorInfo());
 		if($this->pdo){
 			if($return_statement) $re = $this->statement;
-			elseif($this->statement && $this->statement->errorCode() === '00000')$re = true;
-			else $re = false;
+			else{
+				if($this->statement && $this->statement->errorCode() === '00000')$re = true;
+				else $re = false;
+				//不需要保持statement，释放
+				$this->statement->closeCursor();
+			}
 		}else $re = $status;
 		if(!$re)$this->logError($sql, $re);
 		return $re;
