@@ -314,7 +314,7 @@ class DB
 				if($this->statement && $this->statement->errorCode() === '00000')$re = true;
 				else $re = false;
 				//不需要保持statement，释放
-				$this->statement->closeCursor();
+				if($this->statement)$this->statement->closeCursor();
 			}
 		}else $re = $status;
 		if(!$re)$this->logError($sql, $re);
