@@ -52,6 +52,18 @@ class Request {
 	}
 	
 	/**
+	 * 判断参数是否传入
+	 * (注意：不同于is_null() —— !isset() 和 null 都返回true)
+	 * @param string $key
+	 */
+	public function isNull($key){
+		if($key === '' || $key === '') return true;
+		if(isset($_GET[$key]))return false;
+		elseif(isset($_POST[$key]))return false;
+		else return true;
+	}
+	
+	/**
 	 * 获取非magic_quotes状态的数据
 	 * Enter description here ...
 	 * @param unknown_type $key
