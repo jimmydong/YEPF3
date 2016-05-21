@@ -222,7 +222,7 @@ class DB
 	 */
 	public function delete($table_name, $where, $compat = false)
 	{
-		if(is_array($where)) $where = self::_buildQuery($where, $trim, $strict, $connector, $addslashes);
+		if(is_array($where)) $where = self::_buildQuery($where);
 		if(false === strpos($where, '='))
 		{
 			return false;
