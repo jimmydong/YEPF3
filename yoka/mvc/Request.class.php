@@ -52,7 +52,7 @@ class Request {
 	}
 	
 	/**
-	 * 判断参数是否传入
+	 * 用于判断参数是否传入
 	 * (注意：不同于is_null() —— !isset() 和 null 都返回true)
 	 * @param string $key
 	 */
@@ -60,6 +60,10 @@ class Request {
 		if($key === '' || $key === '') return true;
 		if(isset($_GET[$key]))return false;
 		elseif(isset($_POST[$key]))return false;
+		else return true;
+	}
+	public function notNull($key){
+		if($this->isNull($key))return false;
 		else return true;
 	}
 	
