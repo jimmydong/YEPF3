@@ -93,7 +93,6 @@ class Controller {
 		header("Location: $url");
 	}
 	
-	
 	public function renderSmarty($file=NULL) {
 		$smarty = new SmartyView($this->_response);
 		$smarty->render($file);
