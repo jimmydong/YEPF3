@@ -54,7 +54,7 @@ class Queue
 	 * @access protected
 	 *
 	 */
-    protected function __construct($item = '', $is_ssdb = null)
+    protected function __construct($item = 'default', $is_ssdb = null)
     {
     	global $CACHE;
    		$this->prefix = $item;

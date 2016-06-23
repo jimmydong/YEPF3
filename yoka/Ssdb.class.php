@@ -9,7 +9,7 @@ namespace yoka;
  * SSDB PHP client SDK.
  */
 
-class SSDBException extends Exception
+class SSDBException extends \Exception
 {
 }
 
