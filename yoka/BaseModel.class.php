@@ -1,4 +1,5 @@
 <?php
+namespace yoka;
 /**
  * 实体对象基类
  * @author jimmy.dong@gmail.com
@@ -10,13 +11,6 @@
  * 4， 支持SQL兼容及数据库直接操作，但不推荐使用
  * 5， 默认数据为已addslashes处理，否则应添加addslashes标记
  */
-namespace yoka;
-use yoka\Debug;
-use yoka\Cache;
-use yoka\Log;
-use yoka\DB;
-use mdbao\User;
-
 class BaseModel{
 
 	public $db;

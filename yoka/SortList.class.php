@@ -23,7 +23,6 @@ namespace yoka;
 	 	$sort->sortDeleteByScore($set, 4, 7);
 	 	var_dump($sort->sortGetsAll($set));
  */
-use yoka\Debug as Debug;
 
 class SortList extends Queue
 {

@@ -20,7 +20,6 @@ namespace yoka;
 	$queue->getQueue('queue_name');
 	$queue->getQueue('queue_name');
  */
-use yoka\Debug as Debug;
 
 class Queue
 {

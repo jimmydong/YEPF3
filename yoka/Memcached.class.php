@@ -1,4 +1,5 @@
 <?php
+namespace yoka;
 /**
  * @name Memcached.class.php
  * @desc memCache统一操作类
@@ -6,8 +7,7 @@
  * @createtime 2008-9-10 10:54
  * @updatetime 2014-09-16 by jimmy.dong@gmail.com  注：此类方法仅为兼容早期memcache而使用。新版本应使用memcached。
  */
-namespace yoka;
-use Memcache;
+use \Memcache;
 class Memcached
 {
     

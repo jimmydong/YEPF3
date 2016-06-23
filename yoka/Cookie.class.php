@@ -7,10 +7,6 @@ namespace yoka;
  * 加一层封装，为未来做cookie压缩加密做准备
  *
  */
-use yoka\Debug;
-use yoka\Cache;
-use yoka\Log;
-use yoka\DB;
 
 class Cookie{
 		private static $expire = 8640000; 	//默认cookie时间：100天
