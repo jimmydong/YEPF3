@@ -18,6 +18,12 @@ class Cache implements \yoka\CacheInterface
 {
 	/* Memcache扩展的类型： Memcache or Memcached */
 	private $memcacheType;
+	
+	/*
+	 * 默认的连接项目
+	 */
+	static $default_item = 'default';
+	
 	/**
 	 * 实例化数组
 	 * @var array
@@ -69,6 +75,15 @@ class Cache implements \yoka\CacheInterface
     	}
 		$this->prefix = $item;
     }
+    
+    /**
+     * 设置缺省项目
+     * @param unknown $item
+     */
+    public static function setDefault($item){
+    	self::$default_item = $item;
+    }
+    
     /**
      * @name getInstance
      * @desc 单件模式调用Cache类入口
@@ -76,8 +91,9 @@ class Cache implements \yoka\CacheInterface
      * @return object instance of Cache
      * @access public
      **/
-    public static function getInstance($item = 'default')
+    public static function getInstance($item = null)
     {
+    	if($item === null) $item = self::$default_item;
     	global $CACHE;
     	$obj = Cache::$instance;
     	if(!isset($obj[$item]))
