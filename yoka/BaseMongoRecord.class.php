@@ -16,7 +16,15 @@ use \yoka\Debug;
  * 注意：
  * 1，依赖WORK-ENV的配置项: [MONGODB] ...
  * 2，注意数据库授权。eg:db.createUser({user:"yisheng",pwd:"yisheng@2015",roles:[{role:"dbAdmin",db:"health"},{role:"readWrite",db:"health"}]});
- * 
+ *
+ * 类型与传值：
+	  	objectid: 字符串 OR MongoId
+	  	string	: 字符串
+	  	integer, float, double:  数字 OR 字符串
+	  	datetime:	date('Y-m-d H:i:s') OR 毫秒时间戳 
+	  	array	: ['key'=>'value', ...] 
+	  	object	: $obj  OR  json_encode($obj)
+ *	  	
  * 使用参考：
  *
 		//增/删/改
@@ -26,6 +34,7 @@ use \yoka\Debug;
 		$obj->save();
 		$obj->name = 'new';
 		$obj->save();
+		//$obj->destroy();
 		//$obj->remove(array('_id',$obj->getID()));
 		
 		//查
@@ -1597,7 +1606,6 @@ abstract class BaseMongoRecord implements MongoRecord
     protected static function getCollection()
     {
         $className = get_called_class();
-
         if (null !== static::$collectionName)
         {
             $collectionName = static::$collectionName;
@@ -1610,16 +1618,17 @@ abstract class BaseMongoRecord implements MongoRecord
             $collectionName = self::tableize($real_className);
             self::$collectionName = $collectionName;
         }
-
+		//没有使用过，初始化
+        if ($className::$database == null){
+        	$t = new $className;
+        }
+        //配置检查
         if ($className::$database == null)
             throw new \Exception("BaseMongoRecord::database must be initialized to a proper database string");
-
         if ($className::$connection == null)
             throw new \Exception("BaseMongoRecord::connection must be initialized to a valid Mongo object");
 
-        //if (!($className::$connection->connected))
-            $className::$connection->connect();
-
+        $className::$connection->connect();
         return $className::$connection->selectCollection($className::$database, $collectionName);
     }
 
