@@ -1618,15 +1618,17 @@ abstract class BaseMongoRecord implements MongoRecord
             $collectionName = self::tableize($real_className);
             self::$collectionName = $collectionName;
         }
-		//初始化
-        $className::$connection->connect();
-        
+		//没有使用过，初始化
+        if ($className::$database == null){
+        	new $className;
+        }
         //配置检查
         if ($className::$database == null)
             throw new \Exception("BaseMongoRecord::database must be initialized to a proper database string");
         if ($className::$connection == null)
             throw new \Exception("BaseMongoRecord::connection must be initialized to a valid Mongo object");
 
+        $className::$connection->connect();
         return $className::$connection->selectCollection($className::$database, $collectionName);
     }
 
