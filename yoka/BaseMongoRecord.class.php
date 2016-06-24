@@ -16,6 +16,24 @@ use \yoka\Debug;
  * 注意：
  * 1，依赖WORK-ENV的配置项: [MONGODB] ...
  * 2，注意数据库授权。eg:db.createUser({user:"yisheng",pwd:"yisheng@2015",roles:[{role:"dbAdmin",db:"health"},{role:"readWrite",db:"health"}]});
+ * 
+ * 使用参考：
+ *
+		//增/删/改
+		$obj = new \MONGODAO\Demo();
+		$obj->enableGhost(); //允许动态新增字段
+		$obj->name = 'test';
+		$obj->save();
+		$obj->name = 'new';
+		$obj->save();
+		//$obj->remove(array('_id',$obj->getID()));
+		
+		//查
+		$re = \MONGODAO\Demo::findOne(array('name'=>'new'));
+		$info = $re->getEntity();
+		var_dump(\MONGODAO\Demo::getEntityById($info['_id']));
+		$rows = \MONGODAO\Demo::findAll();
+		var_dump($rows);
  *
  */
 interface MongoRecord
@@ -86,9 +104,10 @@ abstract class BaseMongoRecord implements MongoRecord
     private $new;
 
     public static $connfail = null;
-    public static $database = null;	//字符串型
-    public static $connection = null;	//MongoClient
-    public static $findTimeout = 20000;
+    public static $database = null;			//字符串型
+    public static $connection = null;			//MongoClient
+    public static $findTimeout = 20000;		//缺省超时时间
+    public static $default_findAll_limit = 20000;	//缺省最大返回记录数
     /**
      * Collection name will be generated automaticaly if setted to null.
      * If overridden in child class, then new collection name uses.
@@ -588,7 +607,8 @@ abstract class BaseMongoRecord implements MongoRecord
             $fields = array();
         }
         if ( null === $options  ){
-            $options = array();
+            $options = array('limit'=> self::$default_findAll_limit);
+            $use_default_limit = true;
         }
 
         $query = self::merge_in($query);
@@ -631,7 +651,9 @@ abstract class BaseMongoRecord implements MongoRecord
             else
                 $ret[] = self::instantiate($document);
         }
-        //add performence log xwarrior  2012/8/8
+        if($use_default_limit && count($ret) == self::$default_findAll_limit){
+        	Debug::log('Warning: findAll meet max limit!','set limit youself, or use `find` method');
+        }
         self::log_query('findAll',$query, $options, $collection, $begin_microtime,$ret);
         return $ret;
     }
