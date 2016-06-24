@@ -263,8 +263,22 @@ abstract class BaseMongoRecord implements MongoRecord
     {
     	if($this->attributes){
     		$re = $this->attributes;
-    		if($id = $this->getId()){
-    			$re['_id'] = $id;
+    		//格式转换
+    		if($schema = $this->getSchema()){
+    			foreach($schema as $item=> $type){
+    				if($type == 'objectid'){
+    					$re[$item] = strval($re[$item]);
+    				}elseif($type == 'datetime'){
+    					$re[$item] = self::getDateTime($re[$item]);
+    				}else{
+    					$re[$item] = settype($re[$item], $type);
+    				}
+    			}
+    		}else{
+    			//没有schema，默认转换_ID
+    			if($id = $this->getId()){
+    				$re['_id'] = $id;
+    			}
     		}
     		return $re;
     	}else{
@@ -281,6 +295,21 @@ abstract class BaseMongoRecord implements MongoRecord
     	}else{
     		return false;
     	}
+    	
+    }
+    
+    /**
+     * 毫秒转时间
+     * @param $ms 毫秒时间戳
+     * @param $full 是否返回完整时间。默认：false
+     */
+    public static function getDateTime($ms , $full = false){
+    	$re = [];
+    	$re['timestamp'] = intval($ms / 1000);
+    	$re['ms'] = $ms - $re['timestamp'] * 1000;
+    	$re['datetime'] = date('Y-m-d H:i:s', $re['timestamp']);
+    	if($full) return $re;
+    	else return $re['datetime'];
     	
     }
     
@@ -1463,11 +1492,16 @@ abstract class BaseMongoRecord implements MongoRecord
             switch($v){
                 //注意： 自定义类型请在此补充检查条件
                 case 'datetime':
-                    //日期自动转换为整数（注：应该当为毫秒数)  xwarriro @ 2012.5.9
+                    //日期自动转换为整数（注：毫秒数) 
                     if ( $this->$k ){
-                        $this->$k = intval( $this->$k );
+                    	if(is_numeric($this->$k)) $this->$k = doubleval( $this->$k );
+                    	elseif(is_string($this->$k)) $this->$k = doubleval( strtotime($this->k) * 1000);
+                    	else {
+                    		//不是数字、不是日期字符串，怎么办？ 暂时用当前时间戳
+                    		$this->$k = $this->Millseconds(); 
+                    	}
                     }else{
-                        $this->$k = 0;  //set default valueto 0 or throw exception?
+                        $this->$k = $this->Millseconds();  //set default current
                     }
                     break;
                 case 'boolean':
@@ -1798,7 +1832,7 @@ abstract class BaseMongoRecord implements MongoRecord
         list($mills,$seconds )  =   explode( ' ',microtime()) ;
         $microtime =  $seconds .  substr(  $mills ,2,3);
 
-        return intval($microtime);
+        return doubleval($microtime);
     }
 
     /**
