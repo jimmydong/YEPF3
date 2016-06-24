@@ -263,7 +263,7 @@ abstract class BaseMongoRecord implements MongoRecord
     {
     	if($this->attributes){
     		$re = $this->attributes;
-    		if($id = $this->getID()){
+    		if($id = $this->getId()){
     			$re['_id'] = $id;
     		}
     		return $re;
@@ -273,7 +273,7 @@ abstract class BaseMongoRecord implements MongoRecord
     }
     
     /**
-     * 根据ID取信息
+     * 根据Id取信息
      */
     public static function getEntityById($id){
     	if($obj = self::findOne(array('_id'=>self::toMongoId($id)))){
@@ -498,7 +498,7 @@ abstract class BaseMongoRecord implements MongoRecord
     public static function remove($criteria = null,$options = array()){
         $begin_microtime = \yoka\Debug::getTime();
         if ( $criteria == null ){
-            throw new Exception("$criteria 未提供");
+            throw new Exception('$criteria 未提供，禁止无条件删除。[参考drop]');
         }
 
         $collection = self::getCollection();
@@ -1196,7 +1196,7 @@ abstract class BaseMongoRecord implements MongoRecord
         if ( $ret && $conver_to_key_value ){
             $newret = array();
             foreach($ret as $item){
-                $newret[ $item->getID() ] = $item;
+                $newret[ $item->getId() ] = $item;
             }
             $ret =  $newret;
         }
@@ -1239,7 +1239,7 @@ abstract class BaseMongoRecord implements MongoRecord
     /**
      * 获取对象主键字符串形式的值
      */
-    public function getID()
+    public function getId()
     {
         if ( isset( $this->attributes['_id'] ) ){
             return strval( $this->attributes['_id'] );
@@ -1250,9 +1250,9 @@ abstract class BaseMongoRecord implements MongoRecord
 
     /**
      * 获取对象主键的值 MongoId,当前没有主键则返回null
-     * @param $_id  可以为MongoID或字符串，如果字符串代表的是MongoID,则必须初始化为MongoID
+     * @param $_id  可以为MongoId或字符串，如果字符串代表的是MongoId,则必须初始化为MongoId
      */
-    public function setID($_id)
+    public function setId($_id)
     {
 
         $this->attributes['_id'] = $_id;
@@ -1772,7 +1772,7 @@ abstract class BaseMongoRecord implements MongoRecord
      * @author xwarrior at 2012.5.17
      * @param unknown_type $mongoid
      */
-    public static function isMongoIDValid($mongoid){
+    public static function isMongoIdValid($mongoid){
         if ( !$mongoid ){
             return false;
         }
