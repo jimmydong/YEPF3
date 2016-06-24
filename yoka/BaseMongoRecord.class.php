@@ -259,11 +259,11 @@ abstract class BaseMongoRecord implements MongoRecord
     /**
      * 取信息
      */
-    public static function getInfo($id)
+    public static function getEntity($id)
     {
-    	$info = self::findOne(array('_id'=>strval($id)));
-    	if($info){
-    		return $info;
+    	$obj = self::findOne(array('_id'=>strval($id)));
+    	if($obj){
+    		return $obj->attributes;
     	}else {
     		return array();
     	}
@@ -1107,9 +1107,9 @@ abstract class BaseMongoRecord implements MongoRecord
 
     /**
      * 查找一条单独的记录，如果有多条结果，只返回第一条
-     * @param unknown_type $query   查询条件array( field1=>condition1,field2=>condition2);
-     * @param unknown_type $fields　  查询字段列表 array('fild1','field2')
-     * @RETURN 数据对象，未查找到返回null
+     * @param array $query   查询条件array( field1=>condition1,field2=>condition2);
+     * @param array $fields　  查询字段列表 array('fild1','field2')
+     * @return 数据对象，未查找到返回null
      */
     public static function findOne($query = array(), $fields = array())
     {
@@ -1132,6 +1132,10 @@ abstract class BaseMongoRecord implements MongoRecord
     }
     /**
      * findOne别名函数
+     * @param array $query   查询条件array( field1=>condition1,field2=>condition2);
+     * @param array $fields　  查询字段列表 array('fild1','field2')
+     * @return 数据对象，未查找到返回null
+
      */
     public static function fetchOne($query = array(), $fields = array()){
     	return self::findOne($query, $fields);
