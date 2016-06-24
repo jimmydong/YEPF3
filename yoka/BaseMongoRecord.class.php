@@ -262,7 +262,11 @@ abstract class BaseMongoRecord implements MongoRecord
     public function getEntity()
     {
     	if($this->attributes){
-    		return $this->attributes;
+    		$re = $this->attributes;
+    		if($id = $this->getID()){
+    			$re['_id'] = $id;
+    		}
+    		return $re;
     	}else{
     		return array();
     	}
@@ -1233,7 +1237,6 @@ abstract class BaseMongoRecord implements MongoRecord
      */
     public function getID()
     {
-        //if ( array_key_exists('_id', $this->attributes )){
         if ( isset( $this->attributes['_id'] ) ){
             return strval( $this->attributes['_id'] );
         }else{
