@@ -259,14 +259,21 @@ abstract class BaseMongoRecord implements MongoRecord
     /**
      * 取信息
      */
-    public static function getEntity($id)
+    public function getEntity()
     {
-    	$obj = self::findOne(array('_id'=>strval($id)));
-    	if($obj){
-    		return $obj->attributes;
-    	}else {
+    	if($this->attributes){
+    		return $this->attributes;
+    	}else{
     		return array();
     	}
+    }
+    
+    /**
+     * 根据ID取信息
+     */
+    public static function getEntityById($id){
+    	$obj = self::findOne(array('_id'=>strval($id)));
+    	return $obj->getEntity();
     }
     
     /**
