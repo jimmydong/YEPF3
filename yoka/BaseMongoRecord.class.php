@@ -183,13 +183,6 @@ abstract class BaseMongoRecord implements MongoRecord
      * @param unknown_type $ok
      */
     public function setSlaveOk($ok  = true){
-        /*if( $ok ){
-                self::$connection->setReadPreference(Mongo::RP_PRIMARY_PREFERRED,array());
-           }else{
-                self::$connection->setReadPreference(Mongo::RP_SECONDARY_PREFERRED,array());
-           }
-           return true;
-           */
         //废弃 by jimmy.dong@gmail.com return self::$connection->setSlaveOkay($ok);
     	if($ok){
     		return self::$connection->setReadPreference( Mongo::RP_SECONDARY_PREFERRED );
@@ -197,7 +190,6 @@ abstract class BaseMongoRecord implements MongoRecord
     		return self::$connection->setReadPreference( Mongo::RP_PRIMARY_PREFERRED );
     	}
     }
-
 
     /**
      * 获取是否对当前集合启用从库查询
@@ -238,7 +230,45 @@ abstract class BaseMongoRecord implements MongoRecord
         $this->afterValidation();
         return $retval;
     }
+    
+    /**
+     * 获取字段定义
+     */
+    public function getSchema(){
+    	return static::$schema;
+    }
 
+    /**
+     * 获取字段扩展定义
+     */
+    public function getSchemaExt(){
+    	return static::$schema_ext;
+    }
+    
+    /**
+     * id是否存在
+     */
+    public static function isExists($id){
+    	if(self::findOne(array('_id'=>$id.''),array('_id'=>1))){
+    		return true;
+    	}else{
+    		throw new \Exception(__CLASS__.'->'.__METHOD__." {$id}不存在!");
+    	}
+    }
+    
+    /**
+     * 取信息
+     */
+    public static function getInfo($id)
+    {
+    	$info = self::findOne(array('_id'=>strval($id)));
+    	if($info){
+    		return $info;
+    	}else {
+    		return array();
+    	}
+    }
+    
     /**
      * 保存一个对象的变更到数据库中
      * 如果相同_id的对象已经存在则执行更新操作覆盖数据库的记录
