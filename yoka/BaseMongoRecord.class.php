@@ -621,6 +621,7 @@ abstract class BaseMongoRecord implements MongoRecord
         }
 
         $query = self::merge_in($query);
+        $query = self::prepareQuery($query);
 
         $collection = self::getCollection();
 
@@ -687,7 +688,38 @@ abstract class BaseMongoRecord implements MongoRecord
         return $query;
     }
 
-
+    /**
+     * 按照预定义进行转义处理
+     * 【注意】目前仅处理简单的键值对关系
+     * @param unknown $query
+     */
+    private static function prepareQuery($query){
+    	$schema = self::getSchema(); 
+    	$schemaExt = self::getSchemaExt();
+    	foreach($query as $k=>$v){
+    	 	//简单的 col=>value 格式
+    		if($schemaExt[$k]['jugglin']){
+    	 		$type = $schema[$k];
+    	 		switch($type){
+    	 			case 'string':
+    	 			case 'integer':
+    	 			case 'float':
+    	 			case 'double':
+    	 				$query[$k] = settype($v, $type);
+    	 				break;
+    	 			case 'datatime':
+    	 				if(! is_numeric($v)) $query[$k] = strtotime($v) * 1000;
+    	 				break;
+    	 			default:
+    	 				//TODO:: 数组的处理
+    	 				break;
+    	 		}
+    	 	}
+    	 	//TODO:: 待处理 '$lt','$gt','$in' ...
+    	}
+    	return $query;
+    }
+    
     /**
      * 记录查询日志
      * xwarrior @ 2012/8/8
@@ -1154,6 +1186,8 @@ abstract class BaseMongoRecord implements MongoRecord
         $collection = self::getCollection();
 
         $query = self::merge_in($query);
+        $query = self::prepareQuery($query);
+        
         if( NULL !=$fields && count( $fields ) > 0){
             $documents = $collection->find($query,$fields);
         }else{
@@ -1176,7 +1210,7 @@ abstract class BaseMongoRecord implements MongoRecord
         $ret = new MongoRecordIterator($documents, $className);
 
         //add performence log xwarrior  2012/8/8
-        self::log_query('findAll',$query, $options, $collection, $begin_microtime,$ret);
+        self::log_query('find',$query, $options, $collection, $begin_microtime,$ret);
         return $ret;
     }
 
@@ -1192,6 +1226,8 @@ abstract class BaseMongoRecord implements MongoRecord
         $begin_microtime = \yoka\Debug::getTime();
 
         $query = self::merge_in($query);
+        $query = self::prepareQuery($query);
+        
         $collection = self::getCollection();
         if( $fields != null && count( $fields) > 0 ){
             $document = $collection->findOne($query,$fields);
