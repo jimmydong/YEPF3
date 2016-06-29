@@ -705,7 +705,7 @@ abstract class BaseMongoRecord implements MongoRecord
     	 			case 'integer':
     	 			case 'float':
     	 			case 'double':
-    	 				$query[$k] = settype($v, $type);
+    	 				settype($query[$k], $type);
     	 				break;
     	 			case 'datatime':
     	 				if(! is_numeric($v)) $query[$k] = strtotime($v) * 1000;
