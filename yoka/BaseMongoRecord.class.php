@@ -262,14 +262,14 @@ abstract class BaseMongoRecord implements MongoRecord
     /**
      * 获取字段定义
      */
-    public function getSchema(){
+    public static function getSchema(){
     	return static::$schema;
     }
 
     /**
      * 获取字段扩展定义
      */
-    public function getSchemaExt(){
+    public static function getSchemaExt(){
     	return static::$schema_ext;
     }
     
@@ -292,7 +292,7 @@ abstract class BaseMongoRecord implements MongoRecord
     	if($this->attributes){
     		$re = $this->attributes;
     		//格式转换
-    		if($schema = $this->getSchema()){
+    		if($schema = self::getSchema()){
     			foreach($schema as $item=> $type){
     				if($type == 'objectid'){
     					$re[$item] = strval($re[$item]);
