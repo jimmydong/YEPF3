@@ -110,6 +110,11 @@ class Template extends Smarty
 	 * @desc 传入$response，自动转为内部变量
 	 */
 	public function fit_sprite($response){
+		//直接传数组
+		if(is_array($response))foreach($response as $key=>$value){
+			$this->assign($key, $value);
+		}
+		//处理response对象
 		if(is_array(get_object_vars($response)))foreach (get_object_vars($response) as $key=>$value) {
 			$this->assign($key, $value);
 		}
