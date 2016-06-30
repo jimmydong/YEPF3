@@ -112,7 +112,7 @@ class DB
 		
 		if(self::$log_error){
 			$t = getCustomConstants('LOG_PATH');
-			if(file_exists($path))$path=$t;
+			if(file_exists($t))$path=$t;
 			elseif(file_exists('/WORK/LOG'))$path='/WORK/LOG';
 			else $path=dirname(dirname(__FILE__)). DIRECTORY_SEPARATOR . 'demo' . DIRECTORY_SEPARATOR . '_LOG';
 			self::$log_filename = $path . DIRECTORY_SEPARATOR . 'sql_error_' . date('Ym') . '.log';
