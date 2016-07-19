@@ -6,8 +6,18 @@ YEPF（Yoka Elastic Php Framework） 是一套PHP快速开发工具，可以简�
 
 YEPF可以在项目的生存期的任何阶段介入，欢迎使用并提出你的想法和建议。
 
-主要改进内容：
-------------------
+## 特色功能
+
+- 可实时进行线上调试。
+- 调试开启可通过多种方式（比如环境设定或调用参数）。
+- 可监控所有DB操作、MONGO操作、Memcached的时间、操作、返回值
+- 可设置监控点，监控运行时间、监控点的变量值等
+- 多个项目公用基础平台构架
+- MySQL的DAO封装中，同时支持直接pdo操作
+- 支持以Schema模式操作Mongo
+
+## 主要改进内容：
+
 + 公用类放置到yoka命名空间，避免与其他项目冲突。（例如： Debug）
 + 全局公用函数封装到静态类Utility (仍有少量未收纳，参见function.inc.php)
 + 整合spritMVC到基础功能
@@ -15,7 +25,8 @@ YEPF可以在项目的生存期的任何阶段介入，欢迎使用并提出你�
 + 提供了完成的项目框架建议（DEMO）
 + 配置文件采用ini格式
 
-已成熟的操作类移入yoka： 
+#### 已成熟的操作类移入yoka：
+
     BaseModel ： Mysql DAO 操作类
     BaseMongoRecord ： Mongo DAO 操作类
     CommonCache : Memcache操作类，兼容： Memecache 与 Memcached
@@ -27,7 +38,8 @@ YEPF可以在项目的生存期的任何阶段介入，欢迎使用并提出你�
     Template ： 模板类
     Widget ： 碎片操作类（持久化快速缓冲）
 
-待加入的操作类（项目实践中，代码参见CUSTOM_CLASS项目）
+#### 待加入的操作类（项目实践中，代码参见CUSTOM_CLASS项目）
+
     微信操作相关（多账号支持）
     Swoole操作相关
     文件上传相关
@@ -37,8 +49,8 @@ YEPF可以在项目的生存期的任何阶段介入，欢迎使用并提出你�
     邮件处理相关
     ... ...
 
-DEMO中提供的内容
-------------------
+## DEMO中提供的内容
+
 + 目录结构建议 _CUSTOM_CLASS/_TEMPLATE/_TEMPALTE_C/_LOG等
 + 配置文件 init.php
 + 外部资源定义 WORK-ENV.ini
@@ -46,22 +58,21 @@ DEMO中提供的内容
 + 多项目的根目录（DocumentRoot/AdminRoot） 注意：多项目在_TEMPLATE和controller中的目录结构
 + composer引入
 
-YEPF2旧版本迁移需进行的处理
-------------------
+## YEPF2旧版本迁移需进行的处理
+
 + 修改ENV配置文件为新格式 （参考转化工具：demo/DocumentRoot/tools/ENV2to3.php）
 + 修改全部Debug,DB,Cache等公用类为 yoka\Debug,yoka\DB,yoka\Cache等域名空间调用方式
 + 使用spriteMVC的，参考demo中使用方式进行命名空间的调整
 
-如何使用YEPF3
-==================
+## 如何使用YEPF3
 
-已有项目将YEPF3作为脚手架
-------------------
+####已有项目将YEPF3作为脚手架
+
 + 最简单的方式: 仅需引用global.inc.php即可
 + 推荐方式： 编写init.php，项目中引用init.php。（实例代码在 armrest 目录中）
 
-作为新项目框架使用
-------------------
+####作为新项目框架使用
+
 参考DEMO，按如下步骤配置：
 + 编译PHP，增加mysql-pdo,memcached等必要模块
 + 部署目录结构
