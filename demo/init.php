@@ -1,25 +1,27 @@
 <?php
+/**
+ * @name init.php
+ * @desc YEPF3.0 文件初始化设置,包含此目录包需要的文件及变量声明
+ * @author jimmy.dong@gmail.com
+ * @updatetime 2014-09-20
+ * 【注意】建议目录结构
+ *  _CUSTOM_CLASS 项目类文件目录
+ *  _DOC 文档目录
+ *  _LOCAL 保存本地配置信息
+ *  _TEMPLATE 放置模板
+ *  _TEMPLATE_C 模板编译目录(需可写)
+ *  _LOG 日志目录(需可写)
+ *  controller 控制器目录
+ *  DocumentRoot 网站根目录
+ *  AdminRoot 子站点目录
+ *  PythonRoot OR Other 协同语言目录
+ */
 if(!defined('INCLUDE_INIT')){ //防止重复加载
 	define('INCLUDE_INIT', true);
-	/**
-	 * @name init.php
-	 * @desc YEPF3.0 文件初始化设置,包含此目录包需要的文件及变量声明
-	 * @author jimmy.dong@gmail.com
-	 * @updatetime 2014-09-20
-	 * 【注意】建议目录结构
-	 *  _CUSTOM_CLASS 项目类文件目录
-	 *  _DOC 文档目录
-	 *  _LOCAL 保存本地配置信息
-	 *  _TEMPLATE 放置模板
-	 *  _TEMPLATE_C 模板编译目录(需可写)
-	 *  _LOG 日志目录(需可写)
-	 *  controller 控制器目录
-	 *  DocumentRoot 网站根目录
-	 *  AdminRoot 子站点目录
-	 *  PythonRoot OR Other 协同语言目录
-	 */
+
+	//加载Composer框架
+	include(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php');
 	
-	//define('YEPF_IS_DEBUG', true);
 	include dirname(__FILE__) . DIRECTORY_SEPARATOR .'_LOCAL'. DIRECTORY_SEPARATOR . 'local.inc.php'; //请将路径配置相关信息放入此文件
 	if(!defined('YEPF_PATH')){
 		if($_SERVER['YEPF_PATH_3']) define('YEPF_PATH',$_SERVER['YEPF_PATH_3']);
@@ -44,10 +46,20 @@ if(!defined('INCLUDE_INIT')){ //防止重复加载
 	//预加载类（避免程序中使用use出错）
 	if(class_exists('\yoka\DB') && class_exists('\yoka\Log') && class_exists('\yoka\Template') && class_exists('\yoka\Cache')){}
 	
-	//记录数据库操作（默认关闭）
-	if(0 && method_exists('yoka\Debug', 'log_db')){
-		\yoka\Debug::log_db(true); //by jimmy.dong@gmail.com 2014.3.24	
+	//记录调试日志到文件（默认关闭）
+	\yoka\Debug::log_debug(false);
+	
+	//记录数据库操作到文件（默认关闭）
+	if(method_exists('yoka\Debug', 'log_db')){
+	//	\yoka\Debug::log_db(true); //by jimmy.dong@gmail.com 2014.3.24
 	}
+	//记录到数据库
+	if(isset(\yoka\Debug::$log_mysql)){ //by jimmy.dong@gmail.com 2015.10.16
+	//	\yoka\Debug::$log_mysql = array('db'=>'log', 'master'=>true);
+	//	\yoka\Debug::$db_log_mysql = true;		//记录数据库操作到数据库
+	//	\yoka\Debug::$debug_log_mysql = true;	//记录日志到数据库。建议试用 \yoka\Debug::dlog() 方法单独记录
+	}
+	
 	//记录运行性能（默认关闭）
 	if (mt_rand(1, 1) == 0 && function_exists('xhprof_enable') ) {
 	 xhprof_enable(XHPROF_FLAGS_CPU + XHPROF_FLAGS_MEMORY);

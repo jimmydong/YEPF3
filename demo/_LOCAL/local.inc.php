@@ -9,12 +9,14 @@
  **/
 header('X-Powered-From:'.$_SERVER['SERVER_ADDR']);
 
-//手工指明ENV文件路径，正式环境下请删除
+//指定ENV文件路径
 define('ENV_PATH',substr(dirname(__FILE__),0, -7));
 
-//手工指定 YEPF 3.0 路径，正式环境下请删除
-define('YEPF_PATH', dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_YEPF3.0');
-
+//指定 YEPF 3.0 路径
+$yepf_used_path = ['/WORK/HTML/YEPF3','c:/xampp/htdocs/_YEPF3.0'];
+foreach($yepf_used_path as $path){
+	if(file_exists($path)){define('YEPF_PATH', $path);break;}
+}
 //强制关闭转义开关,特殊情况下请设置为true,建议为false
 define('YEPF_FORCE_CLOSE_ADDSLASHES', false);
 
