@@ -88,6 +88,10 @@ YEPF可以在项目的生存期的任何阶段介入，欢迎使用并提出你�
 + 将_TEMPLATE_C/_LOG目录设置为可写
 + 使用SVN时，请将_LOCAL,_TEMPLATE_C,_LOG目录排除
 
+## License
+
+[MIT](http://opensource.org/licenses/MIT)
+
 --------
 感谢曾为项目编码做出贡献的： 唐劲惟，曹晓冬，王毅，巨建华，李卫卫等。
 
