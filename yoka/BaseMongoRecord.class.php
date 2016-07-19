@@ -739,7 +739,7 @@ abstract class BaseMongoRecord implements MongoRecord
         }
         $stacktrace = implode(' <-- ',$stacks);
         $colname = '';
-        if( is_string($collection) ){
+        if( is_string($collection) || !$collection){
         	$colname = $collection;
         }else{
             $colname = $collection->getName();
@@ -911,6 +911,8 @@ abstract class BaseMongoRecord implements MongoRecord
    			foreach($cursor as $document){
 				$ret[] = $document;
    			}
+   		}else{
+   			$collection = '-';
    		}
     	if($keeptemp==false){
     		//删除集合
