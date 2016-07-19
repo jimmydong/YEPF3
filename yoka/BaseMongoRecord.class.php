@@ -582,19 +582,12 @@ abstract class BaseMongoRecord implements MongoRecord
      * 获取当前集合的名称
      */
     public function getName(){
-        if (null  !== static::$collectionName)
-        {
-            $collectionName = static::$collectionName;
-        }
-        else
-        {
-            $className = get_called_class();
-            //hack by jimmy.dong@gmail.com
-            $t = explode('\\',$className);
-            $real_className = array_pop($t);
-            $collectionName = self::tableize($real_className);
-            self::$collectionName = $collectionName;
-        }
+        $className = get_called_class();
+        //hack by jimmy.dong@gmail.com
+        $t = explode('\\',$className);
+        $real_className = array_pop($t);
+        $collectionName = self::tableize($real_className);
+        self::$collectionName = $collectionName;
         return $collectionName;
     }
 
@@ -1644,18 +1637,12 @@ abstract class BaseMongoRecord implements MongoRecord
     protected static function getCollection()
     {
         $className = get_called_class();
-        if (null !== static::$collectionName)
-        {
-            $collectionName = static::$collectionName;
-        }
-        else
-        {
-            //hack by jimmy.dong@gmail.com
-            $t = explode('\\',$className);
-            $real_className = array_pop($t);
-            $collectionName = self::tableize($real_className);
-            self::$collectionName = $collectionName;
-        }
+        //hack by jimmy.dong@gmail.com
+        $t = explode('\\',$className);
+        $real_className = array_pop($t);
+        $collectionName = self::tableize($real_className);
+        self::$collectionName = $collectionName;
+
 		//没有使用过，初始化
         if ($className::$database == null){
         	new $className;
