@@ -16,6 +16,7 @@ namespace yoka;
 	$redis->hashSet('test', 'v1', 1);
 	$redis->hashIncr('test, 'v1', 1);
 	var_dump($redis->hashGet('test', 'v1');
+	
  */
 
 class HashSet extends Queue
