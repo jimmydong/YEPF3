@@ -57,9 +57,9 @@ class HashSet extends Queue
     	$hashmap = $this->_getkey($hashmap);
     	//SSDB不支持redis的删除set指令
     	if($this->is_ssdb) {
-    		$re = $this->object->hclear($key);
+    		$re = $this->object->hclear($hashmap);
     	}else{
-    		$re = $this->object->del($key);
+    		$re = $this->object->del($hashmap);
     	}
     	Debug::cache($this->serverlist, $hashmap, Debug::getTime() - $begin_microtime, 'hashClear', $re);
     	return $re;
