@@ -12,10 +12,13 @@ namespace yoka;
  *  请谨慎设置：$this->is_ssdb
  * 
  * DEMO:
-
+	$redis = \yoka\HashSet::getInstance('default');
+	$redis->hashSet('test', 'v1', 1);
+	$redis->hashIncr('test, 'v1', 1);
+	var_dump($redis->hashGet('test', 'v1');
  */
 
-class SortList extends Queue
+class HashSet extends Queue
 {
     /**
 	 * @name __construct
