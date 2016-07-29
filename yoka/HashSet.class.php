@@ -11,6 +11,19 @@ namespace yoka;
  *  3，部分相同函数名参数含义不同
  *  请谨慎设置：$this->is_ssdb
  * 
+    hashClear - Delete a hash
+    hashDel - Delete one or more hash fields
+    hashExists - Determine if a hash field exists
+    hashGet - Get the value of a hash field
+    hashGetAll - Get all the fields and values in a hash
+    hashIncr - Increment the integer value of a hash field by the given number
+    hashKeys - Get all the fields in a hash
+    hashLen - Get the number of fields in a hash
+    hashList - SSDB only
+    hashMGet - Get the values of all the given hash fields
+    hashMSet - Set multiple hash fields to multiple values
+    hashSet - Set the string value of a hash field
+ *
  * DEMO:
 	$redis = \yoka\HashSet::getInstance('default');
 	$redis->hashSet('test', 'v1', 1);
@@ -52,6 +65,13 @@ class HashSet extends Queue
     	return $re;
     }
     
+    /**
+     * 添加一个属性
+     * @param unknown $hashmap
+     * @param unknown $key
+     * @param unknown $value
+     * @return unknown
+     */
     public function hashSet($hashmap, $key, $value){
     	$begin_microtime = Debug::getTime();
     	$hashmap = $this->_getkey($hashmap);
@@ -60,6 +80,11 @@ class HashSet extends Queue
     	return $re;
     }
 
+    /**
+     * 读取属性
+     * @param unknown $hashmap
+     * @param unknown $key
+     */
     public function hashGet($hashmap, $key){
     	$begin_microtime = Debug::getTime();
     	$hashmap = $this->_getkey($hashmap);
@@ -68,6 +93,27 @@ class HashSet extends Queue
     	return $re;
     }
 
+    /**
+     * 删除属性
+     * @param unknown $hashmap
+     * @param unknown $key
+     * @return unknown
+     */
+    public function hashDel($hashmap, $key){
+    	$begin_microtime = Debug::getTime();
+    	$hashmap = $this->_getkey($hashmap);
+    	$re = $this->object->hDel($hashmap, $key);
+    	Debug::cache($this->serverlist, $hashmap, Debug::getTime() - $begin_microtime, 'hashDel', $re);
+    	return $re;
+    }
+    
+    /**
+     * 增加属性值
+     * @param unknown $hashmap
+     * @param unknown $key
+     * @param number $incr
+     * @return unknown
+     */
     public function hashIncr($hashmap, $key, $incr=1){
     	$begin_microtime = Debug::getTime();
     	$hashmap = $this->_getkey($hashmap);
@@ -80,6 +126,11 @@ class HashSet extends Queue
     	return $re;
     }
     
+    /**
+     * 判断属性是否存在
+     * @param unknown $hashmap
+     * @param unknown $key
+     */
     public function hashExists($hashmap, $key){
     	$begin_microtime = Debug::getTime();
     	$hashmap = $this->_getkey($hashmap);
@@ -88,6 +139,11 @@ class HashSet extends Queue
     	return $re;
     }
     
+    /**
+     * 属性总数
+     * @param unknown $hashmap
+     * @return unknown
+     */
     public function hashLen($hashmap){
     	$begin_microtime = Debug::getTime();
 		$hashmap = $this->_getkey($hashmap);
@@ -100,6 +156,11 @@ class HashSet extends Queue
     	return $re;
     }
     
+    /**
+     * 获取全部属性
+     * @param unknown $hashmap
+     * @return unknown
+     */
     public function hashGetAll($hashmap){
     	$begin_microtime = Debug::getTime();
     	$hashmap = $this->_getkey($hashmap);
@@ -108,6 +169,13 @@ class HashSet extends Queue
     	return $re;
     }
     
+    /**
+     * 获取所有属性的键值
+     * @param unknown $hashmap
+     * @param string $begin
+     * @param string $end
+     * @param number $limit
+     */
     public function hashKeys($hashmap, $begin="", $end="", $limit=200){
     	$begin_microtime = Debug::getTime();
     	$hashmap = $this->_getkey($hashmap);
@@ -120,6 +188,11 @@ class HashSet extends Queue
     	return $re;
     }
     
+    /**
+     * 获取所有属性的值
+     * @param unknown $hashmap
+     * @return unknown
+     */
     public function hashVals($hashmap){
     	$begin_microtime = Debug::getTime();
     	$hashmap = $this->_getkey($hashmap);
@@ -133,6 +206,13 @@ class HashSet extends Queue
     	return $re;
     }
     
+    /**
+     * 列出范围内的哈希
+     * @param string $begin
+     * @param string $end
+     * @param number $limit
+     * @return boolean
+     */
     public function hashList($begin="", $end="", $limit=200){
     	$begin_microtime = Debug::getTime();
     	$begin_name = $this->_getkey($begin);
@@ -146,6 +226,12 @@ class HashSet extends Queue
     	return $re;
     }
     
+    /**
+     * 多赋值
+     * @param unknown $hashmap
+     * @param unknown $data
+     * @return unknown
+     */
     public function hashMset($hashmap, $data){
     	$begin_microtime = Debug::getTime();
     	$hashmap = $this->_getkey($hashmap);
@@ -158,6 +244,12 @@ class HashSet extends Queue
     	return $re;
     }
 
+    /**
+     * 多读取
+     * @param unknown $hashmap
+     * @param unknown $keylist
+     * @return unknown
+     */
     public function hashMget($hashmap, $keylist){
     	$begin_microtime = Debug::getTime();
     	$hashmap = $this->_getkey($hashmap);
@@ -170,6 +262,11 @@ class HashSet extends Queue
     	return $re;
     }
     
+    /**
+     * 多删除
+     * @param unknown $hashmap
+     * @param unknown $keylist
+     */
     public function hashMdel($hashmap, $keylist){
     	$begin_microtime = Debug::getTime();
     	$hashmap = $this->_getkey($hashmap);
