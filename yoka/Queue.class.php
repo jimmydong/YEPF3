@@ -66,7 +66,7 @@ class Queue
 			if($is_ssdb){
 				$redis = new SimpleSSDB($config['host'], $config['port']);
 			}else{
-				$redis = new Redis();
+				$redis = new \Redis();
 				$redis->pconnect($config['host'],$config['port']);
 			}
 			if($config['auth'])$redis->auth($config['auth']);
