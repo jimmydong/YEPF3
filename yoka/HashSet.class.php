@@ -187,7 +187,7 @@ class HashSet extends Queue
     		$re = $this->object->multi_hdel($hashmap, $data);
     	}else{ //php-redis不支持
     		foreach($data as $key)$re = $this->object->hDel($hashmap,$key);
-    		$re = true
+    		$re = true;
     	}
     	Debug::cache($this->serverlist, $hashmap, Debug::getTime() - $begin_microtime, 'hashDel', $re);
     	return $re;
