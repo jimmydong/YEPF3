@@ -205,6 +205,25 @@ class HashSet extends Queue
     	Debug::cache($this->serverlist, $hashmap, Debug::getTime() - $begin_microtime, 'hashVals', $re);
     	return $re;
     }
+
+    /**
+     * 获取键值范围内的属性
+     * @param unknown $hashname
+     * @param string $begin
+     * @param string $end
+     * @param number $limit
+     */
+    public function hashScan($hashname, $begin="", $end="", $limit=200){
+    	$begin_microtime = Debug::getTime();
+    	$hashmap = $this->_getkey($hashmap);
+    	if($this->is_ssdb) {
+    		$re = $this->object->hscan($hashmap, $begin, $end, $limit);
+    	}else{
+    		$re = false; //redis不支持此方法
+    	}
+    	Debug::cache($this->serverlist, $hashmap, Debug::getTime() - $begin_microtime, 'hashScan', $re);
+    	return $re;
+    }
     
     /**
      * 列出范围内的哈希
@@ -218,7 +237,7 @@ class HashSet extends Queue
     	$begin_name = $this->_getkey($begin);
     	$end_name = $this->_getkey($end);
     	if($this->is_ssdb) {
-    		$re = $this->object->hkeys($hashmap, $begin_name, $end_name, $limit);
+    		$re = $this->object->hkeys($begin_name, $end_name, $limit);
     	}else{
     		$re = false; //redis不支持此方法
     	}
