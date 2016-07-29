@@ -41,8 +41,7 @@ class HashSet extends Queue
      */
     public function hashClear($hashmap){
     	$begin_microtime = Debug::getTime();
-    	$key = $this->_getkey($hashmap);
-    	if(empty($key)) return false;
+    	$hashmap = $this->_getkey($hashmap);
     	//SSDB不支持redis的删除set指令
     	if($this->is_ssdb) {
     		$re = $this->object->hclear($key);
@@ -55,8 +54,7 @@ class HashSet extends Queue
     
     public function hashSet($hashmap, $key, $value){
     	$begin_microtime = Debug::getTime();
-    	$key = $this->_getkey($hashmap);
-    	if(empty($key)) return false;
+    	$hashmap = $this->_getkey($hashmap);
     	$re = $this->object->hSet($hashmap, $key, $value);
     	Debug::cache($this->serverlist, $hashmap, Debug::getTime() - $begin_microtime, 'hashSet', $re);
     	return $re;
@@ -64,8 +62,7 @@ class HashSet extends Queue
 
     public function hashGet($hashmap, $key){
     	$begin_microtime = Debug::getTime();
-    	$key = $this->_getkey($hashmap);
-    	if(empty($key)) return false;
+    	$hashmap = $this->_getkey($hashmap);
     	$re = $this->object->hGet($hashmap, $key);
     	Debug::cache($this->serverlist, $hashmap, Debug::getTime() - $begin_microtime, 'hashGet', $re);
     	return $re;
@@ -73,8 +70,7 @@ class HashSet extends Queue
 
     public function hashIncr($hashmap, $key, $incr=1){
     	$begin_microtime = Debug::getTime();
-    	$key = $this->_getkey($hashmap);
-    	if(empty($key)) return false;
+    	$hashmap = $this->_getkey($hashmap);
         if($this->is_ssdb) {
         	$re = $this->object->hincr($hashmap, $key, $incr);
         }else{
@@ -86,8 +82,7 @@ class HashSet extends Queue
     
     public function hashExists($hashmap, $key){
     	$begin_microtime = Debug::getTime();
-    	$key = $this->_getkey($hashmap);
-    	if(empty($key)) return false;
+    	$hashmap = $this->_getkey($hashmap);
     	$re = $this->object->hExists($hashmap, $key);
     	Debug::cache($this->serverlist, $hashmap, Debug::getTime() - $begin_microtime, 'hashExists', $re);
     	return $re;
@@ -95,7 +90,8 @@ class HashSet extends Queue
     
     public function hashLen($hashmap){
     	$begin_microtime = Debug::getTime();
-    	if($this->is_ssdb) {
+		$hashmap = $this->_getkey($hashmap);
+		if($this->is_ssdb) {
     		$re = $this->object->hsize($hashmap);
     	}else{
     		$re = $this->object->hLen($hashmap);
@@ -106,6 +102,7 @@ class HashSet extends Queue
     
     public function hashGetAll($hashmap){
     	$begin_microtime = Debug::getTime();
+    	$hashmap = $this->_getkey($hashmap);
     	$re = $this->object->hGetAll($hashmap);
     	Debug::cache($this->serverlist, $hashmap, Debug::getTime() - $begin_microtime, 'hashGetAll', $re);
     	return $re;
@@ -113,6 +110,7 @@ class HashSet extends Queue
     
     public function hashKeys($hashmap, $begin="", $end="", $limit=200){
     	$begin_microtime = Debug::getTime();
+    	$hashmap = $this->_getkey($hashmap);
     	if($this->is_ssdb) {
     		$re = $this->object->hkeys($hashmap, $begin, $end, $limit);
     	}else{
@@ -124,6 +122,7 @@ class HashSet extends Queue
     
     public function hashVals($hashmap){
     	$begin_microtime = Debug::getTime();
+    	$hashmap = $this->_getkey($hashmap);
     	if($this->is_ssdb) { //SSDB不支持，变通方式性能较低
     		$list = $this->object->hgetall($hashmap);
     		foreach($list as $v) $re[] = $v;
@@ -139,7 +138,7 @@ class HashSet extends Queue
     	$begin_name = $this->_getkey($begin);
     	$end_name = $this->_getkey($end);
     	if($this->is_ssdb) {
-    		$re = $this->object->hkeys($hashmap, $begin, $end, $limit);
+    		$re = $this->object->hkeys($hashmap, $begin_name, $end_name, $limit);
     	}else{
     		$re = false; //redis不支持此方法
     	}
@@ -147,12 +146,9 @@ class HashSet extends Queue
     	return $re;
     }
     
-    public function hashMset($hashmap, $datalist){
+    public function hashMset($hashmap, $data){
     	$begin_microtime = Debug::getTime();
-    	foreach($datalist as $k=>$v){
-    		$key = $this->_getkey($k);
-    		$data[$key] = $v;
-    	}
+    	$hashmap = $this->_getkey($hashmap);
         if($this->is_ssdb) {
     		$re = $this->object->multi_hset($hashmap, $data);
     	}else{
@@ -164,14 +160,11 @@ class HashSet extends Queue
 
     public function hashMget($hashmap, $keylist){
     	$begin_microtime = Debug::getTime();
-    	foreach($keylist as $v){
-    		$key = $this->_getkey($v);
-    		$data[] = $key;
-    	}
+    	$hashmap = $this->_getkey($hashmap);
     	if($this->is_ssdb) {
-    		$re = $this->object->multi_hget($hashmap, $data);
+    		$re = $this->object->multi_hget($hashmap, $key_list);
     	}else{
-    		$re = $this->object->hMget($hashmap,$data);
+    		$re = $this->object->hMget($hashmap,$key_list);
     	}
     	Debug::cache($this->serverlist, $hashmap, Debug::getTime() - $begin_microtime, 'hashMget', $re);
     	return $re;
@@ -179,14 +172,11 @@ class HashSet extends Queue
     
     public function hashMdel($hashmap, $keylist){
     	$begin_microtime = Debug::getTime();
-    	foreach($keylist as $v){
-    		$key = $this->_getkey($v);
-    		$data[] = $key;
-    	}
+    	$hashmap = $this->_getkey($hashmap);
     	if($this->is_ssdb) {
-    		$re = $this->object->multi_hdel($hashmap, $data);
+    		$re = $this->object->multi_hdel($hashmap, $key_list);
     	}else{ //php-redis不支持
-    		foreach($data as $key)$re = $this->object->hDel($hashmap,$key);
+    		foreach($key_list as $key)$re = $this->object->hDel($hashmap,$key);
     		$re = true;
     	}
     	Debug::cache($this->serverlist, $hashmap, Debug::getTime() - $begin_microtime, 'hashDel', $re);
