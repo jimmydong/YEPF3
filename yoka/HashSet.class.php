@@ -104,13 +104,6 @@ class HashSet extends Queue
     	return $re;
     }
     
-    public function hashKeys($hashmap){
-    	$begin_microtime = Debug::getTime();
-   		$re = $this->object->hKeys($hashmap);
-    	Debug::cache($this->serverlist, $hashmap, Debug::getTime() - $begin_microtime, 'hashKeys', $re);
-    	return $re;
-    }
-    
     public function hashGetAll($hashmap){
     	$begin_microtime = Debug::getTime();
     	$re = $this->object->hGetAll($hashmap);
