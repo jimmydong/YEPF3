@@ -31,12 +31,13 @@ YEPF可以在项目的生存期的任何阶段介入，欢迎使用并提出你�
 
     BaseModel ： Mysql DAO 操作类
     BaseMongoRecord ： Mongo DAO 操作类
-    CommonCache : Memcache操作类，兼容： Memecache 与 Memcached
+    Cache : Memcache操作类，兼容： Memecache 与 Memcached
     Cookie: Cookie操作类
     DB ： Mysql PDO 操作类
     Debug ： 调试类（支持在线调试、日志调试、数据调试）
     Queue ： 队列操作类，兼容： Redis 和 SSDB
     SortList ： 排序操作类，兼容： Redis 和 SSDB
+    HashSet : 哈希操作类，兼容： Redis 和 SSDB
     Template ： 模板类
     Widget ： 碎片操作类（持久化快速缓冲）
 
