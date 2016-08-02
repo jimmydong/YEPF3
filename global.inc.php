@@ -97,10 +97,11 @@ class YEPFCore {
 					$rlname = $class_name;
 				}
         		$result = preg_replace_callback('/[A-Z][^A-Z]+/','YEPFCore::my_callback',substr($rlname,1));
-				$class_path = getCustomConstants('CUSTOM_CLASS_PATH') . DIRECTORY_SEPARATOR . $prepath . substr($rlname,0,1) . $result .'.class.php';
-				if(file_exists($class_path))return include_once($class_path);
+				$class_path3 = getCustomConstants('CUSTOM_CLASS_PATH') . DIRECTORY_SEPARATOR . $prepath . substr($rlname,0,1) . $result .'.class.php';
+				if(file_exists($class_path))return include_once($class_path3);
         	}
           }
+        \yoka\Debug::log('class not found', array($class_path, $class_path2, $class_path3));
         return false;
     }
 }
