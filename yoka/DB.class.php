@@ -530,9 +530,15 @@ class DB
 	public function logError($sql, $result = ''){
 		if(self::$log_error){
 			$t = debug_backtrace(1);
-			$caller = $t[0]['file'].' , line:'.$t[0]['line'];
-			if($t[1]) $caller .= ' <- ' . $t[1]['file'].' , line:'.$t[1]['line'];
-			if($t[2]) $caller .= ' <- ' . $t[2]['file'].' , line:'.$t[2]['line'];
+			if($t[4]){
+				$caller = $t[1]['file'].' , line:'.$t[1]['line'];
+				$caller .= ' <- ' . $t[3]['file'].' , line:'.$t[3]['line'];
+				$caller .= ' <- ' . $t[4]['file'].' , line:'.$t[4]['line'];
+			}else{
+				$caller = $t[0]['file'].' , line:'.$t[0]['line'];
+				if($t[1]) $caller .= ' <- ' . $t[1]['file'].' , line:'.$t[1]['line'];
+				if($t[2]) $caller .= ' <- ' . $t[2]['file'].' , line:'.$t[2]['line'];
+			}
 			
 			$string  = "#[".date('Y-m-d H:i:s')."] " . $sql . "\n";
 			$string .= " - {$caller} ";
