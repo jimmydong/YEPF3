@@ -130,6 +130,7 @@ class DB
 	public static function getInstance($item = 'default', $master = true)
 	{
     	global $CACHE;
+    	if(! $CACHE && class_exists('\MyDump')) $CACHE = \MyDump::$CACHE; //兼容cli多进程模式
     	$obj = self::$instance;
 		$db_key = $item.''.$master;
     	if(!isset($obj[$db_key]))
