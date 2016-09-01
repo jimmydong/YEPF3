@@ -58,7 +58,7 @@ class Cookie{
 
 		public static function get($name, $raw = false)
 		{
-			if($row) return @$_COOKIE[$name];
+			if($raw) return @$_COOKIE[$name];
 			return @$_COOKIE[self::$cookiepre.$name];
 		}
 
