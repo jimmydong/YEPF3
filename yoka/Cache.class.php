@@ -211,7 +211,7 @@ class Cache implements \yoka\CacheInterface
 	 */
     public function get($cacheKey)
     {
-    	$returnValue = "";
+    	$returnValue = null;
 		$key = $this->getKey($cacheKey);
 		if(empty($key)) return false;
 		$begin_microtime = Debug::getTime();
@@ -232,7 +232,7 @@ class Cache implements \yoka\CacheInterface
         	}
             else $returnValue = $cacheValue;
         }
-        Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'get', $returnValue);
+        Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'get', $returnValue?:'');
         return $returnValue;
     }
 	
