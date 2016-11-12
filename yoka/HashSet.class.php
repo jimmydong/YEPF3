@@ -72,9 +72,10 @@ class HashSet extends Queue
      * @param unknown $value
      * @return unknown
      */
-    public function hashSet($hashmap, $key, $value){
+    public function hashSet($hashmap, $key, $value, $encode = false){
     	$begin_microtime = Debug::getTime();
     	$hashmap = $this->_getkey($hashmap);
+    	if($encode)$value = json_encode($value, JSON_UNESCAPED_UNICODE);
     	$re = $this->object->hSet($hashmap, $key, $value);
     	Debug::cache($this->serverlist, $hashmap, Debug::getTime() - $begin_microtime, 'hashSet', $re);
     	return $re;
@@ -85,10 +86,11 @@ class HashSet extends Queue
      * @param unknown $hashmap
      * @param unknown $key
      */
-    public function hashGet($hashmap, $key){
+    public function hashGet($hashmap, $key, $decode = false){
     	$begin_microtime = Debug::getTime();
     	$hashmap = $this->_getkey($hashmap);
     	$re = $this->object->hGet($hashmap, $key);
+    	if($decode) $re = json_decode($re, true);
     	Debug::cache($this->serverlist, $hashmap, Debug::getTime() - $begin_microtime, 'hashGet', $re);
     	return $re;
     }
