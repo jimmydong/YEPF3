@@ -137,7 +137,7 @@ class Queue
         if(empty($key)) return false;
         if($this->is_ssdb)$re = $this->object->qpush_back($key, json_encode($queue_data, JSON_UNESCAPED_UNICODE));
         else $re = $this->object->rPush($key, json_encode($queue_data, JSON_UNESCAPED_UNICODE));
-        Debug::cache($this->serverlist, $queue_name, Debug::getTime() - $begin_microtime, 'addQueue', $re);
+        Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'addQueue', $re);
         return $re;
     }
     /**
@@ -152,7 +152,7 @@ class Queue
     	if($this->is_ssdb)$re = $this->object->qpop_front($key);
     	else $re = $this->object->lPop($key);
     	$re = json_decode($re, true);
-    	Debug::cache($this->serverlist, $queue_name, Debug::getTime() - $begin_microtime, 'getQueue', $re);
+    	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'getQueue', $re);
     	return $re;
     }
     /**
@@ -167,7 +167,7 @@ class Queue
     	if($this->is_ssdb)$re = $this->object->qsize($key);
     	else $re = $this->object->lSize($key);
     	$re = json_decode($re, true);
-    	Debug::cache($this->serverlist, $queue_name, Debug::getTime() - $begin_microtime, 'sizeQueue', $re);
+    	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'sizeQueue', $re);
     	return $re;
     }
     /**
@@ -186,7 +186,7 @@ class Queue
     		$re[$k] = json_decode($v, true); 
     	}
     	$re = array_reverse($re);
-    	Debug::cache($this->serverlist, $queue_name, Debug::getTime() - $begin_microtime, 'getsQueueNew', $re);
+    	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'getsQueueNew', $re);
     	return $re;
     }
     /**
@@ -201,7 +201,7 @@ class Queue
     	foreach($re as $k=>$v){
     		$re[$k] = json_decode($v, true); 
     	}
-    	Debug::cache($this->serverlist, $queue_name, Debug::getTime() - $begin_microtime, 'getsQueueOld', $re);
+    	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'getsQueueOld', $re);
     	return $re;
     }
     /**
@@ -216,7 +216,7 @@ class Queue
     	foreach($re as $k=>$v){
     		$re[$k] = json_decode($v, true);
     	}
-    	Debug::cache($this->serverlist, $queue_name, Debug::getTime() - $begin_microtime, 'getsQueueAll', $re);
+    	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'getsQueueAll', $re);
     	return $re;
     }    
     /**
@@ -238,7 +238,7 @@ class Queue
     		//$l = $this->sizeQueue($queue_name);
 	    	//for($i=0;$i<$l;$i++)$this->object->lPop($key);
     	}
-    	Debug::cache($this->serverlist, $queue_name, Debug::getTime() - $begin_microtime, 'clearQueue', $re);
+    	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'clearQueue', $re);
     	return $re;
     }
     /**
@@ -256,7 +256,7 @@ class Queue
     		if($this->is_ssdb) $re[] = $this->object->qget($key, $i);
     		else $re[] = $this->object->lGet($key, $i);
     	}
-    	Debug::cache($this->serverlist, $queue_name, Debug::getTime() - $begin_microtime, 'listQueue', $re);
+    	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'listQueue', $re);
     	return $re;
     }
     
