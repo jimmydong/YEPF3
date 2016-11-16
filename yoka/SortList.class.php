@@ -54,7 +54,7 @@ class SortList extends Queue
     	else{
     		$re = $this->object->del($key);
     	}
-    	Debug::cache($this->serverlist, $set, Debug::getTime() - $begin_microtime, 'sortClear', $re);
+    	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'sortClear', $re);
     	return $re;
     }
     
@@ -63,7 +63,7 @@ class SortList extends Queue
     	$key = $this->_getkey($set);
     	if(empty($key)) return false;
     	$re = $this->object->zRange($key,0,-1,true);
-    	Debug::cache($this->serverlist, $set, Debug::getTime() - $begin_microtime, 'sortGetsAll', $re);
+    	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'sortGetsAll', $re);
     	return $re;
     }
     
@@ -85,7 +85,7 @@ class SortList extends Queue
     	}else{
     		$re = $this->object->zCount($key, $min, $max);		
     	}
-    	Debug::cache($this->serverlist, $set, Debug::getTime() - $begin_microtime, 'sortCount', $re);
+    	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'sortCount', $re);
     	return $re;
     }
     /**
@@ -103,7 +103,7 @@ class SortList extends Queue
     	$key = $this->_getkey($set);
 		if($this->is_ssdb) $re = $this->object->zset($key, $name, $value);
 		else $re = $this->object->zAdd($key, $value, $name);
-    	Debug::cache($this->serverlist, $set, Debug::getTime() - $begin_microtime, 'sortAdd', $re);
+    	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'sortAdd', $re);
     	return $re;
     }
     /**
@@ -120,7 +120,7 @@ class SortList extends Queue
     	$key = $this->_getkey($set);
     	if($this->is_ssdb) $re = $this->object->zget($key, $name);
     	else $re = $this->object->zScore($key, $name);
-    	Debug::cache($this->serverlist, $set . ':' . $name, Debug::getTime() - $begin_microtime, 'sortGetScore', $re);
+    	Debug::cache($this->serverlist, $key . ':' . $name, Debug::getTime() - $begin_microtime, 'sortGetScore', $re);
     	return $re;
     }
     /**
@@ -136,7 +136,7 @@ class SortList extends Queue
     	$begin_microtime = Debug::getTime();
     	$key = $this->_getkey($set);
     	$re = $this->object->zRank($key, $name);
-    	Debug::cache($this->serverlist, $set . ':' . $name, Debug::getTime() - $begin_microtime, 'sortGetRank', $re);
+    	Debug::cache($this->serverlist, $key . ':' . $name, Debug::getTime() - $begin_microtime, 'sortGetRank', $re);
     	return $re;
     }
     /**
@@ -152,7 +152,7 @@ class SortList extends Queue
     	$begin_microtime = Debug::getTime();
     	$key = $this->_getkey($set);
     	$re = $this->object->zRevRank($key, $name);
-    	Debug::cache($this->serverlist, $set . ':' . $name, Debug::getTime() - $begin_microtime, 'sortGetRankDesc', $re);
+    	Debug::cache($this->serverlist, $key . ':' . $name, Debug::getTime() - $begin_microtime, 'sortGetRankDesc', $re);
     	return $re;
     }
     /**
@@ -170,7 +170,7 @@ class SortList extends Queue
     	$key = $this->_getkey($set);
     	if($this->is_ssdb)$re = $this->object->zincr($key, $name, $inc);
     	else $re = $this->object->zIncrBy($key, $inc, $name);
-    	Debug::cache($this->serverlist, $set . ':' . $name, Debug::getTime() - $begin_microtime, 'sortInc', $re);
+    	Debug::cache($this->serverlist, $key . ':' . $name, Debug::getTime() - $begin_microtime, 'sortInc', $re);
     	return $re;
     }
     /**
@@ -187,7 +187,7 @@ class SortList extends Queue
     	$key = $this->_getkey($set);
     	if($this->is_ssdb)$re = $this->object->zdel($key, $name);
     	else $re = $this->object->zDelete($key, $name);
-    	Debug::cache($this->serverlist, $set . ':' . $name, Debug::getTime() - $begin_microtime, 'sortDelete', $re);
+    	Debug::cache($this->serverlist, $key . ':' . $name, Debug::getTime() - $begin_microtime, 'sortDelete', $re);
     	return $re;
     }
     
@@ -209,7 +209,7 @@ class SortList extends Queue
     	else {
     		$re = $this->object->zrange($key, $start, $start+$limit, $withScores);
     	}
-    	Debug::cache($this->serverlist, $set, Debug::getTime() - $begin_microtime, 'sortGet', $re);
+    	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'sortGet', $re);
     	return $re;
     }
     /**
@@ -228,7 +228,7 @@ class SortList extends Queue
     	if($this->is_ssdb)$re = $this->object->zRevRange($key, $start, $limit);
     	else $re = $this->object->zRevRange($key, $start, $start + $limit, $withScores);
     	arsort($re);
-    	Debug::cache($this->serverlist, $set, Debug::getTime() - $begin_microtime, 'sortGetDesc', $re);
+    	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'sortGetDesc', $re);
     	return $re;
     }
 	/**
@@ -254,7 +254,7 @@ class SortList extends Queue
     		if($limit==0)$re = $this->object->zRangeByScore($key, $min, $max, array('withscores'=>$withScores));
     		else $re = $this->object->zRangeByScore($key, $min, $max, array('limit'=>array($start, $limit), 'withscores'=>$withScores));
     	}
-    	Debug::cache($this->serverlist, $set . ':' . $min . '-' .$max, Debug::getTime() - $begin_microtime, 'sortGetByScore', $re);
+    	Debug::cache($this->serverlist, $key . ':' . $min . '-' .$max, Debug::getTime() - $begin_microtime, 'sortGetByScore', $re);
     	return $re;
     }
     /**
@@ -271,7 +271,7 @@ class SortList extends Queue
     	$begin_microtime = Debug::getTime();
     	$key = $this->_getkey($set);
     	$re = $this->object->zRemRangeByScore($key, $min, $max);
-    	Debug::cache($this->serverlist, $set . ':' . $min . '-' .$max, Debug::getTime() - $begin_microtime, 'sortDeleteByScore', $re);
+    	Debug::cache($this->serverlist, $key . ':' . $min . '-' .$max, Debug::getTime() - $begin_microtime, 'sortDeleteByScore', $re);
     	return $re;
     }
     
