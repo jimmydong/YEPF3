@@ -159,7 +159,8 @@ class HashSet extends Queue
     }
     
     /**
-     * 获取全部属性
+     * 获取全部属性 
+     * 【注意】 没有对JSON进行处理，需自行手工解决
      * @param unknown $hashmap
      * @return unknown
      */

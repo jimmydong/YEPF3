@@ -185,6 +185,7 @@ class Queue
     	foreach($re as $k=>$v){
     		$re[$k] = json_decode($v, true); 
     	}
+    	$re = array_reverse($re);
     	Debug::cache($this->serverlist, $queue_name, Debug::getTime() - $begin_microtime, 'getsQueueNew', $re);
     	return $re;
     }
