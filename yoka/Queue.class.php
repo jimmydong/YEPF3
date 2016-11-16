@@ -156,6 +156,18 @@ class Queue
     	return $re;
     }
     /**
+     * 清空队列内容
+     */
+    public function clearQueue($queue_name){
+    	$begin_microtime = Debug::getTime();
+    	$key = $this->_getkey($queue_name);
+    	if(empty($key)) return false;
+    	if($this->is_ssdb)$re = $this->object->qclear($key);
+    	else $re = $this->object->delete($key);
+    	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'getQueue', $re);
+    	return $re;
+    }
+    /**
      * 返回队列长度
      * @param string $queue_name
      * @return boolean|mixed
