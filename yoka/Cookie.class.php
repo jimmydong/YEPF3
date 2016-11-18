@@ -56,10 +56,20 @@ class Cookie{
 			return $result;
 		}
 
+		/**
+		 * 注意：增加了对magic_quotes的处理
+		 * @param unknown $name
+		 * @param string $raw
+		 */
 		public static function get($name, $raw = false)
 		{
-			if($raw) return @$_COOKIE[$name];
-			return @$_COOKIE[self::$cookiepre.$name];
+			if(get_magic_quotes_gpc()){
+				if($raw) return @stripslashes($_COOKIE[$name]);
+				return @stripslashes($_COOKIE[self::$cookiepre.$name]);
+			}else{
+				if($raw) return @$_COOKIE[$name];
+				return @$_COOKIE[self::$cookiepre.$name];
+			}
 		}
 
 		public static function del($name, $raw = false)
