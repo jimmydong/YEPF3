@@ -35,7 +35,7 @@ class App {
 		if (!class_exists($controller))
 			throw new Exception("no controller called $controller ");
 		$obj = new $controller($request, $response);
-		if (!method_exists($obj, $this->_action) && $this->_controller != 'index') //允许index控制器使用魔术方法
+		if (!method_exists($obj, $this->_action) && !method_exists($obj, '__call') && $this->_controller != 'index') //允许使用魔术方法
 			throw new Exception("'$controller' has not method '{$this->_action}' ");
 		try {
 			$obj->before($this->_controller, $this->_action);
