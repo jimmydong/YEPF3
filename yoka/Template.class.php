@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * @name Template.class.php
  * @desc 模板操作类

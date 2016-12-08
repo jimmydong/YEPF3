@@ -42,14 +42,23 @@ class Request {
 		return isset($_COOKIE[$index])? $_COOKIE[$index]:'';
 	}
 	
-	public function ModifyGet(array $get) {
+	/**
+	 * 修改值
+	 * @param array $array
+	 */
+	public function set(array $array){
 		$this->allowModify = true;
-		
-		foreach ($get as $k=>$v)
-			$this->$k = $v;
-		
+		foreach ($array as $k=>$v) $this->$k = $v;
 		$this->allowModify = false;
 	}
+	/**
+	 * 别名函数
+	 * @param array $array
+	 */
+	public function ModifyGet(array $array) {
+		$this->set($array);
+	}
+	
 	
 	/**
 	 * 用于判断参数是否传入
@@ -105,7 +114,7 @@ class Request {
 		if ($this->allowModify)
 			$this->$k = $v;
 		else
-			throw new Exception('set value to const!');
+			throw new Exception('不允许修改!');
 		
 	}
 }
