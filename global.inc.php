@@ -118,8 +118,8 @@ if((defined('YEPF_IS_DEBUG') && YEPF_IS_DEBUG) || (isset($_REQUEST['debug']) && 
 	ob_start();
 	//Debug开关打开
 	\yoka\Debug::start();
-	//注册shutdown函数用来Debug显示
-	register_shutdown_function(array('\yoka\Debug', 'show'));
+	//注册shutdown函数用来Debug显示 : 手工处理显示的场景，请设置： define('MANUAL_DEBUG_SHOW',true);
+	if(!defined('MANUAL_DEBUG_SHOW') || MANUAL_DEBUG_SHOW != true) register_shutdown_function(array('\yoka\Debug', 'show'));
 }
 //读取系统配置文件
 if(!defined('ENV_PATH'))define('ENV_PATH','/WORK/CONF');
