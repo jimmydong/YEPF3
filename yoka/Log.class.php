@@ -29,7 +29,7 @@ class Log
 	 * @desc 返回Log类的实例
 	 * @return object of instance
 	 */
-	static public function getInstance()
+	public static function getInstance()
 	{
 		if(false === self::$instance)
 		{
@@ -71,7 +71,7 @@ class Log
 	 * LOG_INFO informational message 
 	 * LOG_DEBUG debug-level message 
 	 */
-	static public function customLog($filename, $msg, $priority = '')
+	public static function customLog($filename, $msg, $priority = '')
 	{
 		$log_obj = self::getInstance();
 		$string = "" ;
@@ -90,7 +90,7 @@ class Log
 	 * @param string $s1  title
 	 * @param string $s2  msg
 	 */
-	static public function flog($s1, $s2 = null){
+	public static function flog($s1, $s2 = null){
 		if($s2){
 			$title = $s1;
 			$msg = $s2;

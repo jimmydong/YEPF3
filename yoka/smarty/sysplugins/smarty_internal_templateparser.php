@@ -225,7 +225,7 @@ class Smarty_Internal_Templateparser#line 80 "smarty_internal_templateparser.php
     const YY_ERROR_ACTION = 568;
 
     const YY_SZ_ACTTAB = 2407;
-static public $yy_action = array(
+public static $yy_action = array(
  /*     0 */   219,  309,  305,  301,  302,  303,  304,  310,  311,  317,
  /*    10 */   318,  319,  201,   30,  273,    9,   33,  238,  280,   15,
  /*    20 */     5,  108,  235,  234,  220,    7,  126,   42,   30,   30,
@@ -468,7 +468,7 @@ static public $yy_action = array(
  /*  2390 */   123,  331,  331,  331,  331,  331,  331,  331,  294,  327,
  /*  2400 */   331,  331,  255,  350,  348,  331,  345,
     );
-    static public $yy_lookahead = array(
+    public static $yy_lookahead = array(
  /*     0 */     1,    4,    5,    6,    7,    8,    9,   10,   11,   12,
  /*    10 */    13,   14,   15,   30,   66,   18,   18,    2,   20,   36,
  /*    20 */    23,   24,   94,   95,   96,   39,   29,   28,   30,   30,
@@ -713,7 +713,7 @@ static public $yy_action = array(
 );
     const YY_SHIFT_USE_DFLT = -53;
     const YY_SHIFT_MAX = 259;
-    static public $yy_shift_ofst = array(
+    public static $yy_shift_ofst = array(
  /*     0 */    -3, 1213,  981, 1155, 1213, 1155,  981,  981,  923,  923,
  /*    10 */   865,  981,  981, 1097,  981,  981,  981,  981,  981,  981,
  /*    20 */   981, 1329,  981,  981,  981,  981, 1271,  981,  981,  981,
@@ -743,7 +743,7 @@ static public $yy_action = array(
 );
     const YY_REDUCE_USE_DFLT = -73;
     const YY_REDUCE_MAX = 208;
-    static public $yy_reduce_ofst = array(
+    public static $yy_reduce_ofst = array(
  /*     0 */   -22, 1449, 1540, 1504, 1481, 1568, 1515, 1591, 1925, 2072,
  /*    10 */  1750, 1818, 1895, 1644, 1663, 1914, 2205, 2277, 1876, 1731,
  /*    20 */  1857, 1633, 1701, 2186, 2150, 2296, 2266, 2091, 2047, 1993,
@@ -766,7 +766,7 @@ static public $yy_action = array(
  /*   190 */   479,  479,  479,  480,  480,  479,  479,  189,  504,  499,
  /*   200 */   189,  241,  189,  348,  356,  393,  389,   95,  385,
 );
-    static public $yyExpectedTokens = array(
+    public static $yyExpectedTokens = array(
         /* 0 */ array(4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 23, 24, 29, 33, 35, ),
         /* 1 */ array(18, 19, 20, 23, 24, 29, 33, 35, 37, 39, 42, 57, 58, 59, 60, 61, 64, 65, 79, ),
         /* 2 */ array(18, 19, 20, 23, 24, 29, 33, 35, 37, 39, 42, 57, 58, 59, 60, 61, 64, 65, 79, ),
@@ -1131,7 +1131,7 @@ static public $yy_action = array(
         /* 361 */ array(),
         /* 362 */ array(),
 );
-    static public $yy_default = array(
+    public static $yy_default = array(
  /*     0 */   366,  551,  522,  568,  568,  568,  522,  522,  568,  568,
  /*    10 */   568,  568,  568,  568,  568,  568,  568,  568,  568,  568,
  /*    20 */   568,  568,  568,  568,  568,  568,  568,  568,  568,  568,

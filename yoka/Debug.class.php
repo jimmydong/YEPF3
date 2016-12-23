@@ -146,7 +146,7 @@ class Debug
 	 * 设置参数
 	 * 常用： array('maxDepth'=>8, 'maxLength'=>2048);
 	 */
-	static public function setOptions($arr){
+	public static function setOptions($arr){
 		$instance = FirePHP::getInstance(true);
 		$instance->setOptions($arr);
 	}
@@ -155,7 +155,7 @@ class Debug
 	 * @desc 启动debug类
 	 * @return null
 	 */
-	static public function start()
+	public static function start()
 	{
 		self::$open = true;
 		self::$begin_time = microtime();
@@ -194,10 +194,10 @@ class Debug
 		$instance->registerAssertionHandler(true, false);
 	}
 	
-	static public function stop(){
+	public static function stop(){
 		self::$open = false;
 	}
-	static public function restart(){
+	public static function restart(){
 		self::$open = true;
 	}
 	
@@ -206,7 +206,7 @@ class Debug
 	 * 开启 - true
 	 * 关闭 - false
 	 */
-	static public function log_db($flag){
+	public static function log_db($flag){
 		self::$db_log = $flag;
 	}
 
@@ -215,7 +215,7 @@ class Debug
 	 * 开启 - true
 	 * 关闭 - false
 	 */
-	static public function log_debug($flag){
+	public static function log_debug($flag){
 		self::$debug_log = $flag;
 	}
 	
@@ -224,7 +224,7 @@ class Debug
 	 * @desc 获得从起始时间到目前为止所花费的时间
 	 * @return int
 	 */
-	static public function getTime()
+	public static function getTime()
 	{
 		if(false === self::$open)
 		{
@@ -239,7 +239,7 @@ class Debug
 	 * @desc 返回debug类的实例
 	 * @return object
 	 */
-	static public function getInstance()
+	public static function getInstance()
 	{
 		if(false === self::$instance)
 		{
@@ -256,7 +256,7 @@ class Debug
 	 * @return null
 	 * @access public
 	 */
-	static public function log($label, $results = 'Temporary Value', $caller = '')
+	public static function log($label, $results = 'Temporary Value', $caller = '')
 	{
 		if(false === self::$open || (defined('DEBUG_SHOW_LOG') && !DEBUG_SHOW_LOG))
 		{
@@ -279,7 +279,7 @@ class Debug
 	 * @param mixed $results
 	 * @param string $caller
 	 */
-	static public function flog($label, $results = '', $caller = '')
+	public static function flog($label, $results = '', $caller = '')
 	{
 		if(!$results){
 			$results = $label;
@@ -306,7 +306,7 @@ class Debug
 	 * @param string $result
 	 * @param string $caller
 	 */
-	static public function dlog($label, $result = '', $caller = '')
+	public static function dlog($label, $result = '', $caller = '')
 	{
 		if($caller == ''){
 			$t = debug_backtrace(1);
@@ -346,7 +346,7 @@ class Debug
 	 * @return null
 	 * @access public
 	 */
-	static public function db($ip, $database ,$sql, $times, $results)
+	public static function db($ip, $database ,$sql, $times, $results)
 	{
 		if(false === self::$open || (defined('DEBUG_SHOW_DB') && !DEBUG_SHOW_DB))
 		{
@@ -365,7 +365,7 @@ class Debug
 	 * @param unknown_type $times
 	 * @param unknown_type $result
 	 */
-	static public function thrift($service, $method, $args, $times, $results)
+	public static function thrift($service, $method, $args, $times, $results)
 	{
 		if(false === self::$open || (defined('DEBUG_SHOW_THRIFT') && !DEBUG_SHOW_THRIFT))
 		{
@@ -380,7 +380,7 @@ class Debug
 	 * @param unknown_type $times
 	 * @param unknown_type $caller
 	 */
-	static public function template($name, $times, $caller)
+	public static function template($name, $times, $caller)
 	{
 		if(false === self::$open || (defined('DEBUG_SHOW_TEMPLATE') && !DEBUG_SHOW_TEMPLATE))
 		{
@@ -398,7 +398,7 @@ class Debug
 	 * @return null
 	 * @access public
 	 */
-	static public function cache($server, $key, $times, $results, $method = null)
+	public static function cache($server, $key, $times, $results, $method = null)
 	{
 		if(false === self::$open || (defined('DEBUG_SHOW_CACHE') && !DEBUG_SHOW_CACHE))
 		{
@@ -415,7 +415,7 @@ class Debug
 	 * @return null
 	 * @access public
 	 */
-	static public function time($desc='', $caller='')
+	public static function time($desc='', $caller='')
 	{
 		if(false === self::$open || (defined('DEBUG_SHOW_TIME') && !DEBUG_SHOW_TIME))
 		{
@@ -437,7 +437,7 @@ class Debug
 	 * @param params 表单的数据项
 	 * @param caller 处理程序
 	 */
-	static public function form($label, $action, $params = array(),$method='post', $times = 0, $results = '', $caller = __FILE__)
+	public static function form($label, $action, $params = array(),$method='post', $times = 0, $results = '', $caller = __FILE__)
 	{
 		if (false === self::$open || (defined('DEBUG_SHOW_FORM') && !DEBUG_SHOW_FORM))
 		{
@@ -460,7 +460,7 @@ class Debug
 	 * @return mixed
 	 * @access public
 	 */
-	static public function fb()
+	public static function fb()
 	{
 		if(self::$open === false)return false;
 		
@@ -482,7 +482,7 @@ class Debug
 	 * @return null
 	 * @access public
 	 */
-	static public function show()
+	public static function show()
 	{
 		global $YOKA, $TEMPLATE, $CFG;
 

@@ -1,9 +1,9 @@
 <?php
 /**
- * ¸ñÊ½»¯½á¹û´«µÝÀà
- * Ä¿µÄ£º±ê×¼»¯·½·¨Ö´ÐÐºó·µ»ØÖµµÄ±íÊö¡£
+ * ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * Ä¿ï¿½Ä£ï¿½ï¿½ï¿½×¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½Ðºó·µ»ï¿½Öµï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½
  * @author jimmy.dong@gmail.com
- * DEMO£º
+ * DEMOï¿½ï¿½
  * function xxxx(){
  	return \YokaResult::ok('hello world!');
    }
@@ -11,19 +11,19 @@
  */
 class YokaResult {
 	/**
-	 * ´æ·Å´¦Àí×´Ì¬
+	 * ï¿½ï¿½Å´ï¿½ï¿½ï¿½×´Ì¬
 	 * @var Boolean
 	 */
 	private $status;
 
 	/**
-	 * ´æ·ÅÊý¾Ý
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @var mixed
 	 */
 	private $data;
 
 	/**
-	 * ¹¹Ôìº¯ÊýË½ÓÐ£¬Õâ¸öÀà²»ÔÊÐí´ÓÍâ²¿ÊµÀý»¯
+	 * ï¿½ï¿½ï¿½ìº¯ï¿½ï¿½Ë½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½à²»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½â²¿Êµï¿½ï¿½ï¿½ï¿½
 	 */
 	private function __construct() {
 
@@ -31,11 +31,11 @@ class YokaResult {
 
 
 	/**
-	 * ±íÊ¾´¦Àí³É¹¦
+	 * ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½É¹ï¿½
 	 * @param mixed $data
 	 * @return InternalResultTransfer
 	 */
-	static public function ok($data = null) {
+	public static function ok($data = null) {
 		$objInternalResultTransfer = new self();
 		$objInternalResultTransfer->status = true;
 		$objInternalResultTransfer->data = $data;
@@ -43,11 +43,11 @@ class YokaResult {
 	}
 
 	/**
-	 * ±íÊ¾´¦ÀíÊ§°Ü
+	 * ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
 	 * @param mixed $data
 	 * @return InternalResultTransfer
 	 */
-	static public function fail($data = null) {
+	public static function fail($data = null) {
 		$objInternalResultTransfer = new self();
         $objInternalResultTransfer->status = false;
         $objInternalResultTransfer->data = $data;
@@ -56,7 +56,7 @@ class YokaResult {
 	}
 
 	/**
-	 * ÅÐ¶Ï´¦ÀíÊÇ·ñ³É¹¦
+	 * ï¿½Ð¶Ï´ï¿½ï¿½ï¿½ï¿½Ç·ï¿½É¹ï¿½
 	 * @return Boolean
 	 */
 	public function isOk() {
@@ -64,7 +64,7 @@ class YokaResult {
 	}
 
 	/**
-	 * »ñÈ¡Êý¾Ý
+	 * ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
 	 * @return mixed
 	 */
 	public function getData() {

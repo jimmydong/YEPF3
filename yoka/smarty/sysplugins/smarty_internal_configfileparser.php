@@ -203,13 +203,13 @@ class Smarty_Internal_Configfileparser#line 80 "smarty_internal_configfileparser
     const YY_ERROR_ACTION = 58;
 
     const YY_SZ_ACTTAB = 38;
-static public $yy_action = array(
+public static $yy_action = array(
  /*     0 */    29,   30,   34,   33,   24,   13,   19,   25,   35,   21,
  /*    10 */    59,    8,    3,    1,   20,   12,   14,   31,   20,   12,
  /*    20 */    15,   17,   23,   18,   27,   26,    4,    5,    6,   32,
  /*    30 */     2,   11,   28,   22,   16,    9,    7,   10,
     );
-    static public $yy_lookahead = array(
+    public static $yy_lookahead = array(
  /*     0 */     7,    8,    9,   10,   11,   12,    5,   27,   15,   16,
  /*    10 */    20,   21,   23,   23,   17,   18,   13,   14,   17,   18,
  /*    20 */    15,    2,   17,    4,   25,   26,    6,    3,    3,   14,
@@ -217,17 +217,17 @@ static public $yy_action = array(
 );
     const YY_SHIFT_USE_DFLT = -8;
     const YY_SHIFT_MAX = 19;
-    static public $yy_shift_ofst = array(
+    public static $yy_shift_ofst = array(
  /*     0 */    -8,    1,    1,    1,   -7,   -3,   -3,   30,   -8,   -8,
  /*    10 */    -8,   19,    5,    3,   15,   16,   24,   25,   32,   20,
 );
     const YY_REDUCE_USE_DFLT = -21;
     const YY_REDUCE_MAX = 10;
-    static public $yy_reduce_ofst = array(
+    public static $yy_reduce_ofst = array(
  /*     0 */   -10,   -1,   -1,   -1,  -20,   10,   12,    8,   14,    7,
  /*    10 */   -11,
 );
-    static public $yyExpectedTokens = array(
+    public static $yyExpectedTokens = array(
         /* 0 */ array(),
         /* 1 */ array(5, 17, 18, ),
         /* 2 */ array(5, 17, 18, ),
@@ -265,7 +265,7 @@ static public $yy_action = array(
         /* 34 */ array(),
         /* 35 */ array(),
 );
-    static public $yy_default = array(
+    public static $yy_default = array(
  /*     0 */    44,   37,   41,   40,   58,   58,   58,   36,   39,   44,
  /*    10 */    44,   58,   58,   58,   58,   58,   58,   58,   58,   58,
  /*    20 */    55,   54,   57,   56,   50,   45,   43,   42,   38,   46,

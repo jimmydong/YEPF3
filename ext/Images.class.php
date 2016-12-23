@@ -779,7 +779,7 @@ class Images{
 	 * @return bool
 	 * @author alfa@YOKA 2010-1-18
 	 */
-	static public function ImagickAddBackground($scimg,$obimg="",$bgcolor="white")
+	public static function ImagickAddBackground($scimg,$obimg="",$bgcolor="white")
 	{
 		$srcImgObj = new Imagick();
 		$objImgObj = new Imagick();

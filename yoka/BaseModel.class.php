@@ -179,7 +179,7 @@ class BaseModel{
 	}
 
 	/**
-	 * 调用子类中的refresh方法【约定：子类中定义static public function refresh()用于刷新自身的特殊缓冲】
+	 * 调用子类中的refresh方法【约定：子类中定义public static function refresh()用于刷新自身的特殊缓冲】
 	 */
 	public function _refresh($class, $id = null){
 		//是否被禁止自动更新
