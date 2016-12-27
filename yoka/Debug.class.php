@@ -489,245 +489,249 @@ class Debug
 		if(self::$open === false)return;
 		else self::$open == false; //防止再次输出
 		
-		//页面执行时间
-		switch(self::$debug_level)
-		{
-			case self::YEPF_DEBUG_NONE:
-				break;
-			case self::YEPF_DEBUG_WARNING:
-			case self::YEPF_DEBUG_STAT:
-			case self::YEPF_DEBUG_TRACE:
-			case self::YEPF_DEBUG_INFO:
-				self::fb(array('This Page Spend Times ' . self::getTime(), self::$time_table), FirePHP::TABLE );
-				break;
-			default: 
-				break;
-		}
-		//用户记录变量
-		switch(self::$debug_level)
-		{
-			case self::YEPF_DEBUG_NONE:
-				break;
-			case self::YEPF_DEBUG_WARNING:
-			case self::YEPF_DEBUG_STAT:
-			case self::YEPF_DEBUG_TRACE:
-			case self::YEPF_DEBUG_INFO:
-				self::fb(array('Custom Log Object', self::$log_table), FirePHP::TABLE );
-				break;
-			default: 
-				break;
-		}
-		//数据库执行时间
-		switch(self::$debug_level)
-		{
-			case self::YEPF_DEBUG_NONE:
-			case self::YEPF_DEBUG_WARNING:
-				break;
-			case self::YEPF_DEBUG_STAT:
-				if(count(self::$db_table) > 0)
-				{
-					$i = 0 ;
-					$db_total_times = 0 ;
-					foreach (self::$db_table as $v)
+		try{
+			//页面执行时间
+			switch(self::$debug_level)
+			{
+				case self::YEPF_DEBUG_NONE:
+					break;
+				case self::YEPF_DEBUG_WARNING:
+				case self::YEPF_DEBUG_STAT:
+				case self::YEPF_DEBUG_TRACE:
+				case self::YEPF_DEBUG_INFO:
+					self::fb(array('This Page Spend Times ' . self::getTime(), self::$time_table), FirePHP::TABLE );
+					break;
+				default: 
+					break;
+			}
+			//用户记录变量
+			switch(self::$debug_level)
+			{
+				case self::YEPF_DEBUG_NONE:
+					break;
+				case self::YEPF_DEBUG_WARNING:
+				case self::YEPF_DEBUG_STAT:
+				case self::YEPF_DEBUG_TRACE:
+				case self::YEPF_DEBUG_INFO:
+					self::fb(array('Custom Log Object', self::$log_table), FirePHP::TABLE );
+					break;
+				default: 
+					break;
+			}
+			//数据库执行时间
+			switch(self::$debug_level)
+			{
+				case self::YEPF_DEBUG_NONE:
+				case self::YEPF_DEBUG_WARNING:
+					break;
+				case self::YEPF_DEBUG_STAT:
+					if(count(self::$db_table) > 0)
 					{
-						$db_total_times += $v[2];
-						$i++;
+						$i = 0 ;
+						$db_total_times = 0 ;
+						foreach (self::$db_table as $v)
+						{
+							$db_total_times += $v[2];
+							$i++;
+						}
+						self::fb($i . ' SQL queries took '.$db_total_times.' seconds', FirePHP::INFO );
 					}
-					self::fb($i . ' SQL queries took '.$db_total_times.' seconds', FirePHP::INFO );
-				}
-				break;
-			case self::YEPF_DEBUG_TRACE:
-			case self::YEPF_DEBUG_INFO:
-				if(count(self::$db_table) > 0)
-				{
-					$i = 0 ;
-					$db_total_times = 0 ;
-					foreach (self::$db_table as $v)
+					break;
+				case self::YEPF_DEBUG_TRACE:
+				case self::YEPF_DEBUG_INFO:
+					if(count(self::$db_table) > 0)
 					{
-						$db_total_times += $v[2];
-						$i++;
+						$i = 0 ;
+						$db_total_times = 0 ;
+						foreach (self::$db_table as $v)
+						{
+							$db_total_times += $v[2];
+							$i++;
+						}
+						array_unshift(self::$db_table, array('IP', 'Database', 'Time', 'SQL Statement','Results'));
+						self::fb(array($i . ' SQL queries took '.$db_total_times.' seconds', self::$db_table), FirePHP::TABLE );
 					}
-					array_unshift(self::$db_table, array('IP', 'Database', 'Time', 'SQL Statement','Results'));
-					self::fb(array($i . ' SQL queries took '.$db_total_times.' seconds', self::$db_table), FirePHP::TABLE );
-				}
-			default: 
-				break;
-		}
-		//Cache执行时间
-		switch(self::$debug_level)
-		{
-			case self::YEPF_DEBUG_NONE:
-			case self::YEPF_DEBUG_WARNING:
-				break;
-			case self::YEPF_DEBUG_STAT:
-				if(count(self::$cache_table) > 0)
-				{
-					$i = 0 ;
-					$cache_total_times = 0 ;
-					foreach (self::$cache_table as $v)
+				default: 
+					break;
+			}
+			//Cache执行时间
+			switch(self::$debug_level)
+			{
+				case self::YEPF_DEBUG_NONE:
+				case self::YEPF_DEBUG_WARNING:
+					break;
+				case self::YEPF_DEBUG_STAT:
+					if(count(self::$cache_table) > 0)
 					{
-						$cache_total_times += $v[2];
-						$i++;
+						$i = 0 ;
+						$cache_total_times = 0 ;
+						foreach (self::$cache_table as $v)
+						{
+							$cache_total_times += $v[2];
+							$i++;
+						}
+						self::fb($i.' Cache queries took '.$cache_total_times.' seconds', FirePHP::INFO );
 					}
-					self::fb($i.' Cache queries took '.$cache_total_times.' seconds', FirePHP::INFO );
-				}
-				break;
-			case self::YEPF_DEBUG_TRACE:
-			case self::YEPF_DEBUG_INFO:
-				if(count(self::$cache_table) > 0)
-				{
-					$i = 0 ;
-					$cache_total_times = 0;
-					foreach (self::$cache_table as $v)
+					break;
+				case self::YEPF_DEBUG_TRACE:
+				case self::YEPF_DEBUG_INFO:
+					if(count(self::$cache_table) > 0)
 					{
-						$cache_total_times += $v[2];
-						$i++;
+						$i = 0 ;
+						$cache_total_times = 0;
+						foreach (self::$cache_table as $v)
+						{
+							$cache_total_times += $v[2];
+							$i++;
+						}
+						array_unshift(self::$cache_table, array('Server', 'Cache Key', 'Time', 'Method', 'Results'));
+						self::fb(array($i.' Cache queries took '.$cache_total_times.' seconds', self::$cache_table), FirePHP::TABLE );
 					}
-					array_unshift(self::$cache_table, array('Server', 'Cache Key', 'Time', 'Method', 'Results'));
-					self::fb(array($i.' Cache queries took '.$cache_total_times.' seconds', self::$cache_table), FirePHP::TABLE );
-				}
-			default: 
-				break;
-		}
-		//Thrift执行时间
-		switch(self::$debug_level)
-		{
-			case self::YEPF_DEBUG_NONE:
-			case self::YEPF_DEBUG_WARNING:
-				break;
-			case self::YEPF_DEBUG_STAT:
-				if(count(self::$thrift_table) > 0)
-				{
-					$i = 0 ;
-					$thrift_total_times = 0 ;
-					foreach (self::$thrift_table as $v)
+				default: 
+					break;
+			}
+			//Thrift执行时间
+			switch(self::$debug_level)
+			{
+				case self::YEPF_DEBUG_NONE:
+				case self::YEPF_DEBUG_WARNING:
+					break;
+				case self::YEPF_DEBUG_STAT:
+					if(count(self::$thrift_table) > 0)
 					{
-						$thrift_total_times += $v[3];
-						$i++;
+						$i = 0 ;
+						$thrift_total_times = 0 ;
+						foreach (self::$thrift_table as $v)
+						{
+							$thrift_total_times += $v[3];
+							$i++;
+						}
+						self::fb($i . ' thrift took '.$thrift_total_times.' seconds', FirePHP::INFO );
 					}
-					self::fb($i . ' thrift took '.$thrift_total_times.' seconds', FirePHP::INFO );
-				}
-				break;
-			case self::YEPF_DEBUG_TRACE:
-			case self::YEPF_DEBUG_INFO:
-				if(count(self::$thrift_table) > 0)
-				{
-					$i = 0 ;
-					$thrift_total_times = 0 ;
-					$thrift_service = array();
-					foreach (self::$thrift_table as $v)
+					break;
+				case self::YEPF_DEBUG_TRACE:
+				case self::YEPF_DEBUG_INFO:
+					if(count(self::$thrift_table) > 0)
 					{
-						$thrift_total_times += $v[3];
-						$i++;
+						$i = 0 ;
+						$thrift_total_times = 0 ;
+						$thrift_service = array();
+						foreach (self::$thrift_table as $v)
+						{
+							$thrift_total_times += $v[3];
+							$i++;
+						}
+						array_unshift(self::$thrift_table, array('Service', 'Methof', 'Args', 'Times', 'Results'));
+						self::fb(array($i . ' thrift took '.$thrift_total_times.' seconds', self::$thrift_table), FirePHP::TABLE );
 					}
-					array_unshift(self::$thrift_table, array('Service', 'Methof', 'Args', 'Times', 'Results'));
-					self::fb(array($i . ' thrift took '.$thrift_total_times.' seconds', self::$thrift_table), FirePHP::TABLE );
-				}
-			default: 
-				break;
-		}
-		//Template执行时间
-		switch(self::$debug_level)
-		{
-			case self::YEPF_DEBUG_NONE:
-			case self::YEPF_DEBUG_WARNING:
-				break;
-			case self::YEPF_DEBUG_STAT:
-				if(count(self::$template_table) > 0)
-				{
-					$i = 0 ;
-					$template_total_times = 0 ;
-					foreach (self::$template_table as $v)
+				default: 
+					break;
+			}
+			//Template执行时间
+			switch(self::$debug_level)
+			{
+				case self::YEPF_DEBUG_NONE:
+				case self::YEPF_DEBUG_WARNING:
+					break;
+				case self::YEPF_DEBUG_STAT:
+					if(count(self::$template_table) > 0)
 					{
-						$template_total_times += $v[3];
-						$i++;
+						$i = 0 ;
+						$template_total_times = 0 ;
+						foreach (self::$template_table as $v)
+						{
+							$template_total_times += $v[3];
+							$i++;
+						}
+						self::fb($i . ' template took '.$template_total_times.' seconds', FirePHP::INFO );
 					}
-					self::fb($i . ' template took '.$template_total_times.' seconds', FirePHP::INFO );
-				}
-				break;
-			case self::YEPF_DEBUG_TRACE:
-			case self::YEPF_DEBUG_INFO:
-				if(count(self::$template_table) > 0)
-				{
-					$i = 0 ;
-					$template_total_times = 0 ;
-					$template_service = array();
-					foreach (self::$template_table as $v)
+					break;
+				case self::YEPF_DEBUG_TRACE:
+				case self::YEPF_DEBUG_INFO:
+					if(count(self::$template_table) > 0)
 					{
-						$template_total_times += $v[3];
-						$i++;
+						$i = 0 ;
+						$template_total_times = 0 ;
+						$template_service = array();
+						foreach (self::$template_table as $v)
+						{
+							$template_total_times += $v[3];
+							$i++;
+						}
+						array_unshift(self::$template_table, array('Name', 'Times', 'Caller'));
+						self::fb(array($i . ' template took '.$template_total_times.' seconds', self::$template_table), FirePHP::TABLE );
 					}
-					array_unshift(self::$template_table, array('Name', 'Times', 'Caller'));
-					self::fb(array($i . ' template took '.$template_total_times.' seconds', self::$template_table), FirePHP::TABLE );
-				}
-			default: 
-				break;
-		}
-		//Form执行时间
-		switch(self::$debug_level)
-		{
-			case self::YEPF_DEBUG_NONE:
-			case self::YEPF_DEBUG_WARNING:
-				break;
-			case self::YEPF_DEBUG_STAT:
-				if(count(self::$form_table) > 0)
-				{
-					$i = 0;
-					$form_total_times = 0;
-					foreach (self::$form_table as $v)
+				default: 
+					break;
+			}
+			//Form执行时间
+			switch(self::$debug_level)
+			{
+				case self::YEPF_DEBUG_NONE:
+				case self::YEPF_DEBUG_WARNING:
+					break;
+				case self::YEPF_DEBUG_STAT:
+					if(count(self::$form_table) > 0)
 					{
-						$form_total_times += $v[2];
-						$i++;
+						$i = 0;
+						$form_total_times = 0;
+						foreach (self::$form_table as $v)
+						{
+							$form_total_times += $v[2];
+							$i++;
+						}
+						self::fb( $i.' Form action request took '.$form_total_times.' seconds', FirePHP::INFO);
 					}
-					self::fb( $i.' Form action request took '.$form_total_times.' seconds', FirePHP::INFO);
-				}
-				break;
-			case self::YEPF_DEBUG_TRACE:
-			case self::YEPF_DEBUG_INFO:
-				if(self::$form_table)
-				{
-					$i = 0;
-					$form_total_times = 0;
-					foreach (self::$form_table as $v)
+					break;
+				case self::YEPF_DEBUG_TRACE:
+				case self::YEPF_DEBUG_INFO:
+					if(self::$form_table)
 					{
-						$form_total_times += $v[2];
-						$i++;
+						$i = 0;
+						$form_total_times = 0;
+						foreach (self::$form_table as $v)
+						{
+							$form_total_times += $v[2];
+							$i++;
+						}
+						array_unshift(self::$form_table, array('Label', 'FormHtml', 'Times', 'Results', 'Caller'));
+						self::fb(array($i.' Form action request took '.$form_total_times.' seconds', self::$form_table), FirePHP::TABLE );
 					}
-					array_unshift(self::$form_table, array('Label', 'FormHtml', 'Times', 'Results', 'Caller'));
-					self::fb(array($i.' Form action request took '.$form_total_times.' seconds', self::$form_table), FirePHP::TABLE );
-				}
-			default: 
-				break;
-		}
-		//函数及变量
-		switch(self::$debug_level)
-		{
-			case self::YEPF_DEBUG_NONE:
-			case self::YEPF_DEBUG_WARNING:
-			case self::YEPF_DEBUG_STAT:
-			case self::YEPF_DEBUG_TRACE:
-				break;
-			case self::YEPF_DEBUG_INFO:
-				//自定义函数
-				$functions = get_defined_functions();
-				//定义的常量
-				$constants = get_defined_constants(true);
-				$sessions = isset($_SESSION) ? $_SESSION : array();
-				self::fb(array('Utility Variables',
-						array(
-								array('name', 'values'),
-								//array('YOKA-ENV.ini',\yoka\Conf::$ENV),
-								array('GET Variables', $_GET),
-								array('POST Variables', $_POST),
-								array('SESSION Variables', $sessions),
-								//array('Custom Defined Functions', $functions['user']),
-								//array('Include Files', get_included_files()),
-								array('Defined Constants', $constants['user']),
-								//array('SERVER Variables', $_SERVER),
-						)
-				), FirePHP::TABLE );
-			default: 
-				break;
+				default: 
+					break;
+			}
+			//函数及变量
+			switch(self::$debug_level)
+			{
+				case self::YEPF_DEBUG_NONE:
+				case self::YEPF_DEBUG_WARNING:
+				case self::YEPF_DEBUG_STAT:
+				case self::YEPF_DEBUG_TRACE:
+					break;
+				case self::YEPF_DEBUG_INFO:
+					//自定义函数
+					$functions = get_defined_functions();
+					//定义的常量
+					$constants = get_defined_constants(true);
+					$sessions = isset($_SESSION) ? $_SESSION : array();
+					self::fb(array('Utility Variables',
+							array(
+									array('name', 'values'),
+									//array('YOKA-ENV.ini',\yoka\Conf::$ENV),
+									array('GET Variables', $_GET),
+									array('POST Variables', $_POST),
+									array('SESSION Variables', $sessions),
+									//array('Custom Defined Functions', $functions['user']),
+									//array('Include Files', get_included_files()),
+									array('Defined Constants', $constants['user']),
+									//array('SERVER Variables', $_SERVER),
+							)
+					), FirePHP::TABLE );
+				default: 
+					break;
+			}
+		}catch(\Exception $e){
+			//防止报错信息，暂无进一步处理
 		}
 		
 		/*---------记录数据库改变情况到日志文件-------------------------*/
