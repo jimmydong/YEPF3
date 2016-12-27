@@ -487,6 +487,7 @@ class Debug
 		global $YOKA, $TEMPLATE, $CFG;
 
 		if(self::$open === false)return;
+		else self::$open == false; //防止再次输出
 		
 		//页面执行时间
 		switch(self::$debug_level)
