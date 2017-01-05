@@ -744,7 +744,7 @@ class Debug
 					if(preg_match('/insert|update|delete/i',$v[3])) $string .= "|----  ".$v[1]."  ".$v[2]."  ".$v[3]."  ".$v[4]."  ----|\n";
 				}
 				if($string){
-					$string = 	"Request: " . $_SERVER['REQUEST_URI'] . "\n" . $string . date('Y-m-d_').rand(100000,999999);
+					$string = 	"Request: " . $_SERVER['REQUEST_URI'] . "\n" . $string;
 					$filename = "debug_db_" . date("Ymd") . ".log";
 					Log::customLog($filename, $string);
 				}
