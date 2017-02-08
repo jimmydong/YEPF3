@@ -460,20 +460,38 @@ class Debug
 	 * @return mixed
 	 * @access public
 	 */
-	public static function fb()
+	public static function fb($array, $type)
 	{
 		if(self::$open === false)return false;
 		
 		//判断FirePHP是否开启 by jimmy.dong@gmail.com
 		if(self::$firephp == 'suspense'){
-			if(preg_match('/FirePHP/i',$_SERVER['HTTP_USER_AGENT']))self::$firephp = true;
+			if(preg_match('/FirePHP/i',$_SERVER['HTTP_USER_AGENT']))self::$firephp = 'FirePHP';
+			elseif($_SERVER['X-YEPF'] != '')self::$firephp = 'YEPF';
 			else self::$firephp = false;
 		}	
 		if(self::$firephp === false)return false;
 		
-		$instance = FirePHP::getInstance(true);
-		$args = func_get_args();
-		return call_user_func_array(array($instance,'fb'),$args);
+		if(self::$firephp == 'FirePHP'){
+			$instance = FirePHP::getInstance(true);
+			$args = func_get_args();
+			return call_user_func_array(array($instance,'fb'),$args);
+		}else{
+			//FireDebug停止维护，启用ChromeLogger模式
+			$title = $array[0];
+			$keys = $array[1][0];
+			$data = array();
+			for($i=1;$i<count($array[0]);$i++){
+				$tmp = array();
+				foreach($keys as $j=>$key){
+					$tmp[$key] = $array[0][$i][$j];
+				}
+				$data[] = $tmp;
+			}
+			\ChromePhp::groupCollapsed($title);
+			\ChromePhp::table($data);
+			\ChromePhp::groupEnd();
+		}
 	}
 	/**
 	 * @name show
@@ -714,6 +732,7 @@ class Debug
 					//定义的常量
 					$constants = get_defined_constants(true);
 					$sessions = isset($_SESSION) ? $_SESSION : array();
+					/*
 					self::fb(array('Utility Variables',
 							array(
 									array('name', 'values'),
@@ -727,6 +746,7 @@ class Debug
 									//array('SERVER Variables', $_SERVER),
 							)
 					), FirePHP::TABLE );
+					*/
 				default: 
 					break;
 			}
