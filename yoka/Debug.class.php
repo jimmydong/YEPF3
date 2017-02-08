@@ -481,10 +481,10 @@ class Debug
 			$title = $array[0];
 			$keys = $array[1][0];
 			$data = array();
-			for($i=1;$i<count($array[0]);$i++){
+			for($i=1;$i<count($array[1]);$i++){
 				$tmp = array();
 				foreach($keys as $j=>$key){
-					$tmp[$key] = $array[0][$i][$j];
+					$tmp[$key] = $array[1][$i][$j];
 				}
 				$data[] = $tmp;
 			}
