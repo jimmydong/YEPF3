@@ -467,7 +467,7 @@ class Debug
 		//判断FirePHP是否开启 by jimmy.dong@gmail.com
 		if(self::$firephp == 'suspense'){
 			if(preg_match('/FirePHP/i',$_SERVER['HTTP_USER_AGENT']))self::$firephp = 'FirePHP';
-			elseif($_SERVER['X-YEPF'] != '')self::$firephp = 'YEPF';
+			elseif($_SERVER['HTTP_X_YEPF'] != '')self::$firephp = 'YEPF';
 			else self::$firephp = false;
 		}	
 		if(self::$firephp === false)return false;
