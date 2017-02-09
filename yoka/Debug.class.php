@@ -466,15 +466,17 @@ class Debug
 		
 		//判断FirePHP是否开启 by jimmy.dong@gmail.com
 		if(self::$firephp == 'suspense'){
-			if(preg_match('/FirePHP/i',$_SERVER['HTTP_USER_AGENT']))self::$firephp = 'FirePHP';
-			elseif($_SERVER['HTTP_X_YEPF'] != ''){
-				if(preg_match('chrom/i', $_SERVER['HTTP_USER_AGENT'])){
+			if(preg_match('/FirePHP/i',$_SERVER['HTTP_USER_AGENT'])){
+				self::$firephp = 'FirePHP';
+			}elseif($_SERVER['HTTP_X_YEPF'] != ''){
+				if(preg_match('Chrome/i', $_SERVER['HTTP_USER_AGENT'])){
 					self::$firephp = 'chrome';
 				}else{
 					self::$firephp = 'firefox';
 				}
+			}else{
+				self::$firephp = false;
 			}
-			else self::$firephp = false;
 		}	
 		if(self::$firephp === false)return false;
 		
