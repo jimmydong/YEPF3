@@ -467,7 +467,13 @@ class Debug
 		//判断FirePHP是否开启 by jimmy.dong@gmail.com
 		if(self::$firephp == 'suspense'){
 			if(preg_match('/FirePHP/i',$_SERVER['HTTP_USER_AGENT']))self::$firephp = 'FirePHP';
-			elseif($_SERVER['HTTP_X_YEPF'] != '')self::$firephp = 'YEPF';
+			elseif($_SERVER['HTTP_X_YEPF'] != ''){
+				if(preg_match('chrom/i', $_SERVER['HTTP_USER_AGENT'])){
+					self::$firephp = 'chrome';
+				}else{
+					self::$firephp = 'firefox';
+				}
+			}
 			else self::$firephp = false;
 		}	
 		if(self::$firephp === false)return false;
@@ -484,13 +490,16 @@ class Debug
 			for($i=1;$i<count($array[1]);$i++){
 				$tmp = array();
 				foreach($keys as $j=>$key){
+					if(is_string($array[1][$i][$j]) && self::$firephp == 'chrome'){
+						//TODO::增加换行
+					}
 					$tmp[$key] = $array[1][$i][$j];
 				}
 				$data[] = $tmp;
 			}
-			\ChromePhp::groupCollapsed($title);
+			if(self::$firephp == 'chrome')\ChromePhp::groupCollapsed($title);
 			\ChromePhp::table($data);
-			\ChromePhp::groupEnd();
+			if(self::$firephp == 'chrome')\ChromePhp::groupEnd();
 		}
 	}
 	/**
