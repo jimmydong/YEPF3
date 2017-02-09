@@ -500,7 +500,13 @@ class Debug
 					}
 					$tmp[$key] = $array[1][$i][$j];
 				}
-				$data[] = $tmp;
+				if(self::$firephp == 'chrome'){
+					//去除索引，节省显示空间
+					$index = array_shift($tmp);
+					$data[$index] = $tmp;
+				}else{
+					$data[] = $tmp;
+				}
 			}
 			if(self::$firephp == 'chrome')\ChromePhp::groupCollapsed($title);
 			\ChromePhp::table($data);
