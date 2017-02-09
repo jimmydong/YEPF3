@@ -125,7 +125,7 @@ class Cache implements \yoka\CacheInterface
         $cacheKey = $this->getKey($cacheKey);
         if(empty($cacheKey)) return false;
         $re = $this->cache->add($cacheKey, $cacheValue, $lifetime);
-        Debug::cache($this->serverlist, $cacheKey, Debug::getTime() - $begin_microtime, 'add', $re);
+        Debug::cache($this->_getServer(), $cacheKey, Debug::getTime() - $begin_microtime, 'add', $re);
         return $re;
     }
     /**
@@ -144,10 +144,10 @@ class Cache implements \yoka\CacheInterface
     	$cacheKey = $this->getKey($cacheKey);
     	if(empty($cacheKey)) return false;
         if($this->cache->set($cacheKey, $cacheValue, $lifetime)){
-        	Debug::cache($this->serverlist, $cacheKey, Debug::getTime() - $begin_microtime, 'set', true);
+        	Debug::cache($this->_getServer(), $cacheKey, Debug::getTime() - $begin_microtime, 'set', true);
             return true;
         }
-        Debug::cache($this->serverlist, $cacheKey, Debug::getTime() - $begin_microtime, 'set', false);
+        Debug::cache($this->_getServer(), $cacheKey, Debug::getTime() - $begin_microtime, 'set', false);
         return false;
     }
     /**
@@ -165,7 +165,7 @@ class Cache implements \yoka\CacheInterface
     public function setMulti($arr, $expiration = 0){
     	$begin_microtime = Debug::getTime();
     	if(!is_array($arr)){
-    		Debug::cache($this->serverlist, $arr, Debug::getTime() - $begin_microtime, 'setMulti', false);
+    		Debug::cache($this->_getServer(), $arr, Debug::getTime() - $begin_microtime, 'setMulti', false);
         	return false;
     	}
     	foreach($arr as $k=>$v){
@@ -174,7 +174,7 @@ class Cache implements \yoka\CacheInterface
     	}
     	if($this->memcacheType == 'Memcached') $this->cache->setMulti($new, $expiration);
     	else foreach($new as $k=>$v) $this->cache->set($k,$v,$expiration);
-    	Debug::cache($this->serverlist, $arr, Debug::getTime() - $begin_microtime, 'setMulti', true);
+    	Debug::cache($this->_getServer(), $arr, Debug::getTime() - $begin_microtime, 'setMulti', true);
     	return true;
     }
     /**
@@ -189,10 +189,10 @@ class Cache implements \yoka\CacheInterface
     	$cacheKey = $this->getKey($cacheKey);
     	if(empty($cacheKey)) return false;
         if($this->cache->delete($cacheKey)){
-        	Debug::cache($this->serverlist, $cacheKey, Debug::getTime() - $begin_microtime, 'del', true);
+        	Debug::cache($this->_getServer(), $cacheKey, Debug::getTime() - $begin_microtime, 'del', true);
         	return true;
         }
-        Debug::cache($this->serverlist, $cacheKey, Debug::getTime() - $begin_microtime, 'del', false);
+        Debug::cache($this->_getServer(), $cacheKey, Debug::getTime() - $begin_microtime, 'del', false);
         return false;
     }
     /**
@@ -232,7 +232,7 @@ class Cache implements \yoka\CacheInterface
         	}
             else $returnValue = $cacheValue;
         }
-        Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'get', $returnValue?:'');
+        Debug::cache($this->_getServer(), $key, Debug::getTime() - $begin_microtime, 'get', $returnValue?:'');
         return $returnValue;
     }
 	
@@ -296,6 +296,16 @@ class Cache implements \yoka\CacheInterface
     		default: 	$re = $this->cache->$method();break;
     	}
     	
+    }
+    /**
+     * 辅助函数
+     */
+    public function _getServer(){
+    	if(count($this->serverlist) == 1) return $this->serverlist[0]['ip'] . ':' . $this->serverlist[0]['port'];
+    	foreach($this->serverlist as $server){
+    		$re[] = $server['ip'] . ':' . $server['port'];
+    	}
+    	return $re;
     }
 }
 ?>
