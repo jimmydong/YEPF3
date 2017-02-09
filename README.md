@@ -1,6 +1,13 @@
 YEPF3 PHP快速开发框架第三版
 ===================================
 
+```
+2017.2.9 重要更新：  鉴于Firebug停止维护，改进为同时支持Firefox Devtool/Firebug+FirePHP/Chrome+ChromeLogger
+FirePHP用法不变，在51.0.x之后工作不稳定，不推荐使用，或请使用50.1.0 (http://archive.mozilla.org/pub/firefox/releases/50.1.0/)
+Firefox 请安装 extension/YEPF-firefox.xpi扩展
+Chrome 请安装 extension/YEPF-chrome.crx扩展，并自行安装ChromeLogger扩展
+```
+
 简介：
 YEPF（Yoka Elastic Php Framework） 是一套PHP快速开发工具，可以简单以脚手架方式介入到已有项目中进行辅助开发，也可以按照提供的规划建议进行全新的项目构架开发，能够与composer或其他开发框架轻松的整合在一起，具有使用灵活、定制性好、延展性强、跟踪调试快捷等特点。
 
