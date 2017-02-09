@@ -552,7 +552,7 @@ class Debug
 				case self::YEPF_DEBUG_STAT:
 				case self::YEPF_DEBUG_TRACE:
 				case self::YEPF_DEBUG_INFO:
-					self::fb(array('Custom Log Object', self::$log_table), FirePHP::TABLE );
+					self::fb(array('Custom Log Object '. count(self::$log_table), self::$log_table), FirePHP::TABLE );
 					break;
 				default: 
 					break;
@@ -667,6 +667,7 @@ class Debug
 					break;
 			}
 			//Template执行时间
+			/*
 			switch(self::$debug_level)
 			{
 				case self::YEPF_DEBUG_NONE:
@@ -753,7 +754,6 @@ class Debug
 					//定义的常量
 					$constants = get_defined_constants(true);
 					$sessions = isset($_SESSION) ? $_SESSION : array();
-					/*
 					self::fb(array('Utility Variables',
 							array(
 									array('name', 'values'),
@@ -767,10 +767,10 @@ class Debug
 									//array('SERVER Variables', $_SERVER),
 							)
 					), FirePHP::TABLE );
-					*/
 				default: 
 					break;
 			}
+			*/
 		}catch(\Exception $e){
 			//防止报错信息，暂无进一步处理
 		}
