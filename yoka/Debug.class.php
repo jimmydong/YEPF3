@@ -490,8 +490,11 @@ class Debug
 			for($i=1;$i<count($array[1]);$i++){
 				$tmp = array();
 				foreach($keys as $j=>$key){
-					if(is_string($array[1][$i][$j]) && self::$firephp == 'chrome'){
-						//TODO::增加换行
+					if(self::$firephp == 'chrome'){
+						//解决 array 不显示。长字符串被截断问题仍然无解。
+						if(is_array($array[1][$i][$j]) || is_object($array[1][$i][$j])){
+							$array[1][$i][$j] = var_export($array[1][$i][$j], true);
+						}
 					}
 					$tmp[$key] = $array[1][$i][$j];
 				}
