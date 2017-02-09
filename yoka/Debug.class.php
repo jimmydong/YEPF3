@@ -508,6 +508,7 @@ class Debug
 					$data[] = $tmp;
 				}
 			}
+			if(count($data) == 0)continue;
 			if(self::$firephp == 'chrome')\ChromePhp::groupCollapsed($title);
 			\ChromePhp::table($data);
 			if(self::$firephp == 'chrome')\ChromePhp::groupEnd();
