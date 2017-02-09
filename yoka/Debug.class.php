@@ -469,7 +469,7 @@ class Debug
 			if(preg_match('/FirePHP/i',$_SERVER['HTTP_USER_AGENT'])){
 				self::$firephp = 'FirePHP';
 			}elseif($_SERVER['HTTP_X_YEPF'] != ''){
-				if(preg_match('Chrome/i', $_SERVER['HTTP_USER_AGENT'] || preg_match('/Chrome/i', $_SERVER['HTTP_X_YEPF']))){
+				if(preg_match('Chrome/i', $_SERVER['HTTP_USER_AGENT']) || preg_match('/Chrome/i', $_SERVER['HTTP_X_YEPF'])){
 					self::$firephp = 'chrome';
 				}else{
 					self::$firephp = 'firefox';
@@ -495,7 +495,7 @@ class Debug
 					if(self::$firephp == 'chrome'){
 						//解决 array 不显示。长字符串被截断问题仍然无解。
 						if(is_array($array[1][$i][$j]) || is_object($array[1][$i][$j])){
-							$array[1][$i][$j] = var_export($array[1][$i][$j], true);
+							$array[1][$i][$j] = str_replace("\n",'',var_export($array[1][$i][$j], true));
 						}
 					}
 					$tmp[$key] = $array[1][$i][$j];
