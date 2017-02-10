@@ -509,9 +509,9 @@ class Debug
 				}
 			}
 			if(count($data) == 0) return;
-			if(self::$firephp == 'chrome')\ChromePhp::groupCollapsed($title);
-			\ChromePhp::table($data);
-			if(self::$firephp == 'chrome')\ChromePhp::groupEnd();
+			if(self::$firephp == 'chrome')\yoka\ChromePhp::groupCollapsed($title);
+			\yoka\ChromePhp::table($data);
+			if(self::$firephp == 'chrome')\yoka\ChromePhp::groupEnd();
 		}
 	}
 	/**
