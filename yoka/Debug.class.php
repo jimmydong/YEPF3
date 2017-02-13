@@ -454,6 +454,23 @@ class Debug
 		$form_html .= '<input type="submit" value="submit" /></form></body></html>';
 		array_push(self::$form_table, array($label, $form_html, $times, $results, $caller));
 	}
+	
+	/**
+	 * 判断客户端
+	 */
+	public static function _firephp(){
+		if(preg_match('/FirePHP/i',$_SERVER['HTTP_USER_AGENT'])){
+			return 'FirePHP';
+		}elseif($_SERVER['HTTP_X_YEPF'] != ''){
+			if(preg_match('Chrome/i', $_SERVER['HTTP_USER_AGENT']) || preg_match('/Chrome/i', $_SERVER['HTTP_X_YEPF'])){
+				return 'chrome';
+			}else{
+				return 'firefox';
+			}
+		}else{
+			return false;
+		}
+	}
 	/**
 	 * @name fb
 	 * @desc 调用FirePHP函数
@@ -466,17 +483,7 @@ class Debug
 		
 		//判断FirePHP是否开启 by jimmy.dong@gmail.com
 		if(self::$firephp == 'suspense'){
-			if(preg_match('/FirePHP/i',$_SERVER['HTTP_USER_AGENT'])){
-				self::$firephp = 'FirePHP';
-			}elseif($_SERVER['HTTP_X_YEPF'] != ''){
-				if(preg_match('Chrome/i', $_SERVER['HTTP_USER_AGENT']) || preg_match('/Chrome/i', $_SERVER['HTTP_X_YEPF'])){
-					self::$firephp = 'chrome';
-				}else{
-					self::$firephp = 'firefox';
-				}
-			}else{
-				self::$firephp = false;
-			}
+			self::$firephp = self::_firephp();
 		}	
 		if(self::$firephp === false)return false;
 		
