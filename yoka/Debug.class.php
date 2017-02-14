@@ -601,7 +601,7 @@ class Debug
 					break;
 			}
 			//Cache执行时间
-			if(self::_firephp() == 'firefox')switch(self::$debug_level)
+			if(self::_firephp() != 'chrome')switch(self::$debug_level)
 			{
 				case self::YEPF_DEBUG_NONE:
 				case self::YEPF_DEBUG_WARNING:
@@ -637,7 +637,7 @@ class Debug
 					break;
 			}
 			//Thrift执行时间
-			if(self::_firephp() == 'firefox')switch(self::$debug_level)
+			if(self::_firephp() != 'chrome')switch(self::$debug_level)
 			{
 				case self::YEPF_DEBUG_NONE:
 				case self::YEPF_DEBUG_WARNING:
