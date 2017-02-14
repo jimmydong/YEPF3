@@ -19,10 +19,15 @@ class Cache implements \yoka\CacheInterface
 	/* Memcache扩展的类型： Memcache or Memcached */
 	private $memcacheType;
 	
-	/*
+	/**
 	 * 默认的连接项目
 	 */
 	static $default_item = 'default';
+	
+	/**
+	 * 默认缓存时间(1个月)
+	 */
+	static $default_lifetime = 2592000;
 	
 	/**
 	 * 实例化数组
@@ -120,7 +125,8 @@ class Cache implements \yoka\CacheInterface
      * @param int $lifetime
      * @return Boolean
      */
-    public function add($cacheKey, $cacheValue, $lifetime = 0) {
+    public function add($cacheKey, $cacheValue, $lifetime = null) {
+    	if($lifetime === null) $lifetime = self::$default_lifetime;
     	$begin_microtime = Debug::getTime();
         $cacheKey = $this->getKey($cacheKey);
         if(empty($cacheKey)) return false;
@@ -138,8 +144,9 @@ class Cache implements \yoka\CacheInterface
 	 * @access public
 	 *
 	 */
-    public function set($cacheKey, $cacheValue, $lifetime = 0)
+    public function set($cacheKey, $cacheValue, $lifetime = null)
     {
+    	if($lifetime === null) $lifetime = self::$default_lifetime;
     	$begin_microtime = Debug::getTime();
     	$cacheKey = $this->getKey($cacheKey);
     	if(empty($cacheKey)) return false;
