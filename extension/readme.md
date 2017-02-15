@@ -1,6 +1,6 @@
 # YEPF Debug Extension for Firefox and Chrome
 
-安装地址
+安装地址：
 
 https://addons.mozilla.org/zh-CN/firefox/addon/yepf-debug-for-firefox/
 

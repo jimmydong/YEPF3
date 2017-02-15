@@ -565,7 +565,7 @@ class Debug
 					break;
 			}
 			//数据库执行时间  (chrome限制头大小)
-			if(self::_firephp() == 'firefox')switch(self::$debug_level)
+			if(self::_firephp() != 'chrome')switch(self::$debug_level)
 			{
 				case self::YEPF_DEBUG_NONE:
 				case self::YEPF_DEBUG_WARNING:
