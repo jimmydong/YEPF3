@@ -260,8 +260,11 @@ class DB
 	 * @param string $table_name 数据库表名
 	 * @param array $info 需要更新的字段和值的数组
 	 * @param mix $where 更新条件 （ string: 兼容旧模式  ； array: 使用creteria模式）
-	 * @param $compat 是否兼容旧模式
-	 * @param where转换参数：$trim-去除空格, $strict-严格转换, $connector-默认连接符, $addslashes-是否进行addslashes处理 
+	 * @param bool $compat 是否兼容旧模式
+	 * @param bool $trim 自动去除空白
+	 * @param string $strict 严格转换(非严格'or'和'$or'都支持，严格模式必须'$or')
+	 * @param string $connector 条件连接形式 'AND' , 'OR'
+	 * @param bool $addslashes 是否自动添加addslashes(所有非REQUET提交的参数都应进行Addslashes)
 	 * @return rows affected *** 注意：旧模式为返回是否操作成功
 	 * @access public
 	 */
