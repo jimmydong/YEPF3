@@ -66,31 +66,22 @@ class Cache implements \yoka\CacheInterface
 			if($this->memcacheType == 'Memcache') $this->cache = new \yoka\Memcached();
 			else $this->cache = new Memcached();
 			//主力服务器
-			$backup_flag = true;
 			if(!empty($serverList))
 			{
 				foreach($serverList as $v)
 				{
-					$is_sucess = $this->cache->addServer($v['host'],$v['port']);
-					if($is_sucess === false){
-						Debug::log('Memcache addServer Error','ip:'.$v['host'].":".$v['port']);  
-					}else{
-						$this->serverlist[] = array('ip' => $v['host'], 'port' => $v['port'], 'is_sucess'=>$is_sucess);				
-						$backup_flag = false;
-					}
+					$this->cache->addServer($v['host'],$v['port']);
+					$this->serverlist[] = array('ip' => $v['host'], 'port' => $v['port'], 'is_sucess'=>$is_sucess);				
 				}
 			}
 			//后备服务器：只有主力服务器全部添加失败时使用。集群设计应充分考虑数据一致性！
-			if($backup_flag && !empty($backupList))
+			if(!empty($backupList) && !$this->cache->set('Y_CHECK_SERVER_ALIVE',1))
 			{
+				\yoka\Debug::log("Cache Warnning", "server is down, using backup now!");
 				foreach($backupList as $v)
 				{
-					$is_sucess = $this->cache->addServer($v['host'],$v['port']);
-					if($is_sucess === false){
-						Debug::log('Memcache backupServer Error','ip:'.$v['host'].":".$v['port']);
-					}else{
-						$this->serverlist[] = array('ip' => $v['host'], 'port' => $v['port'], 'is_sucess'=>$is_sucess);
-					}
+					$this->cache->addServer($v['host'],$v['port']);
+					$this->serverlist[] = array('ip' => $v['host'], 'port' => $v['port'], 'is_sucess'=>$is_sucess);
 				}
 			}
     	}
