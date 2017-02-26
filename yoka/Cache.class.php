@@ -2,13 +2,11 @@
 /**
  * @name Cache.class.php
  * @desc 通用缓冲机制控制类,目前只支持Memcached内存缓存
- * @author 曹晓冬
- * @createtime 2008-09-10 02:32
- * @updatetime 2009-03-20 06:12
  * @usage：
- * $cache_obj = Cache::getInstance('default');  //default为cache.config.php中$CACHE['memcached']配置的服务名称
- * $cache_obj->get($key); //$key为唯一的字符串标识
+ * 	$cache_obj = Cache::getInstance('default');  //default为cache.config.php中$CACHE['memcached']配置的服务名称
+ * 	$cache_obj->get($key); //$key为唯一的字符串标识
  * @update 2014-09-16 by jimmy.dong@gmail.com  自动识别memcache插件类型，避免memcache与memcached冲突
+ * @update 2017-02-26 by jimmy.dong@gmail.com  支持后备服务器设定
  */
 namespace yoka;
 use yoka\Debug as Debug;
