@@ -78,6 +78,8 @@ class Cache implements \yoka\CacheInterface
 			if(!empty($backupList) && !$this->cache->set('Y_CHECK_SERVER_ALIVE',1))
 			{
 				\yoka\Debug::log("Cache Warnning", "server is down, using backup now!");
+				if($this->memcacheType == 'Memcache') $this->cache = new \yoka\Memcached();
+				else $this->cache = new Memcached();
 				$this->serverlist = array();
 				foreach($backupList as $v)
 				{
