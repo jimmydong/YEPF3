@@ -58,7 +58,7 @@ class Cache implements \yoka\CacheInterface
 	 *
 	 */
 	
-    private function __construct($item = '', $serverList = array(), $type = 'memcached')
+    private function __construct($item = '', $serverList = array(), $backupList = array(), $type = 'memcached')
     {
     	if(class_exists('Memcached') && method_exists('Memcached', 'setOption')) $this->memcacheType = 'Memcached';
     	else $this->memcacheType = 'Memcache';
@@ -67,14 +67,32 @@ class Cache implements \yoka\CacheInterface
     	{
 			if($this->memcacheType == 'Memcache') $this->cache = new \yoka\Memcached();
 			else $this->cache = new Memcached();
+			//主力服务器
+			$backup_flag = true;
 			if(!empty($serverList))
 			{
 				foreach($serverList as $v)
 				{
-			           $is_sucess = $this->cache->addServer($v['host'],$v['port']);
-			           if($is_sucess === false)
-			                         Debug::log('memcacheConnectError','ip:'.$v['host'].":".$v['port'],__FILE__.':'.__LINE__);  
-			           $this->serverlist[] = array('ip' => $v['host'], 'port' => $v['port'], 'is_sucess'=>$is_sucess);				
+					$is_sucess = $this->cache->addServer($v['host'],$v['port']);
+					if($is_sucess === false){
+						Debug::log('Memcache addServer Error','ip:'.$v['host'].":".$v['port']);  
+					}else{
+						$this->serverlist[] = array('ip' => $v['host'], 'port' => $v['port'], 'is_sucess'=>$is_sucess);				
+						$backup_flag = false;
+					}
+				}
+			}
+			//后备服务器：只有主力服务器全部添加失败时使用。集群设计应充分考虑数据一致性！
+			if($backup_flag && !empty($backupList))
+			{
+				foreach($backupList as $v)
+				{
+					$is_sucess = $this->cache->addServer($v['host'],$v['port']);
+					if($is_sucess === false){
+						Debug::log('Memcache backupServer Error','ip:'.$v['host'].":".$v['port']);
+					}else{
+						$this->serverlist[] = array('ip' => $v['host'], 'port' => $v['port'], 'is_sucess'=>$is_sucess);
+					}
 				}
 			}
     	}
@@ -109,9 +127,13 @@ class Cache implements \yoka\CacheInterface
 			{
 				$config = $CACHE['memcached'][$item];
 				$list = $config['server'];
+				$backup = $config['backup'];
 				$key = $item;
+			}else{
+				\yoka\Debug::log('Cache Error','无配置项:' . $item);
+				return false;
 			}
-			$obj[$item] = new Cache($item, $list);
+			$obj[$item] = new Cache($item, $list, $backup);
 			Cache::$instance = $obj;
 		}
     	return $obj[$item];
