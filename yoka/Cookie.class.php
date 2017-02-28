@@ -25,9 +25,10 @@ class Cookie{
 		 * 【注意】不建议反复修改。改回默认时前缀与默认值会不同！
 		 * @param unknown $config
 		 */
-		public static function setDomain($domain){
+		public static function setDomain($domain, $cookiepre = ''){
 			self::$domain = $domain;
-			self::$cookiepre = 'Y'.substr(md5($domain),0,3);
+			if($cookiepre) self::$cookiepre = $cookiepre;
+			else self::$cookiepre = 'Y'.substr(md5($domain),0,3);
 		}
 		public static function rawset($name, $val, $expire = '', $cookiepath = '', $domain = '')
 		{
