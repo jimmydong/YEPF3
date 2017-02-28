@@ -10,7 +10,7 @@ namespace yoka;
 
 class Cookie{
 		private static $expire = 8640000; 	//默认cookie时间：100天
-		private static $domain = 'iyishengyuan.com';
+		private static $domain = '';
 		private static $cookiepath = '/';
 		private static $cookiepre = 'YEPFV3';
 
@@ -31,6 +31,9 @@ class Cookie{
 		}
 		public static function rawset($name, $val, $expire = '', $cookiepath = '', $domain = '')
 		{
+			//缺省默认域名
+			if(self::$domain == '') self::setDomain($_SERVER['HTTP_HOST']);
+			
 			if($expire !== 0){
 				if($expire == '') $expire = time() + self::$expire;
 				else $expire = time() + intval($expire);
@@ -44,6 +47,9 @@ class Cookie{
 		}
 		public static function set($name, $val, $expire = '', $cookiepath = '', $domain = '')
 		{
+			//缺省默认域名
+			if(self::$domain == '') self::setDomain($_SERVER['HTTP_HOST']);
+			
 			if($expire !== 0){
 				if($expire == '') $expire = time() + self::$expire;
 				else $expire = time() + intval($expire);
