@@ -49,7 +49,7 @@ class App {
 			}
 			$obj->after($this->_controller, $this->_action);
 		} catch (Exception $e) {
-			\yoka\Debug::log('Error',$e);
+			\yoka\Debug::log('Error',strip_tags($e));
 			\yoka\Debug::flog('*** Exception ***', $e);
 			if (method_exists($obj, 'error')) {
 				//$obj->error($request, $response, $e);
