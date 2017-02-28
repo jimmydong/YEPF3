@@ -51,7 +51,7 @@ class Cache implements \yoka\CacheInterface
 	 * @name __construct
 	 * @desc 构造函数
 	 * @param void
-	 * @return object instance of Cache
+	 * @return \yoka\Cache
 	 * @access protected
 	 *
 	 */

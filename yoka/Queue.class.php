@@ -81,7 +81,7 @@ class Queue
      * @name getInstance
      * @desc 单件模式
      * @param string $item
-     * @return object instance of Cache
+     * @return \yoka\Queue
      * @access public
      **/
     public static function getInstance($item = 'default', $is_ssdb = null)

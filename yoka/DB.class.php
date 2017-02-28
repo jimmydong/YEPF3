@@ -124,7 +124,7 @@ class DB
      * @param string $item    项目类型名称
      * @param bool	 $master  是否为主库
      * @param string $caller	调用数据库类的文件名, 废弃
-     * @return object instance of Cache
+     * @return \yoka\DB
      * @access public
      **/
 	public static function getInstance($item = 'default', $master = true)
