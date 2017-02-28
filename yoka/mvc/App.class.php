@@ -50,7 +50,7 @@ class App {
 			$obj->after($this->_controller, $this->_action);
 		} catch (Exception $e) {
 			\yoka\Debug::log('Error',strip_tags($e));
-			\yoka\Debug::flog('*** Exception ***', $e);
+			\yoka\Debug::flog('*** Exception ***', strip_tags($e));
 			if (method_exists($obj, 'error')) {
 				//$obj->error($request, $response, $e);
 				$obj->error($e->getMessage());
