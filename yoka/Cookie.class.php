@@ -29,6 +29,7 @@ class Cookie{
 			self::$domain = $domain;
 			if($cookiepre) self::$cookiepre = $cookiepre;
 			else self::$cookiepre = 'Y'.substr(md5($domain),0,3);
+			return self::$cookiepre;
 		}
 		public static function rawset($name, $val, $expire = '', $cookiepath = '', $domain = '')
 		{

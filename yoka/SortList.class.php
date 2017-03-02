@@ -39,6 +39,16 @@ class SortList extends Queue
     	parent::__construct($item, $is_ssdb);
     }
     
+    /**
+     * 单例
+     * @param string $item
+     * @param unknown $is_ssdb
+     * @return \yoka\SortList
+     */
+    public static function getInstance($item = 'default', $is_ssdb = null){
+    	return parent::getInstance($item, $is_ssdb);
+    }
+    
     /*-------------------------------------- 有序列表操作(zSet)---------------------------------------------*/
     /**
      * 清空列表
