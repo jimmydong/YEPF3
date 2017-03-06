@@ -31,6 +31,9 @@ class Cookie{
 			else self::$cookiepre = 'Y'.substr(md5($domain),0,3);
 			return self::$cookiepre;
 		}
+		public static function getDomain(){
+			return array('domain'=>self::$domain, 'cookiepre'=>self::$cookiepre);
+		}
 		public static function rawset($name, $val, $expire = '', $cookiepath = '', $domain = '')
 		{
 			//缺省默认域名
