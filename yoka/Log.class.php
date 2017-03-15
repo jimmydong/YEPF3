@@ -91,13 +91,15 @@ class Log
 	 * @param string $s2  msg
 	 */
 	public static function flog($s1, $s2 = null){
-		if($s2){
+		if($s2 === null){
 			$title = $s1;
 			$msg = $s2;
 		}else{
 			$title = "Debug::flog";
 			$msg = $s1;
 		}
+		if(is_array($msg))$msg = var_export($msg, true);
+		
 		$t = debug_backtrace(1);
 		$caller = $t[0]['file'].' , line:'.$t[0]['line'];
 		

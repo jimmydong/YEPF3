@@ -103,8 +103,7 @@ class Cache implements \yoka\CacheInterface
      * @name getInstance
      * @desc 单件模式调用Cache类入口
      * @param string $item
-     * @return object instance of Cache
-     * @access public
+     * @return Cache
      **/
     public static function getInstance($item = null)
     {
@@ -153,7 +152,7 @@ class Cache implements \yoka\CacheInterface
 	 * @desc 将数据插入缓冲中
 	 * @param string $cacheKey 字符串标识
 	 * @param mixed $cacheValue 字符串对应的值
-	 * @param int $lifetime 缓存的生命周期
+	 * @param int $lifetime 缓存的生命周期(缺省值：self::$default_lifetime)
 	 * @return boolean 
 	 * @access public
 	 *
