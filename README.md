@@ -2,6 +2,7 @@ YEPF3 PHP快速开发框架第三版
 ===================================
 
 ```
+this is bandry test
 2017.2.9 重要更新：  鉴于Firebug停止维护，改进为同时支持Firefox Devtool/Firebug+FirePHP/Chrome+ChromeLogger
 FirePHP用法不变，在51.0.x之后工作不稳定，不推荐使用，或请使用50.1.0 (http://archive.mozilla.org/pub/firefox/releases/50.1.0/)
 Firefox 请安装 extension/YEPF-firefox.xpi扩展
