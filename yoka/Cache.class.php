@@ -262,7 +262,7 @@ class Cache implements \yoka\CacheInterface
 	public function increment($key, $value = 1)
 	{
 		$key = $this->getKey($key);
-		return $this->cache->increment($key, $value);
+		return $this->cache->increment($key, $value, 1);
 	}
 
     /**
