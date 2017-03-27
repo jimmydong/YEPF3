@@ -231,7 +231,7 @@ class Cache implements \yoka\CacheInterface
 	 */
     public function get($cacheKey)
     {
-    	if(empty($key)) return false;
+    	if(empty($cacheKey)) return false;
 		$returnValue = null;
 		$key = $this->getKey($cacheKey);
 		$begin_microtime = Debug::getTime();
