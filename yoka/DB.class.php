@@ -2,9 +2,6 @@
 /**
  * @name DB.class.php
  * @desc YEPF数据库统一操作接口类,目前只支持MYSQL数据库
- * @author 曹晓冬
- * @createtime 2008-9-9 09:14
- * @updatetime
  * @usage 
  * $sql = "SELECT * FROM table_name";
  * $db_obj = DB::getInstance('default', true, __FILE__);
@@ -14,7 +11,6 @@
  * $db_obj->fetchAll($sql);
  * //获得首行首列
  * $db_obj->fetchSclare($sql);
- * @todo 封装一层BDB缓存
  * 
  * @update by jimmy.dong@gmail.com 2014-09-16
  * 【重要更新】
