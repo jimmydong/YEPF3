@@ -139,10 +139,10 @@ class Cache implements \yoka\CacheInterface
      * @return Boolean
      */
     public function add($cacheKey, $cacheValue, $lifetime = null) {
-    	if($lifetime === null) $lifetime = self::$default_lifetime;
-    	$begin_microtime = Debug::getTime();
+    	if(empty($cacheKey)) return false;
         $cacheKey = $this->getKey($cacheKey);
-        if(empty($cacheKey)) return false;
+        if($lifetime === null) $lifetime = self::$default_lifetime;
+    	$begin_microtime = Debug::getTime();
         $re = $this->cache->add($cacheKey, $cacheValue, $lifetime);
         Debug::cache($this->_getServer(), $cacheKey, Debug::getTime() - $begin_microtime, 'add', $re);
         return $re;
@@ -159,11 +159,11 @@ class Cache implements \yoka\CacheInterface
 	 */
     public function set($cacheKey, $cacheValue, $lifetime = null)
     {
+    	if(empty($cacheKey)) return false;
+        $cacheKey = $this->getKey($cacheKey);
     	if($lifetime === null) $lifetime = self::$default_lifetime;
     	$begin_microtime = Debug::getTime();
-    	$cacheKey = $this->getKey($cacheKey);
-    	if(empty($cacheKey)) return false;
-        if($this->cache->set($cacheKey, $cacheValue, $lifetime)){
+    	if($this->cache->set($cacheKey, $cacheValue, $lifetime)){
         	Debug::cache($this->_getServer(), $cacheKey, Debug::getTime() - $begin_microtime, 'set', true);
             return true;
         }
@@ -206,9 +206,9 @@ class Cache implements \yoka\CacheInterface
      **/
     public function clear($cacheKey)
     {
-    	$cacheKey = $this->getKey($cacheKey);
     	if(empty($cacheKey)) return false;
-        if($this->cache->delete($cacheKey)){
+        $cacheKey = $this->getKey($cacheKey);
+    	if($this->cache->delete($cacheKey)){
         	Debug::cache($this->_getServer(), $cacheKey, Debug::getTime() - $begin_microtime, 'del', true);
         	return true;
         }
@@ -231,9 +231,9 @@ class Cache implements \yoka\CacheInterface
 	 */
     public function get($cacheKey)
     {
-    	$returnValue = null;
+    	if(empty($key)) return false;
+		$returnValue = null;
 		$key = $this->getKey($cacheKey);
-		if(empty($key)) return false;
 		$begin_microtime = Debug::getTime();
         if(is_array($key) && $this->memcacheType == 'Memcached') $cacheValue = $this->cache->getMulti($key);
         else $cacheValue = $this->cache->get($key);
@@ -258,11 +258,16 @@ class Cache implements \yoka\CacheInterface
 	
 	/**
 	 * 计数器类的数字自增长
+	 * 【注意：key不存在时，扩展版本不同，可能导致结果为1或者为空；key不是整数时，结果为false】
 	 */
 	public function increment($key, $value = 1)
 	{
+		if(empty($key)) return false;
 		$key = $this->getKey($key);
-		return $this->cache->increment($key, $value, 1);
+		$begin_microtime = Debug::getTime();
+        $re = $this->cache->increment($key, $value, 1);
+		Debug::cache($this->_getServer(), $key, Debug::getTime() - $begin_microtime, 'increment', $re);
+        return $re;
 	}
 
     /**
