@@ -287,7 +287,10 @@ class DB
 		}
 		$sql .= " WHERE " . $where ;
 		$re = $this->exec($sql);
-		if($compat) return true;
+		if($compat) {
+			if($re === false) return false;
+			else return true;
+		}
 		else return $re;
 	}
 	/**
