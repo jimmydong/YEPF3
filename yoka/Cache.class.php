@@ -258,14 +258,15 @@ class Cache implements \yoka\CacheInterface
 	
 	/**
 	 * 计数器类的数字自增长
-	 * 【注意：key不存在时，扩展版本不同，可能导致结果为1或者为空；key不是整数时，结果为false】
+	 * 【key不存在或不为整数时，自动设置为$value】
 	 */
 	public function increment($key, $value = 1)
 	{
 		if(empty($key)) return false;
 		$key = $this->getKey($key);
 		$begin_microtime = Debug::getTime();
-        $re = $this->cache->increment($key, $value, 1);
+        $re = $this->cache->increment($key, $value);
+        if(! $re) $re = $this->cache->set($key, $value);
 		Debug::cache($this->_getServer(), $key, Debug::getTime() - $begin_microtime, 'increment', $re);
         return $re;
 	}
