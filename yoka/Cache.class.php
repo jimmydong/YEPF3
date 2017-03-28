@@ -262,10 +262,12 @@ class Cache implements \yoka\CacheInterface
 	 */
 	public function increment($key, $value = 1)
 	{
+		$value = intval($value); //只允许以整数为步长
+		if(! $value) return false;
 		if(empty($key)) return false;
 		$key = $this->getKey($key);
 		$begin_microtime = Debug::getTime();
-        $re = $this->cache->increment($key, $value);
+        $re = $this->cache->increment($key, $value); //如果key不存在或不是整数，会返回false
         if(! $re) $re = $this->cache->set($key, $value);
 		Debug::cache($this->_getServer(), $key, Debug::getTime() - $begin_microtime, 'increment', $re);
         return $re;
