@@ -268,7 +268,7 @@ class Cache implements \yoka\CacheInterface
 		$key = $this->getKey($key);
 		$begin_microtime = Debug::getTime();
         $re = $this->cache->increment($key, $value); //如果key不存在或不是整数，会返回false
-        if(! $re) $re = $this->cache->set($key, $value);
+        if($re === false) $re = $this->cache->set($key, $value);
 		Debug::cache($this->_getServer(), $key, Debug::getTime() - $begin_microtime, 'increment', $re);
         return $re;
 	}
