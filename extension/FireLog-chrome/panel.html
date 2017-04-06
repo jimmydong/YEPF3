@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Helo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="js/jsonView/default.css">
+  </head>
+  <body>
+    <div id="app">
+    <!-- <textarea name="" id="" cols="30" rows="10">{{ debug }}</textarea> -->
+      <div class="toolbar">
+        <div @click="trash" title="清空" class="tool trash"></div>
+        <div @click="refresh" title="刷新" class="tool refresh"></div>
+        <div @click="switchPause" title="刷新不清空记录" class="tool pause" :class="{'on': pause}"></div>
+      </div>
+      <div class="card" v-for="u in requests">
+        <div class="title">{{ u.url }}</div>
+        <div class="group">
+          <div class="list" v-for="item in u.collection">
+            <p @click="toggleTable($event)" class="collapse" :class="{'exception': item.type == 'exception'}">{{ item.title }}</p>
+            <table style="display:none">
+              <tr v-for="row in item.table">
+                <td v-for="col in row">
+                  <div v-if="col.omit == true" class="detail" @click="showDetail(col.val, $event)">{{ col.type }}</div>
+                  <div v-else>{{ col.val }}</div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <v-modal :data="jsonHTML" :is-json="isJson" :json="json" :show="modalHide"></v-modal>
+    </div>
+
+    <template id="modal">
+      <div
+      class="modal"
+      :class="{'hide':show}">
+        <div class="header"><i @click.stop="closeModal" class="close"></i><i v-if="isJson" class="copy" @click.stop="copy"></i></div>
+        <div class="body">
+        </div>
+      </div>
+    </template>
+
+    <script src="js/jquery.min.js" charset="utf-8"></script>
+    <script src="js/jsonView/default.js" charset="utf-8"></script>
+    <script src="js/jsonView/jsonView.js" charset="utf-8"></script>
+    <script src="js/vue.js" charset="utf-8"></script>
+    <script src="js/app.js" charset="utf-8"></script>
+  </body>
+</html>

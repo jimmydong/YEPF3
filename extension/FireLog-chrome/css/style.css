@@ -1,0 +1,208 @@
+html,body {
+  font-family: Consolas, Lucida Console, monospace;
+	height: 100%;
+  padding:0;
+  margin:0;
+	box-sizing: border-box;
+}
+*:hover{
+  cursor: default;
+}
+ ::-webkit-scrollbar-track-piece{background-color:#fff;}
+ ::-webkit-scrollbar{width:3px;}
+ ::-webkit-scrollbar-thumb{background:#d0d0d0;}
+
+#app {
+  padding-top: 30px;
+}
+.toolbar {
+  background: #fff;
+  width:100%;
+  border-bottom: 1px solid #ccc;
+  vertical-align: middle;
+  padding: 5px 0px 0px 5px;
+  box-shadow: 2px 2px 2px #F5F5F5;
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 999;
+  top:0;
+  left: 0;
+}
+.toolbar .tool {
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+}
+.toolbar .tool:hover {
+  cursor: pointer;
+}
+.toolbar .tool.trash {
+  background: url("../images/trash.png") no-repeat center center;
+  background-size: 100% 100%;
+}
+.toolbar .tool.refresh {
+  background: url("../images/refresh.png") no-repeat center center;
+  background-size: 100% 100%;
+}
+.toolbar .tool.pause {
+  background: url("../images/pause.png") no-repeat center center;
+  background-size: 100% 100%;
+}
+.toolbar .tool.pause.on {
+  background: url("../images/pause-on.png") no-repeat center center;
+  background-size: 100% 100%;
+}
+
+
+.card{
+  width: 95%;
+  height: auto;
+  margin:5px;
+}
+
+.card .title {
+  width: 100%;
+  height: auto;
+  line-height: 22px;
+  font-size: 14px;
+  padding: 4px 0px 4px 4px;
+  background: #f03;
+  color:#fff;
+  background: #6a9fbb;
+
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  box-sizing: border-box;
+
+}
+
+.card .title:hover{
+  word-break:break-all;
+  overflow:auto;
+  text-overflow:inherit;
+  white-space: inherit;
+}
+
+.group {
+  background: #fafafa;
+  padding: 6px 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.group .list {
+  margin:7px 0px;
+}
+.group .list p {
+  font-size: 13px;
+  color: #000;
+  margin:3px 0;
+}
+
+.group .list p.exception {
+  color:#ff8307;
+}
+
+.group .list p:hover{
+  cursor: pointer;
+}
+.group table {
+  font-size: 11px;
+  width: 100%;
+  border-collapse: collapse;
+}
+.group table td{
+  font-size: 10px;
+  padding:1px 2px;
+  height: 20px;
+  line-height: 20px;
+  border:1px solid #ccc;
+  min-width: 24px;
+  max-width: 280px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.group table tr {
+  color: #464646;
+}
+.group table tr:hover{
+  background: #dadada;
+  color:#f03;
+  cursor: pointer;
+}
+.group table tr:hover td {
+  word-break: break-all;
+  overflow: auto;
+  white-space: normal;
+  text-overflow: inherit;
+}
+p.collapse{
+  text-decoration: underline;
+  text-decoration-style: wavy;
+}
+div.detail {
+  text-decoration: underline;
+}
+div.detail:hover{
+  cursor: pointer;
+}
+
+.modal {
+  width: 500px;
+  height: auto;
+  max-height: 45%;
+  min-height: 300px;
+  background: #fff;
+  z-index: 999;
+  position: fixed;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow:0px 0px 20px #9E9CA6;
+  display: block;
+  box-sizing: border-box;
+  overflow: auto;
+  resize:both;
+
+  right: 10px;
+  bottom: 10px;
+}
+.modal .body {
+  margin: 5px 15px 20px 20px;
+  height: 250px;
+  overflow-x: hidden;
+  word-break: break-all;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+.modal.hide {
+  display: none;
+}
+.modal .header {
+  width: 100%;
+  height: 25px;
+  background: #f3f3f3;
+}
+.modal .header:hover {
+  cursor: move;
+}
+
+.modal .header i{
+  display: inline-block;
+  margin-top: 5px;
+  margin-left: 5px;
+  width: 20px;
+  height: 20px;
+}
+.modal .header i:hover {
+  cursor: pointer;
+}
+
+i.close {
+  background: url("../images/close.png") no-repeat;
+}
+i.copy {
+  position: absolute;
+  right: 5px;
+  background: url("../images/copy.png") no-repeat; 
+}

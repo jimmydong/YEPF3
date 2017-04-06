@@ -1,0 +1,60 @@
+<html>
+	<head>
+		<title>popup</title>
+		<style>
+			.main {
+				width: 260px;
+				height: 300px;
+				background: #fff;
+			}
+			h4{
+				text-align: center;
+				font-family: "Open Sans";
+				color: #3ecdff;
+				font-size: 2rem;
+				margin: 20px auto 10px auto;
+				text-shadow: 0px 0px 5px rgba(150, 150, 150, 1);
+			}
+			.btn {
+				margin:30px auto 50px auto;
+				cursor: pointer;
+				width: 100px;
+				height: 100px;
+				border-radius: 50px 50px 50px 50px;
+				border:1px solid #ccc;
+				/*border-radius: 4px 4px 4px 4px;*/
+				background: #666;
+				color: #d4d4d4;
+				font-size: 1.2rem;
+				text-align: center;
+				line-height: 100px;
+				box-shadow: 0px 0px 5px #949e9b;
+			}
+			.btn:hover{
+				box-shadow: 0px 0px 12px #949e9b;	
+			}
+			.on {
+				background: #096;
+				color: #fff;
+				box-shadow: 0px 0px 5px #949e9b;
+			}
+			.words {
+				font-family: "Yahei";
+				font-size: 0.8rem;
+				text-align: center;
+				width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="main">
+				<h4>FireLog</h4>
+				<div class="btn" :class="{'on': state}" @click="switchState">{{ btnMsg }}</div>
+				<div class="words"></div>
+			</div>
+		</div>
+		<script src="js/vue.js" charset="utf-8"></script>
+		<script src="js/popup.js" charset="utf-8"></script>
+	</body>
+</html>
