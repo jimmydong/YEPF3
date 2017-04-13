@@ -189,7 +189,7 @@ class FileUpload{
 		}
 		if($file_path_name == '') return self::$url_path_upload . '/404.jpg';
 		if(preg_match('/^http/i', $file_path_name))return $file_path_name; //已经是全路径URL格式
-		if(preg_match('/\/storage\/|\/upload\//', $file_path_name)) return $file_path_name; //相对路径形式，不做修正
+		if(preg_match('/(^\/storage\/)|(^\/upload\/)/', $file_path_name)) return $file_path_name; //相对路径URL形式，不做修正
 		//\yoka\Debug::log(URL_PATH_UPLOAD, $file_path_name);
 		return self::$url_path_upload . '/' . $file_path_name;
 	}
