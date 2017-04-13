@@ -1,4 +1,5 @@
 <?php
+namespace yoka;
 /**
  * 上传文件的管理
  * @author jimmy.dong@gmail.com 2012.3.27
