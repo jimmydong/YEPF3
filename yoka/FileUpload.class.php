@@ -70,7 +70,7 @@ class FileUpload{
 		}elseif(defined('FILE_PATH_UPLOAD') && file_exists(FILE_PATH_UPLOAD)){
 			self::$file_path_upload = FILE_PATH_UPLOAD;
 		}elseif(defined('ROOT_PATH') && file_exists(ROOT_PATH . '/DocumentRoot/storage')){
-			self::$file_path_upload = ROOT_PATH . '/storage';
+			self::$file_path_upload = ROOT_PATH . '/DocumentRoot/storage';
 		}elseif(defined('ROOT_PATH') && file_exists(ROOT_PATH . '/DocumentRoot/upload')){
 			self::$file_path_upload = ROOT_PATH . '/DocumentRoot/upload';
 		}else{
