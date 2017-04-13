@@ -213,22 +213,22 @@ class FileUpload{
 		self::init();
 		
 		//传入的是符合URL_PATH_UPLOAD格式的URL
-		if(strpos(self::$url_path_upload, $file_path_name) === 0){
-			$file_path_name = substr($file_path_name, strlen(self::$url_path_upload));
+		if(strpos(self::$url_path_upload, $file_url_path) === 0){
+			$file_url_path = substr($file_url_path, strlen(self::$url_path_upload));
 		}
 		//不符合URL_PATH_UPLOAD格式的URL，去除http标记
-		if(preg_match('/(^http)|(^\/\/)/i',$file_path_name)){
-			$t = parse_url($file_path_name);
-			$file_path_name = $t['path'];
+		if(preg_match('/(^http)|(^\/\/)/i',$file_url_path)){
+			$t = parse_url($file_url_path);
+			$file_url_path = $t['path'];
 		}
 		//相对路径的URL
-		if(strpos('/storage/', $file_path_name) === 0){
-			$file_path_name = substr($file_path_name, strlen('/storage/'));
+		if(strpos('/storage/', $file_url_path) === 0){
+			$file_url_path = substr($file_url_path, strlen('/storage/'));
 		}
-		if(strpos('/upload/', $file_path_name) === 0){
-			$file_path_name = substr($file_path_name, strlen('/upload/'));
+		if(strpos('/upload/', $file_url_path) === 0){
+			$file_url_path = substr($file_url_path, strlen('/upload/'));
 		}
-		return $file_path_name;
+		return $file_url_path;
 	}
 	/**
 	 * 更新文件
