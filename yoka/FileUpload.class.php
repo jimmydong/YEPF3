@@ -133,7 +133,9 @@ class FileUpload{
 		}
 		$base_filename = md5(basename($src_filename) . time() . rand(0,99));
 		$file_path_name = date('Ymd') . '/' . $base_filename . '.' . $ext;
-		self::_mkdirs(self::$file_path_upload . '/' . $file_path_name);
+		if(!self::_mkdirs(self::$file_path_upload . '/' . $file_path_name)){
+			throw(new \Exception('创建子目录失败'));
+		}
 		Debug::flog('flog:upload', self::$file_path_upload . '/' . $file_path_name);
 		if($from_net){
 			//模拟浏览器抓取
