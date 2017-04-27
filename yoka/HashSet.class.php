@@ -272,7 +272,7 @@ class HashSet extends Queue
      * @param unknown $keylist
      * @return unknown
      */
-    public function hashMget($hashmap, $keylist){
+    public function hashMget($hashmap, $key_list){
     	$begin_microtime = Debug::getTime();
     	$hashmap = $this->_getkey($hashmap);
     	if($this->is_ssdb) {
@@ -289,7 +289,7 @@ class HashSet extends Queue
      * @param unknown $hashmap
      * @param unknown $keylist
      */
-    public function hashMdel($hashmap, $keylist){
+    public function hashMdel($hashmap, $key_list){
     	$begin_microtime = Debug::getTime();
     	$hashmap = $this->_getkey($hashmap);
     	if($this->is_ssdb) {
