@@ -49,14 +49,17 @@ class App {
 			}
 			$obj->after($this->_controller, $this->_action);
 		} catch (Exception $e) {
-			\yoka\Debug::log('Error',strip_tags($e));
-			\yoka\Debug::flog('*** Exception ***', strip_tags($e));
-			if (method_exists($obj, 'error')) {
-				//$obj->error($request, $response, $e);
-				$obj->error($e->getMessage());
+			if(defined('IS_TEST') && IS_TEST){
+				var_dump($e);
+			}else{
+				\yoka\Debug::log('Error',strip_tags($e));
+				\yoka\Debug::flog('*** Exception ***', strip_tags($e));
+				if (method_exists($obj, 'error')) {
+					//$obj->error($request, $response, $e);
+					$obj->error($e->getMessage());
+				}
+				echo "System Error:  Please contact customer service.";
 			}
-			echo "System Error:  Please contact customer service.";
-			
 		}
 	}
 
