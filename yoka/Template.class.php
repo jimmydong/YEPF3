@@ -44,9 +44,6 @@ class Template extends Smarty
 		if(function_exists('template_url_encode')){
 			$this->registerPlugin('function', 'url', 'template_url_encode');
 		}
-		if(function_exists('template_nicetime_encode')){
-			$this->registerPlugin('function', 'nicetime', 'template_nicetime_encode');
-		}
 		if(function_exists('template_cutstr_encode')){
 			$this->registerPlugin('function', 'cutstr', 'template_cutstr_encode');
 		}
@@ -57,6 +54,12 @@ class Template extends Smarty
         	$this->registerPlugin('function', 'widget', 'template_widget_encode');
 		}
 		/*--------------- 注册自定义修饰器 -------------*/
+		if(function_exists('template_nicenumber_modifier')){
+			$this->registerPlugin('function', 'nicenumber', 'template_nicenumber_encode');
+		}
+		if(function_exists('template_nicetime_modifier')){
+			$this->registerPlugin('function', 'nicetime', 'template_nicetime_encode');
+		}
 		if(function_exists('template_cdn_modifier')){
 			$this->registerPlugin('modifier', 'cdn', 'template_cdn_modifier');
 		}
