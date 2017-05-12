@@ -55,10 +55,10 @@ class Template extends Smarty
 		}
 		/*--------------- 注册自定义修饰器 -------------*/
 		if(function_exists('template_nicenumber_modifier')){
-			$this->registerPlugin('function', 'nicenumber', 'template_nicenumber_encode');
+			$this->registerPlugin('function', 'nicenumber', 'template_nicenumber_modifier');
 		}
 		if(function_exists('template_nicetime_modifier')){
-			$this->registerPlugin('function', 'nicetime', 'template_nicetime_encode');
+			$this->registerPlugin('function', 'nicetime', 'template_nicetime_modifier');
 		}
 		if(function_exists('template_cdn_modifier')){
 			$this->registerPlugin('modifier', 'cdn', 'template_cdn_modifier');
