@@ -88,12 +88,13 @@ class SortList extends Queue
      * @param unknown $name_end
      * @param number $limit 默认限定1000条
      */
-    public function sortGetSetList($name_start='', $name_end='', $limit = 1000){
+    public function sortGetSetNameList($name_start='', $name_end='', $limit = 1000){
     	$begin_microtime = Debug::getTime();
     	$start = $this->_getkey($name_start);
     	$end = $this->_getkey($name_end);
     	if(empty($start) || empty($end)) return false;
     	$re = $this->object->zlist($start, $end, $limit);
+    	$re = $this->_unkey($re);
     	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'sortGetSetList', $re);
     	return $re;
     }

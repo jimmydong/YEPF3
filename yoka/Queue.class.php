@@ -399,7 +399,7 @@ class Queue
     /**
      * @name _getkey
      * @desc 格式化所需key
-     * @param string $key
+     * @param mix $key  string | []
      * @return string $key
      * @access protected
      *
@@ -417,6 +417,31 @@ class Queue
     			return $key;
     		}
     		else return $this->prefix."_".$key;
+    	}
+    	return "";
+    }
+    /**
+     * @name _unkey
+     * @desc 还原格式化前的key
+     * 【注意】 仅简单切除前缀长度，并未判断前缀是否一致！
+     * @param mix $key  string | []
+     * @return string $key
+     * @access protected
+     *
+     **/
+    protected function _unkey($key)
+    {
+    	if(!empty($this->prefix))
+    	{
+    		if(is_array($key))
+    		{
+    			foreach($key as $k => $v)
+    			{
+    				$key[$k] = substr($v, strlen($this->prefix."_"));
+    			}
+    			return $key;
+    		}
+    		else return substr($v, strlen($this->prefix."_"));
     	}
     	return "";
     }
