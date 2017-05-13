@@ -141,6 +141,28 @@ class Queue
         return $re;
     }
     /**
+     * 获取集合列表 【注意】不含起始名字！
+     * @param string $start_name 起始名字（不含）
+     * @param string $end_name 结束名字（包含）
+     * @param number $limit 默认限制1000
+     */
+    public function getQueueNameList($start_name, $end_name, $limit = 1000){
+    	$begin_microtime = Debug::getTime();
+    	if($start_name == '' && $end_name == ''){
+    		//谨慎：获取全部
+    		$start = '';
+    		$end = '';
+    	}else{
+	    	$start = $this->_getkey($name_start);
+	    	$end = $this->_getkey($name_end);
+	    	if(empty($start) || empty($end)) return false;
+    	}
+	    $re = $this->object->hlist($start, $end, $limit);
+    	$re = $this->_unkey($re);
+    	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'sortQueueNameList', $re);
+    	return $re;
+    }
+    /**
      * 从队列取出数据
      * @param string $queue_name
      * @return boolean|mixed
