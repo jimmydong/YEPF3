@@ -499,20 +499,24 @@ class BaseModel{
 	/**
 	 * 查询单条数据
 	 * @param mixed $mix 数组（creteria格式）或 字符串：where条件 或 %_table_% 的全SQL
+	 * @param array $assist [order, limit]  eg: ['order'=>'id desc']
 	 * @return \model\BaseModel
 	 */
-	public function fetchOne($mix){
+	public function fetchOne($mix, $assist = []){
 		$table = static::$table;
+		if($assist['order'])$order = ' order by '. $assist['order'];
+		else $order = '';
+		
 		if(null == $mix){
-			$re = $this->db->fetchOne("select * from `{$table}` limit 1");
+			$re = $this->db->fetchOne("select * from `{$table}` {$order} limit 1");
 		}elseif(is_array($mix)){ //creteria方式
-			$re = $this->db->fetchOne("select * from {$table} where %_creteria_%", $mix);
+			$re = $this->db->fetchOne("select * from {$table} where %_creteria_% {$order} limit 1", $mix);
 		}elseif (strpos(strtolower(trim($mix)), 'select') === 0) {
 			//普通sql方式
 			$sql = str_replace('%_table_%', "`{$table}`", $mix);
-			$re = $this->db->fetchOne($sql);
+			$re = $this->db->fetchOne($sql . " {$order} limit 1");
 		}else{
-			$re = $this->db->fetchOne("select * from {$table} where $mix");
+			$re = $this->db->fetchOne("select * from {$table} where $mix {$order} limit 1");
 		}
 
 		if(!$re)return false;
