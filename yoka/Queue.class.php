@@ -433,15 +433,16 @@ class Queue
     {
     	if(!empty($this->prefix))
     	{
+    		$len = strlen($this->prefix."_");
     		if(is_array($key))
     		{
     			foreach($key as $k => $v)
     			{
-    				$key[$k] = substr($v, strlen($this->prefix."_"));
+    				$key[$k] = substr($v, $len);
     			}
     			return $key;
     		}
-    		else return substr($v, strlen($this->prefix."_"));
+    		else return substr($v, $len);
     	}
     	return "";
     }
