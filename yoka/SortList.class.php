@@ -83,6 +83,22 @@ class SortList extends Queue
     }
     
     /**
+     * 按名称获取集合列表
+     * @param unknown $name_start
+     * @param unknown $name_end
+     * @param number $limit 默认限定1000条
+     */
+    public function sortGetSetList($name_start='', $name_end='', $limit = 1000){
+    	$begin_microtime = Debug::getTime();
+    	$start = $this->_getkey($name_start);
+    	$end = $this->_getkey($name_end);
+    	if(empty($start) || empty($end)) return false;
+    	$re = $this->object->zlist($start, $end, $limit);
+    	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'sortGetSetList', $re);
+    	return $re;
+    }
+    
+    /**
      * 获取集合内元素数量
      * @param string $set 集合名称
      * @param number $min 最小值
