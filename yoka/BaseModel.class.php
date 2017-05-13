@@ -1,4 +1,5 @@
 <?php
+namespace yoka;
 /**
  * 实体对象基类
  * @author jimmy.dong@gmail.com
@@ -37,15 +38,7 @@
  * 参见：Pkey.class.php
  *
  */
-namespace model;
-use yoka\Debug;
-use yoka\Cache;
-use yoka\Log;
-use yoka\DB;
-use mdbao\User;
-
 class BaseModel{
-
 	public $db;
 	public $entity;
 	public static $_EnableBuffer = true;		//防止大数据量处理时内存不足
