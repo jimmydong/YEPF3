@@ -66,10 +66,11 @@ class HashSet extends Queue
     }
     
     /**
-     * 添加一个属性
-     * @param unknown $hashmap
-     * @param unknown $key
-     * @param unknown $value
+     * 添加一个属性（注意：因名称与类名相同，低版本PHP不可用）
+     * @param string $hashmap
+     * @param string $key
+     * @param mixed $value
+     * @param bool $encode 是否强制进行json编码
      * @return unknown
      */
     public function hashSet($hashmap, $key, $value, $encode = false){
