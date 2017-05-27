@@ -41,7 +41,11 @@ class AntiDdos{
 		$counter = $cache->increment($keyCheck);
 		if($counter > $limit){
 			//加入封禁
-			$cache->set($keySeal, time());
+			if($cache->get($keySeal)){
+				$cache->set($keySeal, time()+$recover); //以前就封禁过的，加倍封禁！
+			}else{
+				$cache->set($keySeal, time());
+			}
 			return false;
 		}
 		
