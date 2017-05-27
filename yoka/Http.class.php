@@ -208,7 +208,7 @@ class Http{
 		curl_setopt($ch, CURLOPT_TIMEOUT_MS, $timeout_microsecond);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT_MS, $timeout_microsecond);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-		if(self::$basic_auth) curl_setopt($ch, CURLOPT_USERPWD, urlencode(self::$basic_auth['user']) . ":" . urlencode(self::$basic_auth['pass']));
+		if(self::$basic_auth) curl_setopt($ch, CURLOPT_USERPWD, self::$basic_auth['user'] . ":" . self::$basic_auth['pass']);
 		if (stripos($url, 'https://') === 0) {
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
@@ -280,7 +280,7 @@ class Http{
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		//curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
-		if(self::$basic_auth) curl_setopt($ch, CURLOPT_USERPWD, urlencode(self::$basic_auth['user']) . ":" . urlencode(self::$basic_auth['pass']));
+		if(self::$basic_auth) curl_setopt($ch, CURLOPT_USERPWD, self::$basic_auth['user'] . ":" . self::$basic_auth['pass']);
 		if (stripos($url, 'https://') === 0) {
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
@@ -357,7 +357,7 @@ class Http{
 		curl_setopt($ch, CURLOPT_NOSIGNAL,true);
 		curl_setopt($ch, CURLOPT_TIMEOUT_MS, $timeout_microsecond);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT_MS, $timeout_microsecond);
-		if(self::$basic_auth) curl_setopt($ch, CURLOPT_USERPWD, urlencode(self::$basic_auth['user']) . ":" . urlencode(self::$basic_auth['pass']));
+		if(self::$basic_auth) curl_setopt($ch, CURLOPT_USERPWD, self::$basic_auth['user'] . ":" . self::$basic_auth['pass']);
 		if (stripos($url, 'https://') === 0) {
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
@@ -432,7 +432,7 @@ class Http{
 		curl_setopt($ch, CURLOPT_NOBODY, false);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
-		if(self::$basic_auth) curl_setopt($ch, CURLOPT_USERPWD, urlencode(self::$basic_auth['user']) . ":" . urlencode(self::$basic_auth['pass']));
+		if(self::$basic_auth) curl_setopt($ch, CURLOPT_USERPWD, self::$basic_auth['user'] . ":" . self::$basic_auth['pass']);
 		if (stripos($url, 'https://') === 0) {
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
@@ -516,35 +516,44 @@ class Http{
 		}else{
 			$port = $reg[3];
 		}
+		if(self::$debug)var_dump($host, $port, $uri);
+		
 		$request = "{$method} {$uri} HTTP/1.1\r\n";
+		$request .= "HOST:{$host}\r\n";
+		$request .= "Accept:*/*\r\n";
 		if($header) $request .= trim($header) . "\r\n";
 		if ($method == 'POST'){
-			$sRequest .= "Content-Type: application/x-www-form-urlencoded\r\n";
+			$request .= "Content-Type: application/x-www-form-urlencoded\r\n";
 			if(is_array($postData)){
 				foreach($postData as $k=>$v){
 					$param[] = urlencode($k) . '=' . urlencode($v);
 				}
 				$postData = implode('&', $param);
 			}
-			$sRequest .= "Content-Length: ".strlen($postData)."\r\n";
-			$sRequest .= "\r\n";
-			$sRequest .= $postData."\r\n";
+			$request .= "Content-Length: ".strlen($postData)."\r\n";
+			$request .= "\r\n";
+			$request .= $postData."\r\n";
 		}
+		$request .= "\r\n";
+		
+		if(self::$debug)var_dump($request);
+		
 		$sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 		if (!$sock){
 			\yoka\Debug::log('Http::socket', 'socket_create() failed!');
 			return false;
 		}
-		$resSockHttp = socket_connect($sock, $this->sHostAdd, $this->iPort);
+		$resSockHttp = socket_connect($sock, $host, $port);
 		if (!$resSockHttp){
 			\yoka\Debug::log('Http::socket', 'socket_connect() failed!');
 			return false;
 		}
-		socket_write($sock, $sRequest, strlen($sRequest));
+		socket_write($sock, $request, strlen($request));
 		socket_set_timeout($sock, self::$socket_timeout);
 		
 		$response = ''; $header= ''; $flag = true;
 		while ($sRead = socket_read($sock, 4096)){
+			if(self::$debug) var_dump2($sRead);
 			if($flag){
 				if($pos = strpos("\r\n\r\n", $sRead) !== false){
 					$flag = false;
@@ -556,7 +565,6 @@ class Http{
 			}else{
 				$response .= $sRead;
 			}
-			
 		}
 		socket_close($sock);
 		if($returnHeader){
