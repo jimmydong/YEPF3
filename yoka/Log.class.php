@@ -73,6 +73,7 @@ class Log
 	 */
 	public static function customLog($filename, $msg, $priority = '')
 	{
+		if(is_array($msg) || is_object($msg)) $msg = var_export($msg, true);
 		$log_obj = self::getInstance();
 		$string = "" ;
 		$string .= "/*********************** ".$priority." ".date('Y-m-d H:i:s')." ***********************/\n";
