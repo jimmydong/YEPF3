@@ -8,10 +8,13 @@ namespace yoka;
  * 1，建议提前定义
  * 		FILE_PATH_UPLOAD 文件上传目录 
  * 		URL_PATH_UPLOAD	 上传目录访问URL
- * 2，如果上传目录未设置，检查以下默认值
- * 		/DocumentRoot/storage -> /DocumentRoot/upload
- * 3，如果以上目录都不存在，init抛出异常
- * 4，如果上传目录自定义，需要设置访问URL，否则getUrl抛出异常
+ * 2，也可以手工调用init设定目录和URL
+ * 		\yoka\FileUpload::init('/WORK/HTML/upload', 'http://cdn.yishengdaojia.cn/upload');
+ * 3，如果上传目录未设置，检查以下默认值
+ * 		/DocumentRoot/storage
+ * 		/DocumentRoot/upload
+ * 4，如果以上目录都不存在，使用时会抛出异常
+ * 5，如果上传目录自定义，需要设置访问URL，否则getUrl抛出异常
  * 
  * 使用：
  *   $file_name = \yoka\FileUpload::create($_FILES['logo']['name'], $_FILES['logo']['tmp_name']);
