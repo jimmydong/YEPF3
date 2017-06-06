@@ -341,7 +341,7 @@ class Http{
 	/**
 	 * 毫秒级超时 Curl Post
 	 * @param string $url
-	 * @param array $data
+	 * @param string|array $data 字符串不做处理
 	 * @param int $timeout_microsecond
 	 * @param array $header
 	 * @param array $cookie

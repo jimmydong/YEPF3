@@ -137,6 +137,7 @@ class FileUpload{
 			throw(new \Exception('创建子目录失败'));
 		}
 		Debug::flog('flog:upload', self::$file_path_upload . '/' . $file_path_name);
+		self::mkdirs(ROOT_PATH . '/DocumentRoot/' . $fileUploadPath . '/' . $file_path_name);
 		if($from_net){
 			//模拟浏览器抓取
 			$referer_url = str_replace('sinaimg.cn','sina.com.cn',$tmp_file_path_name); //新浪referer限制
