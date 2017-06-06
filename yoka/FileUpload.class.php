@@ -360,5 +360,31 @@ class FileUpload{
 	
 		return $file_path_name;
 	}
+	
+	/**
+	 * 创建目录
+	 * Enter description here ...
+	 * @param unknown_type $pathStr
+	 * @param unknown_type $mod
+	 */
+	static function mkdirs($pathStr,$mod=0755,$own='www'){
+		$path = dirname($pathStr);
+		@mkdir($path, $mod, true);
+		chown($path, $own);
+		if(!is_dir($path))return false;
+		else return true;
+		/*if(is_file($pathStr) || is_dir($pathStr)) return true;
+		 $pieces = explode("/", $pathStr);
+		 $tmpdir = "";
+		 for($mm=1;$mm<(count($pieces)-1);$mm++){
+		 $tmpdir      .= "/".$pieces[$mm];
+		 if(!is_dir($tmpdir)){
+		 if (!mkdir($tmpdir,$mod)) return false;
+		 chown($tmpdir, $own);
+		 }
+		 }
+		 return true;
+		 */
+	}
 
 }
