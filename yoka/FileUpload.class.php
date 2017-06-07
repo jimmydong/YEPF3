@@ -163,7 +163,7 @@ class FileUpload{
 			throw(new \Exception('文件处理出错，是不是填错啦？'));
 			return false;
 		}
-		\yoka\Debug::log('fileupload', $file_path_name);
+		\yoka\Debug::log('fileupload', self::$file_path_upload . '/' . $file_path_name);
 		return $file_path_name;
 	}
 	/**
