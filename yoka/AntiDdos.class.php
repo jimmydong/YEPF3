@@ -17,8 +17,8 @@ class AntiDdos{
 	 * 
 	 * 使用： 
 	   	$cache = \yoka\Cache::getInstance('aibangmang');
-    	$re = \yoka\AntiDdos::filter($cache, 'sendSms', 'test001', 10, 3, 10);
-    	超过10秒内3次，则封禁10秒钟
+    	$re = \yoka\AntiDdos::filter($cache, 'sendSms', 'test001', 60, 30, 7200);
+    	60秒内超过内30次，则封禁7200秒钟
 	 */
 	public static function filter($cache, $project, $key='', $second=60, $limit=30, $recover=7200){
 		if(! is_callable(array($cache,'get'))){
