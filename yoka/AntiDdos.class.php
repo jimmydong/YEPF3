@@ -6,24 +6,29 @@ namespace yoka;
  * 使用示例参见 filter 方法。
  */
 class AntiDdos{
+	public static $whiteList=['10.','192.','121.69.30.230','1.202'];
+	
 	/**
 	 * 过滤
 	 * @param \yoka\Cache $cache  		快速缓冲实例
 	 * @param string $project		项目名称
 	 * @param string $key			本次请求的关键内容
-	 * @param int $minute			防攻击间隔（秒）
+	 * @param int $second			防攻击间隔（秒）
 	 * @param int $limit			每个间隔中允许的次数
 	 * @param int $recover			屏蔽后恢复时间（秒）
 	 * 
 	 * 使用： 
 	   	$cache = \yoka\Cache::getInstance('aibangmang');
-    	$re = \yoka\AntiDdos::filter($cache, 'sendSms', 'test001', 60, 30, 7200);
-    	60秒内超过内30次，则封禁7200秒钟
+    	$re = \yoka\AntiDdos::filter($cache, 'sendSms', 'test001', 60, 20, 7200);
+    	60秒内超过内20次，则封禁7200秒钟
 	 */
-	public static function filter($cache, $project, $key='', $second=60, $limit=30, $recover=7200){
+	public static function filter($cache, $project, $key='', $second=60, $limit=20, $recover=7200){
 		if(! is_callable(array($cache,'get'))){
 			//传入实例不可用。全部返回正确
 			return true;
+		}
+		foreach(self::$whiteList as $w){
+			if(strpos($key, $w) === 0) return true; //命中白名单
 		}
 		if(! is_string($key)) $key = json_encode($key);
 		$keyMd5 = md5($key);
