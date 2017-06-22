@@ -3,7 +3,12 @@ namespace yoka;
 /**
  * 反Ddos攻击
  * 
- * 使用示例参见 filter 方法。
+ * 使用：
+ 
+    	60秒内超过内20次，封禁7200秒钟
+	   	$cache = \yoka\Cache::getInstance('aibangmang');
+    	$re = \yoka\AntiDdos::filter($cache, 'sendSms', \tools\Util::getIp(), 60, 20, 7200);
+ *
  */
 class AntiDdos{
 	public static $whiteList=['10.','192.','121.69.30.230','1.202'];
@@ -17,10 +22,7 @@ class AntiDdos{
 	 * @param int $limit			每个间隔中允许的次数
 	 * @param int $recover			屏蔽后恢复时间（秒）
 	 * 
-	 * 使用： 
-	   	$cache = \yoka\Cache::getInstance('aibangmang');
-    	$re = \yoka\AntiDdos::filter($cache, 'sendSms', 'test001', 60, 20, 7200);
-    	60秒内超过内20次，则封禁7200秒钟
+
 	 */
 	public static function filter($cache, $project, $key='', $second=60, $limit=20, $recover=7200){
 		if(! is_callable(array($cache,'get'))){

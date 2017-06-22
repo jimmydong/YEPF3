@@ -137,7 +137,7 @@ class FileUpload{
 		$base_filename = md5(basename($src_filename) . time() . rand(0,99));
 		$file_path_name = date('Ymd') . '/' . $base_filename . '.' . $ext;
 		if(!self::_mkdirs(self::$file_path_upload . '/' . $file_path_name)){
-			throw(new \Exception('创建子目录失败'));
+			throw(new \Exception('创建子目录失败:' . self::$file_path_upload . '/' . $file_path_name));
 		}
 		Debug::flog('flog:upload', self::$file_path_upload . '/' . $file_path_name);
 		self::mkdirs(ROOT_PATH . '/DocumentRoot/' . $fileUploadPath . '/' . $file_path_name);
@@ -205,8 +205,9 @@ class FileUpload{
 		self::init();
 		//URL处理，防止用户误传入URL（注意：可能导致类似/upload/upload/下文件处理异常）
 		$file_path_name = self::getPath($file_path_name);
-		
-		return self::$file_path_upload . '/' . $file_path_name;
+		if(substr($file_path_name, 0, 1) == '/') $re = self::$file_path_upload . $file_path_name;
+		$re = self::$file_path_upload . '/' . $file_path_name;
+		return $re;
 	}
 	/**
 	 * 由URL逆向计算文件地址（相对路径）
