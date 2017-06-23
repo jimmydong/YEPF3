@@ -1,0 +1,8 @@
+   	<div>
+ 	  <mu-appbar :title="pageTitle">
+	    <mu-icon-button icon="home" slot="left" />
+	    <mu-icon-menu icon="more_vert" slot="right">
+	      <mu-menu-item v-for="item in menuList" :key="item.id" :href="item.link" :title="item.name"/>
+	    </mu-icon-menu>
+	  </mu-appbar>
+   	</div>

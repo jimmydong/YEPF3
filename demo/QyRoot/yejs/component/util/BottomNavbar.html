@@ -1,0 +1,9 @@
+<div>
+<!-- 导航 -->
+<mt-tabbar v-model="selected">
+  <mt-tab-item :href="item.link" id="item.id" v-for="item in tab.items">
+    <img slot="icon" src="../assets/icon.png">
+    {{ item.name }}
+  </mt-tab-item>
+</mt-tabbar>
+</div>

@@ -1,0 +1,26 @@
+<!-- 
+	{
+		1:{
+			id:1,
+			text: 'hello',
+			list: {
+				2:{
+					id: 2,
+					text: 'world',
+					list: [...]
+				}
+			}
+		}
+	}
+ -->
+<div>
+<mu-select-field v-model="first" :labelFocusClass="['label-foucs']" label="一级">
+    <mu-menu-item v-for="item in categorys" :value="item.id" :key="item.id" :title="item.title" />
+</mu-select-field>
+<mu-select-field :maxHeight="300" v-show="showSecond" v-model="second" :labelFocusClass="['label-foucs']" label="二级">
+    <mu-menu-item v-for="ss in secondList" :key="ss.id" :value="ss.id" :title="ss.title" />
+</mu-select-field>
+<mu-select-field :maxHeight="300" v-show="showThird" v-model="third" :labelFocusClass="['label-foucs']" label="三级">
+    <mu-menu-item v-for="tt in thirdList" :key="tt.id" :value="tt.id" :title="tt.title" />
+</mu-select-field>
+</div>

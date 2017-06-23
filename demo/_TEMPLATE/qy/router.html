@@ -1,0 +1,31 @@
+<{include file="include/header_vue.html"}>
+<style>
+<{$style}>
+</style>
+<{$prepose}>
+<div id="main">
+	<app :data="data"></app>
+</div>
+<script type="text/javascript">
+	var data = <{$data|default:"{header:{pageTitle:'no data',menuList:[]}}"}>;
+	var page = "page/<{$_c}>/<{$_a}>";
+	require(["vue", page, page + '/router', "museui", "ysvue"], function(Vue, app, router, museui, ysvue){
+		Vue.use(museui);
+		Vue.use(ysvue);
+
+		new Vue({
+			el: "#main",
+			data: {
+				data: data
+			},
+			router: router,
+			components: {
+				app: app
+			},
+			methods: {
+		    }
+		});
+	});
+</script>
+<{$html}>
+<{include file="include/footer_vue.html"}>

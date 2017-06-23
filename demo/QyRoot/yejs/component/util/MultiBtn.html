@@ -1,0 +1,42 @@
+<!-- 
+	{
+		1:{
+			id:1,
+			text: 'hello',
+			list: {
+				2:{
+					id: 2,
+					text: 'world',
+					list: [...]
+				}
+			}
+		}
+	}
+ -->
+<div class="mulitibtn" style="border-top: 1px solid #D9D9D9;border-bottom: 1px solid #D9D9D9;">
+    &nbsp;<span style="color: rgb(124,124,124);font-size: 12px;">费用分类:</span>
+    <div>
+        <mu-raised-button v-for="item in categorys" @click="cate1(item.id,item.title)" :label="item.title" class="demo-raised-button" primary style="margin:3px;font-size:12px;" :class="{'cate-active':item.id==first}" />
+    </div>
+    <div v-show="showSecond">
+        <mu-raised-button v-for="ss in secondList" @click="cate2(ss.id,ss.title,this)" :label="ss.title" class="demo-raised-button" backgroundColor="#79CDCD" style="margin:3px;" :class="{'cate-active':ss.id==second}"/>
+    </div>
+    <div v-show="showThird">
+        <mu-raised-button v-for="tt in thirdList" @click="cate3(tt.id,tt.title)" :label="tt.title" class="demo-raised-button" backgroundColor="#63B8FF" style="margin:3px;" :class="{'cate-active':tt.id==third}"/>
+    </div>
+    <div style="border-top: 1px solid #fff;">
+        <span style="font-size: 12px;">已选:</span>
+        <mu-chip v-for="item in valueNames" class="demo-chip" @delete="handleClose(item.id)" style="margin:3px;line-height: 20px;height:20px;font-size: 12px;" showDelete>
+            {{item.name}}({{item.money}})
+        </mu-chip>
+    </div>
+
+    <!-- dialog -->
+    <div>
+        <mu-dialog :open="dialog" title="金额" @close="close">
+            <mu-text-field v-model="cate_money" hintText="输入该分类金额"/><br/>
+            <mu-flat-button slot="actions" @click="close" primary label="取消"/>
+            <mu-flat-button slot="actions" primary @click="saveMoney" label="确定"/>
+        </mu-dialog>
+    </div>
+</div>

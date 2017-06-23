@@ -1,0 +1,72 @@
+html,body {
+	padding:0;
+	margin:0;
+	box-sizing: border-box;
+	text-decoration: none;
+}
+
+.container {
+	margin: 5px;
+}
+
+.mint-swipe {
+	margin-top: 40px;
+	height: 150px;
+}
+
+.mint-swipe-item {
+	color: #fff;
+	font-size: 20px;
+	line-height: 150px;
+	text-align: center;
+}
+
+.slide-one {
+	background: #096;
+}
+
+.slide-two {
+	background: #666;
+}
+
+.slide-three {
+	background: #c70028;
+}
+
+.mint-navbar .mint-tab-item-label {
+	font-size: 16px;
+}
+
+.mint-navbar .mint-tab-item {
+	padding: 10px 0px !important;
+}
+.mint-navbar .mint-tab-item.is-selected {
+	border-bottom-width: 2px;
+}
+
+.item-list {
+	text-align: center;
+	padding-top: 20px;
+	font-size: 20px;
+}
+
+#bottom-nav {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+
+.mu-flat-button-wrapper{
+	height: 100%
+}
+.mu-avatar-inner .mu-icon {
+	font-size: 28px;
+	position: relative;
+	top: 2px;
+}
+
+
+.jc-popup-bottom {
+	width: 100%;
+	max-width: 375px;
+}

@@ -1,0 +1,32 @@
+<{include file="include/header_vue.html"}>
+<style>
+<{$style}>
+</style>
+<{$prepose}>
+<div id="main">
+	<app :data="data"></app>
+</div>
+<script type="text/javascript">
+	var data = <{$data|default:"{header:{pageTitle:'no data',menuList:[]}}"}>;
+	var page = "page/<{$_c}>/<{$_a}>";
+//注意：以下为自动编译标识，请勿删除
+//###BuildMarkBegin###
+		require(["vue", page, "museui", "ysvue"], function(Vue, app, museui, ysvue){
+		Vue.use(museui);
+		Vue.use(ysvue);
+		new Vue({
+			el: "#main",
+			data: {
+				data: data
+			},
+			components: {
+				app: app
+			},
+			methods: {
+		    }
+		});
+	});
+//###BuildMarkEnd###
+</script>
+<{$html}>
+<{include file="include/footer_vue.html"}>

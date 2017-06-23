@@ -1,0 +1,14 @@
+<{include file="include/header_vue.html"}>
+<style>
+<{$style}>
+</style>
+<{$prepose}>
+<div id="main">
+	<app :data="data"></App>
+</div>
+<script type="text/javascript">
+	var data = <{$data|default:"{header:{pageTitle:'no data',menuList:{}}}"}>;
+</script>
+<script src="/yejs/page/<{$_c}>/_<{$_a}>_build.js"></script>
+<{$html}>
+<{include file="include/footer_vue.html"}>

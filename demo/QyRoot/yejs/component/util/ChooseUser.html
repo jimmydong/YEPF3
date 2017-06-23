@@ -1,0 +1,15 @@
+<div>
+	<mu-popup position="bottom" popupClass="jc-popup-bottom" :open="show" @close="togglePop">
+		<div style="height: 100%;margin:5px 5px;display: flex;flex-direction: row;justify-content: center;align-items: center;">
+			<mu-text-field hintText="输入检索词" v-model="keyword"/>
+			<mu-flat-button label="搜索" @click="searchUser" class="demo-flat-button" primary/>	
+			<mu-flat-button label="关闭" @click="togglePop" class="demo-flat-button" secondary/>	
+		</div>
+		<mu-list>
+	    <mu-list-item :title="user.name" v-for="user in contacts" @click="selectUser(user.id)">
+	      <mu-avatar :src="user.img" slot="leftAvatar"/>
+	      <mu-icon value="message" slot="right"/>
+	    </mu-list-item>
+	  </mu-list>
+	</mu-popup>
+</div>
