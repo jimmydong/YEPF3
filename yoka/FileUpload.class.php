@@ -107,6 +107,7 @@ class FileUpload{
 	 * @param string $tmp_file_path_name 上传临时文件。eg: $_FILES['logo']['tmp_name']
 	 * 指定抓取网络文件时，仅需要$tmp_file_path_name为URL，参数$src_filename无意义
 	 * 如： create('', http://p3.yokacdn.com/pic/idx/2012/0406/U372P9T16D1F233DT20120329101051.jpg)
+	 * 
 	 * @return 保存后的文件相对路径
 	 * 获取绝对路径，请使用 getRealPath($file_path_name)方法
 	 */
@@ -348,6 +349,7 @@ class FileUpload{
 	 * 由文件内容创建文件
 	 * @param unknown $image_data
 	 * @param string $ext
+	 * @return string file_path_name
 	 */
 	public static function createByImgData($image_data,$ext='jpg')
 	{
