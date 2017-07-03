@@ -90,7 +90,7 @@ class SortList extends Queue
      */
     public function sortGetSetNameList($name_start='', $name_end='', $limit = 1000){
     	$begin_microtime = Debug::getTime();
-    	if($start_name == '' && $end_name == ''){
+    	if($name_start == '' && $name_end == ''){
     		//谨慎：获取全部
     		$start = '';
     		$end = '';
