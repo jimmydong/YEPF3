@@ -101,7 +101,7 @@ class SortList extends Queue
     	}
 	    $re = $this->object->zlist($start, $end, $limit);
     	$re = $this->_unkey($re);
-    	Debug::cache($this->serverlist, $start.'-'.$end, Debug::getTime() - $begin_microtime, 'sortGetSetNameList', $re);
+    	Debug::cache($this->serverlist, $start.' : '.$end, Debug::getTime() - $begin_microtime, 'sortGetSetNameList', $re);
     	return $re;
     }
     
