@@ -358,6 +358,7 @@ class Debug
 			return ;
 		}
 		if(is_string($ip) && strlen($ip)>24)$ip = substr($ip, 0, 24) . '..';
+		if(is_string($sql) && strlen($sql)>128)$ip = substr($sql, 0, 128) . "\n" . substr($sql, 128);
 		if(is_string($results) && strlen($results)>256)$results = substr($results,0,256) . '...(length:'.strlen($results).')';
 		array_push(self::$db_table, array($ip, $database, $times, $sql, $results));
 	}
