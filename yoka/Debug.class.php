@@ -268,10 +268,10 @@ class Debug
 		}elseif($caller == 'full'){
 			$caller = debug_backtrace(5);
 		}
-		if(is_string($results) && strlen($results)>120 && strpos(' ', substr($results,0,120))===false){
-			//超长且没有空格
-			$results = chunk_split($results, 120, ' ');
-		}
+// 		if(is_string($results) && strlen($results)>120 && strpos(' ', substr($results,0,120))===false){
+// 			//超长且没有空格
+// 			$results = chunk_split($results, 120, ' ');
+// 		}
 		if($results === 'Temporary Value'){
            array_push(self::$log_table, array('[临时调试]', $label, $caller));
         }else{
@@ -362,10 +362,10 @@ class Debug
 			return ;
 		}
 		if(is_string($ip) && strlen($ip)>24)$ip = substr($ip, 0, 24) . '..';
-		if(is_string($sql) && strlen($sql)>120 && strpos(' ', substr($sql,0,120))===false){
-			//超长且没有空格
-			$sql = chunk_split($sql, 120, ' ');
-		}
+// 		if(is_string($sql) && strlen($sql)>120 && strpos(' ', substr($sql,0,120))===false){
+// 			//超长且没有空格
+// 			$sql = chunk_split($sql, 120, ' ');
+// 		}
 		if(is_string($results) && strlen($results)>256)$results = substr($results,0,256) . '...(length:'.strlen($results).')';
 		array_push(self::$db_table, array($ip, $database, $times, $sql, $results));
 	}
