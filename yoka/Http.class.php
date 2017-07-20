@@ -350,7 +350,7 @@ class Http{
 	 */
 	public static function curlPost($url, $data=array(), $timeout_microsecond = 3000, $header = null, $cookie = null, $proxy = null){
 		\yoka\Debug::log('curlPost', $url);
-		\yoka\Debug::log('curlPost:param', http_build_query($data));
+		\yoka\Debug::log('curlPost:param', is_string($data)?$data:http_build_query($data));
 		$ch = curl_init(trim($url));
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);

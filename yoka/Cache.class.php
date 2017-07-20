@@ -259,6 +259,9 @@ class Cache implements \yoka\CacheInterface
 	/**
 	 * 计数器类的数字自增长
 	 * 【key不存在或不为整数时，自动设置为$value】
+	 * @param string $key
+	 * @param int $value
+	 * @return int
 	 */
 	public function increment($key, $value = 1)
 	{
