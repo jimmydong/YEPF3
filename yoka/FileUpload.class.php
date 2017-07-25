@@ -56,8 +56,9 @@ class FileUpload{
 		'log'=>'/\.log$/i',
 		'pdf'=>'/\.pdf$/i',
 		'docx'=>'/\.docx$/i',
-		'xls' => '/\.xls/i',
-		'xlsx' => '/\.xlsx/'
+		'xls' => '/\.xls$/i',
+		'xlsx' => '/\.xlsx$/i',
+		'txt'=> '\.txt$/i',
 	);
 	
 	/**
@@ -132,10 +133,10 @@ class FileUpload{
 				break;
 			}
 		}
-		if($ext == ''){
-			throw(new \Exception('不被允许的文件扩展名'));
-			return false;
-		}
+// 		if($ext == ''){
+// 			throw(new \Exception('不被允许的文件扩展名'));
+// 			return false;
+// 		}
 		$base_filename = md5(basename($src_filename) . time() . rand(0,99));
 		$file_path_name = date('Ymd') . '/' . $base_filename . '.' . $ext;
 		if(!self::_mkdirs(self::$file_path_upload . '/' . $file_path_name)){
