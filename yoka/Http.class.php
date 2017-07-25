@@ -358,7 +358,7 @@ class Http{
 			$data['upload'] = new \CURLFile(realpath($file));
 		}
 		\yoka\Debug::log('curlPostFile', $url);
-		\yoka\Debug::log('curlPost:file', $filelist);
+		\yoka\Debug::log('curlPost:file', $file);
 		$ch = curl_init(trim($url));
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
