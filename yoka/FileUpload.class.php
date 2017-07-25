@@ -39,7 +39,7 @@ class FileUpload{
 	static public $url_path_upload;
 	
 	/**
-	 * 允许传入的文件格式
+	 * 可识别的文件扩展名
 	 */
 	static public $file_ext_allowed = array(
 		'jpg'=>'/\.jpg$/i',
@@ -58,7 +58,7 @@ class FileUpload{
 		'docx'=>'/\.docx$/i',
 		'xls' => '/\.xls$/i',
 		'xlsx' => '/\.xlsx$/i',
-		'txt'=> '\.txt$/i',
+		'txt'=> '/\.txt$/i',
 	);
 	
 	/**
