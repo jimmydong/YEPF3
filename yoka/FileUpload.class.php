@@ -103,12 +103,13 @@ class FileUpload{
 	 * 适用于
 	 * 1 form表单上传二进制图片；
 	 * 2 直接下载网络资源地址；
-	 * @param string $src_filename 原始文件名。 eg:$_FILES['logo']['name']
-	 * @param string $tmp_file_path_name 上传临时文件。eg: $_FILES['logo']['tmp_name']
 	 * 指定抓取网络文件时，仅需要$tmp_file_path_name为URL，参数$src_filename无意义
 	 * 如： create('', http://p3.yokacdn.com/pic/idx/2012/0406/U372P9T16D1F233DT20120329101051.jpg)
-	 * 
+	 *
+	 * @param string $src_filename 原始文件名。 eg:$_FILES['upload']['name']
+	 * @param string $tmp_file_path_name 上传临时文件。eg: $_FILES['upload']['tmp_name']
 	 * @return 保存后的文件相对路径
+	 *
 	 * 获取绝对路径，请使用 getRealPath($file_path_name)方法
 	 */
 	public static function create($src_filename, $tmp_file_path_name, $check_image = false){
