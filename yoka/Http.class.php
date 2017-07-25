@@ -350,8 +350,6 @@ class Http{
 	 * @param unknown $proxy
 	 */
 	public static function curlPostFile($url, $file, $data=array(), $timeout_microsecond = 3000, $header = null, $cookie = null, $proxy = null){
-		\yoka\Debug::log('curlPostFile', $url);
-		\yoka\Debug::log('curlPost:file', $filelist);
 		if(is_array($file)){
 			foreach($file as $k=>$v){
 				$data[$k] = new \CURLFile(realpath($v));
@@ -359,6 +357,8 @@ class Http{
 		}else{
 			$data['upload'] = new \CURLFile(realpath($file));
 		}
+		\yoka\Debug::log('curlPostFile', $url);
+		\yoka\Debug::log('curlPost:file', $filelist);
 		$ch = curl_init(trim($url));
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
