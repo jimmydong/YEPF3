@@ -341,9 +341,8 @@ class Http{
 	/**
 	 * 上传文件
 	 * @param unknown $url
-	 * @param unknown $file  支持数组（多文件）和字符串（单文件）
-	 * eg: ['file1'=>'/tmp/test1.jpg', 'file2'=>'/tmp/test2.jpg']
-	 * 
+	 * @param array $file 数组或字符串
+	 * eg: [ 'file1'=>'/tmp/test1.jpg', 'file2'='/tmp/test2.jpg']
 	 * @param array $data
 	 * @param number $timeout_microsecond
 	 * @param unknown $header
@@ -352,13 +351,13 @@ class Http{
 	 */
 	public static function curlPostFile($url, $file, $data=array(), $timeout_microsecond = 3000, $header = null, $cookie = null, $proxy = null){
 		\yoka\Debug::log('curlPostFile', $url);
-		\yoka\Debug::log('curlPost:file', $file);
+		\yoka\Debug::log('curlPost:file', $filelist);
 		if(is_array($file)){
 			foreach($file as $k=>$v){
-				$data[$k] = '@'.$v;
+				$data[$k] = new \CURLFile(realpath($v));
 			}
 		}else{
-			$data['upload'] = '@'.$file;
+			$data['upload'] = new \CURLFile(realpath($file));
 		}
 		$ch = curl_init(trim($url));
 		curl_setopt($ch, CURLOPT_POST, 1);
@@ -405,7 +404,7 @@ class Http{
 		}
 
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-		$data = curl_exec($ch);
+		$ret = curl_exec($ch);
 		$curl_errno = curl_errno($ch);
 		$curl_error = curl_error($ch);
 		curl_close($ch);
@@ -413,7 +412,7 @@ class Http{
 			\yoka\Debug::log('Http::curlPostFile Error',$curl_error);
 			return false;
 		}else{
-			return $data;
+			return $ret;
 		}
 	}
 	
