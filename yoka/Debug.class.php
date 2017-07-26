@@ -14,6 +14,10 @@
  *	register_shutdown_function(array('Debug', 'show'));
  * @update by jimmy.dong@gmail.com
  *  增加db记录开关，用于记录数据库修改操作
+ *  
+ * 已知BUG：
+ * 当多级数组 + 下级数组仅一个元素 + 元素的key为默认 + 元素的值为0或1 => Variable Viewer 会将 array('0'=>0) 错误显示为 0
+ * eg: \yoka\Debug::log('bug',['test'=>[0]])
  */
 namespace yoka;
 use FirePHP;
