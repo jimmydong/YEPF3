@@ -230,10 +230,10 @@ class FileUpload{
 			$file_url_path = $t['path'];
 		}
 		//相对路径的URL
-		if(strpos('/storage/', $file_url_path) === 0){
+		if(strpos($file_url_path, '/storage/') === 0){
 			$file_url_path = substr($file_url_path, strlen('/storage/'));
 		}
-		if(strpos('/upload/', $file_url_path) === 0){
+		if(strpos($file_url_path, '/upload/') === 0){
 			$file_url_path = substr($file_url_path, strlen('/upload/'));
 		}
 		return $file_url_path;
