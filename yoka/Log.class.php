@@ -92,7 +92,7 @@ class Log
 	 * @param string $s2  msg
 	 */
 	public static function flog($s1, $s2 = null){
-		if($s2 === null){
+		if($s2 !== null){
 			$title = $s1;
 			$msg = $s2;
 		}else{

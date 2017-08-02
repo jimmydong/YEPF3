@@ -60,6 +60,48 @@ class FileUpload{
 		'xlsx' => '/\.xlsx$/i',
 		'txt'=> '/\.txt$/i',
 	);
+	/**
+	 * 头信息
+	 */
+	static public $file_ext_header = array(
+			'/\.avi/i'=>'video/x-msvideo',
+			'/\.biz/i'=>'text/xml',
+			'/\.bmp/i'=>'image/bmp',
+			'/\.css/i'=>'text/css',
+			'/\.doc/i'=>'application/msword',
+			'/\.gif/i'=>'image/gif',
+			'/\.htm/i'=>'text/html',
+			'/\.html/i'=>'text/html',
+			'/\.log/i'=>'text/html',
+			'/\.ico/i'=>'image/x-icon',
+			'/\.jpeg/i'=>'image/jpeg',
+			'/\.jpg/i'=>'image/jpeg',
+			'/\.js/i'=>'application/x-javascript',
+			'/\.m3u/i'=>'audio/mpegurl',
+			'/\.mid/i'=>'audio/mid',
+			'/\.mov/i'=>'video/quicktime',
+			'/\.mp3/i'=>'audio/mp3',
+			'/\.mp4/i'=>'video/mpeg4',
+			'/\.mpa/i'=>'video/x-mpg',
+			'/\.mpeg/i'=>'video/mpg',
+			'/\.mpg/i'=>'video/mpg',
+			'/\.pdf/i'=>'application/pdf',
+			'/\.png/i'=>'image/png',
+			'/\.ppt/i'=>'application/x-ppt',
+			'/\.qt/i'=>'video/quicktime',
+			'/\.svg/i'=>'text/xml',
+			'/\.txt/i'=>'text/html',
+			'/\.text/i'=>'text/html',
+			'/\.tif/i'=>'image/tiff',
+			'/\.tiff/i'=>'image/tiff',
+			'/\.vml/i'=>'text/xml',
+			'/\.vsd/i'=>'application/x-vsd',
+			'/\.wmv/i'=>'video/x-ms-wmv',
+			'/\.xml/i'=>'text/xml',
+			'/\.xsl/i'=>'text/xml',
+			'/\.xslt/i'=>'text/xml',
+			'/\..*/i'=>'application/octet-stream',
+	);
 	
 	/**
 	 * 基础参数初始化
