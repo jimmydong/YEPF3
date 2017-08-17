@@ -24,6 +24,9 @@ class Cache implements \yoka\CacheInterface
 	
 	/**
 	 * 默认缓存时间(1个月)
+	 * 
+	 * 【注意】 预定义 SiteCacheTime 优先覆盖此设定
+	 * 
 	 */
 	static $default_lifetime = 2592000;
 	
@@ -135,13 +138,17 @@ class Cache implements \yoka\CacheInterface
      *
      * @param string $cacheKey
      * @param mixed $cacheValue
-     * @param int $lifetime
+     * @param int $lifetime 缓存的生命周期(缺省值：SiteCacheTime | self::$default_lifetime)
+     * 【注意】 设置 $lifetime=0 永久存储 
      * @return Boolean
      */
     public function add($cacheKey, $cacheValue, $lifetime = null) {
     	if(empty($cacheKey)) return false;
         $cacheKey = $this->getKey($cacheKey);
-        if($lifetime === null) $lifetime = self::$default_lifetime;
+        if($lifetime === null){
+        	if(defined('SiteCacheTime')) $lifetime = SiteCacheTime;
+        	else $lifetime = self::$default_lifetime;
+        }
     	$begin_microtime = Debug::getTime();
         $re = $this->cache->add($cacheKey, $cacheValue, $lifetime);
         Debug::cache($this->_getServer(), $cacheKey, Debug::getTime() - $begin_microtime, 'add', $re);
@@ -152,7 +159,8 @@ class Cache implements \yoka\CacheInterface
 	 * @desc 将数据插入缓冲中
 	 * @param string $cacheKey 字符串标识
 	 * @param mixed $cacheValue 字符串对应的值
-	 * @param int $lifetime 缓存的生命周期(缺省值：self::$default_lifetime)
+	 * @param int $lifetime 缓存的生命周期(缺省值：SiteCacheTime | self::$default_lifetime)
+	 * 【注意】 设置 $lifetime=0 永久存储 
 	 * @return boolean 
 	 * @access public
 	 *
@@ -161,7 +169,10 @@ class Cache implements \yoka\CacheInterface
     {
     	if(empty($cacheKey)) return false;
         $cacheKey = $this->getKey($cacheKey);
-    	if($lifetime === null) $lifetime = self::$default_lifetime;
+        if($lifetime === null){
+        	if(defined('SiteCacheTime')) $lifetime = SiteCacheTime;
+        	else $lifetime = self::$default_lifetime;
+        }
     	$begin_microtime = Debug::getTime();
     	if($this->cache->set($cacheKey, $cacheValue, $lifetime)){
         	Debug::cache($this->_getServer(), $cacheKey, Debug::getTime() - $begin_microtime, 'set', true);
