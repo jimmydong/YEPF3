@@ -78,9 +78,12 @@ class Http{
 	 * @param array $proxy_list
 	 * 格式：
 	 	array(
-			'docker01'=>array('host'=>'docker01','port'=>11080,'user'=>'yisheng','pass'=>'yisheng@2015','type'=>CURLPROXY_SOCKS5),
-			'docker02'=>array('host'=>'docker02','port'=>11080,'user'=>'yisheng','pass'=>'yisheng@2015','type'=>CURLPROXY_SOCKS5),
-			'docker03'=>array('host'=>'docker03','port'=>11080,'user'=>'yisheng','pass'=>'yisheng@2015','type'=>CURLPROXY_SOCKS5),
+			'web01'		=>array('host'=>'web01','port'=>11080,'user'=>'yisheng','pass'=>'yisheng@2015','type'=>CURLPROXY_SOCKS5),
+			'db01'		=>array('host'=>'db01','port'=>11080,'user'=>'yisheng','pass'=>'yisheng@2015','type'=>CURLPROXY_SOCKS5),
+			'db02'		=>array('host'=>'db02','port'=>11080,'user'=>'yisheng','pass'=>'yisheng@2015','type'=>CURLPROXY_SOCKS5),
+			'docker01'	=>array('host'=>'docker01','port'=>11080,'user'=>'yisheng','pass'=>'yisheng@2015','type'=>CURLPROXY_SOCKS5),
+			'docker02'	=>array('host'=>'docker02','port'=>11080,'user'=>'yisheng','pass'=>'yisheng@2015','type'=>CURLPROXY_SOCKS5),
+			'docker03'	=>array('host'=>'docker03','port'=>11080,'user'=>'yisheng','pass'=>'yisheng@2015','type'=>CURLPROXY_SOCKS5),
 		);
 	 */
 	public static function setProxy($proxy_list){
