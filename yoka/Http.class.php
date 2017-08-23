@@ -6,6 +6,11 @@ namespace yoka;
  * 支持两种模式： curl / socket
  * 【注意】 两种模式的配置参数及功能参数不一致！
  * 
+ * 使用代理两种方式：
+ * 	1， \yoka\Http::curlGet('http://www.baidu.com', 3000, null, null, ['host'=>'docker01','port'=>11080,'user'=>'yisheng','pass'=>'yisheng@2015','type'=>CURLPROXY_SOCKS5]);
+ * 	2， \yoka\Http::addProxy('docker01','docker01',11080,'yisheng','yisheng@2015');
+		\yoka\Http::curlGet('http://www.baidu.com', 3000, null, null, 'docker01');
+ * 
  * @author jimmy.dong@gmail.com
  */
 class Http{
@@ -84,18 +89,20 @@ class Http{
 
 	/**
 	 * 增加一个代理
-	 * @param unknown $host IP
+	 * @param string $name	代理名称
+	 * @param string $host IP
 	 * @param number $port	端口	
 	 * @param string $user	认证：用户名
 	 * @param string $pass	认证：密码
-	 * @param unknown $name	代理名称
+	 * @param int $type 默认：CURLPROXY_SOCKS5
 	 */
-	public static function addProxy($host, $port=1080, $user='', $pass='', $name=''){
+	public static function addProxy($name, $host, $port=1080, $user='', $pass='', $type = CURLPROXY_SOCKS5){
 		$proxy = array(
 				'host' => $host,
 				'port' => $port,
 				'user' => $user,
-				'pass' => $pass
+				'pass' => $pass,
+				'type' => $type,
 		);
 		if($name)self::$socks_proxy[$name] = $proxy;
 		else self::$socks_proxy[] = $proxy;
