@@ -852,4 +852,45 @@ class BaseModel{
 		return $re;
 	}
 
+	/**
+	 * 数据精简（高级定义版本）
+	 * @param array $info 待处理数据
+	 * @param bool $filter 是否仅输出特定类型字段（依定义中 type ）
+	 * @param boole $des 是否输出字段说明
+	 *
+	 * 【注意】
+	 * 定义在 class::$define_slim,
+	 * 格式： array( col_name => [title, type], ...)
+	 * 其中：
+	 * 		title: 可省略
+	 * 		type: 默认为0。0-自带字段 1-需处理字段 其他-自定义
+	 *
+	 * eg:
+	 public static $define_slim = array(
+	 'id'				=> [],
+	 'coupon_id'			=> [],
+	 'coupon_name'		=> ['title'=>'优惠券名称'],
+	 'coupon_limit_des'	=> ['title'=>'使用说明'],
+	 'coupon_str'		=> ['title'=>'优惠券提示','type'=>1]
+	 );
+	 */
+	public static function _slim($info, $filter=null, $des = false){
+		$class = get_called_class();
+		if(isset($class::$define_slim))$define_slim = $class::$define_slim;
+		else return $info;
+	
+		$re = [];
+		foreach($define_slim as $k=>$define){
+			//处理类型过滤
+			if($filter !== null){
+				if($define['type'] != $filter) continue;
+			}
+			if($des && $define['title']){
+				$re[$define['title']] = $info[$k];
+			}else{
+				$re[$k] = $info[$k];
+			}
+		}
+		return $re;
+	}
 }
