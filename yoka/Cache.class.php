@@ -172,6 +172,9 @@ class Cache implements \yoka\CacheInterface
         if($lifetime === null){
         	if(defined('SiteCacheTime')) $lifetime = SiteCacheTime;
         	else $lifetime = self::$default_lifetime;
+        }elseif($lifetime > 2592000){
+        	//补丁：部分环境大于此数值后无法保存。 2592000 = 3600*24*30 = 30天 ！！
+        	$lifetime = 2592000;
         }
     	$begin_microtime = Debug::getTime();
     	if($this->cache->set($cacheKey, $cacheValue, $lifetime)){
