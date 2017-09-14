@@ -56,8 +56,9 @@ class FileUpload{
 		'log'=>'/\.log$/i',
 		'pdf'=>'/\.pdf$/i',
 		'docx'=>'/\.docx$/i',
-		'xls' => '/\.xls$/i',
+		'doc'=>'/\.doc$/i',
 		'xlsx' => '/\.xlsx$/i',
+		'xls' => '/\.xls$/i',
 		'txt'=> '/\.txt$/i',
 	);
 	/**
