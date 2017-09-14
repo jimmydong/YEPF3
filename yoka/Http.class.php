@@ -217,7 +217,8 @@ class Http{
 		curl_setopt($ch, CURLOPT_NOSIGNAL,true);
 		curl_setopt($ch, CURLOPT_TIMEOUT_MS, $timeout_microsecond);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT_MS, $timeout_microsecond);
-		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+		//curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); 	//注意：这里不同于 WithHeader
 		if(self::$basic_auth) curl_setopt($ch, CURLOPT_USERPWD, self::$basic_auth['user'] . ":" . self::$basic_auth['pass']);
 		if (stripos($url, 'https://') === 0) {
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
@@ -289,7 +290,7 @@ class Http{
 		curl_setopt($ch, CURLOPT_NOBODY, false);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		//curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);
-		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
+		//curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
 		if(self::$basic_auth) curl_setopt($ch, CURLOPT_USERPWD, self::$basic_auth['user'] . ":" . self::$basic_auth['pass']);
 		if (stripos($url, 'https://') === 0) {
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
@@ -441,7 +442,9 @@ class Http{
 		\yoka\Debug::log('curlPost:param', is_string($data)?$data:http_build_query($data));
 		$ch = curl_init(trim($url));
 		curl_setopt($ch, CURLOPT_POST, 1);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		//curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); 	//注意：这里不同于 WithHeader
 		curl_setopt($ch, CURLOPT_NOSIGNAL,true);
 		curl_setopt($ch, CURLOPT_TIMEOUT_MS, $timeout_microsecond);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT_MS, $timeout_microsecond);
@@ -518,7 +521,7 @@ class Http{
 		curl_setopt($ch, CURLOPT_HEADER, true);
 		curl_setopt($ch, CURLOPT_NOBODY, false);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
+		//curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
 		if(self::$basic_auth) curl_setopt($ch, CURLOPT_USERPWD, self::$basic_auth['user'] . ":" . self::$basic_auth['pass']);
 		if (stripos($url, 'https://') === 0) {
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
