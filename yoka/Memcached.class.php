@@ -5,7 +5,9 @@ namespace yoka;
  * @desc memCache统一操作类
  * @author space tang
  * @createtime 2008-9-10 10:54
- * @updatetime 2014-09-16 by jimmy.dong@gmail.com  注：此类方法仅为兼容早期memcache而使用。新版本应使用memcached。
+ * @updatetime 2014-09-16 by jimmy.dong@gmail.com  
+ * 
+ * 注：依赖memcached扩展，同时兼容早期memcache扩展。
  */
 use \Memcache;
 class Memcached
