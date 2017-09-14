@@ -17,6 +17,7 @@
  *  DB类升级为PDO，部分函数（update,delete）需通过参数指定兼容
  *  memcache类升级，保持兼容
  *  Debug类升级，增加stop, start, log_db
+ *  Debug判断是否有FirePHP标志
  *  
  *  原有项目向YEPF3迁移建议：
 	1，确认PHP版本高于5.3
@@ -25,6 +26,7 @@
 		页面上部对应添加： use yoka\Debug等，代码中去除\。
 	4，修改_LOCAL/local.inc.php中YEPF定义路径为_YEPF3.0
 	5，调试运行，针对出现问题参照demo/init.php, demo/_LOCAL/local.inc.php进行修改
+	
  **/
 if(PHP_VERSION < '5.3.0')
 {
