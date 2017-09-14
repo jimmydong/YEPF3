@@ -121,6 +121,7 @@ class Cookie{
 		 */
 		public static function decompress($str, $key = 'V2'){
 			$t = explode('_|#', urldecode($str));
+			$arr = [];
 			foreach($t as $k=> $v){
 				if($k === 0)continue;
 				$arr[] = $v;
