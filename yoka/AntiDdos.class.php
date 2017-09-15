@@ -29,10 +29,11 @@ class AntiDdos{
 			//传入实例不可用。全部返回正确
 			return true;
 		}
+		//if(!$key) return false;  					//未指定key
+		if(! is_string($key)) $key = json_encode($key);
 		foreach(self::$whiteList as $w){
 			if(strpos($key, $w) === 0) return true; //命中白名单
 		}
-		if(! is_string($key)) $key = json_encode($key);
 		$keyMd5 = md5($key);
 		//检查是否已经封禁
 		$keySeal = 'AntiDdos_Seal_'.$project.'_'.$keyMd5;
