@@ -268,6 +268,10 @@ class DB
 	{
 		if(is_array($where)) $where = self::_buildQuery($where, $trim, $strict, $connector, $addslashes);
 		$sql = "UPDATE `".$table_name."` SET " ;
+		if(! is_array($info)){
+			\yoka\Debug::log('DB Error','info is not array');
+			return false;
+		}
 		foreach ($info as $k => $v)
 		{
 			$k = trim($k);
