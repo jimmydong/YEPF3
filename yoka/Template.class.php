@@ -95,6 +95,7 @@ class Template extends Smarty
 	public function r($resource_name, $cache_id = null, $compile_id = null, $display = false)
 	{
 		global $CFG, $YOKA, $TEMPLATE, $DEFINE ;
+		\yoka\Debug::log('template', $resource_name);
 		$begin_microtime = \yoka\Debug::getTime();
 		$this->assign('CFG', $CFG);
 		$this->assign('YOKA', $YOKA);
