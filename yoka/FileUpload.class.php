@@ -256,7 +256,7 @@ class FileUpload{
 		return $re;
 	}
 	/**
-	 * 由URL逆向计算文件地址（相对路径）
+	 * 由URL或绝对路径逆向计算文件地址（相对路径）
 	 * @param unknown_type $file_url_path
 	 */
 	public static function getPath($file_url_path)
@@ -278,6 +278,10 @@ class FileUpload{
 		}
 		if(strpos($file_url_path, '/upload/') === 0){
 			$file_url_path = substr($file_url_path, strlen('/upload/'));
+		}
+		//绝对地址的路径
+		if(strpos(self::$file_path_upload, $file_url_path) === 0){
+			$file_url_path = substr($file_url_path, strlen(self::$file_path_upload));
 		}
 		return $file_url_path;
 	}
