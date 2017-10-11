@@ -280,7 +280,7 @@ class FileUpload{
 			$file_url_path = substr($file_url_path, strlen('/upload/'));
 		}
 		//绝对地址的路径
-		if(strpos(self::$file_path_upload, $file_url_path) === 0){
+		if(strpos($file_url_path, self::$file_path_upload) === 0){
 			$file_url_path = substr($file_url_path, strlen(self::$file_path_upload));
 		}
 		return $file_url_path;
