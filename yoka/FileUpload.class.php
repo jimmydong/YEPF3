@@ -110,6 +110,11 @@ class FileUpload{
 	 * @param string $url_path_upload  eg: http://xxx.xxx.com/storage
 	 */
 	public static function init($file_path_upload='', $url_path_upload=''){
+		//去除末尾/号
+		if(substr($file_path_upload, -1) == "/") $file_path_upload = substr($file_path_upload, 0, -1);
+		if(substr($url_path_upload, -1) == "/") $url_path_upload = substr($url_path_upload, 0, -1);
+		
+		//上传相对路径
 		if($file_path_upload && file_exists($file_path_upload)){
 			self::$file_path_upload = $file_path_upload;
 		}elseif(self::$file_path_upload){
@@ -125,6 +130,7 @@ class FileUpload{
 			return false;
 		}
 		
+		//上传URL地址
 		if($url_path_upload){
 			self::$url_path_upload = $url_path_upload;
 		}elseif(self::$url_path_upload){
@@ -281,7 +287,7 @@ class FileUpload{
 		}
 		//绝对地址的路径
 		if(strpos($file_url_path, self::$file_path_upload) === 0){
-			$file_url_path = substr($file_url_path, strlen(self::$file_path_upload));
+			$file_url_path = substr($file_url_path, strlen(self::$file_path_upload)+1);
 		}
 		return $file_url_path;
 	}
