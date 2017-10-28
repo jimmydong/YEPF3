@@ -246,7 +246,7 @@ class BaseModel{
 	/**
 	 * 添加数据
 	 * @param array $arr
-	 * @return \model\BaseModel|boolean
+	 * @return self
 	 */
 	public function add($arr, $addslashes = false){
 		//当前连接非主库，禁止写入
@@ -498,7 +498,7 @@ class BaseModel{
 	 * @param mixed $mix 数组（creteria格式）或 字符串：where条件 或 %_table_% 的全SQL
 	 * @param array $assist [order, limit]  eg: ['order'=>'id desc']
 	 * @param bool heavy 是否禁止query buffer (用于重负载情况下，防止内存耗尽)
-	 * @return \model\BaseModel
+	 * @return self
 	 *
 	 * 【注意】
 	 * 1, 如果在普通SQL使用了order by/limit，则不应设置assist，避免冲突
