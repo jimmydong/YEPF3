@@ -640,7 +640,7 @@ class DB
 			Debug::log('Error DB: too many args', $args);
 			break;
 		}
-		if(self::$debug)Debug::db($this->db_host, $this->db_name, $args, Debug::getTime() - $begin_microtime, $returnValue);
+		if(self::$debug)Debug::db($this->db_host, $this->db_name, $args, Debug::getTime() - $begin_microtime, strval($returnValue));
 		return $returnValue;
 		  
 		Debug::log("undefined function: $name", $arguments);
