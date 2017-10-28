@@ -36,7 +36,6 @@ namespace yoka;
  * [自定义主键]
  * 1， 支持非id作为主键。在子类中定义：static $pkey 。
  * 2， 原有id为主键的无需任何调整，完全兼容
- * 参见：Pkey.class.php
  *
  */
 
