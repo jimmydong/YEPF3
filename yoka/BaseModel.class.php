@@ -32,13 +32,13 @@ namespace yoka;
  * 6,  批量更新较多数据时，应使用 stopAutoRefresh() ... restartAutoRefresh() 屏蔽缓存操作提高效率
  * 7， 增加了字段自动过滤，需在子类中定义 $filter_fields 。注意：仅对 add/save/replace/update 有效
  * 8， 增加snapshop 和 slim 方法。子类中使用 $default_slim 定义默认slim字段
+ * 9， 新增_slim方法取代slim。子类中使用 $define_slim 定义字段含义。（请结合db_info工具使用）
  *
  * [自定义主键]
  * 1， 支持非id作为主键。在子类中定义：static $pkey 。
  * 2， 原有id为主键的无需任何调整，完全兼容
  *
  */
-
 class BaseModel{
 	public $db;
 	public $entity;
@@ -50,8 +50,9 @@ class BaseModel{
 	private $ismaster = true; 					//默认使用主库
 	
 	// 数据自动过滤机制，在子类设置 $filter_fields 值（需要过滤的字段）
-	protected $filter_str = [" ","'","\r","\n","\t",'"', '(', ')', '（', '）', ',', '，', '“', '”'];
-	protected $filter_fields = [];
+	protected $filter_str = [" ","'","\r","\n","\t",'"', '(', ')', '（', '）', ',', '，', '“', '”', '<', '>'];
+	protected $filter_fields = [];				//待过滤字段
+	protected $filter_all = false;				//如果true，过滤所有字段
 	
 	/**
 	 * 实例化
@@ -93,6 +94,15 @@ class BaseModel{
 		$old_setting = \YsConfig::$SLAVE_DB_FIRST;
 		\YsConfig::$SLAVE_DB_FIRST = $flag;
 		return $old_setting;
+	}
+	
+	/**
+	 * 设置自动过滤总开关
+	 * @param string $state
+	 * @author ws
+	 */
+	public function setFilterAll($state = true) {
+		$this->filter_all = $state;
 	}
 	
 	/**
@@ -180,7 +190,7 @@ class BaseModel{
 	 */
 	public static function getById($id, $use_cache=false){
 		$table = static::$table;
-		// $pkey = static::$pkey?:'id';
+
 		$pkey = isset(static::$pkey)?static::$pkey:'id';
 		$class = get_called_class();
 		$model = new $class();
@@ -263,7 +273,9 @@ class BaseModel{
 		$class = get_called_class();
 		
 		//字符自动过滤
-		if ($this->filter_fields) {
+		if ($this->$filter_all) {
+			$arr = str_replace($this->filter_str, '', $arr);
+		}elseif ($this->filter_fields) {
 			foreach ($this->filter_fields as $field) {
 				if (isset($arr[$field])) {
 					$arr[$field] = str_replace($this->filter_str, '', $arr[$field]);
@@ -300,7 +312,9 @@ class BaseModel{
 		$sql = "REPLACE INTO `".$table."` SET " ;
 		
 		//字符自动过滤
-		if ($this->filter_fields) {
+		if ($this->$filter_all) {
+			$arr = str_replace($this->filter_str, '', $arr);
+		}elseif ($this->filter_fields) {
 			foreach ($this->filter_fields as $field) {
 				if (isset($arr[$field])) {
 					$arr[$field] = str_replace($this->filter_str, '', $arr[$field]);
@@ -412,7 +426,9 @@ class BaseModel{
 		$cache = \yoka\Cache::getInstance(self::$cacheName);
 		
 		//字符自动过滤
-		if ($this->filter_fields) {
+		if ($this->$filter_all) {
+			$info= str_replace($this->filter_str, '', $info);
+		}elseif ($this->filter_fields) {
 			foreach ($this->filter_fields as $field) {
 				if (isset($info[$field])) {
 					$info[$field] = str_replace($this->filter_str, '', $info[$field]);
@@ -475,14 +491,14 @@ class BaseModel{
 	 * @param string $key
 	 * @param number $step
 	 */
-	public function increase($key, $step = 1){
+	public function increase($col, $step = 1){
 		$table = static::$table;
 		// $pkey = static::$pkey?:'id';
 		$pkey = isset(static::$pkey)?static::$pkey:'id';
 		$class = get_called_class();
 		if(!$this->entity[$pkey])return false;
 		$step = floatval($step);
-		$this->db->query("UPDATE `{$table}` SET `{$key}` = `{$key}` + {$step} WHERE {$pkey}=" . $this->entity[$pkey]);
+		$this->db->query("UPDATE `{$table}` SET `{$col}` = `{$col}` + {$step} WHERE {$pkey}=" . $this->entity[$pkey]);
 		$this->entity = $this->db->fetchOne("SELECT * FROM `{$table}` WHERE {$pkey}=" . $this->entity[$pkey]);
 		
 		$cache = \yoka\Cache::getInstance(self::$cacheName);
@@ -491,6 +507,7 @@ class BaseModel{
 		unset(self::$_BaseModel_Buffer[$key]);
 		$this->_refresh($class, $this->entity[$pkey]); //调用子类中刷新方法
 		
+		return $this->entity[$col];
 	}
 	
 	/**
@@ -522,10 +539,19 @@ class BaseModel{
 			//普通sql方式
 			$sql = str_replace('%_table_%', "`{$table}`", $mix);
 			if(!preg_match('/limit|order/i', $sql)) $sql .= " LIMIT 1";
-			$re = $this->db->fetchOne($sql . " {$order}");
+			
+			//处理有特殊标识。 [可能会与where中条件冲突]
+			$t = explode(';#', $sql);
+			if($t[1]){
+				$re = $this->db->fetchAll($t[0] . " {$order} ;#" . $t[1]);
+			}else $re = $this->db->fetchOne($sql . " {$order}");
 		}else{
 			if(!preg_match('/limit|order/i', $mix)) $mix .= " LIMIT 1";
-			$re = $this->db->fetchOne("SELECT * FROM {$table} WHERE $mix {$order}");
+			//处理有特殊标识。 [可能会与where中条件冲突]
+			$t = explode(';#', $mix);
+			if($t[1]){
+				$re = $this->db->fetchOne("SELECT * FROM {$table} WHERE $mix {$order} ;#{$t[1]}");
+			}else $re = $this->db->fetchOne("SELECT * FROM {$table} WHERE $mix {$order}");			
 		}
 		
 		if(isset($heavy) && $old_heavy == $heavy)  $this->db->setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, $old_heavy);
@@ -545,11 +571,11 @@ class BaseModel{
 	public function count($where = null) {
 		$table = static::$table;
 		if(null == $where){
-			$re = $this->db->fetchOne("SELECT count(1) AS cnt `{$table}` LIMIT 1");
+			$re = $this->db->fetchOne("SELECT count(1) AS cnt FROM `{$table}` LIMIT 1");
 		}elseif(is_array($where)){ //creteria方式
-			$re = $this->db->fetchOne("SELECT count(1) AS cnt {$table} WHERE %_creteria_%", $where);
+			$re = $this->db->fetchOne("SELECT count(1) AS cnt FROM {$table} WHERE %_creteria_%", $where);
 		}else{
-			$re = $this->db->fetchOne("SELECT count(1) AS cnt {$table} WHERE $where");
+			$re = $this->db->fetchOne("SELECT count(1) AS cnt FROM {$table} WHERE $where");
 		}
 		if(!$re) return 0;
 		return $re['cnt'];
@@ -635,7 +661,7 @@ class BaseModel{
 	/**
 	 * 批量查询
 	 * 【注意】
-	 * 		对返回值进行了重整，id为主键。
+	 * 		对返回值进行了重整，$pkey为主键。
 	 * 		如果不需要主键排序，请使用 fetchAllRaw
 	 * 		如果数据量非常大，请使用 query($sql, true)方式
 	 * @param mixed $mix 数组（creteria格式）或 where条件 或 %_table_%的全SQL
@@ -644,32 +670,9 @@ class BaseModel{
 	 * @return array(array, array ...)
 	 */
 	public function fetchAll($mix = null, $assist = []){
-		$table = static::$table;
-		if($assist['order'])$order = ' ORDER BY '. $assist['order'];
-		else $order = '';
-		if($assist['limit'])$limit = ' LIMIT ' . $assist['limit'];
-		else $limit = '';
+		$re = $this->fetchAllRaw($mix, $assist);
 		
 		$pkey = isset(static::$pkey)?static::$pkey:'id';
-		if(null == $mix){ //获取全部内容 【注意：强制切断1000行，防止崩溃！】
-			if($limit == '') $limit = ' LIMIT 1000';
-			$re = $this->db->fetchAll("SELECT * FROM {$table} {$order} {$limit}");
-		}elseif(is_array($mix)){ //creteria方式
-			$re = $this->db->fetchAll("SELECT * FROM {$table} WHERE %_creteria_% {$order} {$limit}", $mix);
-		}elseif (strpos(strtolower($mix), 'select') === 0) {
-			//普通sql方式
-			$sql = str_replace('%_table_%', "`{$table}`", $mix);
-			if(preg_match('/ order by /i', $sql)) $order = '';
-			if(preg_match('/ limit /i', $sql)) $limit = '';
-			$re = $this->db->fetchAll($sql . " {$order} {$limit}");
-		}else{
-			$sql = "SELECT * FROM {$table} WHERE $mix";
-			if(preg_match('/ order by /i', $sql)) $order = '';
-			if(preg_match('/ limit /i', $sql)) $limit = '';
-			$re = $this->db->fetchAll("{$sql} {$order} {$limit}");
-		}
-		
-		
 		$t = current($re);
 		if($t[$pkey]){
 			//用id作为每行数据的主键
@@ -680,7 +683,6 @@ class BaseModel{
 		}else{
 			return $re;
 		}
-		
 	}
 	/**
 	 * 功能与fetchAll相同，区别在于不做主键重整提高效率
@@ -701,7 +703,7 @@ class BaseModel{
 		
 		if(null == $mix){ //获取全部内容 【注意：强制切断1000行，防止崩溃！】
 			if($limit == '') $limit = ' LIMIT 1000';
-			$re = $this->db->fetchAll("SELECT * FROM {$table} LIMIT 1000");
+			$re = $this->db->fetchAll("SELECT * FROM {$table} {$order} {$limit}");
 		}elseif(is_array($mix)){ //creteria方式
 			$re = $this->db->fetchAll("SELECT * FROM {$table} WHERE %_creteria_% {$order} {$limit}", $mix);
 		}elseif (strpos(strtolower($mix), 'select') === 0) {
@@ -709,12 +711,20 @@ class BaseModel{
 			$sql = str_replace('%_table_%', "`{$table}`", $mix);
 			if(preg_match('/ order by /i', $sql)) $order = '';
 			if(preg_match('/ limit /i', $sql)) $limit = '';
-			$re = $this->db->fetchAll($sql . " {$order} {$limit}");
+			//处理有特殊标识。 [可能会与where中条件冲突]
+			$t = explode(';#', $sql);
+			if($t[1]){
+				$re = $this->db->fetchAll($t[0] . " {$order} {$limit} ;#" . $t[1]);
+			}else $re = $this->db->fetchAll($sql . " {$order} {$limit}");
 		}else{
-			$sql = "SELECT * FROM {$table} WHERE $mix";
-			if(preg_match('/ order by /i', $sql)) $order = '';
-			if(preg_match('/ limit /i', $sql)) $limit = '';
-			$re = $this->db->fetchAll("{$sql} {$order} {$limit}");
+			//条件字符串
+			if(preg_match('/ order by /i', $mix)) $order = '';
+			if(preg_match('/ limit /i', $mix)) $limit = '';
+			//处理有特殊标识。 [可能会与where中条件冲突]
+			$t = explode(';#', $mix);
+			if($t[1]){
+				$re = $this->db->fetchAll("SELECT * FROM {$table} WHERE {$t[0]} {$order} {$limit} ;#{$t[1]}");
+			}else $re = $this->db->fetchAll("SELECT * FROM {$table} WHERE {$mix} {$order} {$limit}");	
 		}
 		
 		return $re;
