@@ -536,22 +536,44 @@ class BaseModel{
 		}elseif(is_array($mix)){ //creteria方式
 			$re = $this->db->fetchOne("SELECT * FROM {$table} WHERE %_creteria_% {$order} LIMIT 1", $mix);
 		}elseif (strpos(strtolower(trim($mix)), 'select') === 0) {
-			//普通sql方式
+					//普通sql方式
 			$sql = str_replace('%_table_%', "`{$table}`", $mix);
-			if(!preg_match('/limit|order/i', $sql)) $sql .= " LIMIT 1";
 			
 			//处理有特殊标识。 [可能会与where中条件冲突]
 			$t = explode(';#', $sql);
 			if($t[1]){
-				$re = $this->db->fetchAll($t[0] . " {$order} ;#" . $t[1]);
-			}else $re = $this->db->fetchOne($sql . " {$order}");
+				if(!preg_match('/limit/i', $sql)){
+					$re = $this->db->fetchOne($t[0] . " {$order} LIMIT 1 ;#" . $t[1]);
+				}else{
+					//sql中出现了limit, 按规则不应有 $assist
+					$re = $this->db->fetchOne($t[0] . " ;#" . $t[1]);
+				}
+			}else{
+				if(!preg_match('/limit/i', $sql)){
+					$re = $this->db->fetchOne($sql . " {$order} LIMIT 1");
+				}else{
+					//sql中出现了limit, 按规则不应有 $assist
+					$re = $this->db->fetchOne($sql);
+				}
+			}
 		}else{
-			if(!preg_match('/limit|order/i', $mix)) $mix .= " LIMIT 1";
 			//处理有特殊标识。 [可能会与where中条件冲突]
 			$t = explode(';#', $mix);
 			if($t[1]){
-				$re = $this->db->fetchOne("SELECT * FROM {$table} WHERE $mix {$order} ;#{$t[1]}");
-			}else $re = $this->db->fetchOne("SELECT * FROM {$table} WHERE $mix {$order}");			
+				if(!preg_match('/limit/i', $mix)){
+					$re = $this->db->fetchOne("SELECT * FROM {$table} WHERE $mix {$order} LIMIT 1 ;#{$t[1]}");
+				}else{
+					//sql中出现了limit, 按规则不应有 $assist
+					$re = $this->db->fetchOne("SELECT * FROM {$table} WHERE $mix ;#{$t[1]}");
+				}
+			}else{
+				if(!preg_match('/limit/i', $mix)){
+					$re = $this->db->fetchOne("SELECT * FROM {$table} WHERE $mix {$order} LIMIT 1");
+				}else{
+					//sql中出现了limit, 按规则不应有 $assist
+					$re = $this->db->fetchOne("SELECT * FROM {$table} WHERE $mix {$order}");
+				}
+			}
 		}
 		
 		if(isset($heavy) && $old_heavy == $heavy)  $this->db->setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, $old_heavy);
