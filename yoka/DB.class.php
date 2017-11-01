@@ -536,7 +536,7 @@ class DB
 	 */
 	public function logError($sql, $result = ''){
 		if(self::$log_error){
-			$t = debug_backtrace(1);
+			$t = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
 			if($t[4]){
 				$caller = $t[1]['file'].' , line:'.$t[1]['line'];
 				$caller .= ' <- ' . $t[3]['file'].' , line:'.$t[3]['line'];

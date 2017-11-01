@@ -101,7 +101,7 @@ class Log
 		}
 		if(is_array($msg))$msg = var_export($msg, true);
 		
-		$t = debug_backtrace(1);
+		$t = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1);
 		$caller = $t[0]['file'].' , line:'.$t[0]['line'];
 		
 		$string  = "#[".date('Y-m-d H:i:s')."] " . $title . "\n";

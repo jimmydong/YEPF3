@@ -281,10 +281,10 @@ class Debug
 			return ;
 		}
 		if($caller == ''){
-			$t = debug_backtrace(1);
+			$t = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1);
 			$caller = $t[0]['file'].':'.$t[0]['line'];
 		}elseif($caller == 'full'){
-			$caller = debug_backtrace(5);
+			$caller = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 5);
 		}
 // 		if(is_string($results) && strlen($results)>120 && strpos(' ', substr($results,0,120))===false){
 // 			//超长且没有空格
@@ -315,7 +315,7 @@ class Debug
 		if(false === self::$open) return false;
 		$string 	= 	"Debug::flog: ".$_SERVER['REQUEST_URI'];
 		if($caller == ''){
-			$t = debug_backtrace(1);
+			$t = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1);
 			$caller = $t[0][file].':'.$t[0][line];
 		}
 		$string		.=	"\nCalled in ". $caller;
@@ -336,7 +336,7 @@ class Debug
 	public static function dlog($label, $result = '', $caller = '')
 	{
 		if($caller == ''){
-			$t = debug_backtrace(1);
+			$t = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1);
 			$caller = $t[0][file].':'.$t[0][line];
 		}
 		if(! is_array(self::$log_mysql)) {
@@ -455,10 +455,10 @@ class Debug
 		}
 		if($desc == '')$desc = 'run-time';
 		if($caller == ''){
-			$t = debug_backtrace(1);
+			$t = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1);
 			$caller = $t[0][file].':'.$t[0][line];
 		}elseif($caller == 'full'){
-			$caller = debug_backtrace(5);
+			$caller = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 5);
 		}
 		array_push(self::$time_table, array($desc, self::getTime(), $caller));
 	}

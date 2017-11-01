@@ -263,7 +263,7 @@ class ChromePhp
         foreach ($args as $arg) {
             $logs[] = $logger->_convert($arg);
         }
-        $backtrace = debug_backtrace(false);
+        $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
         $level = $logger->getSetting(self::BACKTRACE_LEVEL);
 		
         $backtrace_message = 'unknown';

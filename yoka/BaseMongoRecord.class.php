@@ -725,7 +725,7 @@ abstract class BaseMongoRecord implements MongoRecord
         $stacktrace = '';
 
         /* TODO: 根据日志级别决定是否显示调用堆栈 */
-        $stack_list = debug_backtrace() ;
+        $stack_list = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS) ;
         $stacks = array();
         foreach($stack_list as $stack){
             $stacks[] = $stack['file']  . ':' . $stack['line'];
