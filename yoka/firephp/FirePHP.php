@@ -897,7 +897,7 @@ class FirePHP {
         } else
         if ($Type==self::TRACE) {
           
-            $trace = debug_backtrace();
+            $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
             if (!$trace) return false;
             for( $i=0 ; $i<sizeof($trace) ; $i++ ) {
     
@@ -962,7 +962,7 @@ class FirePHP {
         if ($this->options['includeLineNumbers']) {
             if (!isset($meta['file']) || !isset($meta['line'])) {
     
-                $trace = debug_backtrace();
+                $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
                 for( $i=0 ; $trace && $i<sizeof($trace) ; $i++ ) {
           
                     if (isset($trace[$i]['class'])
