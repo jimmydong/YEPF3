@@ -3,8 +3,7 @@ namespace yoka\mvc;
 
 use \Exception;
 
-class Request {
-	
+class Request extends \Iterator{
 	private static $_instance;
 	/**
 	 * 允许修改传入参数
@@ -14,9 +13,19 @@ class Request {
 	 * 自动进行add_slashes
 	 */
 	public static $FLAG_MAGIC_QUOTES = true;
+	/**
+	 * for Iterator
+	 */
+	private $position = 0; 			//for iterator
+	private $entity = [];			//for iterator
 	
 	
-	private function __construct() {}
+	private function __construct() {
+		$this->position = 0;		//for iterator
+		foreach($_REQUEST as $k=>$v){
+			$this->entity[] = ['key'=>$k, 'val'=>$v];
+		}
+	}
 	
 	/**
 	 * 单例
@@ -40,8 +49,17 @@ class Request {
 		return isset($_POST[$index])? $_POST[$index]:$default;
 	}
 	
+	/**
+	 * 返回magic_quotes处理后的传入
+	 * @param unknown $index
+	 * @param string $default
+	 */
 	public function getRequest($index, $default='') {
-		return isset($_REQUEST[$index])? $_REQUEST[$index]:$default;
+		$re = isset($_REQUEST[$index])? $_REQUEST[$index]:$default;
+		
+		if(get_magic_quotes_runtime() == false)return $this->_addslashesRecursive($re);
+		else $re;
+		
 	}
 	
 	public function cookie($index) {
@@ -90,7 +108,7 @@ class Request {
 	 */
 	public function getUnMagic($key, $default=''){
 		$data = $this->getRequest($key, $default);
-		if(get_magic_quotes_runtime())return $data;
+		if(get_magic_quotes_runtime() == false)return $data;
 		else return $this->_stripslashesRecursive($data);
 	}
 	public function getNoMagic($key, $default=''){
@@ -110,6 +128,14 @@ class Request {
 			return $re;
 		}else return stripslashes($data);
 	}
+	public function _addslashesRecursive($data){
+		if(is_array($data)){
+			foreach($data as $key=> $val){
+				$re[$key] = self::_addslashesRecursive($val);
+			}
+			return $re;
+		}else return addslashes($data);
+	}
 	
 	public function __get($key) {
 		if(self::$FLAG_MAGIC_QUOTES === false)return $this->getUnMagic($key);
@@ -122,5 +148,22 @@ class Request {
 		else
 			throw new Exception('不允许修改!');
 		
+	}
+	
+	/* Iterator 方法 */
+	public function current (){
+		return $this->entity[$this->position]['val'];
+	}
+	public function key (){
+		return $this->entity[$this->position]['key'];
+	}
+	public function next (){
+		++$this->position;
+	}
+	public function rewind (){
+		$this->position = 0;
+	}
+	public function valid (){
+		return isset($this->entity[$this->position]);
 	}
 }
