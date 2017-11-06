@@ -60,7 +60,7 @@ class Request implements \Iterator{
 	public function getRequest($index, $default='') {
 		$re = isset($_REQUEST[$index])? $_REQUEST[$index]:$default;
 		
-		if(get_magic_quotes_runtime() == false)return $this->_addslashesRecursive($re);
+		if(get_magic_quotes_runtime() == false && !defined(YEPF_VERSION))return $this->_addslashesRecursive($re);
 		else $re;
 		
 	}
