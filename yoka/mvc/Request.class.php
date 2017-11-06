@@ -111,7 +111,7 @@ class Request implements \Iterator{
 	 */
 	public function getUnMagic($key, $default=''){
 		$data = $this->getRequest($key, $default);
-		if(get_magic_quotes_runtime() == false && defined('YEPF_VERSION'))return $data;	//注：引入YEPF时会自动加magci_quotes
+		if(get_magic_quotes_runtime() == false && !defined('YEPF_VERSION'))return $data;	//注：引入YEPF时会自动加magci_quotes
 		else return $this->_stripslashesRecursive($data);
 	}
 	public function getNoMagic($key, $default=''){
