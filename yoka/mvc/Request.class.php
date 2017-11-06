@@ -61,8 +61,7 @@ class Request implements \Iterator{
 		$re = isset($_REQUEST[$index])? $_REQUEST[$index]:$default;
 		
 		if(get_magic_quotes_runtime() == false && !defined(YEPF_VERSION))return $this->_addslashesRecursive($re);
-		else $re;
-		
+		else return $re;
 	}
 	
 	public function cookie($index) {
