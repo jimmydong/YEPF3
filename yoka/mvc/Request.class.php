@@ -3,7 +3,7 @@ namespace yoka\mvc;
 
 use \Exception;
 
-class Request extends \Iterator{
+class Request implements \Iterator{
 	private static $_instance;
 	/**
 	 * 允许修改传入参数
