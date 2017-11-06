@@ -22,7 +22,10 @@ class Request implements \Iterator{
 	
 	private function __construct() {
 		$this->position = 0;		//for iterator
-		foreach($_REQUEST as $k=>$v){
+		foreach($_POST as $k=>$v){
+			$this->entity[] = ['key'=>$k, 'val'=>$v];
+		}
+		foreach($_GET as $k=>$v){
 			$this->entity[] = ['key'=>$k, 'val'=>$v];
 		}
 	}
