@@ -5,6 +5,7 @@ use \Exception;
 
 class Request implements \Iterator{
 	private static $_instance;
+	
 	/**
 	 * 允许修改传入参数
 	 */
@@ -13,6 +14,10 @@ class Request implements \Iterator{
 	 * 自动进行add_slashes
 	 */
 	public static $FLAG_MAGIC_QUOTES = true;
+	/**
+	 * 是否在YEPF框架中（YEPF框架已自动进行MagicQuote）
+	 */
+	public static $WITH_YEPF = true;
 	/**
 	 * for Iterator
 	 */
@@ -60,8 +65,17 @@ class Request implements \Iterator{
 	public function getRequest($index, $default='') {
 		$re = isset($_REQUEST[$index])? $_REQUEST[$index]:$default;
 		
-		if(get_magic_quotes_runtime() == false && !defined(YEPF_VERSION))return $this->_addslashesRecursive($re);
-		else return $re;
+		if(self::$FLAG_MAGIC_QUOTES){
+			//需要安全处理
+			if( self::$WITH_YEPF ) return $re; //YEPF已做处理
+			elseif(get_magic_quotes_runtime() == true)return $re;	//系统magic_quote开启
+			else return $this->_addslashesRecursive($re);
+		}else{
+			//不需要安全处理
+			if( self::$WITH_YEPF) return $this->_stripslashesRecursive($re); //YEPF需要做反处理
+			elseif(get_magic_quotes_runtime() == true)return $this->_stripslashesRecursive($re);
+			else return $re;
+		}
 	}
 	
 	public function cookie($index) {
@@ -110,8 +124,11 @@ class Request implements \Iterator{
 	 */
 	public function getUnMagic($key, $default=''){
 		$data = $this->getRequest($key, $default);
-		if(get_magic_quotes_runtime() == false && !defined('YEPF_VERSION'))return $data;	//注：引入YEPF时会自动加magci_quotes
-		else return $this->_stripslashesRecursive($data);
+		if(self::$FLAG_MAGIC_QUOTES ){
+			return $this->_stripslashesRecursive($data);
+		}else{
+			return $data;
+		}
 	}
 	public function getNoMagic($key, $default=''){
 		return $this->getUnMagic($key, $default);
