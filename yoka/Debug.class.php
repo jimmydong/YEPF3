@@ -597,7 +597,7 @@ class Debug
 				}
 				for($i=0;$i<count(self::$db_table);$i++){
 					$t = self::$db_table[$i];
-					$debugbar->getCollector('DB Log')->add($t[0].' ['.$t[1].'], $t[4], $t[3], time:'.$t[2]);
+					$debugbar->getCollector('DB Log')->add($t[0].' ['.$t[1].']', $t[4], $t[3].', time:'.$t[2]);
 				}
 				for($i=0;$i<count(self::$cache_table);$i++){
 					$t = self::$cache_table[$i];
