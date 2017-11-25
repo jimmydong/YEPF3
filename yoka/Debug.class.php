@@ -2,8 +2,7 @@
 /**
  * @name Debug.class.php
  * @desc YEPF调试类,基于FirePHP
- * @author 曹晓冬
- * @update by jimmy.dong@gmail.com
+ * @by jimmy.dong@gmail.com
  * @createtime 2009-01-15 11:18
  * @updatetime 2009-03-30 15:26
  * @usage
@@ -27,7 +26,8 @@
 		if(!defined('MANUAL_DEBUG_SHOW') || MANUAL_DEBUG_SHOW != true) register_shutdown_function(array('\yoka\Debug', 'show'));
 	}
 
- * 
+ * @update by jimmy.dong@gmail.com
+ * 增加页面Debug支持，通过 ?debug=page 或  Debug::debug_page = true 开启
  * 
  * 已知BUG：
  * 当多级数组 + 下级数组仅一个元素 + 元素的key为默认 + 元素的值为0或1 => Variable Viewer 会将 array('0'=>0) 错误显示为 0
@@ -127,7 +127,6 @@ class Debug
 	
 	/**
 	 * @desc 缓存查询执行时间数组
-	 * @var array
 	 */
 	static $cache_table = array();
 	/**
@@ -144,14 +143,16 @@ class Debug
 	static $template_table = array();
 	/**
 	 * @desc 起始时间
-	 * @var int
 	 */
 	static $begin_time;
 	/**
 	 * @desc debug显示级别
-	 * @var string
 	 */
 	static $debug_level;
+	/**
+	 * 页面方式显示Debug
+	 */
+	static $debug_page = false;
 	/**
 	 * @name __construct
 	 * @desc 构造函数
@@ -281,10 +282,10 @@ class Debug
 			return ;
 		}
 		if($caller == ''){
-			$t = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1);
+			$t = debug_backtrace(1);
 			$caller = $t[0]['file'].':'.$t[0]['line'];
 		}elseif($caller == 'full'){
-			$caller = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 5);
+			$caller = debug_backtrace(5);
 		}
 // 		if(is_string($results) && strlen($results)>120 && strpos(' ', substr($results,0,120))===false){
 // 			//超长且没有空格
@@ -315,7 +316,7 @@ class Debug
 		if(false === self::$open) return false;
 		$string 	= 	"Debug::flog: ".$_SERVER['REQUEST_URI'];
 		if($caller == ''){
-			$t = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1);
+			$t = debug_backtrace(1);
 			$caller = $t[0][file].':'.$t[0][line];
 		}
 		$string		.=	"\nCalled in ". $caller;
@@ -336,7 +337,7 @@ class Debug
 	public static function dlog($label, $result = '', $caller = '')
 	{
 		if($caller == ''){
-			$t = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1);
+			$t = debug_backtrace(1);
 			$caller = $t[0][file].':'.$t[0][line];
 		}
 		if(! is_array(self::$log_mysql)) {
@@ -455,10 +456,10 @@ class Debug
 		}
 		if($desc == '')$desc = 'run-time';
 		if($caller == ''){
-			$t = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1);
+			$t = debug_backtrace(1);
 			$caller = $t[0][file].':'.$t[0][line];
 		}elseif($caller == 'full'){
-			$caller = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 5);
+			$caller = debug_backtrace(5);
 		}
 		array_push(self::$time_table, array($desc, self::getTime(), $caller));
 	}
@@ -585,7 +586,30 @@ class Debug
 		if(self::$open === false)return;
 		else self::$open == false; //防止再次输出
 		
-		try{
+		if(self::$debug_page || $_REQUEST['debug'] == 'page'){
+			//页面方式调试
+			if(class_exists('\DebugBar\DebugBar')){
+				$debugbar = new \yoka\BarDebug();
+				$debugbarRenderer = $debugbar->getJavascriptRenderer("/Resources");
+				for($i=1;$i<count(self::$log_table);$i++){
+					$t = self::$log_table[$i];
+					$debugbar->getCollector('Costom Log')->add($t[0], $t[1], $t[2]);
+				}
+				for($i=0;$i<count(self::$db_table);$i++){
+					$t = self::$db_table[$i];
+					$debugbar->getCollector('DB Log')->add($t[3], $t[4], $t[0].' ['.$t[1].'], time:'.$t[2]);
+				}
+				for($i=0;$i<count(self::$cache_table);$i++){
+					$t = self::$cache_table[$i];
+					$debugbar->getCollector('Cache Log')->add('['.$t[3].'] '.$t[1], $t[4], $t[0].', time:'.$t[2]);
+				}
+				for($i=1;$i<count(self::$time_table);$i++){
+					$t = self::$time_table[$i];
+					$debugbar->getCollector('time')->add($t[0], $t[1], $t[2]);
+				}
+				echo $debugbarRenderer->render();
+			}
+		}else try{
 			//页面执行时间
 			switch(self::$debug_level)
 			{
