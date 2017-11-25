@@ -597,11 +597,11 @@ class Debug
 				}
 				for($i=0;$i<count(self::$db_table);$i++){
 					$t = self::$db_table[$i];
-					$debugbar->getCollector('DB Log')->add($t[3], $t[4], $t[0].' ['.$t[1].'], time:'.$t[2]);
+					$debugbar->getCollector('DB Log')->add($t[0].' ['.$t[1].'], $t[4], $t[3], time:'.$t[2]);
 				}
 				for($i=0;$i<count(self::$cache_table);$i++){
 					$t = self::$cache_table[$i];
-					$debugbar->getCollector('Cache Log')->add('['.$t[3].'] '.$t[1], $t[4], $t[0].', time:'.$t[2]);
+					$debugbar->getCollector('Cache Log')->add($t[0].' ['.$t[3].'] ', $t[4], 'key:'.$t[1].', time:'.$t[2]);
 				}
 				for($i=1;$i<count(self::$time_table);$i++){
 					$t = self::$time_table[$i];
