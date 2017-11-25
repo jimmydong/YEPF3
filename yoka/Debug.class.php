@@ -608,16 +608,16 @@ class Debug
 					$debugbar->getCollector('time')->add($t[0], $t[1], $t[2]);
 				}
 				echo '
-					<link rel="stylesheet" type="text/css" href="/Resources/vendor/font-awesome/css/font-awesome.min.css">
-					<link rel="stylesheet" type="text/css" href="/Resources/vendor/highlightjs/styles/github.css">
-					<link rel="stylesheet" type="text/css" href="/Resources/debugbar.css">
-					<link rel="stylesheet" type="text/css" href="/Resources/widgets.css">
-					<link rel="stylesheet" type="text/css" href="/Resources/openhandler.css">
-					<script type="text/javascript" src="/Resources/vendor/jquery/dist/jquery.min.js"></script>
-					<script type="text/javascript" src="/Resources/vendor/highlightjs/highlight.pack.js"></script>
-					<script type="text/javascript" src="/Resources/debugbar.js"></script>
-					<script type="text/javascript" src="/Resources/widgets.js"></script>
-					<script type="text/javascript" src="/Resources/openhandler.js"></script>
+					<link rel="stylesheet" type="text/css" href="//cdn.yirenjiankang.org/Resources/vendor/font-awesome/css/font-awesome.min.css">
+					<link rel="stylesheet" type="text/css" href="//cdn.yirenjiankang.org/Resources/vendor/highlightjs/styles/github.css">
+					<link rel="stylesheet" type="text/css" href="//cdn.yirenjiankang.org/Resources/debugbar.css">
+					<link rel="stylesheet" type="text/css" href="//cdn.yirenjiankang.org/Resources/widgets.css">
+					<link rel="stylesheet" type="text/css" href="//cdn.yirenjiankang.org/Resources/openhandler.css">
+					<script type="text/javascript" src="//cdn.yirenjiankang.org/Resources/vendor/jquery/dist/jquery.min.js"></script>
+					<script type="text/javascript" src="//cdn.yirenjiankang.org/Resources/vendor/highlightjs/highlight.pack.js"></script>
+					<script type="text/javascript" src="//cdn.yirenjiankang.org/Resources/debugbar.js"></script>
+					<script type="text/javascript" src="//cdn.yirenjiankang.org/Resources/widgets.js"></script>
+					<script type="text/javascript" src="//cdn.yirenjiankang.org/Resources/openhandler.js"></script>
 					<script type="text/javascript">jQuery.noConflict(true);</script>
 				';
 				echo $debugbarRenderer->render();
