@@ -607,6 +607,19 @@ class Debug
 					$t = self::$time_table[$i];
 					$debugbar->getCollector('time')->add($t[0], $t[1], $t[2]);
 				}
+				echo '
+					<link rel="stylesheet" type="text/css" href="/Resources/vendor/font-awesome/css/font-awesome.min.css">
+					<link rel="stylesheet" type="text/css" href="/Resources/vendor/highlightjs/styles/github.css">
+					<link rel="stylesheet" type="text/css" href="/Resources/debugbar.css">
+					<link rel="stylesheet" type="text/css" href="/Resources/widgets.css">
+					<link rel="stylesheet" type="text/css" href="/Resources/openhandler.css">
+					<script type="text/javascript" src="/Resources/vendor/jquery/dist/jquery.min.js"></script>
+					<script type="text/javascript" src="/Resources/vendor/highlightjs/highlight.pack.js"></script>
+					<script type="text/javascript" src="/Resources/debugbar.js"></script>
+					<script type="text/javascript" src="/Resources/widgets.js"></script>
+					<script type="text/javascript" src="/Resources/openhandler.js"></script>
+					<script type="text/javascript">jQuery.noConflict(true);</script>
+				';
 				echo $debugbarRenderer->render();
 			}
 		}else try{
