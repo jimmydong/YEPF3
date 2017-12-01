@@ -183,11 +183,18 @@ class Request implements \Iterator{
 	 * @param bool $die 发现有攻击时，是否立即停止
 	 */
 	static public function checkSafe($die = false){
-		foreach($_GET as $key=>$value){self::_checkSafe($key,$value,self::$getfilter);}
-		foreach($_POST as $key=>$value){self::_checkSafe($key,$value,self::$postfilter);}
-		foreach($_COOKIE as $key=>$value){self::_checkSafe($key,$value,self::$cookiefilter);}
+		foreach($_GET as $key=>$value){
+			if(!self::_checkSafe($key, $value, self::$getfilter, $die)) return false;
+		}
+		foreach($_POST as $key=>$value){
+			if(!self::_checkSafe($key, $value, self::$postfilter, $die)) return false;
+		}
+		foreach($_COOKIE as $key=>$value){
+			if(! self::_checkSafe($key, $value, self::$cookiefilter, $die)) return false;
+		}
+		return true;
 	}
-	static protected function _checkSafe($key, $value, $filter){
+	static protected function _checkSafe($key, $value, $filter, $die){
 		if(is_array($value))$value = implode($value);
 		if (preg_match("/".$filter."/is", $value, $reg) == 1){
 			\yoka\Log::customLog('hack_attack.log', implode(' | ', [
