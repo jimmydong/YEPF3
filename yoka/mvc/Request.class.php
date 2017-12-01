@@ -179,12 +179,12 @@ class Request implements \Iterator{
 	 * 检查是否有攻击（SQL-injection, XSS）
 	 * @param bool $die 发现有攻击时，是否立即停止
 	 */
-	public function checkSafe($die = false){
-		foreach($_GET as $key=>$value){$this->stopattack($key,$value,$this->getfilter);}
-		foreach($_POST as $key=>$value){$this->stopattack($key,$value,$this->postfilter);}
-		foreach($_COOKIE as $key=>$value){$this->stopattack($key,$value,$this->cookiefilter);}
+	static public function checkSafe($die = false){
+		foreach($_GET as $key=>$value){self::_checkSafe($key,$value,$this->getfilter);}
+		foreach($_POST as $key=>$value){self::_checkSafe($key,$value,$this->postfilter);}
+		foreach($_COOKIE as $key=>$value){self::_checkSafe($key,$value,$this->cookiefilter);}
 	}
-	protected function _checkSafe($key, $value, $filter){
+	static protected function _checkSafe($key, $value, $filter){
 		if(is_array($value))$value = implode($value);
 		if (preg_match("/".$filter."/is", $value, $reg) == 1){
 			\yoka\Log::customLog('hack_attack.log', implode(' | ', [
