@@ -24,6 +24,12 @@ class Request implements \Iterator{
 	private $position = 0; 			//for iterator
 	private $entity = [];			//for iterator
 	
+	/**
+	 * 防注入(参见方法： checkSafe)
+	 */
+	private $getfilter = "'|(and|or)\\b.+?(>|<|=|in|like)|\\/\\*.+?\\*\\/|<\\s*script\\b|\\bEXEC\\b|UNION.+?SELECT|UPDATE.+?SET|INSERT\\s+INTO.+?VALUES|(SELECT|DELETE).+?FROM|(CREATE|ALTER|DROP|TRUNCATE)\\s+(TABLE|DATABASE)";
+	private $postfilter = "\\b(and|or)\\b.{1,6}?(=|>|<|\\bin\\b|\\blike\\b)|\\/\\*.+?\\*\\/|<\\s*script\\b|\\bEXEC\\b|UNION.+?SELECT|UPDATE.+?SET|INSERT\\s+INTO.+?VALUES|(SELECT|DELETE).+?FROM|(CREATE|ALTER|DROP|TRUNCATE)\\s+(TABLE|DATABASE)";
+	private $cookiefilter = "\\b(and|or)\\b.{1,6}?(=|>|<|\\bin\\b|\\blike\\b)|\\/\\*.+?\\*\\/|<\\s*script\\b|\\bEXEC\\b|UNION.+?SELECT|UPDATE.+?SET|INSERT\\s+INTO.+?VALUES|(SELECT|DELETE).+?FROM|(CREATE|ALTER|DROP|TRUNCATE)\\s+(TABLE|DATABASE)";
 	
 	private function __construct() {
 		$this->position = 0;		//for iterator
@@ -167,6 +173,33 @@ class Request implements \Iterator{
 		else
 			throw new Exception('不允许修改!');
 		
+	}
+	
+	/**
+	 * 检查是否有攻击（SQL-injection, XSS）
+	 * @param bool $die 发现有攻击时，是否立即停止
+	 */
+	public function checkSafe($die = false){
+		foreach($_GET as $key=>$value){$this->stopattack($key,$value,$this->getfilter);}
+		foreach($_POST as $key=>$value){$this->stopattack($key,$value,$this->postfilter);}
+		foreach($_COOKIE as $key=>$value){$this->stopattack($key,$value,$this->cookiefilter);}
+	}
+	protected function _checkSafe($key, $value, $filter){
+		if(is_array($value))$value = implode($value);
+		if (preg_match("/".$filter."/is", $value, $reg) == 1){
+			\yoka\Log::customLog('hack_attack.log', implode(' | ', [
+					date('Y-m-d H:i:s'),
+					\yoka\Utility::getClientIp(),
+					$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'],
+					$_SERVER["REQUEST_METHOD"],
+					$key,
+					$value
+			]));
+			if(defined('IS_TEST') && IS_TEST)\yoka\Debug::log('Attack Found', $reg);
+			if($die)die('Alert: potential damage - by YEPF/mvc/Request');
+			else return false;
+		}
+		return true;
 	}
 	
 	/* Iterator 方法 */
