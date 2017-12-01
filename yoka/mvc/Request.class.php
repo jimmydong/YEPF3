@@ -4,7 +4,7 @@ namespace yoka\mvc;
 use \Exception;
 
 class Request implements \Iterator{
-	private static $_instance;
+	protected static $_instance;
 	
 	/**
 	 * 允许修改传入参数
@@ -21,17 +21,20 @@ class Request implements \Iterator{
 	/**
 	 * for Iterator
 	 */
-	private $position = 0; 			//for iterator
-	private $entity = [];			//for iterator
+	protected $position = 0; 			//for iterator
+	protected $entity = [];			//for iterator
 	
 	/**
 	 * 防注入(参见方法： checkSafe)
 	 */
-	private $getfilter = "'|(and|or)\\b.+?(>|<|=|in|like)|\\/\\*.+?\\*\\/|<\\s*script\\b|\\bEXEC\\b|UNION.+?SELECT|UPDATE.+?SET|INSERT\\s+INTO.+?VALUES|(SELECT|DELETE).+?FROM|(CREATE|ALTER|DROP|TRUNCATE)\\s+(TABLE|DATABASE)";
-	private $postfilter = "\\b(and|or)\\b.{1,6}?(=|>|<|\\bin\\b|\\blike\\b)|\\/\\*.+?\\*\\/|<\\s*script\\b|\\bEXEC\\b|UNION.+?SELECT|UPDATE.+?SET|INSERT\\s+INTO.+?VALUES|(SELECT|DELETE).+?FROM|(CREATE|ALTER|DROP|TRUNCATE)\\s+(TABLE|DATABASE)";
-	private $cookiefilter = "\\b(and|or)\\b.{1,6}?(=|>|<|\\bin\\b|\\blike\\b)|\\/\\*.+?\\*\\/|<\\s*script\\b|\\bEXEC\\b|UNION.+?SELECT|UPDATE.+?SET|INSERT\\s+INTO.+?VALUES|(SELECT|DELETE).+?FROM|(CREATE|ALTER|DROP|TRUNCATE)\\s+(TABLE|DATABASE)";
+	static $getfilter = "'|(and|or)\\b.+?(>|<|=|in|like)|\\/\\*.+?\\*\\/|<\\s*script\\b|\\bEXEC\\b|UNION.+?SELECT|UPDATE.+?SET|INSERT\\s+INTO.+?VALUES|(SELECT|DELETE).+?FROM|(CREATE|ALTER|DROP|TRUNCATE)\\s+(TABLE|DATABASE)";
+	static $postfilter = "\\b(and|or)\\b.{1,6}?(=|>|<|\\bin\\b|\\blike\\b)|\\/\\*.+?\\*\\/|<\\s*script\\b|\\bEXEC\\b|UNION.+?SELECT|UPDATE.+?SET|INSERT\\s+INTO.+?VALUES|(SELECT|DELETE).+?FROM|(CREATE|ALTER|DROP|TRUNCATE)\\s+(TABLE|DATABASE)";
+	static $cookiefilter = "\\b(and|or)\\b.{1,6}?(=|>|<|\\bin\\b|\\blike\\b)|\\/\\*.+?\\*\\/|<\\s*script\\b|\\bEXEC\\b|UNION.+?SELECT|UPDATE.+?SET|INSERT\\s+INTO.+?VALUES|(SELECT|DELETE).+?FROM|(CREATE|ALTER|DROP|TRUNCATE)\\s+(TABLE|DATABASE)";
 	
-	private function __construct() {
+	/**
+	 * 构造函数
+	 */
+	public function __construct() {
 		$this->position = 0;		//for iterator
 		foreach($_POST as $k=>$v){
 			$this->entity[] = ['key'=>$k, 'val'=>$v];
@@ -180,9 +183,9 @@ class Request implements \Iterator{
 	 * @param bool $die 发现有攻击时，是否立即停止
 	 */
 	static public function checkSafe($die = false){
-		foreach($_GET as $key=>$value){self::_checkSafe($key,$value,$this->getfilter);}
-		foreach($_POST as $key=>$value){self::_checkSafe($key,$value,$this->postfilter);}
-		foreach($_COOKIE as $key=>$value){self::_checkSafe($key,$value,$this->cookiefilter);}
+		foreach($_GET as $key=>$value){self::_checkSafe($key,$value,self::$getfilter);}
+		foreach($_POST as $key=>$value){self::_checkSafe($key,$value,self::$postfilter);}
+		foreach($_COOKIE as $key=>$value){self::_checkSafe($key,$value,self::$cookiefilter);}
 	}
 	static protected function _checkSafe($key, $value, $filter){
 		if(is_array($value))$value = implode($value);
