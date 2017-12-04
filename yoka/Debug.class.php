@@ -588,8 +588,8 @@ class Debug
 		if(self::$open === false)return;
 		else self::$open == false; //防止再次输出
 		
-		//页面调试开启方法： 1，设置$debug_page； 2，传入参数(仅限测试)； 3，通过插件修改头信息
-		if(self::$debug_page || ($_REQUEST['debug'] == 'page' && defined('IS_TEST') && IS_TEST) || $_SERVER['HTTP_X_YEPF'] == 'PageBar'){
+		//页面调试开启方法： 1，设置$debug_page； 2，传入参数(仅限测试)； 3，通过插件修改头信息(Ajax除外)
+		if(self::$debug_page || ($_REQUEST['debug'] == 'page' && defined('IS_TEST') && IS_TEST) || ($_SERVER['HTTP_X_YEPF'] == 'PageBar') && !preg_match('/json|javascript/i', $_SERVER['HTTP_ACCEPT'])){
 			//页面方式调试
 			if(class_exists('\DebugBar\DebugBar')){
 				$debugbar = new \yoka\DebugBar();

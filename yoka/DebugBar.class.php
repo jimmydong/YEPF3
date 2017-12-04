@@ -7,7 +7,7 @@ namespace yoka;
  * 前置条件：
  * 		1, composer.json 增加： "maximebf/debugbar": "1.*"
  * 		2, 将DebugBar所需资源文件复制到HTTP目录
- * 		3, 页头加载：
+ * 		3, 页头加载(使用Debug时，由Debug加载)：
 			<link rel="stylesheet" type="text/css" href="/Resources/vendor/font-awesome/css/font-awesome.min.css">
 			<link rel="stylesheet" type="text/css" href="/Resources/vendor/highlightjs/styles/github.css">
 			<link rel="stylesheet" type="text/css" href="/Resources/debugbar.css">
