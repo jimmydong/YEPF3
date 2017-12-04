@@ -150,7 +150,7 @@ class Debug
 	 */
 	static $debug_level;
 	/**
-	 * 页面方式显示Debug
+	 * 页面方式显示DebugBar
 	 */
 	static $debug_page = false;
 	/**
@@ -586,10 +586,11 @@ class Debug
 		if(self::$open === false)return;
 		else self::$open == false; //防止再次输出
 		
-		if(self::$debug_page || $_REQUEST['debug'] == 'page'){
+		//页面调试开启方法： 1，设置$debug_page； 2，传入参数(仅限测试)； 3，通过插件修改头信息
+		if(self::$debug_page || ($_REQUEST['debug'] == 'page' && defined('IS_TEST') && IS_TEST) || $_SERVER['HTTP_X_YEPF'] == 'PageBar'){
 			//页面方式调试
 			if(class_exists('\DebugBar\DebugBar')){
-				$debugbar = new \yoka\BarDebug();
+				$debugbar = new \yoka\DebugBar();
 				$debugbarRenderer = $debugbar->getJavascriptRenderer("/Resources");
 				for($i=1;$i<count(self::$log_table);$i++){
 					$t = self::$log_table[$i];

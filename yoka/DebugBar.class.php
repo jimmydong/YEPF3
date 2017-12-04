@@ -6,7 +6,7 @@ namespace yoka;
  * 
  * 前置条件：
  * 		1, composer.json 增加： "maximebf/debugbar": "1.*"
- * 		2, 将BarDebug.tar.gz解压至HTTP目录
+ * 		2, 将DebugBar所需资源文件复制到HTTP目录
  * 		3, 页头加载：
 			<link rel="stylesheet" type="text/css" href="/Resources/vendor/font-awesome/css/font-awesome.min.css">
 			<link rel="stylesheet" type="text/css" href="/Resources/vendor/highlightjs/styles/github.css">
@@ -23,12 +23,12 @@ namespace yoka;
  * 使用方法： 
  * 		A，建议方案： 结合YEPF Debug（参见Debug相关注释）
  * 		B，手工方式： 
-	    	$debugbar = new \BarDebug();
+	    	$debugbar = new \DebugBar();
 	    	$debugbarRenderer = $debugbar->getJavascriptRenderer("/Resources");
 	    	$debugbar->getCollector('Costom Log')->add('this is title', ['this','is','content']);
 	    	echo $debugbarRenderer->render();
  */
-class BarDebug extends \DebugBar\DebugBar
+class DebugBar extends \DebugBar\DebugBar
 {
 	public function __construct()
 	{

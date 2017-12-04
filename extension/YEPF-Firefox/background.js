@@ -3,7 +3,7 @@
 var storage = browser.storage.local;
 var USE_FIREPHP = false;
 
-//获取调试数据
+//鑾峰彇璋冭瘯鏁版嵁
 storage.get('active', function(FirePHP) {
 	if(FirePHP.active == true) {
 		browser.browserAction.setIcon({
