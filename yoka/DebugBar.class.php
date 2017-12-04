@@ -112,7 +112,7 @@ class DbCollector extends \DebugBar\DataCollector\DataCollector implements \Debu
 		if(count($this->data)){
 			return array(
 					"{$name}" => array(
-							"icon" => "gear",
+							"icon" => "fa-truck",
 							"widget" => $widget,
 							"map" => "{$name}.table",
 							"default" => "{}"
@@ -157,7 +157,7 @@ class CacheCollector extends \DebugBar\DataCollector\DataCollector implements \D
 		if(count($this->data)){
 			return array(
 					"{$name}" => array(
-							"icon" => "gear",
+							"icon" => "fa-rocket",
 							"widget" => $widget,
 							"map" => "{$name}.table",
 							"default" => "{}"
