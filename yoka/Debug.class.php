@@ -494,6 +494,8 @@ class Debug
 	public static function _firephp(){
 		if(preg_match('/FirePHP/i',$_SERVER['HTTP_USER_AGENT'])){
 			return 'FirePHP';
+		}if(preg_match('/PageBar/i',$_SERVER['HTTP_USER_AGENT'])){
+			return 'PageBar';
 		}elseif($_SERVER['HTTP_X_YEPF'] != ''){
 			if(preg_match('Chrome/i', $_SERVER['HTTP_USER_AGENT']) || preg_match('/Chrome/i', $_SERVER['HTTP_X_YEPF'])){
 				return 'chrome';
