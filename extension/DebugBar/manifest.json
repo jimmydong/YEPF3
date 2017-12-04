@@ -1,0 +1,24 @@
+{
+  "name": "YEPF Debug For Firefox",
+  "description": "YEPF Debug extension for Firefox(@jimmydong)",
+  "version": "0.12",
+  "permissions": ["storage", "tabs", "webNavigation", "webRequest", "webRequestBlocking", "http://*/*" , "https://*/*"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "browser_action": {
+    "default_icon": "icon/!!.png",
+    "default_title": "YEPF Debug",
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "128": "icon/128.png",
+    "24": "icon/24.png",
+    "32": "icon/32.png",
+    "48": "icon/48.png",
+    "64": "icon/64.png"
+  },
+  "manifest_version": 2,
+  "web_accessible_resources": ["icon/48.png"]
+}
