@@ -161,12 +161,12 @@ class CacheCollector extends \DebugBar\DataCollector\DataCollector implements \D
 							"widget" => $widget,
 							"map" => "{$name}.table",
 							"default" => "{}"
-									),
-									"{$name}:badge" => array(
-											"map" => "{$name}.counter",
-											"default" => 0
-									)
-									);
+					),
+					"{$name}:badge" => array(
+							"map" => "{$name}.counter",
+							"default" => 0
+					)
+			);
 		}else{
 			return array();
 		}
