@@ -110,7 +110,7 @@ class Cache implements \yoka\CacheInterface
      **/
     public static function getInstance($item = null)
     {
-    	if($item === null) $item = self::$default_item;
+    	if($item === null || $item == 'default') $item = self::$default_item;
     	global $CACHE;
     	$obj = Cache::$instance;
     	if(!isset($obj[$item]))
