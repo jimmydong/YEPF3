@@ -299,7 +299,7 @@ class BaseModel{
 	/**
 	 * 替换增（不推荐使用。风险：如果字段不全，会导致数据丢失）
 	 */
-	public function replace($arr, $addslashes, $return_statement = false){
+	public function replace($arr, $addslashes = false, $return_statement = false){
 		//当前连接非主库，禁止写入
 		// modify by bandry 当前链接是否是主库的判断修改
 		if(!$this->ismaster){
