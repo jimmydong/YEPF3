@@ -172,7 +172,11 @@ class Queue
     	if(empty($key)) return false;
     	if($this->is_ssdb)$re = $this->object->qpop_front($key);
     	else $re = $this->object->lPop($key);
-    	$re = json_decode($re, true);
+    	if($t = json_decode($re, true)){
+    		$re = $t;
+    	}else{
+    		if($re) Debug::log('queue:'.$queue_name, '警告: Queue内容不是Json格式，按string兼容输出');
+    	}
     	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'getQueue', $re);
     	return $re;
     }
@@ -204,7 +208,12 @@ class Queue
     	if($this->is_ssdb) $re = $this->object->qslice($key, $start, -1);
     	else $re = $this->object->lRange($key, $start, -1);
     	foreach($re as $k=>$v){
-    		$re[$k] = json_decode($v, true); 
+    		if($t = json_decode($v, true)){
+    			$re[$k] = $t;
+    		}else{
+    			if($v) Debug::log('queue:'.$queue_name, '警告: Queue内容不是Json格式，按string兼容输出');
+    			$re[$k] = $v;
+    		}
     	}
     	$re = array_reverse($re);
     	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'getsQueueNew', $re);
@@ -220,7 +229,12 @@ class Queue
     	if($this->is_ssdb) $re = $this->object->qslice($key, 0, $n-1);
     	else $re = $this->object->lRange($key, 0, $n-1);
     	foreach($re as $k=>$v){
-    		$re[$k] = json_decode($v, true); 
+    	    if($t = json_decode($v, true)){
+    			$re[$k] = $t;
+    		}else{
+    			if($v) Debug::log('queue:'.$queue_name, '警告: Queue内容不是Json格式，按string兼容输出');
+    			$re[$k] = $v;
+    		}
     	}
     	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'getsQueueOld', $re);
     	return $re;
@@ -235,7 +249,12 @@ class Queue
     	if($this->is_ssdb) $re = $this->object->qslice($key, 0, -1);
     	else $re = $this->object->lRange($key, 0, -1);
     	foreach($re as $k=>$v){
-    		$re[$k] = json_decode($v, true);
+    	    if($t = json_decode($v, true)){
+    			$re[$k] = $t;
+    		}else{
+    			if($v) Debug::log('queue:'.$queue_name, '警告: Queue内容不是Json格式，按string兼容输出');
+    			$re[$k] = $v;
+    		}
     	}
     	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'getsQueueAll', $re);
     	return $re;
