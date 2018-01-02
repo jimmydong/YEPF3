@@ -17,7 +17,7 @@
  * 通过global.inc.php加载。或手工加载：
 
 	//打开 FireBug 支持 （注意：仅FirePHP标志存在的情况下）
-	if(preg_match('/FirePHP/',$_SERVER['HTTP_USER_AGENT'])){
+	if(\yoka\Debug::_firephp()){
 		//开启ob函数
 		ob_start();
 		//Debug开关
@@ -526,6 +526,8 @@ class Debug
 			$instance = FirePHP::getInstance(true);
 			$args = func_get_args();
 			return call_user_func_array(array($instance,'fb'),$args);
+		}elseif(self::$firephp == 'PageBar'){
+			//nothing
 		}else{
 			//FireDebug停止维护，启用ChromeLogger模式
 			$title = $array[0];
