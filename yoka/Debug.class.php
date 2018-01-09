@@ -358,7 +358,7 @@ class Debug
 		 	}catch(\Exception $e){
 		 		//do nothing
 		 		$filename = "debug_db_" . date("Ymd") . ".log";
-		 		Log::customLog($filename, "[Debug Error] write to mysql_log fail. " . $sql);
+		 		Log::customLog($filename, "[Debug Error] write to mysql_log fail. " . json_encode($values, JSON_UNESCAPED_UNICODE));
 		 	}
 		}
 	}
@@ -935,7 +935,7 @@ class Debug
 				}
 			}catch(\Exception $e){
 				$filename = "debug_db_" . date("Ymd") . ".log";
-				Log::customLog($filename, "[Debug Error] write to mysql_log fail. " . $sql);
+				Log::customLog($filename, "[Debug Error] write to mysql_log fail. " . json_encode($values, JSON_UNESCAPED_UNICODE));
 			}
 		}
 	}
