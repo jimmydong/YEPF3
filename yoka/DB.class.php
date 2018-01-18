@@ -306,7 +306,19 @@ class DB
 		$begin_microtime = Debug::getTime();
 		try 
 		{
-			if($this->pdo)$this->statement = $this->db->query($sql);
+			if($this->pdo){
+				if(!$this->statement = $this->db->query($sql)){
+					if($this->db->errorInfo()[1] == 2013){
+						//超时连接丢失，重新连接尝试
+						$this->reconnect();
+						$this->statement = $this->db->query($sql);
+					}
+				}
+				if(! $this->statement){
+					$this->err($sql);
+					return false;
+				}
+			}
 			else $status = $this->db->query($sql);
 		}
 		catch (Exception $e)
@@ -341,8 +353,12 @@ class DB
 		$begin_microtime = Debug::getTime();
 		try 
 		{
-			if($this->pdo)$info = $this->statement->fetch(PDO::FETCH_ASSOC);
-			else $info = $this->db->fetch($query);
+			if($this->pdo){
+				$info = $this->statement->fetch(PDO::FETCH_ASSOC);
+				if($info === false && $this->db->errorInfo()[1] == 2013){
+					throw new Exception('Mysql goneaway : timeout');
+				}
+			}else $info = $this->db->fetch($query);
 		}
 		catch (Exception $e)
 		{
@@ -374,7 +390,13 @@ class DB
 		{
 			if($this->pdo){
 				if(!$this->statement = $this->db->query($sql)){
-					\yoka\Debug::log('errono', $this->db->errorCode());
+					if($this->db->errorInfo()[1] == 2013){
+						//超时连接丢失，重新连接尝试
+						$this->reconnect();
+						$this->statement = $this->db->query($sql);
+					}
+				}
+				if(!$this->statement){
 					$this->err($sql);
 					return false;
 				}
@@ -449,6 +471,13 @@ class DB
 		{
 			if($this->pdo){
 				if(! $this->statement = $this->db->query($sql)){
+					if($this->db->errorInfo()[1] == 2013){
+						//超时连接丢失，重新连接尝试
+						$this->reconnect();
+						$this->statement = $this->db->query($sql);
+					}
+				}
+				if(! $this->statement){
 					$this->err($sql);
 					return false;
 				}
@@ -736,6 +765,13 @@ class DB
 			$sql = str_replace('%_creteria_%', $where, $sql);
 		}
 		if(! $this->statement = $this->db->query($sql)){
+			if($this->db->errorInfo()[1] == 2013){
+				//超时连接丢失，重新连接尝试
+				$this->reconnect();
+				$this->statement = $this->db->query($sql);
+			}
+		}
+		if(! $this->statement){
 			$this->err($sql);
 			return false;
 		}
