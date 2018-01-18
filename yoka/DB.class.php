@@ -319,7 +319,10 @@ class DB
 			if($return_statement) $re = $this->statement;
 			else{
 				if($this->statement && $this->statement->errorCode() === '00000')$re = true;
-				else $re = false;
+				else {
+					\yoka\Debug::log('DB query errorCode', $this->statement->errorCode());
+					$re = false;
+				}
 				//不需要保持statement，释放
 				if($this->statement)$this->statement->closeCursor();
 			}
