@@ -27,10 +27,11 @@ class Queue
 	 * 实例化数组
 	 */
 	static $instance = array();
+	static $is_ssdb_default = true;	//默认SSDB
+	static $default = 'default';		//默认库
 	/**
 	 * 是否SSDB
 	 */
-	static $is_ssdb_default = true;
 	protected $is_ssdb;
 	/**
 	 * 服务器列表
@@ -54,9 +55,14 @@ class Queue
 	 * @access protected
 	 *
 	 */
-    protected function __construct($item = 'default', $is_ssdb = null)
+    protected function __construct($item = null, $is_ssdb = null)
     {
     	global $CACHE;
+    	
+    	if($item == null){
+    		$item = self::$default;	//使用默认
+    	}
+    	
    		$this->prefix = $item;
    		if(isset($CACHE['queue'][$item])){
 			$config = $CACHE['queue'][$item];
@@ -95,6 +101,14 @@ class Queue
     	}
     }
 
+    /**
+     * 设置默认
+     */
+    static public function setDefault($default = 'default'){
+    	self::$default = $default;
+    	return true;
+    }
+    
 	/**
 	 * SSDB 开启或关闭，默认关闭
 	 * @param $flag
