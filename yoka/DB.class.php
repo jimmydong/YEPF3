@@ -176,6 +176,11 @@ class DB
 		try 
 		{
 			$affectedRows = $this->db->exec($sql);
+			if($affectedRows === false && $this->db->errorInfo()[1] == 2013){
+				//超时连接丢失，重新连接尝试
+				$this->reconnect();
+				$affectedRows = $this->db->exec($sql);
+			}
 		}
 		catch (Exception $e)
 		{
