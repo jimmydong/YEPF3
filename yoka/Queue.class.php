@@ -89,8 +89,12 @@ class Queue
      * @param string $item
      * @return self
      **/
-    public static function getInstance($item = 'default', $is_ssdb = null)
+    public static function getInstance($item = null, $is_ssdb = null)
     {
+    	if($item == null){
+    		$item = self::$default;	//使用默认
+    	}
+    	
     	$class = get_called_class();
     	if($class::$instance[$item]) {
     		return self::$instance[$item.'#'.$is_ssdb];
