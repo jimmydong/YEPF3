@@ -374,7 +374,7 @@ class DB
 		{
 			if($this->pdo){
 				if(!$this->statement = $this->db->query($sql)){
-					\yoka\Debug::log('errono', $this->statement->errorCode());
+					\yoka\Debug::log('errono', $this->db->errorCode());
 					$this->err($sql);
 					return false;
 				}
