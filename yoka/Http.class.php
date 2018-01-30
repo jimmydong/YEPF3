@@ -588,7 +588,16 @@ class Http{
 		}
 
 	}
-
+	/**
+	 * Curl Post 别名（按form提交）
+	 * @param string $url
+	 * @param string|array $data 字符串不做处理
+	 * @param int $timeout_microsecond
+	 * @return boolean|string
+	 */
+	public static function curlForm($url, $data=array(), $timeout_microsecond = 3000, $header = null, $cookie = null, $proxy = null){
+		return self::curlPost($url, $data, $timeout_microsecond, $header, $cookie, $proxy, true);
+	}
 	/**
 	 * 使用Socket模拟HTTP请求
 	 * @param string $method GET/POST
