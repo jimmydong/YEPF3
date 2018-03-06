@@ -55,13 +55,13 @@ class Request implements \Iterator{
 	}
 
 	public function get($index = '', $default='') {
-        if($index === '' || $default === '')
+        if($index === '' && $default === '')
             return $_GET;
 		return isset($_GET[$index])? $_GET[$index]:$default;
 	}
 
 	public function post($index, $default='') {
-		if($index == '' || $default == '')
+		if($index === '' && $default === '')
 			return $_POST;
 		return isset($_POST[$index])? $_POST[$index]:$default;
 	}
