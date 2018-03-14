@@ -90,7 +90,7 @@ class BaseModel{
 	 * 5，返回之前设置。
 	 * [使用建议]使用前保存设置，使用后恢复原有设置
 	 */
-	public static function setSlave($flag = true){
+	static public function setSlave($flag = true){
 		$old_setting = \YsConfig::$SLAVE_DB_FIRST;
 		\YsConfig::$SLAVE_DB_FIRST = $flag;
 		return $old_setting;
@@ -141,7 +141,7 @@ class BaseModel{
 	/**
 	 * 设置缓冲实例名称
 	 */
-	public function setCacheName($name = 'default'){
+	static public function setCacheName($name = 'default'){
 		self::$cacheName = $name;
 	}
 	
@@ -151,7 +151,7 @@ class BaseModel{
 	 * @param bool $refresh 强制刷新
 	 * @return self
 	 */
-	public static function getInstance($id, $refresh = false){
+	static public function getInstance($id, $refresh = false){
 		$table = static::$table;
 		$pkey = isset(static::$pkey)?static::$pkey:'id';
 		$class = get_called_class();
@@ -188,7 +188,7 @@ class BaseModel{
 	 * @param int $id
 	 * @return self
 	 */
-	public static function getById($id, $use_cache=false){
+	static public function getById($id, $use_cache=false){
 		$table = static::$table;
 
 		$pkey = isset(static::$pkey)?static::$pkey:'id';
@@ -212,7 +212,7 @@ class BaseModel{
 	 * @param  int $id
 	 * @return mixed
 	 */
-	public static function getEntityById($id, $refresh=false) {
+	static public function getEntityById($id, $refresh=false) {
 		$obj = self::getInstance($id, $refresh);
 		if(!$obj)return false;
 		else return $obj->getEntity();
@@ -787,7 +787,7 @@ class BaseModel{
 	 * @param mix $sort 默认正序。倒序： -1,DESC,SORT_DESC
 	 * @param string $type SORT_REGULAR, SORT_NUMBER, SORT_STRING
 	 */
-	public static function sort($data, $col='id', $sort='', $type=''){
+	static public function sort($data, $col='id', $sort='', $type=''){
 		if($sort == -1 || strtolower($sort) == 'desc' || $srot == SORT_DESC || strtolower($sort) == 'sort_desc')$sort = SORT_DESC;
 		else $sort = SORT_ASC;
 		foreach($data as $key=>$val){
@@ -861,7 +861,7 @@ class BaseModel{
 	 * 根据配置，进行信息精简，去掉已设置的不输出的信息
 	 * @param array $info 对应对象的数据
 	 */
-	public static function simpleinfo($info) {
+	static public function simpleinfo($info) {
 		if (isset(static::$simple_cols)) {
 			//\yoka\Debug::log('static::$simple_cols', static::$simple_cols);
 			foreach (static::$simple_cols as $col) {
@@ -875,7 +875,7 @@ class BaseModel{
 	 * @param unknown $result
 	 * @return multitype:multitype:unknown
 	 */
-	public static function getListFromResult($result) {
+	static public function getListFromResult($result) {
 		$list = array ();
 		foreach ( $result as $row ) {
 			$data = array ();
@@ -910,7 +910,7 @@ class BaseModel{
 	 * @param array $info
 	 * @param array $slim 保留的项
 	 */
-	public static function slim($info, $slim = null){
+	static public function slim($info, $slim = null){
 		$class = get_called_class();
 		if($slim == null){
 			if(isset($class::$default_slim))$slim = $class::$default_slim;
@@ -946,7 +946,7 @@ class BaseModel{
 	 'coupon_str'		=> ['title'=>'优惠券提示','type'=>1]
 	 );
 	 */
-	public static function _slim($info, $filter=null, $des = false){
+	static public function _slim($info, $filter=null, $des = false){
 		$class = get_called_class();
 		if(isset($class::$define_slim))$define_slim = $class::$define_slim;
 		else return $info;
