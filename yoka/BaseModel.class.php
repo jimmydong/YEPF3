@@ -490,15 +490,16 @@ class BaseModel{
 	 * 对字段进行增量操作
 	 * @param string $key
 	 * @param number $step
+	 * @param bool $return_bool 返回true/false。便于利用返回值检查是否执行正确
 	 */
-	public function increase($col, $step = 1){
+	public function increase($col, $step = 1, $return_bool = false){
 		$table = static::$table;
 		// $pkey = static::$pkey?:'id';
 		$pkey = isset(static::$pkey)?static::$pkey:'id';
 		$class = get_called_class();
 		if(!$this->entity[$pkey])return false;
 		$step = floatval($step);
-		$this->db->query("UPDATE `{$table}` SET `{$col}` = `{$col}` + {$step} WHERE {$pkey}=" . $this->entity[$pkey]);
+		$re = $this->db->query("UPDATE `{$table}` SET `{$col}` = `{$col}` + {$step} WHERE {$pkey}=" . $this->entity[$pkey]);
 		$this->entity = $this->db->fetchOne("SELECT * FROM `{$table}` WHERE {$pkey}=" . $this->entity[$pkey]);
 		
 		$cache = \yoka\Cache::getInstance(self::$cacheName);
@@ -507,7 +508,11 @@ class BaseModel{
 		unset(self::$_BaseModel_Buffer[$key]);
 		$this->_refresh($class, $this->entity[$pkey]); //调用子类中刷新方法
 		
-		return $this->entity[$col];
+		if($return_bool){
+			return $re;
+		}else{
+			return $this->entity[$col];
+		}
 	}
 	
 	/**
