@@ -821,7 +821,7 @@ class BaseModel{
 	 *
 	 * 注意： 传入$return_statement=true，其结果foreach迭代出的结果数组，不是对象本身
 	 * $admin = new User();
-	 * foreach($db->query( array('username'=>array('like'=>'test')) , true) as $row){ ... }
+	 * foreach($admin->query( ['username'=>['like'=>'test%']] , true) as $row){ ... }
 	 */
 	public function query($mix, $return_statement = false, $heavy = null){
 		$table = static::$table;
