@@ -700,6 +700,11 @@ class DB
 	 * @desc $creteria = array('del_flag'=>1)  //单一条件
 	 * @desc $creteria = array('del_flag'=>1, 'age'=>array('$lt',20)) //多条件默认用and连接
 	 * @desc $creteria = array('del_flag'=>1, '$or'=>array('begin_time'=>array('$lt'=>time()),'end_time'=>array('$gt'=>time())));
+	 * @desc $creteria = array('del_flag'=>1, 'state'=>['in'=>[3,5]]);
+	 * 
+	 * [已知缺陷] 
+	 * 1，条件中数组中主键不能重复（PHP限制）。例如： 'or'=>['state'=>3, 'state'=>5] PHP解析为 'or'=>['state'=>5]
+	 * 
 	 * @param array $creteria
 	 * @param boolean $trim 自动去除空白
 	 * @param boolean $strict 是否严格检查（非严格检查时，可省略$符）
@@ -741,6 +746,9 @@ class DB
 							$re[] = self::_buildCol($k) . " <= '$v2' "; 
 		                }elseif(strtolower($k2) === '$ne' || ($strict == false && strtolower($k2) === 'ne')){
 							$re[] = self::_buildCol($k) . " <> '$v2' "; 
+		                }elseif(strtolower($k2) === '$in' || ($strict == false && strtolower($k2) === 'in')){
+							foreach($v2 as $t=>$tt) $v2[$t] = "'".addslashes($tt)."'";
+		                	$re[] = self::_buildCol($k) . " in (" . implode(',', $v2) . ")"; 
 		                }else{
 		                	$re[] = self::_buildQuery($v, $trim, $strict, 'AND', $addslashes);
 		                }
