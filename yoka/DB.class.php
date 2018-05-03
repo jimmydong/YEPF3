@@ -206,7 +206,7 @@ class DB
 			$k = trim($k);
 			if($v === null) $s .= "`{$k}` = NULL,";
 			elseif(is_array($v)){
-				//自动转json， 并做 addslashes
+				//自动转json 强制addslashes防止出错
 				$s .= '`'.$k . "` = '" . addslashes(json_encode($v, JSON_UNESCAPED_UNICODE)) . "',";
 			}
 			elseif($addslashes) $s .= '`'.$k . "` = '" . addslashes($v) . "',";
