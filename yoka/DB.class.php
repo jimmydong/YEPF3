@@ -729,7 +729,7 @@ class DB
 					$re[] = ' (' . self::_buildQuery($v, $trim, $strict, 'OR', $addslashes) . ') '; 
                 }else{
                 	reset($v);
-                	while(current($v) !== null){
+                	while(1){
 		                //以下为单一条件
 		                $k2=key($v);$v2=$v[$k2];
 		                if($debug)Debug::log($k2,$v2);
@@ -752,7 +752,7 @@ class DB
 		                }else{
 		                	$re[] = self::_buildQuery($v, $trim, $strict, 'AND', $addslashes);
 		                }
-		                next($v);
+		                if(! next($v)) break;
                 	}
                 }
             }else{
