@@ -196,22 +196,13 @@ class SortList extends Queue
     	return $re;
     }
     /**
-     * 设置一个键的值
+     * 设置一个键的值(sortAdd同名函数)
      * @param unknown $set
      * @param unknown $name
-     * @param number $val
+     * @param number $value
      */
-    public function sortAdd($set, $name, $val=0){
-    	if(!$set){
-    		\yoka\Debug::log('Sort Error','without set name!');
-    		return false;
-    	}
-    	$begin_microtime = Debug::getTime();
-    	$key = $this->_getkey($set);
-    	if($this->is_ssdb)$re = $this->object->zset($key, $name, $val);
-    	else $re = $this->object->zAdd($key, $val, $name);
-    	Debug::cache($this->serverlist, $key . ':' . $name, Debug::getTime() - $begin_microtime, 'sortAdd', $re);
-    	return $re;
+    public function sortSet($set, $name, $value=0){
+    	return $this->sortAdd($set, $name, $value);
     }
     /**
      * 增加一个键的值
