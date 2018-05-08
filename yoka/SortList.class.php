@@ -201,7 +201,7 @@ class SortList extends Queue
      * @param unknown $name
      * @param number $val
      */
-    public function sortInc($set, $name, $val=0){
+    public function sortAdd($set, $name, $val=0){
     	if(!$set){
     		\yoka\Debug::log('Sort Error','without set name!');
     		return false;
