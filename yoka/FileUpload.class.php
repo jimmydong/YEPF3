@@ -445,4 +445,28 @@ class FileUpload{
 		 */
 	}
 
+	public static function createByContent($content, $ext = null){
+		self::init();
+	
+		if(! $ext) $ext = 'jpg';	// 默认设置为.jpg文件扩展
+		$ext = strtolower($ext);
+		if(! in_array($ext, self::$file_ext_allowed)){
+			throw(new \Exception('禁止使用的扩展名:' . $ext));
+			return false;
+		}
+		
+		$base_filename = md5($ext . time() . rand(0,999));
+		$file_path_name = date('Ymd') . '/' . $base_filename . '.' . $ext;
+		if(!self::_mkdirs(self::$file_path_upload . '/' . $file_path_name)){
+			throw(new \Exception('创建子目录失败:' . self::$file_path_upload . '/' . $file_path_name));
+		}
+		Debug::flog('flog:upload', self::$file_path_upload . '/' . $file_path_name);
+		file_put_contents(self::$file_path_upload . '/' . $file_path_name, $content);
+		if(!file_exists(self::$file_path_upload . '/' . $file_path_name)){
+			throw(new \Exception('文件处理出错，是不是填错啦？'));
+			return false;
+		}
+		\yoka\Debug::log('fileupload ok', self::$file_path_upload . '/' . $file_path_name);
+		return $file_path_name;
+	}
 }
