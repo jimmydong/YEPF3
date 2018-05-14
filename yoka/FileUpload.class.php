@@ -448,9 +448,11 @@ class FileUpload{
 	public static function createByContent($content, $ext = null){
 		self::init();
 	
-		if(! $ext) $ext = 'jpg';	// 默认设置为.jpg文件扩展
 		$ext = strtolower($ext);
-		if(! in_array($ext, self::$file_ext_allowed)){
+		if(substr($ext,0,1) == '.')$ext = substr($ext,1); //去除 .
+		if(! $ext) $ext = 'jpg';	// 默认设置为.jpg文件扩展
+		
+		if(! self::$file_ext_allowed[$ext]){
 			throw(new \Exception('禁止使用的扩展名:' . $ext));
 			return false;
 		}
