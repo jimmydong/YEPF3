@@ -576,7 +576,9 @@ class Debug
 			{
 				foreach (self::$db_table as $v)
 				{
-					if(preg_match('/insert|update|delete/i',$v[3])) $string .= "|----  ".$v[1]."  ".$v[2]."  ".$v[3]."  ".$v[4]."  ----|\n";
+					if(is_array($v[4])) $result = substr(var_export($v[4], true), 0, 32); //限制长度
+					else $result = $v[4];
+					if(preg_match('/insert|update|delete/i',$v[3])) $string .= "|----  ".$v[1]."  ".$v[2]."  ".$v[3]."  ". $result ."  ----|\n";
 				}
 				if($string){
 					$string = 	"Request: " . $_SERVER['REQUEST_URI'] . "\n" . $string;
@@ -875,44 +877,44 @@ class Debug
 		}
 
 		/*---------记录调试信息至日志文件中------------*/
-		if(self::$debug_log)
-		if(false !== self::$open &&(count(self::$log_table) > 1 || count(self::$time_table) > 1))
-		{
-			if(isset($_SERVER['TERM']))
+		if(self::$debug_log){
+			if(false !== self::$open &&(count(self::$log_table) > 1 || count(self::$time_table) > 1))
 			{
-				$string = "PWD：" . $_SERVER['PWD'] . "\n";
-				$string .= "SCRIPT_NAME：" . $_SERVER['SCRIPT_NAME'] . "\n";
-				$string .= "ARGV：" . var_export($_SERVER['argv'], true) . "\n";
-			}else
-			{
-				$string = "HTTP_HOST：" . $_SERVER['HTTP_HOST'] . "\n";
-				$string .= "SCRIPT_NAME：" . $_SERVER['SCRIPT_NAME'] . "\n";
-				$string .= "QUERY_STRING：" . $_SERVER['QUERY_STRING'] . "\n";
-			}
-			$string .= 'This Page Spend Times：' . self::getTime() . "\n";
-			array_shift(self::$log_table);
-			array_shift(self::$time_table);
-			if(!empty(self::$time_table))
-			{
-				$string .= "\n";
-				foreach (self::$time_table as $v)
+				if(isset($_SERVER['TERM']))
 				{
-					$string .= "|--  ".$v[0]."  ".$v[1]."  ".$v[2]."  --|\n";
-				}
-			}
-			if(!empty(self::$log_table) && self::$debug_level != YEPF_DEBUG_NONE && self::$debug_level != YEPF_DEBUG_WARNING && self::$debug_level != YEPF_DEBUG_STAT)
-			{
-				$string .= "\n";
-				foreach (self::$log_table as $v)
+					$string = "PWD：" . $_SERVER['PWD'] . "\n";
+					$string .= "SCRIPT_NAME：" . $_SERVER['SCRIPT_NAME'] . "\n";
+					$string .= "ARGV：" . var_export($_SERVER['argv'], true) . "\n";
+				}else
 				{
-					$string .= "|----  ".$v[0]."  ".$v[2]."  ----|\n";
-					$string .= var_export($v[1], true) . "\n";
+					$string = "HTTP_HOST：" . $_SERVER['HTTP_HOST'] . "\n";
+					$string .= "SCRIPT_NAME：" . $_SERVER['SCRIPT_NAME'] . "\n";
+					$string .= "QUERY_STRING：" . $_SERVER['QUERY_STRING'] . "\n";
 				}
+				$string .= 'This Page Spend Times：' . self::getTime() . "\n";
+				array_shift(self::$log_table);
+				array_shift(self::$time_table);
+				if(!empty(self::$time_table))
+				{
+					$string .= "\n";
+					foreach (self::$time_table as $v)
+					{
+						$string .= "|--  ".$v[0]."  ".$v[1]."  ".$v[2]."  --|\n";
+					}
+				}
+				if(!empty(self::$log_table) && self::$debug_level != YEPF_DEBUG_NONE && self::$debug_level != YEPF_DEBUG_WARNING && self::$debug_level != YEPF_DEBUG_STAT)
+				{
+					$string .= "\n";
+					foreach (self::$log_table as $v)
+					{
+						$string .= "|----  ".$v[0]."  ".$v[2]."  ----|\n";
+						$string .= var_export($v[1], true) . "\n";
+					}
+				}
+				$filename = "debug_" . date("Ymd") . ".log";
+				Log::customLog($filename, $string);
 			}
-			$filename = "debug_" . date("Ymd") . ".log";
-			Log::customLog($filename, $string);
 		}
-		//file_put_contents('/tmp/debug.log', json_encode(self::$log_mysql) . "\n" , FILE_APPEND);
 		
 		/*---------记录调试信息至日志数据库中------------*/
 		if(is_array(self::$log_mysql)){
