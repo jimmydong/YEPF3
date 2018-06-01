@@ -32,21 +32,21 @@ class Queue
 	/**
 	 * 是否SSDB
 	 */
-	protected $is_ssdb;
+	public $is_ssdb;
 	/**
 	 * 服务器列表
 	 */
-	protected $serverlist = array(); 
+	public $serverlist = array(); 
 	/**
 	 * 缓存访问对象
 	 * @var object
 	 */
-	protected $object;
+	public $object;
 	/**
 	 * 前缀
 	 * @var unknown
 	 */ 
-	protected $prefix;
+	public $prefix;
     /**
 	 * @name __construct
 	 * @desc 构造函数
@@ -115,10 +115,13 @@ class Queue
     
 	/**
 	 * SSDB 开启或关闭，默认关闭
-	 * @param $flag
+	 * @param $flag 为空则返回当前设置
 	 */
-	public function is_ssdb($flag){
-		$this->is_ssdb = $flag;
+	public function is_ssdb($flag = null){
+		if($flag === null) return $this->is_ssdb;
+		
+		$this->is_ssdb = $flag ? true : false;
+		return true;
 	}
     /**
      * 禁止：清除数据功能
@@ -358,7 +361,8 @@ class Queue
     public function delete($key){
     	$begin_microtime = Debug::getTime();
     	$key = $this->_getkey($key);
-    	$re = $this->object->delete($key);
+    	if($this->is_ssdb) $re = $this->object->del($key);
+    	else $re = $this->object->delete($key);
     	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'delete', $re);
     	return $re;
     }
