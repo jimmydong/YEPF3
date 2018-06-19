@@ -275,20 +275,23 @@ class Cache implements \yoka\CacheInterface
 	 * 【key不存在或不为整数时，自动设置为$value】
 	 * @param string $key
 	 * @param int $value
+	 * @param bool $returnBool 成功时是否返回True（默认返回当前数值）
 	 * @return int
 	 */
-	public function increment($key, $value = 1)
+	public function increment($key, $value = 1, $returnBool = false)
 	{
 		$value = intval($value); //只允许以整数为步长
 		if(! $value) return false;
 		if(empty($key)) return false;
 		$key = $this->getKey($key);
 		$begin_microtime = Debug::getTime();
-        $re = $this->cache->increment($key, $value); //如果key不存在或不是整数，会返回false
+		if($value > 0) $re = $this->cache->increment($key, $value); //如果key不存在或不是整数，会返回false
+		else $re = $this->cache->decrement($key, abs($value)); //负数执行减操作。【注意】最低减至0
         if($re === false){
         	if( $this->cache->set($key, $value) ) $re = $value;
         	else $re = false;
         }
+        if($returnBool && $re !== false) $re = true;
 		Debug::cache($this->_getServer(), $key, Debug::getTime() - $begin_microtime, 'increment', $re);
         return $re;
 	}
