@@ -28,23 +28,23 @@ use Exception;
 class DB
 {
 	/* 是否使用PDO */
-	private $pdo;
+	public $pdo;
 	
 	/**
 	 * @desc 数据库访问对象
 	 * @var obj
 	 */
-	private $db;
+	public $db;
 	/**
 	 * @desc 数据库地址
 	 * @var string
 	 */
-	private $db_host;
+	public $db_host;
 	/**
 	 * @desc 数据库名称
 	 * @var string
 	 */
-	private $db_name;
+	public $db_name;
 	/**
 	 * @desc 实例化对象
 	 * @var array
@@ -53,7 +53,7 @@ class DB
 	/**
 	 * @desc 处理过程
 	 */
-	private $statement;
+	public $statement;
 	/**
 	 * @desc 记录到debug
 	 */
@@ -66,7 +66,7 @@ class DB
 	/**
 	 * @desc 保存连接参数
 	 */
-	private $connect_param;
+	public $connect_param;
 	static $timeout = 1;
 	
 	/**
@@ -78,7 +78,7 @@ class DB
 	 * @param string $database 数据库名称
 	 * @param string $dbtype 数据库类型
 	 */
-	private function __construct($host, $user, $password, $database, $dbtype, $charset, $pconnect)
+	public function __construct($host, $user, $password, $database, $dbtype, $charset, $pconnect)
 	{
 		if(class_exists('PDO'))$this->pdo = true;
 		else $this->pdo = false;
@@ -535,7 +535,7 @@ class DB
 	 * @desc 错误处理函数
 	 * @param string $sql
 	 */
-	private function halt(Exception $e, $sql)
+	public function halt(Exception $e, $sql)
 	{
 		if($e->getCode() > 0)
 		{
