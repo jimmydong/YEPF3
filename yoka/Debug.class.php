@@ -526,7 +526,14 @@ class Debug
 			$instance = FirePHP::getInstance(true);
 			$instance->fb_return = true;
 			$args = func_get_args();
-			return call_user_func_array(array($instance,'fb'),$args);
+			call_user_func_array(array($instance,'fb'),$args);
+			//清除数据
+			self::$cache_table = [];
+			self::$db_table = [];
+			self::$log_table = [];
+			self::$thrift_table = [];
+			self::$time_table = [];
+			return;
 		}
 		
 		//判断FirePHP是否开启 by jimmy.dong@gmail.com
