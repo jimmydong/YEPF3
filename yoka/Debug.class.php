@@ -178,10 +178,14 @@ class Debug
 	 * @name start
 	 * @desc 启动debug类
 	 * @param $debug_level 调试级别
+	 * @param $return 返回所有header为数组（需要手工维护header时，如：非fpm/wcgi环境）
 	 * @return null
 	 */
-	public static function start($debug_level = null)
+	public static function start($debug_level = null, $return = false)
 	{
+		if($return) self::$fb_return = $return;
+		
+		//初始化
 		self::$open = true;
 		self::$begin_time = microtime();
 		self::$time_table = [['Description', 'Time', 'Caller']];
@@ -189,7 +193,6 @@ class Debug
 		self::$cache_table = [];
 		self::$db_table = [];
 		self::$thrift_table = [];
-		
 		
 		if($debug_level){
 			self::$debug_level = $debug_level;
@@ -222,9 +225,12 @@ class Debug
 		if(self::$debug_level == self::YEPF_DEBUG_NONE)	error_reporting(0);
 		
 		$instance = FirePHP::getInstance(true);
-		$instance->registerErrorHandler(false);
-		$instance->registerExceptionHandler();
-		$instance->registerAssertionHandler(true, false);
+		if(!$return){
+			//返回模式暂不处理
+			$instance->registerErrorHandler(false);
+			$instance->registerExceptionHandler();
+			$instance->registerAssertionHandler(true, false);
+		}
 	}
 	
 	public static function stop(){
@@ -585,15 +591,12 @@ class Debug
 	 * @name show
 	 * @desc 显示调试信息
 	 * @todo 目前只实现了在FirePHP中显示结果.NON/WARNING/STAT状态不记录LOG日志
-	 * @param $return 返回所有header为数组（需要手工维护header时，如：非fpm/wcgi环境）
 	 * @return null
 	 * @access public
 	 */
-	public static function show($return=false)
+	public static function show()
 	{
 		global $YOKA, $TEMPLATE, $CFG;
-		
-		if($return) self::$fb_return = $return;
 
 		/*-----------【Debug::$open无关】 记录数据库改变情况到日志文件 ----------*/
 		if(self::$db_log){
