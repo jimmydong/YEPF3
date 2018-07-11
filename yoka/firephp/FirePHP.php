@@ -761,7 +761,7 @@ class FirePHP {
             return false;
         }
 
-        if ($this->headersSent($filename, $linenum)) {
+        if (!$this->fb_return && $this->headersSent($filename, $linenum)) {
             // If we are logging from within the exception handler we cannot throw another exception
             if ($this->inExceptionHandler) {
                 // Simply echo the error out to the page
