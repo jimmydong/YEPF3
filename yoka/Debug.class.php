@@ -177,37 +177,42 @@ class Debug
 	/**
 	 * @name start
 	 * @desc 启动debug类
+	 * @param $debug_level 调试级别
 	 * @return null
 	 */
-	public static function start()
+	public static function start($debug_level = null)
 	{
 		self::$open = true;
 		self::$begin_time = microtime();
 		self::$time_table = array(array('Description', 'Time', 'Caller'));
 		self::$log_table = array(array('Label', 'Results', 'Caller'));
 		
-		//检测传递参数
-		$req_level = '';
-		if( isset($_REQUEST['debug']) && strpos($_REQUEST['debug'], YEPF_DEBUG_PASS) !== false ){
-			switch($_REQUEST['debug'])
-			{
-				case self::YEPF_DEBUG_NONE:
-				case self::YEPF_DEBUG_WARNING:
-				case self::YEPF_DEBUG_STAT:
-				case self::YEPF_DEBUG_TRACE:
-				case self::YEPF_DEBUG_INFO:
-					$req_level = $_REQUEST['debug'];
-					break;
-				default:
-					$req_level = self::YEPF_DEBUG_NONE;
-					break;
-			}
-		}elseif( YEPF_IS_DEBUG === true )
-			$sys_level = self::YEPF_DEBUG_WARNING;
-		else 
-			$sys_level = YEPF_IS_DEBUG;
-		
-		self::$debug_level =$req_level ? $req_level : $sys_level; //传参优先
+		if($debug_level){
+			self::$debug_level = $debug_level;
+		}else{
+			//检测传递参数
+			$req_level = '';
+			if( isset($_REQUEST['debug']) && strpos($_REQUEST['debug'], YEPF_DEBUG_PASS) !== false ){
+				switch($_REQUEST['debug'])
+				{
+					case self::YEPF_DEBUG_NONE:
+					case self::YEPF_DEBUG_WARNING:
+					case self::YEPF_DEBUG_STAT:
+					case self::YEPF_DEBUG_TRACE:
+					case self::YEPF_DEBUG_INFO:
+						$req_level = $_REQUEST['debug'];
+						break;
+					default:
+						$req_level = self::YEPF_DEBUG_NONE;
+						break;
+				}
+			}elseif( YEPF_IS_DEBUG === true )
+				$sys_level = self::YEPF_DEBUG_WARNING;
+			else 
+				$sys_level = YEPF_IS_DEBUG;
+			
+			self::$debug_level =$req_level ? $req_level : $sys_level; //传参优先
+		}
 		
 		//设置为none,关闭所有输出信息
 		if(self::$debug_level == self::YEPF_DEBUG_NONE)	error_reporting(0);
