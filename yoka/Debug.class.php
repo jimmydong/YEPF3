@@ -154,6 +154,11 @@ class Debug
 	 */
 	static $debug_page = false;
 	/**
+	 * 返回Header
+	 */
+	static $fb_return = false;
+	
+	/**
 	 * @name __construct
 	 * @desc 构造函数
 	 */
@@ -516,6 +521,14 @@ class Debug
 	{
 		if(self::$open === false)return false;
 		
+		if(self::$fb_return){
+			//返回header。调用时需要用fb截取
+			$instance = FirePHP::getInstance(true);
+			$instance->fb_return = true;
+			$args = func_get_args();
+			return call_user_func_array(array($instance,'fb'),$args);
+		}
+		
 		//判断FirePHP是否开启 by jimmy.dong@gmail.com
 		if(self::$firephp == 'suspense'){
 			self::$firephp = self::_firephp();
@@ -562,12 +575,15 @@ class Debug
 	 * @name show
 	 * @desc 显示调试信息
 	 * @todo 目前只实现了在FirePHP中显示结果.NON/WARNING/STAT状态不记录LOG日志
+	 * @param $return 返回所有header为数组（需要手工维护header时，如：非fpm/wcgi环境）
 	 * @return null
 	 * @access public
 	 */
-	public static function show()
+	public static function show($return=false)
 	{
 		global $YOKA, $TEMPLATE, $CFG;
+		
+		if($return) self::$fb_return = $return;
 
 		/*-----------【Debug::$open无关】 记录数据库改变情况到日志文件 ----------*/
 		if(self::$db_log){

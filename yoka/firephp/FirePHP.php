@@ -249,6 +249,11 @@ class FirePHP {
     protected $logToInsightConsole = null;
 
     /**
+     * 返回header
+     */
+    public $fb_return = false;
+    
+    /**
      * When the object gets serialized only include specific object members.
      * 
      * @return array
@@ -729,7 +734,7 @@ class FirePHP {
         }
         return false;
     }
- 
+
     /**
      * Log varible to Firebug
      * 
@@ -1122,7 +1127,11 @@ class FirePHP {
      */
     protected function setHeader($Name, $Value)
     {
-        return header($Name.': '.$Value);
+    	if($this->fb_return){
+    		echo $Name.': '.$Value . "\n";
+    	}else{
+    		return header($Name.': '.$Value);
+    	}
     }
 
     /**
