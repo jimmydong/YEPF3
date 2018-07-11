@@ -849,7 +849,7 @@ class FirePHP {
             }
         }
 
-        if (!$this->detectClientExtension()) {
+        if (!$this->fb_return && !$this->detectClientExtension()) {
             return false;
         }
       
