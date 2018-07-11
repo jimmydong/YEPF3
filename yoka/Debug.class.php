@@ -184,8 +184,12 @@ class Debug
 	{
 		self::$open = true;
 		self::$begin_time = microtime();
-		self::$time_table = array(array('Description', 'Time', 'Caller'));
-		self::$log_table = array(array('Label', 'Results', 'Caller'));
+		self::$time_table = [['Description', 'Time', 'Caller']];
+		self::$log_table = [['Label', 'Results', 'Caller']];
+		self::$cache_table = [];
+		self::$db_table = [];
+		self::$thrift_table = [];
+		
 		
 		if($debug_level){
 			self::$debug_level = $debug_level;
@@ -532,12 +536,6 @@ class Debug
 			$instance->fb_return = true;
 			$args = func_get_args();
 			call_user_func_array(array($instance,'fb'),$args);
-			//清除数据
-			self::$cache_table = [];
-			self::$db_table = [];
-			self::$log_table = [];
-			self::$thrift_table = [];
-			self::$time_table = [];
 			return;
 		}
 		
