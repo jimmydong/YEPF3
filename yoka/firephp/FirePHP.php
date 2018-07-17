@@ -749,6 +749,8 @@ class FirePHP {
     		//throw $Object;		//by jimmy.dong@gmail.com 不抛出 Exception [注意：吞没了异常]
     		return;
     	}
+    	$this->messageIndex = 1;	//by jimmy.dong@gmail.com 非fpm/cgi模式
+    	
         if($this instanceof FirePHP_Insight && method_exists($this, '_logUpgradeClientMessage')) {
             if(!FirePHP_Insight::$upgradeClientMessageLogged) {    // avoid infinite recursion as _logUpgradeClientMessage() logs a message
                 $this->_logUpgradeClientMessage();
