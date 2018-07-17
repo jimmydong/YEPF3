@@ -1136,7 +1136,7 @@ class FirePHP {
     protected function setHeader($Name, $Value)
     {
     	if($this->fb_return){
-    		echo $Name.': '.$Value . "\n";
+    		if($Name && $Value) echo $Name.': '.$Value . "\n";
     	}else{
     		return header($Name.': '.$Value);
     	}
