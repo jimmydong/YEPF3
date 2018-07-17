@@ -736,6 +736,13 @@ class FirePHP {
     }
 
     /**
+     * by jimmy.dong@gmail.com 支援非fpm/cgi模式
+     */
+    public function reset(){
+    	$this->messageIndex = 1;	
+    }
+    
+    /**
      * Log varible to Firebug
      * 
      * @see http://www.firephp.org/Wiki/Reference/Fb
@@ -749,7 +756,6 @@ class FirePHP {
     		//throw $Object;		//by jimmy.dong@gmail.com 不抛出 Exception [注意：吞没了异常]
     		return;
     	}
-    	$this->messageIndex = 1;	//by jimmy.dong@gmail.com 非fpm/cgi模式
     	
         if($this instanceof FirePHP_Insight && method_exists($this, '_logUpgradeClientMessage')) {
             if(!FirePHP_Insight::$upgradeClientMessageLogged) {    // avoid infinite recursion as _logUpgradeClientMessage() logs a message

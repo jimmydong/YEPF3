@@ -225,8 +225,10 @@ class Debug
 		if(self::$debug_level == self::YEPF_DEBUG_NONE)	error_reporting(0);
 		
 		$instance = FirePHP::getInstance(true);
+		$instance->reset(); //支援非fpm/cgi模式
+		
 		if(!$return){
-			//返回模式暂不处理
+			//返回模式不处理异常
 			$instance->registerErrorHandler(false);
 			$instance->registerExceptionHandler();
 			$instance->registerAssertionHandler(true, false);
