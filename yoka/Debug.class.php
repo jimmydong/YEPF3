@@ -265,10 +265,6 @@ class Debug
 	 */
 	public static function getTime()
 	{
-		if(false === self::$open)
-		{
-			return ;
-		}
     	list($pusec, $psec) = explode(" ", self::$begin_time);
     	list($usec, $sec) = explode(" ", microtime());
 		return ((float)$usec - (float)$pusec) + ((float)$sec - (float)$psec);
