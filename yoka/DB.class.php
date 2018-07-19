@@ -551,7 +551,7 @@ class DB
 			$errstr .= "SQL Statement: " . $sql . "\n" ;
 			$this->logError($sql, $errstr);
 			
-			Log::sysLog('mysql', $errstr); //默认记录系统错误
+			Log::customLog('sql_error_'.date('Ym').'.log', $errstr); //默认记录系统错误
 			//if(Debug::$open)
 			//{
 			//	die(nl2br($errstr));
@@ -634,7 +634,12 @@ class DB
 					return $this->db = new PDO($this->connect_param['uri'],$this->connect_param['user'],$this->connect_param['password'],array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
 				}
 			}else{
-				return $this->db = new PDO($this->connect_param['uri'],$this->connect_param['user'],$this->connect_param['password'],array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
+				//诡异：swoole中可能随机出现连接失败
+				try{
+					return $this->db = new PDO($this->connect_param['uri'],$this->connect_param['user'],$this->connect_param['password'],array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
+				}catch(\Exception $e){
+					return $this->db = new PDO($this->connect_param['uri'],$this->connect_param['user'],$this->connect_param['password'],array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
+				}
 			}
 		}else{
 			return 	$this->db->reconnect($force_newconnect);
