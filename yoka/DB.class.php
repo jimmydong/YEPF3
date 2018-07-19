@@ -178,7 +178,7 @@ class DB
 			$affectedRows = $this->db->exec($sql);
 			if($affectedRows === false && $this->db->errorInfo()[1] == 2013){
 				//超时连接丢失，重新连接尝试
-				$this->reconnect();
+				$this->reconnect(true);
 				$affectedRows = $this->db->exec($sql);
 			}
 		}
@@ -319,7 +319,7 @@ class DB
 				if(!$this->statement = $this->db->query($sql)){
 					if($this->db->errorInfo()[1] == 2013){
 						//超时连接丢失，重新连接尝试
-						$this->reconnect();
+						$this->reconnect(true);
 						$this->statement = $this->db->query($sql);
 					}
 				}
@@ -328,7 +328,9 @@ class DB
 					return false;
 				}
 			}
-			else $status = $this->db->query($sql);
+			else{
+				$status = $this->db->query($sql);	//Mysql封装内置了失效重连，此处无需再次处理
+			}
 		}
 		catch (Exception $e)
 		{
@@ -401,7 +403,7 @@ class DB
 				if(!$this->statement = $this->db->query($sql)){
 					if($this->db->errorInfo()[1] == 2013){
 						//超时连接丢失，重新连接尝试
-						$this->reconnect();
+						$this->reconnect(true);
 						$this->statement = $this->db->query($sql);
 					}
 				}
@@ -482,7 +484,7 @@ class DB
 				if(! $this->statement = $this->db->query($sql)){
 					if($this->db->errorInfo()[1] == 2013){
 						//超时连接丢失，重新连接尝试
-						$this->reconnect();
+						$this->reconnect(true);
 						$this->statement = $this->db->query($sql);
 					}
 				}
@@ -615,13 +617,24 @@ class DB
 	 * 如果连接已经断开，则新建连接；
 	 * 如果连接还存在，但是已经超时，关闭后再重新连接
 	 * @name reconnect
-	 * @param Boolean $force_newconnect 是否强制重新创建连接，默认：是。
+	 * @param Boolean $force_newconnect 是否强制重新创建连接，默认：否。
 	 * @desc 重新连接mysql
 	 */
-	public function reconnect($force_newconnect = true)
+	public function reconnect($force_newconnect = false)
 	{
-		if($this->pdo) return $this->db = new PDO($this->connect_param['uri'],$this->connect_param['user'],$this->connect_param['password'],array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
-		return $this->db->reconnect($force_newconnect);
+		if($this->pdo){
+			if(! $force_newconnect){
+				if(!$this->statement = $this->db->query("SET NAMES 'utf8'")){
+					return $this->db = new PDO($this->connect_param['uri'],$this->connect_param['user'],$this->connect_param['password'],array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
+				}else{
+					return true; //正常，无需重连
+				}
+			}else{
+				return $this->db = new PDO($this->connect_param['uri'],$this->connect_param['user'],$this->connect_param['password'],array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
+			}
+		}else{
+			return 	$this->db->reconnect($force_newconnect);
+		}
 	}
 
 	/**
@@ -791,7 +804,7 @@ class DB
 		if(! $this->statement = $this->db->query($sql)){
 			if($this->db->errorInfo()[1] == 2013){
 				//超时连接丢失，重新连接尝试
-				$this->reconnect();
+				$this->reconnect(true);
 				$this->statement = $this->db->query($sql);
 			}
 		}
