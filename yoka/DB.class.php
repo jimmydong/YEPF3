@@ -631,6 +631,7 @@ class DB
 						return true; //正常，无需重连
 					}
 				}catch(\Exception $e){
+					sleep(1);
 					return $this->db = new PDO($this->connect_param['uri'],$this->connect_param['user'],$this->connect_param['password'],array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
 				}
 			}else{
@@ -638,6 +639,7 @@ class DB
 				try{
 					return $this->db = new PDO($this->connect_param['uri'],$this->connect_param['user'],$this->connect_param['password'],array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
 				}catch(\Exception $e){
+					sleep(1);
 					return $this->db = new PDO($this->connect_param['uri'],$this->connect_param['user'],$this->connect_param['password'],array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
 				}
 			}
