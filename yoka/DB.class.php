@@ -624,10 +624,14 @@ class DB
 	{
 		if($this->pdo){
 			if(! $force_newconnect){
-				if(!$this->statement = $this->db->query("SET NAMES 'utf8'")){
+				try{
+					if(!$this->statement = $this->db->query("SET NAMES 'utf8'")){
+						return $this->db = new PDO($this->connect_param['uri'],$this->connect_param['user'],$this->connect_param['password'],array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
+					}else{
+						return true; //正常，无需重连
+					}
+				}catch(\Exception $e){
 					return $this->db = new PDO($this->connect_param['uri'],$this->connect_param['user'],$this->connect_param['password'],array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
-				}else{
-					return true; //正常，无需重连
 				}
 			}else{
 				return $this->db = new PDO($this->connect_param['uri'],$this->connect_param['user'],$this->connect_param['password'],array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
