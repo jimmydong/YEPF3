@@ -68,6 +68,7 @@ class DB
 	 */
 	public $connect_param;
 	static $timeout = 1;
+	static $reconnect_try = 9;
 	
 	/**
 	 * @name __construct
@@ -626,25 +627,34 @@ class DB
 			if(! $force_newconnect){
 				try{
 					if(!$this->statement = $this->db->query("SET NAMES 'utf8'")){
-						return $this->db = new PDO($this->connect_param['uri'],$this->connect_param['user'],$this->connect_param['password'],array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
+						return $this->reconnect_try();
 					}else{
 						return true; //正常，无需重连
 					}
 				}catch(\Exception $e){
 					sleep(1);
-					return $this->db = new PDO($this->connect_param['uri'],$this->connect_param['user'],$this->connect_param['password'],array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
+					return $this->reconnect_try();
 				}
 			}else{
-				//诡异：swoole中可能随机出现连接失败
-				try{
-					return $this->db = new PDO($this->connect_param['uri'],$this->connect_param['user'],$this->connect_param['password'],array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
-				}catch(\Exception $e){
-					sleep(1);
-					return $this->db = new PDO($this->connect_param['uri'],$this->connect_param['user'],$this->connect_param['password'],array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
-				}
-			}
+				return $this->reconnect_try();			}
 		}else{
 			return 	$this->db->reconnect($force_newconnect);
+		}
+	}
+	/**
+	 * 诡异：swoole中可能随机出现连接失败，采用多次重试规避
+	 */
+	public function reconnect_try($counter = 0){
+		if($counter > self::$reconnect_try){
+			var_dump('fail: over max reconnect try');
+			return false;
+		}
+		$this->close();
+		sleep(1);
+		try{
+			return $this->db = new PDO($this->connect_param['uri'],$this->connect_param['user'],$this->connect_param['password'],array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
+		}catch(\Exception $e){
+			return $this->reconnect_try($counter++);
 		}
 	}
 
