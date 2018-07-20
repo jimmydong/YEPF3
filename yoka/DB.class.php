@@ -646,6 +646,7 @@ class DB
 	 */
 	public function reconnect_try($counter = 0){
 		if($counter > self::$reconnect_try){
+			$this->logError('fail: over max reconnect try');
 			var_dump('fail: over max reconnect try');
 			return false;
 		}
