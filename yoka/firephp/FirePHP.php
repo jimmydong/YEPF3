@@ -213,7 +213,7 @@ class FirePHP {
                                'maxObjectDepth' => 6,
                                'maxArrayDepth' => 6,
                                'maxWidth' => 20,	 //Max width of object or array.	hack by jimmy.dong@gmail.com
-                               'maxLength' => 1024,  //Max length of string. 			hack by jimmy.dong@gmail.com
+                               'maxLength' => 2048,  //Max length of string. 			hack by jimmy.dong@gmail.com
                                'useNativeJsonEncode' => true,
                                'includeLineNumbers' => true);
 
