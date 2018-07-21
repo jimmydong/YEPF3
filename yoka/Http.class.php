@@ -25,6 +25,16 @@ class Http{
 	public static $socket_timeout = 3;
 	
 	/**
+	 * 缺省curl超时时间（毫秒）
+	 */
+	public static $timeout_microsecond = 3000;
+	
+	/**
+	 * 多请求并发超时时间（毫秒）
+	 */
+	public static $timeout_multi = 5000;
+	
+	/**
 	 * 对cookie进行处理（默认处理。如果获取的是原始cookie值，则需将此开关关闭）
 	 */
 	public static $cookie_urlencode = true;
@@ -42,25 +52,45 @@ class Http{
 	/**
 	 * 简单模式。高级模式请使用：curlGet
 	 * @param unknown $url
+	 * @param int $timeout_second 超时（单位：秒）
+	 * @param string $type 使用方法 （默认：file_get_contents）
 	 */
-	public static function get($url){
-		if(is_callable('curl_init')){
-			return self::curlGet($url);
-		}else{
+	public static function get($url, $timeout_second = null, $type = null){
+		if($type == 'socket'){
+			if($timeout_second)self::$socket_timeout = $timeout_second * 1000;
 			return self::socket('GET', $url);
+		}elseif($type == 'curl'){
+			//如果系统未安装curl，使用socket替换
+			if(is_callable('curl_init')){
+				return self::curlGet($url, $timeout_second * 1000);
+			}else{
+				if($timeout_second)self::$socket_timeout = $timeout_second * 1000;
+				return self::socket('GET', $url);
+			}
+		}else{
+			ini_set('default_socket_timeout', $timeout_second?:self::$socket_timeout);
+			return file_get_contents($url);
 		}
 	}
 	
 	/**
 	 * 简单模式。高级模式请使用：curlPost
-	 * @param unknown $url
-	 * @param unknown $post
+	 * @param string $url
+	 * @param array $post
+	 * @param int $timeout
+	 * @param string $type 默认 curl
 	 */
-	public static function post($url, $post){
-		if(is_callable('curl_init')){
-			return self::curlPost($url, $post);
-		}else{
+	public static function post($url, $post, $timeout = null, $type = null){
+		if($type == 'socket'){
+			if($timeout_second)self::$socket_timeout = $timeout_second * 1000;
 			return self::socket('POST', $url, $post);
+		}else{
+			//curl模式，如果未安装curl则使用socket替换
+			if(is_callable('curl_init')){
+				return self::curlPost($url, $post, $timeout * 1000);
+			}else{
+				return self::socket('POST', $url, $post);
+			}
 		}
 	}
 	
@@ -118,7 +148,10 @@ class Http{
 	 * 2，更好的多线程解决方案，可参考python::multiprocess\map
 	 *
 	 */
-	public static function curlMultiGet($url_array, $timeout_microsecond = 5000, $proxy = false){
+	public static function curlMultiGet($url_array, $timeout_microsecond = null, $proxy = false){
+		\yoka\Debug::log('curlMultiGet', $url);
+		if(! $timeout_microsecond) $timeout_microsecond = self::$timeout_multi;
+		
 		$begin_micro_time = self::getMicroTime();
 		$handles = $contents = array();
 
@@ -204,14 +237,15 @@ class Http{
 	/**
 	 * 毫秒级超时 Curl Get
 	 * @param string $url
-	 * @param int $timeout_microsecond
+	 * @param int $timeout_microsecond 超时（单位：毫秒）
 	 * @param array $header
 	 * @param array $cookie
 	 * @param mixed $proxy
 	 * @return boolean|string
 	 */
-	public static function curlGet($url, $timeout_microsecond = 3000, $header = null, $cookie = null, $proxy = null){
+	public static function curlGet($url, $timeout_microsecond = null, $header = null, $cookie = null, $proxy = null){
 		\yoka\Debug::log('get_url', $url);
+		if(! $timeout_microsecond) $timeout_microsecond = self::$timeout_microsecond;
 		$ch = curl_init(trim($url));
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
 		curl_setopt($ch, CURLOPT_NOSIGNAL,true);
@@ -279,8 +313,9 @@ class Http{
 	 * @param mixed $proxy
 	 * @return boolean|string
 	 */
-	public static function curlGetWithHeader($url, $timeout_microsecond = 3000, $header = null, $cookie = null, $proxy = null){
+	public static function curlGetWithHeader($url, $timeout_microsecond = null, $header = null, $cookie = null, $proxy = null){
 		\yoka\Debug::log('get_url', $url);
+		if(! $timeout_microsecond) $timeout_microsecond = self::$timeout_microsecond;
 		$ch = curl_init(trim($url));
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
 		curl_setopt($ch, CURLOPT_NOSIGNAL,true);
@@ -360,7 +395,7 @@ class Http{
 	 * @param unknown $cookie
 	 * @param unknown $proxy
 	 */
-	public static function curlPostFile($url, $file, $data=array(), $timeout_microsecond = 3000, $header = null, $cookie = null, $proxy = null){
+	public static function curlPostFile($url, $file, $data=array(), $timeout_microsecond = null, $header = null, $cookie = null, $proxy = null){
 		if(is_array($file)){
 			foreach($file as $k=>$v){
 				$data[$k] = new \CURLFile(realpath($v));
@@ -370,6 +405,9 @@ class Http{
 		}
 		\yoka\Debug::log('curlPostFile', $url);
 		\yoka\Debug::log('curlPost:file', $file);
+		
+		if(! $timeout_microsecond) $timeout_microsecond = self::$timeout_microsecond;
+		
 		$ch = curl_init(trim($url));
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
@@ -431,16 +469,18 @@ class Http{
 	 * 毫秒级超时 Curl Post
 	 * @param string $url
 	 * @param string|array $data 字符串不做处理
-	 * @param int $timeout_microsecond
+	 * @param int $timeout_microsecond 超时（单位：毫秒）
 	 * @param array $header
 	 * @param array $cookie
 	 * @param mixed $proxy
 	 * @param bool $form  按照form头格式
 	 * @return boolean|string
 	 */
-	public static function curlPost($url, $data=array(), $timeout_microsecond = 3000, $header = null, $cookie = null, $proxy = null, $form = null){
+	public static function curlPost($url, $data=array(), $timeout_microsecond = null, $header = null, $cookie = null, $proxy = null, $form = null){
 		\yoka\Debug::log('curlPost', $url);
 		\yoka\Debug::log('curlPost:param', is_string($data)?$data:http_build_query($data));
+		if(! $timeout_microsecond) $timeout_microsecond = self::$timeout_microsecond;
+		
 		$ch = curl_init(trim($url));
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -516,8 +556,10 @@ class Http{
 	 * @param unknown $cookie
 	 * @param unknown $proxy
 	 */
-	public static function curlPostWithHeader($url, $data=array(), $timeout_microsecond = 3000, $header = null, $cookie = null, $proxy = null){
+	public static function curlPostWithHeader($url, $data=array(), $timeout_microsecond = null, $header = null, $cookie = null, $proxy = null){
 		\yoka\Debug::log('curlPost', $url);
+		if(! $timeout_microsecond) $timeout_microsecond = self::$timeout_microsecond;
+		
 		$ch = curl_init(trim($url));
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_NOSIGNAL,true);
