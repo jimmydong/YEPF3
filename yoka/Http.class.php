@@ -68,8 +68,11 @@ class Http{
 				return self::socket('GET', $url);
 			}
 		}else{
+			$default_socket_timeout = ini_get('default_socket_timeout');
 			ini_set('default_socket_timeout', $timeout_second?:self::$socket_timeout);
-			return file_get_contents($url);
+			$re = file_get_contents($url);
+			ini_set('default_socket_timeout', $default_socket_timeout);
+			return $re;
 		}
 	}
 	
@@ -649,6 +652,9 @@ class Http{
 	 * @param boolean $returnHeader 返回头部
 	 */
 	public static function socket($method='GET', $url, $postData='', $header='', $returnHeader=false){
+		$default_socket_timeout = ini_get('default_socket_timeout');
+		ini_set('default_socket_timeout', self::$socket_timeout);
+		
 		$sPatternUrlPart = '/http:\/\/([a-z-\.0-9]+)(:(\d+)){0,1}(.*)/i';
 		preg_match($sPatternUrlPart, $url, $reg);
 		$host = gethostbyname($reg[1]);
@@ -713,6 +719,9 @@ class Http{
 			}
 		}
 		socket_close($sock);
+		
+		ini_set('default_socket_timeout', $default_socket_timeout);
+		
 		if($returnHeader){
 			return array('header'=>$header, 'body'=>$response);
 		}else{
