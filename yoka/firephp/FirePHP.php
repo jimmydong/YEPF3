@@ -1035,7 +1035,7 @@ class FirePHP {
             $msg = '['.$this->jsonEncode($msg_meta).','. @$this->jsonEncode($Object, $skipFinalObjectEncode).']';
         }
         
-        $parts = explode("\n",chunk_split($msg, 5000, "\n"));
+        $parts = explode("\n",chunk_split($msg, 4000, "\n"));
     
         for( $i=0 ; $i<count($parts) ; $i++) {
             
