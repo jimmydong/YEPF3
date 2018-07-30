@@ -177,7 +177,7 @@ class DB
 		try 
 		{
 			$affectedRows = $this->db->exec($sql);
-			if($affectedRows === false && $this->db->errorInfo()[1] == 2013){
+			if($affectedRows === false && $this->db->errorInfo()[1] == 2013 || $this->db->errorInfo()[1] == 2006){
 				//超时连接丢失，重新连接尝试
 				$this->reconnect(true);
 				$affectedRows = $this->db->exec($sql);
@@ -318,7 +318,7 @@ class DB
 		{
 			if($this->pdo){
 				if(!$this->statement = $this->db->query($sql)){
-					if($this->db->errorInfo()[1] == 2013){
+					if($this->db->errorInfo()[1] == 2013 || $this->db->errorInfo()[1] == 2006){
 						//超时连接丢失，重新连接尝试
 						$this->reconnect(true);
 						$this->statement = $this->db->query($sql);
@@ -367,7 +367,7 @@ class DB
 		{
 			if($this->pdo){
 				$info = $this->statement->fetch(PDO::FETCH_ASSOC);
-				if($info === false && $this->db->errorInfo()[1] == 2013){
+				if($info === false && $this->db->errorInfo()[1] == 2013 || $this->db->errorInfo()[1] == 2006){
 					throw new Exception('Mysql goneaway : timeout');
 				}
 			}else $info = $this->db->fetch($query);
@@ -402,7 +402,7 @@ class DB
 		{
 			if($this->pdo){
 				if(!$this->statement = $this->db->query($sql)){
-					if($this->db->errorInfo()[1] == 2013){
+					if($this->db->errorInfo()[1] == 2013 || $this->db->errorInfo()[1] == 2006){
 						//超时连接丢失，重新连接尝试
 						$this->reconnect(true);
 						$this->statement = $this->db->query($sql);
@@ -483,7 +483,7 @@ class DB
 		{
 			if($this->pdo){
 				if(! $this->statement = $this->db->query($sql)){
-					if($this->db->errorInfo()[1] == 2013){
+					if($this->db->errorInfo()[1] == 2013 || $this->db->errorInfo()[1] == 2006){
 						//超时连接丢失，重新连接尝试
 						$this->reconnect(true);
 						$this->statement = $this->db->query($sql);
@@ -824,7 +824,7 @@ class DB
 			$sql = str_replace('%_creteria_%', $where, $sql);
 		}
 		if(! $this->statement = $this->db->query($sql)){
-			if($this->db->errorInfo()[1] == 2013){
+			if($this->db->errorInfo()[1] == 2013 || $this->db->errorInfo()[1] == 2006){
 				//超时连接丢失，重新连接尝试
 				$this->reconnect(true);
 				$this->statement = $this->db->query($sql);
