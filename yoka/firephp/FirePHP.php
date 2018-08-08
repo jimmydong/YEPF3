@@ -1400,7 +1400,7 @@ class FirePHP {
             foreach ($Object as $key => $val) {
 				/*hack by jimmy.dong@gmai.com*/
             	if($counter++ > $this->options['maxWidth']){
-            		$return['... ...'] = '** More sub-items **';
+            		$return['... ...'] = '** ' . (count($Object) - $this->options['maxWidth']) . ' More sub-items **';
 					break;
             	}          
                 // Encoding the $GLOBALS PHP array causes an infinite loop
