@@ -72,24 +72,26 @@ class YEPFCore {
 	 */
     public static function autoload($class_name) {
 		$class_name = str_replace('\\', DIRECTORY_SEPARATOR, $class_name);
+		
+		/**
+		 * YEPF内置的类
+		 * 
+		 * 以 .class.php 结尾
+		 */
 		if (strpos($class_name, 'ext'.DIRECTORY_SEPARATOR) === 0 || strpos($class_name, 'yoka'.DIRECTORY_SEPARATOR) === 0)
 		{
-			/**
-			 * YEPF内置的类
-			 * 
-			 * 以 .class.php 结尾
-			 */
 			return include YEPF_PATH . DIRECTORY_SEPARATOR . $class_name.'.class.php';
 		}
-		elseif(defined('CUSTOM_CLASS_PATH'))
+		
+      	/**
+      	 * 自定义类
+      	 * 
+      	 * update by jimmy.dong@gmail.com
+      	 * 支援命名空间, 支援驼峰规则
+      	 * 注意： 目录需按首字母大写
+      	 */
+		if(defined('CUSTOM_CLASS_PATH'))
         {
-      		/**
-      		 * 自定义类
-      		 * 
-      		 * update by jimmy.dong@gmail.com
-      		 * 支援命名空间, 支援驼峰规则
-      		 * 注意： 目录需按首字母大写
-      		 */
 			$class_name = str_replace('\\', DIRECTORY_SEPARATOR, $class_name);
         	$class_path = getCustomConstants('CUSTOM_CLASS_PATH') . DIRECTORY_SEPARATOR . $class_name.'.class.php';
         	$class_path2 = getCustomConstants('CUSTOM_CLASS_PATH') . DIRECTORY_SEPARATOR . strtolower($class_name).'.lib.php';
@@ -111,12 +113,17 @@ class YEPFCore {
 				$class_path3 = getCustomConstants('CUSTOM_CLASS_PATH') . DIRECTORY_SEPARATOR . $prepath . substr($rlname,0,1) . $result .'.class.php';
 				if(file_exists($class_path))return include_once($class_path3);
         	}
-		}elseif(strpos($class_name, 'controller') === 0){
-			/**
-			 * 以 .php 结尾
-			 * 
-			 * 仅允许controller，便于加强管理
-			 */
+		}
+		
+		/**
+		 * 以 .php 结尾
+		 *
+		 * 仅允许controller，便于加强管理
+		 */
+		if(strpos($class_name, 'controller') === 0){
+			$t = explode('/', $class_name);
+			$t[count($t)-1] = strtolower($t[count($t)-1]); //controller文件名小写
+			$class_name = implode('/', $class_name);
 			if(defined('ROOT_PATH')) $class_path = ROOT_PATH . '/' . $class_name . '.php';
 			else $class_path = '../' . $class_name . '.php';
 			if(file_exists($class_path)) return include_once($class_path);
