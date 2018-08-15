@@ -123,7 +123,7 @@ class YEPFCore {
 		if(strpos($class_name, 'controller') === 0){
 			$t = explode('/', $class_name);
 			$t[count($t)-1] = strtolower($t[count($t)-1]); //controller文件名小写
-			$class_name = implode('/', $class_name);
+			$class_name = implode('/', $t);
 			if(defined('ROOT_PATH')) $class_path = ROOT_PATH . '/' . $class_name . '.php';
 			else $class_path = '../' . $class_name . '.php';
 			if(file_exists($class_path)) return include_once($class_path);
