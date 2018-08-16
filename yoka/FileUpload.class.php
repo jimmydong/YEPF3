@@ -445,6 +445,12 @@ class FileUpload{
 		 */
 	}
 
+	/**
+	 * 二进制内容创建文件
+	 * @param unknown $content
+	 * @param unknown $ext
+	 * @return boolean|string
+	 */
 	public static function createByContent($content, $ext = null){
 		self::init();
 	
@@ -470,5 +476,28 @@ class FileUpload{
 		}
 		\yoka\Debug::log('fileupload ok', self::$file_path_upload . '/' . $file_path_name);
 		return $file_path_name;
+	}
+	
+	/**
+	 * 图片压缩（支持PNG&JPG）
+	 * 依赖： vendor/tinify
+	 * 注意： 覆盖原文件
+	 * @param string $file_path_name
+	 */
+	public static function compressImage($file_path_name){
+		if(! $sourceD = self::get($file_path_name))return false;
+		/**
+		 * 【注意】每月500次处理配额
+		 * TODO::注册多个Key，轮询处理
+		 */
+		\Tinify\setKey("ug8AGI7-NDl18olZUqba3stfRlc9e7ZL");
+		try{
+			\Tinify\fromBuffer($sourceData)->toFile(self::getRealPath($file_path_name));
+			$re = true;
+		}catch(\Exception $e){
+			$re = false;
+			//do nothing;
+		}
+		return $re;
 	}
 }
