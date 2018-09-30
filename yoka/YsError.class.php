@@ -11,6 +11,17 @@ class YsError{
 	public static $last_error;
 	public static $last_error_no;
 	public static $history = [];
+	public static $log_file = false;
+	
+	/**
+	 * 开启(关闭)文件日志
+	 * @param unknown $file_name
+	 * 
+	 * eg: YsError::setLogFile('mobile.log') / YsError::setLogFile(false)
+	 */
+	static public function setLogFile($file_name = false){
+		self::$log_file = $file_name;
+	}
 	
 	/**
 	 * 记录错误并返回false
@@ -24,20 +35,41 @@ class YsError{
 		$t = debug_backtrace(1);
 		$caller = $t[0]['file'].':'.$t[0]['line'];
 		\yoka\Debug::log('YsError: ' . $msg, $caller);
+		
+		if(self::$log_file){
+			\yoka\Log::customLog(self::$log_file, json_encode([
+					'msg'	=> $msg,
+					'no'	=> $no,
+					'data'	=> $data,
+					'caller'=> $caller
+			], JSON_UNESCAPED_UNICODE));
+		}
+		
 		array_push(self::$history, ['error'=>$msg, 'error_no'=>$no, 'data'=>$data, 'caller'=>$caller]);
 		return false;
 	}
 	
 	/**
-	 * 只做错误记录，不做其他处理
-	 * 与error方法基本相同 。调用时不要使用return
-	 * @param string $msg
-	 * @param number $no
-	 * @param unknown $data
-	 * @return boolean
+	 * 用于忽略错误只做文件记录，不做其他处理
+	 * @param string $msg			错误消息
+	 * @param number $no			错误编码
+	 * @param unknown $data			错误数据
+	 * @return true
 	 */
 	static public function logError($msg='error', $no=0, $data=null){
-		self::error($msg, $no, $data);
+		$t = debug_backtrace(1);
+		$caller = $t[0]['file'].':'.$t[0]['line'];
+		\yoka\Debug::log('YsError: ' . $msg, $caller);
+		
+		if(self::$log_file){
+			\yoka\Log::customLog(self::$log_file, json_encode([
+					'msg'	=> $msg,
+					'no'	=> $no,
+					'data'	=> $data,
+					'caller'=> $caller
+			], JSON_UNESCAPED_UNICODE));
+		}
+		
 		return true;
 	}
 	
