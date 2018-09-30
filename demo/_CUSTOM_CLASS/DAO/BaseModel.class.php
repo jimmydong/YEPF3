@@ -486,29 +486,105 @@ class BaseModel{
 	}
 
 	/**
+	 * 带缓冲获取 参数同 fetchOne
+	 */
+	public function fetchOneCached($mix, $assist = []){
+		$table = static::$table;
+		$key = 'fetchOne_' . $table  . '_' . md5(json_encode($mix).json_encode($assist));
+		$cache = \yoka\Cache::getInstance(self::$cacheName);
+		if(!SiteCacheForceRefresh){
+			$re = $cache->get($key);
+			if($re !== false){
+				$this->entity = $re;
+				return $this;
+			}
+		}
+		// 强制使用从库（可缓冲意味着及时性不重要）
+		$this->db = DB::getInstance('default', true);
+		if($re = $this->fetchOne($mix, $assist)){
+			$cache->set($key, $re->entity);
+		}else{
+			$cache->set($key, []);
+		}
+		// 恢复
+		$this->db = DB::getInstance('default', $this->ismaster);
+		return $re;
+	}
+	
+	/**
 	 * 查询单条数据
 	 * @param mixed $mix 数组（creteria格式）或 字符串：where条件 或 %_table_% 的全SQL
-	 * @return \model\BaseModel
+	 * @param array $assist [order, limit]  eg: ['order'=>'id desc']
+	 * @param bool heavy 是否禁止query buffer (用于重负载情况下，防止内存耗尽)
+	 * @return self
+	 *
+	 * 【注意】
+	 * 1, 如果在普通SQL使用了order by/limit，则不应设置assist，避免冲突
+	 * 2, 如果在未关闭buffer的循环内执行 $heavy=true 会报错。应在最外循环使用fetchAllc。
 	 */
-	public function fetchOne($mix){
+	public function fetchOne($mix, $assist = [], $heavy = null){
 		$table = static::$table;
+		if($assist['order'])$order = ' ORDER BY '. $assist['order'];
+		else $order = '';
+
+		if(isset($heavy)){
+			$old_heavy = $this->db->getAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY);
+			if($old_heavy && $old_heavy == $heavy) $this->db->setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, !$heavy);
+		}
+
 		if(null == $mix){
-			$re = $this->db->fetchOne("select * from `{$table}` limit 1");
+			$re = $this->db->fetchOne("SELECT * FROM `{$table}` {$order} LIMIT 1");
 		}elseif(is_array($mix)){ //creteria方式
-			$re = $this->db->fetchOne("select * from {$table} where %_creteria_%", $mix);
+			$re = $this->db->fetchOne("SELECT * FROM {$table} WHERE %_creteria_% {$order} LIMIT 1", $mix);
 		}elseif (strpos(strtolower(trim($mix)), 'select') === 0) {
 			//普通sql方式
 			$sql = str_replace('%_table_%', "`{$table}`", $mix);
-			$re = $this->db->fetchOne($sql);
+
+			//处理有特殊标识。 [可能会与where中条件冲突]
+			$t = explode(';#', $sql);
+			if($t[1]){
+				if(!preg_match('/limit/i', $sql)){
+					$re = $this->db->fetchOne($t[0] . " {$order} LIMIT 1 ;#" . $t[1]);
+				}else{
+					//sql中出现了limit, 按规则不应有 $assist
+					$re = $this->db->fetchOne($t[0] . " ;#" . $t[1]);
+				}
+			}else{
+				if(!preg_match('/limit/i', $sql)){
+					$re = $this->db->fetchOne($sql . " {$order} LIMIT 1");
+				}else{
+					//sql中出现了limit, 按规则不应有 $assist
+					$re = $this->db->fetchOne($sql);
+				}
+			}
 		}else{
-			$re = $this->db->fetchOne("select * from {$table} where $mix");
+			//处理有特殊标识。 [可能会与where中条件冲突]
+			$t = explode(';#', $mix);
+			if($t[1]){
+				if(!preg_match('/limit/i', $mix)){
+					$re = $this->db->fetchOne("SELECT * FROM {$table} WHERE $mix {$order} LIMIT 1 ;#{$t[1]}");
+				}else{
+					//sql中出现了limit, 按规则不应有 $assist
+					$re = $this->db->fetchOne("SELECT * FROM {$table} WHERE $mix ;#{$t[1]}");
+				}
+			}else{
+				if(!preg_match('/limit/i', $mix)){
+					$re = $this->db->fetchOne("SELECT * FROM {$table} WHERE $mix {$order} LIMIT 1");
+				}else{
+					//sql中出现了limit, 按规则不应有 $assist
+					$re = $this->db->fetchOne("SELECT * FROM {$table} WHERE $mix {$order}");
+				}
+			}
 		}
+
+		if(isset($heavy) && $old_heavy == $heavy)  $this->db->setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, $old_heavy);
 
 		if(!$re)return false;
 
 		$this->entity = $re;
 		return $this;
 	}
+	
 	/**
 	 * 根据条件获取记录总数
 	 * 注意：只能获取单表记录数
@@ -556,25 +632,20 @@ class BaseModel{
 
 
 	/**
-	 * 批量查询【注意，对返回值进行了重整，id为主键】
+	 * 批量查询
+	 * 【注意】
+	 * 		对返回值进行了重整，$pkey为主键。
+	 * 		如果不需要主键排序，请使用 fetchAllRaw
+	 * 		如果数据量非常大，请使用 query($sql, true)方式
+	 * @param mixed $mix 数组（creteria格式）或 where条件 或 %_table_%的全SQL
+	 * @param array $assist [order, limit]  eg: ['order'=>'id desc', 'limit'=>100]
+	 * 如果在普通SQL使用了order by/limit，则不应设置assist，避免冲突
 	 * @return array(array, array ...)
 	 */
-	public function fetchAll($mix = null){
-		$table = static::$table;
+	public function fetchAll($mix = null, $assist = []){
+		$re = $this->fetchAllRaw($mix, $assist);
+
 		$pkey = isset(static::$pkey)?static::$pkey:'id';
-		if(null == $mix){ //获取全部内容 【注意：强制切断1000行，防止崩溃！】
-			$re = $this->db->fetchAll("select * from {$table} limit 1000");
-		}elseif(is_array($mix)){ //creteria方式
-			$re = $this->db->fetchAll("select * from {$table} where %_creteria_%", $mix);
-		}elseif (strpos(strtolower($mix), 'select') === 0) {
-			//普通sql方式
-			$sql = str_replace('%_table_%', "`{$table}`", $mix);
-			$re = $this->db->fetchAll($sql);
-		}else{
-			$re = $this->db->fetchAll("select * from {$table} where $mix");
-		}
-
-
 		$t = current($re);
 		if($t[$pkey]){
 			//用id作为每行数据的主键
@@ -585,25 +656,50 @@ class BaseModel{
 		}else{
 			return $re;
 		}
-
 	}
+	
 	/**
 	 * 功能与fetchAll相同，区别在于不做主键重整提高效率
-	 * @param mixed $mix
+	 * 【注意】
+	 * 		一次读出全部数据，不能处理量非常大的数据
+	 * 		如果数据量非常大，请使用 query($sql, true)方式
+	 * @param mixed $mix 数组（creteria格式）或 where条件 或 %_table_%的全SQL
+	 * @param array $assist [order, limit]  eg: ['order'=>'id desc']
+	 * 如果在普通SQL使用了order by/limit，则不应设置assist，避免冲突
 	 * @return array(array)
 	 */
-	public function fetchAllRaw($mix = null){
+	public function fetchAllRaw($mix = null, $assist = []){
 		$table = static::$table;
+		if($assist['order'])$order = ' ORDER BY '. $assist['order'];
+		else $order = '';
+		if($assist['limit'])$limit = ' LIMIT ' . $assist['limit'];
+		else $limit = '';
+
 		if(null == $mix){ //获取全部内容 【注意：强制切断1000行，防止崩溃！】
-			$re = $this->db->fetchAll("select * from {$table} limit 1000");
+			if($limit == '') $limit = ' LIMIT 1000';
+			$re = $this->db->fetchAll("SELECT * FROM {$table} {$order} {$limit}");
 		}elseif(is_array($mix)){ //creteria方式
-			$re = $this->db->fetchAll("select * from {$table} where %_creteria_%", $mix);
+			$re = $this->db->fetchAll("SELECT * FROM {$table} WHERE %_creteria_% {$order} {$limit}", $mix);
 		}elseif (strpos(strtolower($mix), 'select') === 0) {
 			//普通sql方式
 			$sql = str_replace('%_table_%', "`{$table}`", $mix);
-			$re = $this->db->fetchAll($sql);
+			if(preg_match('/ order by /i', $sql)) $order = '';
+			if(preg_match('/ limit /i', $sql)) $limit = '';
+
+			//处理有特殊标识。 [可能会与where中条件冲突]
+			$t = explode(';#', $sql);
+			if($t[1]){
+				$re = $this->db->fetchAll($t[0] . " {$order} {$limit} ;#" . $t[1]);
+			}else $re = $this->db->fetchAll($sql . " {$order} {$limit}");
 		}else{
-			$re = $this->db->fetchAll("select * from {$table} where $mix");
+			//条件字符串
+			if(preg_match('/ order by /i', $mix)) $order = '';
+			if(preg_match('/ limit /i', $mix)) $limit = '';
+			//处理有特殊标识。 [可能会与where中条件冲突]
+			$t = explode(';#', $mix);
+			if($t[1]){
+				$re = $this->db->fetchAll("SELECT * FROM {$table} WHERE {$t[0]} {$order} {$limit} ;#{$t[1]}");
+			}else $re = $this->db->fetchAll("SELECT * FROM {$table} WHERE {$mix} {$order} {$limit}");
 		}
 
 		return $re;
@@ -730,7 +826,7 @@ class BaseModel{
 		return $list;
 	}
 	/**
-	 * 获取快照【注意：与slim的区别】
+	 * 获取快照【注意：与_slim的区别】
 	 */
 	public function snapshot($id = null){
 		$class = get_called_class();
@@ -746,7 +842,8 @@ class BaseModel{
 	}
 	
 	/**
-	 * 获取摘要信息
+	 * 获取摘要信息【废弃：请使用 _slim() 】
+	 * @deprecated
 	 * @param array $info
 	 * @param array $slim 保留的项
 	 */
@@ -760,6 +857,66 @@ class BaseModel{
 			$re[$key] = $info[$key];
 		}
 		return $re;
+	}
+	
+	/**
+	 * 数据精简（高级定义版本）
+	 * @param array $info 待处理数据
+	 * @param bool $filter 是否仅输出特定类型字段（依定义中 type ）
+	 * @param boole $des 是否输出字段说明
+	 * @return  array 默认返回值仅做map处理，key不变。 des = true 时，key变为title值。
+	 *
+	 *
+	 * 【注意】
+	 * 定义在 class::$define_slim,
+	 * 格式： array( col_name => [title, type, map=[id:value, ...]], ...)
+	 * 其中：
+	 * 		title: 可省略
+	 * 		type: 默认为0。0-自带字段 1-需处理字段 其他-自定义
+	 *
+	 * 实例:
+	 public static $define_slim = array(
+	 'id'				=> [],
+	 'coupon_id'			=> [],
+	 'coupon_name'		=> ['title'=>'优惠券名称'],
+	 'coupon_limit_des'	=> ['title'=>'使用说明'],
+	 'coupon_str'		=> ['title'=>'优惠券提示','type'=>1]
+	 );
+	 */
+	static public function _slim($info, $filter=null, $des = false){
+		$class = get_called_class();
+		if(isset($class::$define_slim))$define_slim = $class::$define_slim;
+		else return $info;
+	
+		$re = [];
+		foreach($define_slim as $k=>$define){
+			//兼容简单设定
+			if(is_string($define)){
+				$define = array('title'=>$define, 'type'=>0);
+			}
+			//处理类型过滤
+			if($filter !== null){
+				if($define['type'] != $filter) continue;
+			}
+			//处理映射 - 键值自动转换
+			if(is_array($define['map'])){
+				$info[$k] = $define['map'][$info[$k]]?:$info[$k];
+			}
+			if($des && $define['title']){
+				$re[$define['title']] = $info[$k];
+			}else{
+				$re[$k] = $info[$k];
+			}
+		}
+		return $re;
+	}
+	
+	/**
+	 * 关闭或开启 query_buffer。用于大量请求防止内存耗尽。
+	 * @param unknown $bool
+	 */
+	public function setBufferedQuery($bool){
+		$this->db->setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, $bool);
 	}
 	
 }
