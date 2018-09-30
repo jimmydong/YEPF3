@@ -516,6 +516,32 @@ class BaseModel{
 	}
 	
 	/**
+	 * 带缓冲获取 参数同 fetchOne
+	 */
+	public function fetchOneCached($mix, $assist = []){
+		$table = static::$table;
+		$key = 'fetchOne_' . $table  . '_' . self::$group_id. '_' . md5(json_encode($mix).json_encode($assist));
+		$cache = \yoka\Cache::getInstance(self::$cacheName);
+		if(!SiteCacheForceRefresh){
+			$re = $cache->get($key);
+			if($re !== false){
+				$this->entity = $re;
+				return $this;
+			}
+		}
+		// 强制使用从库（可缓冲意味着及时性不重要）
+		$this->db = DB::getInstance('default', true);
+		if($re = $this->fetchOne($mix, $assist)){
+			$cache->set($key, $re->entity);
+		}else{
+			$cache->set($key, []);
+		}
+		// 恢复
+		$this->db = DB::getInstance('default', $this->ismaster);
+		return $re;
+	}
+	
+	/**
 	 * 查询单条数据
 	 * @param mixed $mix 数组（creteria格式）或 字符串：where条件 或 %_table_% 的全SQL
 	 * @param array $assist [order, limit]  eg: ['order'=>'id desc']
@@ -912,6 +938,7 @@ class BaseModel{
 	
 	/**
 	 * 获取摘要信息 【废弃：请使用 _slim() 】
+	 * @deprecated
 	 * @param array $info
 	 * @param array $slim 保留的项
 	 */
