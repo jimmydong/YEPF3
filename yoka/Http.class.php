@@ -476,7 +476,7 @@ class Http{
 	 * @param array $header
 	 * @param array $cookie
 	 * @param mixed $proxy
-	 * @param bool $form  按照form头格式
+	 * @param bool $form  按照form头格式（绝大多数情况不区分）
 	 * @return boolean|string
 	 */
 	public static function curlPost($url, $data=array(), $timeout_microsecond = null, $header = null, $cookie = null, $proxy = null, $form = null){
@@ -643,6 +643,83 @@ class Http{
 	public static function curlForm($url, $data=array(), $timeout_microsecond = 3000, $header = null, $cookie = null, $proxy = null){
 		return self::curlPost($url, $data, $timeout_microsecond, $header, $cookie, $proxy, true);
 	}
+	
+	/**
+	 * Json格式提交（注意： 区别于Form方式）
+	 * @param string $url
+	 * @param string|array $data 字符串不做处理
+	 * @param int $timeout_microsecond 超时（单位：毫秒）
+	 * @param array $header
+	 * @param array $cookie
+	 * @param mixed $proxy
+	 * @return boolean|string
+	 */
+	public static function curlPostJson($url, $data=array(), $timeout_microsecond = null, $header = null, $cookie = null, $proxy = null){
+		\yoka\Debug::log('curlPostJson', $url);
+		\yoka\Debug::log('curlPost:param', $data);
+		if(! $timeout_microsecond) $timeout_microsecond = self::$timeout_microsecond;
+	
+		$ch = curl_init(trim($url));
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		//curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); 	//注意：这里不同于 WithHeader
+		curl_setopt($ch, CURLOPT_NOSIGNAL,true);
+		curl_setopt($ch, CURLOPT_TIMEOUT_MS, $timeout_microsecond);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT_MS, $timeout_microsecond);
+		if(self::$basic_auth) curl_setopt($ch, CURLOPT_USERPWD, self::$basic_auth['user'] . ":" . self::$basic_auth['pass']);
+		if (stripos($url, 'https://') === 0) {
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+		}
+	
+		$h = ['Content-Type'=>'application/json'];
+		if($header){
+			foreach($header as $k=>$v){
+				$h[]= urlencode($k) .":" . urlencode($v);
+			}
+		}
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $h);
+		
+		if($cookie){
+			$c = array();
+			foreach($cookie as $k=>$v){
+				if(self::$cookie_urlencode)$c[]= urlencode($k) . "=" . urlencode($v);
+				else $c[]= $k . "=" . $v;
+			}
+			curl_setopt($ch, CURLOPT_COOKIE, implode(';', $c));
+		}
+		//proxy
+		if($proxy){
+			if(is_array($proxy) && $proxy['host'] && $proxy['port']){
+				$p = $proxy;
+			}elseif(self::$socks_proxy[$proxy]){
+				//指定代理
+				$p = self::$socks_proxy[$proxy];
+			}else{
+				//随机代理
+				$p = self::$socks_proxy[array_rand(self::$socks_proxy)];
+	
+			}
+			curl_setopt($ch, CURLOPT_PROXY, $p['host'] .':'. $p['port']);
+			if($p['type'])curl_setopt($ch, CURLOPT_PROXYTYPE, $p['type']);
+			if($p['user'])curl_setopt($ch, CURLOPT_PROXYUSERPWD, $p['user'] .':'. $p['pass']);
+		}
+	
+		if(! is_string($data)) $data = json_encode($data, JSON_UNESCAPED_UNICODE);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+		$data = curl_exec($ch);
+		$curl_errno = curl_errno($ch);
+		$curl_error = curl_error($ch);
+		curl_close($ch);
+		if($curl_errno >0){
+			\yoka\Debug::log('Http::curlPostJson Error',$curl_error);
+			return false;
+		}else{
+			return $data;
+		}
+	}
+	
 	/**
 	 * 使用Socket模拟HTTP请求
 	 * @param string $method GET/POST
