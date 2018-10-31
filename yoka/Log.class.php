@@ -75,8 +75,13 @@ class Log
 	{
 		if(is_array($msg) || is_object($msg)) $msg = var_export($msg, true);
 		$log_obj = self::getInstance();
+		
+		$t = debug_backtrace(1);
+		$caller = $t[0]['file'].':'.$t[0]['line'];
+		
 		$string = "" ;
 		$string .= "/*********************** ".$priority." ".date('Y-m-d H:i:s')." ***********************/\n";
+		$string .= "[{$caller}]\n";
 		$string .= $msg . "\n";
 		$fp = fopen($log_obj->path . DIRECTORY_SEPARATOR . $filename, 'a');
 		flock($fp, LOCK_EX);
