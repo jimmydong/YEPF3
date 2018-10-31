@@ -13,6 +13,29 @@ class Log
 {
 	protected $path ;
 	static $instance = false;
+	
+	const LOG_DEFAULT	= 0;
+	const LOG_NOTICE 	= 1;
+	const LOG_WARNING 	= 2;
+	const LOG_INFO 		= 3;
+	const LOG_DEBUG 	= 4;
+	const LOG_ERR 		= 11;
+	const LOG_EMERG 	= 12;
+	const LOG_ALERT 	= 13;
+	const LOG_CRIT 		= 14;
+	
+	public static $des = [
+		self::LOG_EMERG => 'system is unusable',
+		self::LOG_ALERT => 'action must be taken immediately',
+		self::LOG_CRIT => 'critical conditions',
+		self::LOG_ERR => 'error conditions',
+		self::LOG_WARNING => 'warning conditions',
+		self::LOG_NOTICE => 'normal, but significant, condition',
+		self::LOG_INFO => 'informational message',
+		self::LOG_DEBUG => 'debug-level message',
+	];
+	
+	
 	/**
 	 * @name __construct
 	 * @desc 构造函数
@@ -60,27 +83,21 @@ class Log
 	 * @name customLog
 	 * @desc 记录自定义日志,请注意日志文件大小问题
 	 * @param string $filename 记录日志的文件名
-	 * @param string $msg    错误信息
-	 * @param int $priority  接受的类型
-	 * LOG_EMERG system is unusable 
-	 * LOG_ALERT action must be taken immediately 
-	 * LOG_CRIT critical conditions 
-	 * LOG_ERR error conditions 
-	 * LOG_WARNING warning conditions 
-	 * LOG_NOTICE normal, but significant, condition 
-	 * LOG_INFO informational message 
-	 * LOG_DEBUG debug-level message 
+	 * @param string $msg		错误信息
+	 * @param string $tag		便于查找的标记
 	 */
-	public static function customLog($filename, $msg, $priority = '')
+	public static function customLog($filename, $msg, $tag = '')
 	{
 		if(is_array($msg) || is_object($msg)) $msg = var_export($msg, true);
 		$log_obj = self::getInstance();
+		if(!is_string($tag)) $tag = strval($tag);
+		if(strlen($tag) > 40) $tag = substr($tag, 0, 38) . '..';
 		
 		$t = debug_backtrace(1);
 		$caller = $t[0]['file'].':'.$t[0]['line'];
 		
 		$string = "" ;
-		$string .= "/*********************** ".$priority." ".date('Y-m-d H:i:s')." ***********************/\n";
+		$string .= "/*********************** ". $tag . " " . date('Y-m-d H:i:s') ." ***********************/\n";
 		$string .= "[{$caller}]\n";
 		$string .= $msg . "\n";
 		$fp = fopen($log_obj->path . DIRECTORY_SEPARATOR . $filename, 'a');
