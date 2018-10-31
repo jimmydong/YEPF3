@@ -97,7 +97,7 @@ class Log
 		$caller = $t[0]['file'].':'.$t[0]['line'];
 		
 		$string = "" ;
-		$string .= "/*********************** ". $tag . " " . date('Y-m-d H:i:s') ." ***********************/\n";
+		$string .= "/*********************** " . date('Y-m-d H:i:s') . " " . $tag . " ***********************/\n";
 		$string .= "[{$caller}]\n";
 		$string .= $msg . "\n";
 		$fp = fopen($log_obj->path . DIRECTORY_SEPARATOR . $filename, 'a');
