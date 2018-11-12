@@ -79,7 +79,7 @@ class DB
 	 * @param string $database 数据库名称
 	 * @param string $dbtype 数据库类型
 	 */
-	public function __construct($host, $user, $password, $database, $dbtype, $charset, $pconnect)
+	public function __construct($host, $user, $password, $database, $dbtype = 'mysql', $charset = 'utf-8', $pconnect = false)
 	{
 		if(class_exists('PDO'))$this->pdo = true;
 		else $this->pdo = false;
