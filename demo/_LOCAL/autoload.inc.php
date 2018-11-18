@@ -14,11 +14,11 @@ $CACHE['db'] = array(
 	'default'=>array(
 		//主数据库
 		'master' =>array(
-			array('host'=>\yoka\Conf::$ENV['LOCAl']['MDB_SERVER'],'user'=>\yoka\Conf::$ENV['LOCAl']['MDB_USER'], 'password'=>\yoka\Conf::$ENV['LOCAl']['MDB_PASS'] , 'database'=>\yoka\Conf::$ENV['LOCAl']['MDB_DB'])
+			array('host'=>\yoka\Conf::$ENV['LOCAL']['MDB_SERVER'],'user'=>\yoka\Conf::$ENV['LOCAL']['MDB_USER'], 'password'=>\yoka\Conf::$ENV['LOCAL']['MDB_PASS'] , 'database'=>\yoka\Conf::$ENV['LOCAL']['MDB_DB'])
 		),
 		//从数据库
 		'slave' => array(
-			array('host'=>\yoka\Conf::$ENV['LOCAl']['SDB_SERVER'],'user'=>\yoka\Conf::$ENV['LOCAl']['SDB_USER'], 'password'=>\yoka\Conf::$ENV['LOCAl']['SDB_PASS'] , 'database'=>\yoka\Conf::$ENV['LOCAl']['SDB_DB'])
+			array('host'=>\yoka\Conf::$ENV['LOCAL']['SDB_SERVER'],'user'=>\yoka\Conf::$ENV['LOCAL']['SDB_USER'], 'password'=>\yoka\Conf::$ENV['LOCAL']['SDB_PASS'] , 'database'=>\yoka\Conf::$ENV['LOCAL']['SDB_DB'])
 		)
 	),
 	'weixin'=>array(
