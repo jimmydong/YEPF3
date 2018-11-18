@@ -72,7 +72,10 @@ abstract class Smarty_Internal_CompileBase
                 }
                 // named attribute
             } else {
-                $kv = each($mixed);
+            	//hack: each deprecated
+                //$kv = each($mixed);
+                $kv = self::_fun_each($mixed);
+            	
                 // option flag?
                 if (in_array($kv['key'], $this->option_flags)) {
                     if (is_bool($kv['value'])) {
@@ -172,5 +175,18 @@ abstract class Smarty_Internal_CompileBase
 
         return;
     }
+
+    static public function _fun_each(&$array){
+	   $res = array();
+	   $key = key($array);
+	   if($key !== null){
+	       next($array); 
+	       $res[1] = $res['value'] = $array[$key];
+	       $res[0] = $res['key'] = $key;
+	   }else{
+	       $res = false;
+	   }
+	   return $res;
+	}
 
 }
