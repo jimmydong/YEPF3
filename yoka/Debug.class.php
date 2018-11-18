@@ -335,7 +335,7 @@ class Debug
 		$string 	= 	"Debug::flog: ".$_SERVER['REQUEST_URI'];
 		if($caller == ''){
 			$t = debug_backtrace(1);
-			$caller = $t[0][file].':'.$t[0][line];
+			$caller = $t[0]['file'].':'.$t[0]['line'];
 		}
 		$string		.=	"\nCalled in ". $caller;
 		$string		.=	"\n[{$label}]" . var_export($results, true);
@@ -356,7 +356,7 @@ class Debug
 	{
 		if($caller == ''){
 			$t = debug_backtrace(1);
-			$caller = $t[0][file].':'.$t[0][line];
+			$caller = $t[0]['file'].':'.$t[0]['line'];
 		}
 		if(! is_array(self::$log_mysql)) {
 		 	self::log('dlog Error','Not define Debug::$log_mysql, called by ' . $caller);
@@ -475,7 +475,7 @@ class Debug
 		if($desc == '')$desc = 'run-time';
 		if($caller == ''){
 			$t = debug_backtrace(1);
-			$caller = $t[0][file].':'.$t[0][line];
+			$caller = $t[0]['file'].':'.$t[0]['line'];
 		}elseif($caller == 'full'){
 			$caller = debug_backtrace(5);
 		}
