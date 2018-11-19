@@ -105,6 +105,8 @@ class DB
 				$this->db_host = $host ;
 				$this->db_name = $database;
 			}
+		}else{
+			//TODO::其他类型pdo连接
 		}
 		
 		if(self::$log_error){
