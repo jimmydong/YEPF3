@@ -479,17 +479,17 @@ class FileUpload{
 	}
 	
 	/**
-	 * 图片压缩（支持PNG&JPG）
-	 * 依赖： vendor/tinify
-	 * 注意： 覆盖原文件
+	 * 图片压缩
+	 * 注意： 
+	 * 1，依赖 imagemagick （路径 /usr/bin/convert）
+	 * 2，覆盖原文件
 	 * @param string $file_path_name
 	 */
 	public static function compressImage($file_path_name){
-		if(! $sourceD = self::get($file_path_name))return false;
+		if(! $source = self::get($file_path_name))return false;
 		/**
-		 * 【注意】每月500次处理配额
-		 * TODO::注册多个Key，轮询处理
-		 */
+		 * PNG压缩 每月500次处理配额
+		 * 账号已过期
 		\Tinify\setKey("ug8AGI7-NDl18olZUqba3stfRlc9e7ZL");
 		try{
 			\Tinify\fromBuffer($sourceData)->toFile(self::getRealPath($file_path_name));
@@ -498,6 +498,14 @@ class FileUpload{
 			$re = false;
 			//do nothing;
 		}
-		return $re;
+		*/
+		
+		//TODO::判断图片大小，超过1600宽高的等比例放缩到1600
+		
+		$file = self::getRealPath($file_path_name);
+		$cmd = "/usr/bin/convert -quality 85 {$file} {$file}";
+		$re = passthru($cmd, true);
+		if(preg_match('/error/i', $re)) return false;
+		else return $re;
 	}
 }
