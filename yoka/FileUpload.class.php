@@ -505,7 +505,7 @@ class FileUpload{
 		$file = self::getRealPath($file_path_name);
 		$cmd = "/usr/bin/convert -quality 85 {$file} {$file}";
 		$re = passthru($cmd, true);
-		if(preg_match('/error/i', $re)) return false;
+		if(preg_match('/No|error/i', $re)) return false;
 		else return $re;
 	}
 }
