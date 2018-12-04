@@ -957,14 +957,14 @@ class BaseModel{
 	/**
 	 * 数据精简（高级定义版本）
 	 * @param array $info 待处理数据
-	 * @param bool $filter 是否仅输出特定类型字段（依定义中 type ）
+	 * @param bool|array $filter 只输出指定的type
 	 * @param boole $des 是否输出字段说明
 	 * @return  array 默认返回值仅做map处理，key不变。 des = true 时，key变为title值。
 	 *
 	 *
 	 * 【注意】
 	 * 定义在 class::$define_slim,
-	 * 格式： array( col_name => [title, type, map=[id:value, ...]], ...)
+	 * 格式： array( col_name => [title, type, map=[id:value, ...]], referer=["\\YsConfig", "timeDes"] ...)
 	 * 其中：
 	 * 		title: 可省略
 	 * 		type: 默认为0。0-自带字段 1-需处理字段 其他-自定义
@@ -974,8 +974,9 @@ class BaseModel{
 	 'id'				=> [],
 	 'coupon_id'			=> [],
 	 'coupon_name'		=> ['title'=>'优惠券名称'],
-	 'coupon_limit_des'	=> ['title'=>'使用说明'],
-	 'coupon_str'		=> ['title'=>'优惠券提示','type'=>1]
+	 'coupon_limit_des'	=> ['title'=>'使用说明', 'type'=>1],
+	 'coupon_state'		=> ['title'=>'状态', 'type'=>2, 'map'=>[0=>'正常',1=>'锁定']],
+	 'coupon_platform'	=> ['title'=>'平台', 'referer'=>["\\YsConfig","platform_des"]]
 	 );
 	 */
 	static public function _slim($info, $filter=null, $des = false){
@@ -991,11 +992,17 @@ class BaseModel{
 			}
 			//处理类型过滤
 			if($filter !== null){
-				if($define['type'] != $filter) continue;
+				if(is_array($filter)){
+					if(!in_array($define['type'], $filter)) continue;
+				}elseif($define['type'] != $filter) continue;
 			}
 			//处理映射 - 键值自动转换
 			if(is_array($define['map'])){
 				$info[$k] = $define['map'][$info[$k]]?:$info[$k];
+			}
+			if(is_array($define['referer'])){
+				$r = new ReflectionClass($define['referer'][0]);
+				$info[$k] = $r->getStaticPropertyValue($define['referer'][1]);
 			}
 			if($des && $define['title']){
 				$re[$define['title']] = $info[$k];
