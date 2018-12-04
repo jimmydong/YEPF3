@@ -1001,20 +1001,23 @@ class BaseModel{
 					if(!in_array($define['type'], $filter)) continue;
 				}elseif($define['type'] != $filter) continue;
 			}
-			//处理映射 - 键值自动转换
-			if(is_array($define['map'])){
-				$info[$k] = $define['map'][$info[$k]]?:'';
+			if(! $not_map){
+				//处理映射 - 键值自动转换
+				if(is_array($define['map'])){
+					$info[$k] = $define['map'][$info[$k]]?:'';
+				}
+				//用类的静态变量做映射
+				if(is_array($define['referer'])){
+					$r = new \ReflectionClass($define['referer'][0]);
+					$map = $r->getStaticPropertyValue($define['referer'][1]);
+					$info[$k] = $map[$info[$k]]?:'';
+				}
+				//用类的函数做映射
+				if($define['func']){
+					$info[$k] = call_user_func($define['func'], [$info[$k]])?:'';
+				}
 			}
-			//用类的静态变量做映射
-			if(is_array($define['referer'])){
-				$r = new ReflectionClass($define['referer'][0]);
-				$map = $r->getStaticPropertyValue($define['referer'][1]);
-				$info[$k] = $map[$info[$k]]?:'';
-			}
-			//用类的函数做映射
-			if($define['func']){
-				$info[$k] = call_user_func($define['func'], [$info[$k]])?:'';
-			}
+			//是否翻译
 			if($des && $define['title']){
 				$re[$define['title']] = $info[$k];
 			}else{
