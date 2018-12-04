@@ -72,6 +72,9 @@ class Template extends Smarty
 		if(function_exists('template_trans_modifier')){
 			$this->registerPlugin('modifier', 'trans', 'template_trans_modifier');
 		}
+		if(function_exists('template_upload_modifier')){
+			$this->registerPlugin('modifier', 'upload', 'template_upload_modifier');
+		}
 		
 		/*--------------- 传入变量 ------------------*/
 		if($response) $this->fit_sprite($response);
