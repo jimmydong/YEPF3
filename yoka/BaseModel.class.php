@@ -958,28 +958,33 @@ class BaseModel{
 	 * 数据精简（高级定义版本）
 	 * @param array $info 待处理数据
 	 * @param bool|array $filter 只输出指定的type
-	 * @param boole $des 是否输出字段说明
-	 * @return  array 默认返回值仅做map处理，key不变。 des = true 时，key变为title值。
+	 * @param bool $des 是否输出字段说明(默认返回值做映射处理，key不变。 des = true 时，key变为title值)
+	 * @param bool $no_map
+	 * @return  array 
 	 *
 	 *
 	 * 【注意】
 	 * 定义在 class::$define_slim,
-	 * 格式： array( col_name => [title, type, map=[id:value, ...]], referer=["\\YsConfig", "timeDes"] ...)
+	 * 格式： array( col_name => [title, type, map=[id:value, ...]], referer=[class, static], func=[class, function] ...)
 	 * 其中：
 	 * 		title: 可省略
-	 * 		type: 默认为0。0-自带字段 1-需处理字段 其他-自定义
+	 * 		type: 用于过滤选取
+	 * 		map: 值映射
+	 * 		referer: 根据静态定义映射
+	 * 		func: 根据函数返回值映射
 	 *
 	 * 实例:
 	 public static $define_slim = array(
 	 'id'				=> [],
-	 'coupon_id'			=> [],
+	 'coupon_id'		=> [],
 	 'coupon_name'		=> ['title'=>'优惠券名称'],
 	 'coupon_limit_des'	=> ['title'=>'使用说明', 'type'=>1],
 	 'coupon_state'		=> ['title'=>'状态', 'type'=>2, 'map'=>[0=>'正常',1=>'锁定']],
-	 'coupon_platform'	=> ['title'=>'平台', 'referer'=>["\\YsConfig","platform_des"]]
+	 'coupon_platform'	=> ['title'=>'平台', 'referer'=>["\\YsConfig","platform_des"]],
+	 'user_id'			=> ['title'=>'用户', 'func'=>["\\model\\User","getNameById"]]
 	 );
 	 */
-	static public function _slim($info, $filter=null, $des = false){
+	static public function _slim($info, $filter=null, $des = false, $not_map = false){
 		$class = get_called_class();
 		if(isset($class::$define_slim))$define_slim = $class::$define_slim;
 		else return $info;
@@ -998,11 +1003,17 @@ class BaseModel{
 			}
 			//处理映射 - 键值自动转换
 			if(is_array($define['map'])){
-				$info[$k] = $define['map'][$info[$k]]?:$info[$k];
+				$info[$k] = $define['map'][$info[$k]]?:'';
 			}
+			//用类的静态变量做映射
 			if(is_array($define['referer'])){
 				$r = new ReflectionClass($define['referer'][0]);
-				$info[$k] = $r->getStaticPropertyValue($define['referer'][1]);
+				$map = $r->getStaticPropertyValue($define['referer'][1]);
+				$info[$k] = $map[$info[$k]]?:'';
+			}
+			//用类的函数做映射
+			if($define['func']){
+				$info[$k] = call_user_func($define['func'], [$info[$k]])?:'';
 			}
 			if($des && $define['title']){
 				$re[$define['title']] = $info[$k];
