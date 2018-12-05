@@ -1003,7 +1003,7 @@ class BaseModel{
 				}elseif($define['type'] != $filter) continue;
 			}
 			if($strip){
-				if(!$info[$k] || $info[$k] === '0000-00-00 00:00:00') continue;
+				if(!$info[$k] || $info[$k] === '0000-00-00' || $info[$k] === '0000-00-00 00:00:00') continue;
 			}
 			if(! $not_map){
 				//处理映射 - 键值自动转换
