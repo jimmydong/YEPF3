@@ -960,6 +960,7 @@ class BaseModel{
 	 * @param bool|array $filter 只输出指定的type
 	 * @param bool $des 是否输出字段说明(默认返回值做映射处理，key不变。 des = true 时，key变为title值)
 	 * @param bool $no_map
+	 * @param bool $strip 去除空项
 	 * @return  array 
 	 *
 	 *
@@ -984,7 +985,7 @@ class BaseModel{
 	 'user_id'			=> ['title'=>'用户', 'func'=>["\\model\\User","getNameById"]]
 	 );
 	 */
-	static public function _slim($info, $filter=null, $des = false, $not_map = false){
+	static public function _slim($info, $filter=null, $des = false, $not_map = false, $strip = false){
 		$class = get_called_class();
 		if(isset($class::$define_slim))$define_slim = $class::$define_slim;
 		else return $info;
@@ -1000,6 +1001,9 @@ class BaseModel{
 				if(is_array($filter)){
 					if(!in_array($define['type'], $filter)) continue;
 				}elseif($define['type'] != $filter) continue;
+			}
+			if($strip){
+				if(!$info[$k] || $info[$k] === '0000-00-00 00:00:00') continue;
 			}
 			if(! $not_map){
 				//处理映射 - 键值自动转换
