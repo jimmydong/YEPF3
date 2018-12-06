@@ -957,7 +957,7 @@ class BaseModel{
 	/**
 	 * 数据精简（高级定义版本）
 	 * @param array $info 待处理数据
-	 * @param bool|array $filter 只输出指定的type
+	 * @param string|array $filter 只输出指定的type
 	 * @param bool $des 是否输出字段说明(默认返回值做映射处理，key不变。 des = true 时，key变为title值)
 	 * @param bool $no_map
 	 * @param bool $strip 去除空项
