@@ -1018,7 +1018,7 @@ class BaseModel{
 				}
 				//用类的函数做映射
 				if($define['func']){
-					$info[$k] = call_user_func($define['func'], [$info[$k]])?:'';
+					$info[$k] = call_user_func($define['func'], $info[$k])?:'';
 				}
 			}
 			//是否翻译
