@@ -987,7 +987,9 @@ class BaseModel{
 	 */
 	static public function _slim($info, $filter=null, $des = false, $not_map = false, $strip = false){
 		$class = get_called_class();
-		if(isset($class::$define_slim))$define_slim = $class::$define_slim;
+		
+		if(isset($class::$defineSlim))$define_slim = $class::$defineSlim;
+		elseif(isset($class::$define_slim))$define_slim = $class::$define_slim;	//兼容旧写法
 		else return $info;
 		
 		$re = [];
