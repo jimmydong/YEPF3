@@ -237,16 +237,36 @@ class Debug
 	
 	/**
 	 * 关闭调试
+	 * @return bool 返回修改之前的状态值
 	 */
 	public static function stop(){
+		$old = self::$open;
 		self::$open = false;
+		return $old;
+		
 	}
+	
 	/**
 	 * 重新开启调试
 	 */
 	public static function restart(){
 		self::$open = true;
 	}
+	
+	/**
+	 * 配合 stop 使用，恢复到之前的设定值
+	 * 
+	 * eg: 
+	 * $old = \yoka\Debug::stop();
+	 * //do something ....
+	 * \yoka\Debug::reset($old)
+	 * 
+	 * @param unknown $flag
+	 */
+	public static function reset($flag){
+		self::$open = $flag;
+	}
+	
 	/**
 	 * 切换调试状态
 	 */
