@@ -235,11 +235,24 @@ class Debug
 		}
 	}
 	
+	/**
+	 * 关闭调试
+	 */
 	public static function stop(){
 		self::$open = false;
 	}
+	/**
+	 * 重新开启调试
+	 */
 	public static function restart(){
 		self::$open = true;
+	}
+	/**
+	 * 切换调试状态
+	 */
+	public static function toggle(){
+		if(self::$open) self::$open = false;
+		else self::$open = true;
 	}
 	
 	/**
