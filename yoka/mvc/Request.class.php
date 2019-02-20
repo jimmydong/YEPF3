@@ -54,12 +54,33 @@ class Request implements \Iterator{
 		return self::$_instance;
 	}
 
+	/**
+	 * 数组形式返回所有传入参数
+	 */
+	public function getAll(){
+		$re = [];
+		foreach($this->entity as $v){
+			$re[$v['key']] = $v['val'];
+		}
+		return $re;
+	}
+	
+	/**
+	 * 读取GET参数
+	 * @param string $index
+	 * @param string $default
+	 */
 	public function get($index = '', $default = '') {
         if($index === '' && $default === '')
             return $_GET;
 		return isset($_GET[$index])? $_GET[$index]:$default;
 	}
 
+	/**
+	 * 读取POST参数
+	 * @param string $index
+	 * @param string $default
+	 */
 	public function post($index = '', $default = '') {
 		if($index === '' && $default === '')
 			return $_POST;
