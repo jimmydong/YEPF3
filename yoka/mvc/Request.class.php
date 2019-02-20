@@ -21,8 +21,8 @@ class Request implements \Iterator{
 	/**
 	 * for Iterator
 	 */
-	protected $position = 0; 			//for iterator
-	protected $entity = [];			//for iterator
+	public $position = 0; 			//for iterator
+	public $entity = [];			//for iterator
 	
 	/**
 	 * 防注入(参见方法： checkSafe)
