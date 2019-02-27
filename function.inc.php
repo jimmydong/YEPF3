@@ -60,6 +60,14 @@ function template_encode_cutstr($params)
 }
 
 /**
+ * upload相对路径转URL
+ * <{$file_path_name|upload}>
+ */
+function template_modifier_upload($file_path_name){
+	return \yoka\FileUpload::getUrl($file_path_name);
+}
+
+/**
  * 友好数字输出
  * <{$somenumber|nicenumber}>
  */

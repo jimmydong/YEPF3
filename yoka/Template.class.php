@@ -103,9 +103,9 @@ class Template extends Smarty
 		}
 		
 		if(function_exists('template_modifier_json')){
-			$this->registerPlugin('modifier', 'json', 'template_modifier_upload');
+			$this->registerPlugin('modifier', 'json', 'template_modifier_json');
 		}elseif(function_exists('template_json_modifier')){
-			$this->registerPlugin('modifier', 'json', 'template_upload_modifier');
+			$this->registerPlugin('modifier', 'json', 'template_json_modifier');
 		}
 		
 		/*--------------- 传入变量 ------------------*/
