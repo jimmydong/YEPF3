@@ -115,7 +115,7 @@ function template_modifier_xid($id){
 /**
  * 转为Json格式
  */
-function tempalte_modifier_json($v){
+function template_modifier_json($v){
 	return json_encode($v, JSON_UNESCAPED_UNICODE);
 }
 
