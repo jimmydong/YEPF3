@@ -19,7 +19,7 @@ class Template extends Smarty
 	public function __construct($directory = 'default', $response = null)
 	{
         parent::__construct();
-
+        
 		//定义定界符
 		$this->left_delimiter = "<{";
 		$this->right_delimiter = "}>";
@@ -40,40 +40,72 @@ class Template extends Smarty
 		$this->setCacheDir(getCustomConstants('COMPILER_PATH'));
 		$this->tpl_type = getCustomConstants('TEMPLATE_TYPE');
 
-		/*----------------- 注册自定义函数 ----------------*/
+		/*----------------- 注册自定义函数 [注意：部分函数改为新版，不依赖init.php] ----------------*/
 		if(function_exists('template_url_encode')){
 			$this->registerPlugin('function', 'url', 'template_url_encode');
 		}
-		if(function_exists('template_cutstr_encode')){
+
+		if(function_exists('template_thumb_encode')){
+			$this->registerPlugin('function', 'thumb', 'template_thumb_encode');
+		}
+		
+		if(function_exists('template_encode_cutstr')){
+			$this->registerPlugin('function', 'cutstr', 'template_encode_cutstr');
+		}elseif(function_exists('template_cutstr_encode')){
 			$this->registerPlugin('function', 'cutstr', 'template_cutstr_encode');
 		}
-	    if(function_exists('template_thumb_encode')){
-            $this->registerPlugin('function', 'thumb', 'template_thumb_encode');
-        }   
-       	if(function_exists('template_widget_encode')){
+		
+		if(function_exists('template_encode_widget')){
+        	$this->registerPlugin('function', 'widget', 'template_encode_widget');
+		}elseif(function_exists('template_widget_encode')){
         	$this->registerPlugin('function', 'widget', 'template_widget_encode');
 		}
 		/*--------------- 注册自定义修饰器 -------------*/
-		if(function_exists('template_nicenumber_modifier')){
-			$this->registerPlugin('modifier', 'nicenumber', 'template_nicenumber_modifier');
-		}
-		if(function_exists('template_nicetime_modifier')){
-			$this->registerPlugin('modifier', 'nicetime', 'template_nicetime_modifier');
-		}
 		if(function_exists('template_cdn_modifier')){
 			$this->registerPlugin('modifier', 'cdn', 'template_cdn_modifier');
 		}
-		if(function_exists('template_xid_modifier')){
+		
+		
+		if(function_exists('template_modifier_nicenumber')){
+			$this->registerPlugin('modifier', 'nicenumber', 'template_modifier_nicenumber');
+		}elseif(function_exists('template_nicenumber_modifier')){
+			$this->registerPlugin('modifier', 'nicenumber', 'template_nicenumber_modifier');
+		}
+		
+		if(function_exists('template_modifier_nicetime')){
+			$this->registerPlugin('modifier', 'nicetime', 'template_modifier_nicetime');
+		}elseif(function_exists('template_nicetime_modifier')){
+			$this->registerPlugin('modifier', 'nicetime', 'template_nicetime_modifier');
+		}
+		
+		if(function_exists('template_modifier_xid')){
+			$this->registerPlugin('modifier', 'xid', 'template_modifier_xid');
+		}elseif(function_exists('template_xid_modifier')){
 			$this->registerPlugin('modifier', 'xid', 'template_xid_modifier');
 		}
-		if(function_exists('template_lang_modifier')){
+		
+		if(function_exists('template_modifier_lang')){
+			$this->registerPlugin('modifier', 'lang', 'template_modifier_lang');
+		}elseif(function_exists('template_lang_modifier')){
 			$this->registerPlugin('modifier', 'lang', 'template_lang_modifier');
 		}
-		if(function_exists('template_trans_modifier')){
+		
+		if(function_exists('template_modifier_trans')){
+			$this->registerPlugin('modifier', 'trans', 'template_modifier_trans');
+		}elseif(function_exists('template_trans_modifier')){
 			$this->registerPlugin('modifier', 'trans', 'template_trans_modifier');
 		}
-		if(function_exists('template_upload_modifier')){
+		
+		if(function_exists('template_modifier_upload')){
+			$this->registerPlugin('modifier', 'upload', 'template_modifier_upload');
+		}elseif(function_exists('template_upload_modifier')){
 			$this->registerPlugin('modifier', 'upload', 'template_upload_modifier');
+		}
+		
+		if(function_exists('template_modifier_json')){
+			$this->registerPlugin('modifier', 'json', 'template_modifier_upload');
+		}elseif(function_exists('template_json_modifier')){
+			$this->registerPlugin('modifier', 'json', 'template_upload_modifier');
 		}
 		
 		/*--------------- 传入变量 ------------------*/

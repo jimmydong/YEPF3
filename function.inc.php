@@ -7,6 +7,144 @@
  * @updatetime 
  * 【注意】仅YEPF需要依赖的函数设置为全局，其他函数转入  yoka\Utility 类中。
  */
+
+/*************************************************************************************
+ * 
+ *  Template使用的函数
+ *   
+ * 【注意】
+ * 1，旧版写在 init.php 中
+ * 2，保持向前兼容
+ * 3，以下函数因与系统结合紧密，需在 init.php 中定义
+ * 		function template_url_encode
+ * 		function template_thumb_encode
+ * 		function template_cdn_modifier
+ **************************************************************************************/
+
+/**
+ * 取Widget数据
+ * 网页碎片（面包屑）输出
+ * @param array $params = array(key=$key) OR $params = array(type=>$type, key=>$key)
+ * 简易模式： <{widget key=xxxxx}>  直接从widget表读取
+ * 高级模式： <{widget type=xxx param=xxxx param=xxxx}>  调用相关函数处理
+ */
+function template_encode_widget($params){
+	//TODO: 注意对SiteCacheLevel的处理
+	extract($params);
+	$w = new \yoka\Widget;
+	if($type)	$re =  $w->get($type, $params);
+	else{
+		$re = $w->raw($key, isset($html)?$html:true); //默认按html输出
+		//防止HTML误转义
+		$re = str_replace('&reg', '&amp;reg', $re);
+		$re = str_replace('&amp;reg;', '&reg;', $re);
+		$re = str_replace('&copy', '&amp;copy', $re);
+		$re = str_replace('&amp;copy;', '&copy;', $re);
+		$re = str_replace('&nbsp', '&amp;nbsp', $re);
+		$re = str_replace('&amp;nbsp;', '&nbsp;', $re);
+	}
+	return $re;
+}
+
+/**
+ * UTF8切字符（按照指定宽度，ASCII每字符宽度为1，非ASCII宽度为2）
+ * Enter description here ...
+ * @param array $params = array('str'=>$str, 'length'=>$len, 'suffix'=>'...')
+ */
+function template_encode_cutstr($params)
+{
+	extract($params);
+	if(mb_strwidth($str,'utf8') < $length) return $str;
+	if($suffix == '...') return mb_strimwidth($str,0,$length-2,'','utf8') . $suffix;
+	else return mb_strimwidth($str,0,$length,$suffix,'utf8');
+}
+
+/**
+ * 友好数字输出
+ * <{$somenumber|nicenumber}>
+ */
+function template_modifier_nicenumber($number){
+	if(is_callable(array("\\tools\\Util","to10k"),true))return \tools\Util::to10k($number,2);
+	else return number_format($number, 2);
+}
+
+/**
+ * 传入时间，输出友好格式时间 (兼容 unix_timestamp 和 YYYY-MM-DD HH:MM:SS 格式)
+ * <{$sometime|nicetime}>
+ */
+function template_modifier_nicetime($time){
+	if(!$time || $time == '0000-00-00 00:00:00')return '未设置';
+	if(strval(intval($time))!=$time){
+		//字符串格式
+		$time = strtotime($time);
+	}
+	$now = time();
+	$diff = $now - ceil($time);
+	$hours = ceil($diff/3600);
+
+	if($diff<300)
+	{
+		return '刚刚';
+	}
+	if($diff<3600 && $diff>=300)
+	{
+		return ceil($diff/60).'分钟前';
+	}
+	else if($hours <24)
+	{
+		return $hours.'小时前';
+	}
+	else if($hours<=(3*24) && $hours>=24)
+	{
+		return round($hours/24).'天前';
+	}
+	else
+	{
+		return date('y年n月j日',ceil($time));
+	}
+}
+
+/**
+ * 转换为xid
+ * @param int $id
+ */
+function template_modifier_xid($id){
+	return \yoka\Xid::encode($id);
+}
+
+/**
+ * 转为Json格式
+ */
+function tempalte_modifier_json($v){
+	return json_encode($v, JSON_UNESCAPED_UNICODE);
+}
+
+/**
+ * 语言转换
+ * 【依赖】 \lang\BaseLang
+ */
+function template_modifier_lang($str){
+	return \lang\BaseLang::s($str);
+}
+
+/**
+ * 语言翻译
+ * 【依赖】 \lang\BaseLang
+ */
+function template_modifier_trans($str){
+	return \lang\BaseLang::t($str);
+}
+
+/********************************************************************************************
+ * 
+ * 其他常用函数
+ * 
+ * 注： 不推荐使用，仅为向前兼容而保留
+ * 
+ * 未来将改为namespce下封装
+ * 
+ */
+
 /**
  * @name getCustomConstants
  * @desc 获得用户自定义常量
@@ -18,6 +156,7 @@ function getCustomConstants($constants_name)
 {
 	return defined('SUB_' . $constants_name) ? constant('SUB_' . $constants_name) : constant($constants_name);
 }
+
 /**
  * @name yaddslashes
  * @desc 转义定符串函数
@@ -40,6 +179,7 @@ function yaddslashes($string)
 	}
 	return $string;
 }
+
 /**
  * @name getEndTime
  * @desc 计算执行页面所需时间函数
@@ -94,6 +234,7 @@ function getReqInt($name, $method = 'REQUEST', $default = 0, $min = false, $max 
 	}
 	return $value;
 }
+
 /**
  * @name getReqHtml
  * @desc 接收用户输入值-带html,需要php tidy支持
@@ -126,6 +267,7 @@ function getReqHtml($name, $method = 'REQUEST', $default = '', $type = 'content'
 	$mytidy = $htmlfilter_obj->repair($variable[$name]);
 	return $htmlfilter_obj->filter($mytidy);
 }
+
 /**
  * @name getReqNoHtml
  * @desc 接收用户输入值-不带Html
@@ -161,7 +303,7 @@ function getReqNoHtml($name, $method = 'REQUEST', $default = '')
  * @param String $title 网页标题，默认是：YOKA时尚网_你的生活 你的时尚。注意：分段标题使用“_”分割
  * @author wangyi yz124s@hotmail.com
  */
-function printHtml($content, $title='YOKA时尚网_你的生活 你的时尚')
+function printHtml($content, $title='YEPF3 - PHP快捷开发')
 {
 	$html = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
@@ -193,4 +335,3 @@ function getCodeLabel($code, $code_name)
 	}
 	return $code;
 }
-?>
