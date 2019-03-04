@@ -69,6 +69,8 @@ function template_modifier_upload($file_path_name){
 
 /**
  * 友好数字输出
+ * 【注意】依赖 \tools\Util::to10k   （Util稳定后应移入YEPF）
+ * 
  * <{$somenumber|nicenumber}>
  */
 function template_modifier_nicenumber($number){
