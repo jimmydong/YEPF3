@@ -74,6 +74,7 @@ class Cache implements \yoka\CacheInterface
 				foreach($serverList as $v)
 				{
 					$this->cache->addServer($v['host'],$v['port']);
+					if($v['user'] && $v['pass']) $this->cache->setSaslAuthData($v['user'], $v['pass']);
 					$this->serverlist[] = array('ip' => $v['host'], 'port' => $v['port'], 'is_sucess'=>$is_sucess);				
 				}
 			}
@@ -87,6 +88,7 @@ class Cache implements \yoka\CacheInterface
 				foreach($backupList as $v)
 				{
 					$this->cache->addServer($v['host'],$v['port']);
+					if($v['user'] && $v['pass']) $this->cache->setSaslAuthData($v['user'], $v['pass']);
 					$this->serverlist[] = array('ip' => $v['host'], 'port' => $v['port'], 'is_sucess'=>$is_sucess);
 				}
 			}
