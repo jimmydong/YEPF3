@@ -66,15 +66,19 @@ class Cache implements \yoka\CacheInterface
     	
     	if('memcached' == $type)
     	{
-			if($this->memcacheType == 'Memcache') $this->cache = new \yoka\Memcached();
+			if($this->memcacheType == 'Memcache') $this->cache = new \yoka\Memcached();		//早期 Mecache 封装，不推荐
 			else $this->cache = new Memcached();
+			
 			//主力服务器
 			if(!empty($serverList))
 			{
 				foreach($serverList as $v)
 				{
 					$this->cache->addServer($v['host'],$v['port']);
-					if($v['user'] && $v['pass']) $this->cache->setSaslAuthData($v['user'], $v['pass']);
+					if($v['user'] && $v['pass']) {
+						$this->cache->setOption(Memcached::OPT_BINARY_PROTOCOL, true);		//认证需二进制
+						$this->cache->setSaslAuthData($v['user'], $v['pass']);
+					}
 					$this->serverlist[] = array('ip' => $v['host'], 'port' => $v['port'], 'is_sucess'=>$is_sucess);				
 				}
 			}
@@ -88,7 +92,10 @@ class Cache implements \yoka\CacheInterface
 				foreach($backupList as $v)
 				{
 					$this->cache->addServer($v['host'],$v['port']);
-					if($v['user'] && $v['pass']) $this->cache->setSaslAuthData($v['user'], $v['pass']);
+					if($v['user'] && $v['pass']){
+						$this->cache->setOption(Memcached::OPT_BINARY_PROTOCOL, true);
+						$this->cache->setSaslAuthData($v['user'], $v['pass']);
+					}
 					$this->serverlist[] = array('ip' => $v['host'], 'port' => $v['port'], 'is_sucess'=>$is_sucess);
 				}
 			}
