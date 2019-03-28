@@ -74,7 +74,7 @@ class Cache implements \yoka\CacheInterface
 			{
 				foreach($serverList as $v)
 				{
-					$this->cache->addServer($v['host'],$v['port']);
+					$this->cache->addServer($v['host'],$v['port']?:'11211');
 					if($v['user'] && $v['pass']) {
 						$this->cache->setOption(Memcached::OPT_BINARY_PROTOCOL, true);		//认证需二进制
 						$this->cache->setSaslAuthData($v['user'], $v['pass']);
@@ -91,7 +91,7 @@ class Cache implements \yoka\CacheInterface
 				$this->serverlist = array();
 				foreach($backupList as $v)
 				{
-					$this->cache->addServer($v['host'],$v['port']);
+					$this->cache->addServer($v['host'],$v['port']?:'11211');
 					if($v['user'] && $v['pass']){
 						$this->cache->setOption(Memcached::OPT_BINARY_PROTOCOL, true);
 						$this->cache->setSaslAuthData($v['user'], $v['pass']);

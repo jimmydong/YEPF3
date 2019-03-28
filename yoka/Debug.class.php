@@ -431,7 +431,7 @@ class Debug
 		{
 			return ;
 		}
-		if(is_string($ip) && strlen($ip)>24)$ip = substr($ip, 0, 24) . '..';
+		if(is_string($ip) && strlen($ip)>32)$ip = substr($ip, 0, 30) . '..';
 // 		if(is_string($sql) && strlen($sql)>120 && strpos(' ', substr($sql,0,120))===false){
 // 			//超长且没有空格
 // 			$sql = chunk_split($sql, 120, ' ');
