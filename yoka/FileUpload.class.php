@@ -270,7 +270,7 @@ class FileUpload{
 		self::init();
 		
 		//传入的是符合URL_PATH_UPLOAD格式的URL
-		if(strpos(self::$url_path_upload, $file_url_path) === 0){
+		if(self::$url_path_upload && strpos(self::$url_path_upload, $file_url_path) === 0){
 			$file_url_path = substr($file_url_path, strlen(self::$url_path_upload));
 		}
 		//不符合URL_PATH_UPLOAD格式的URL，去除http标记
