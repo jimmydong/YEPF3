@@ -254,6 +254,7 @@ class Http{
 		curl_setopt($ch, CURLOPT_NOSIGNAL,true);
 		curl_setopt($ch, CURLOPT_TIMEOUT_MS, $timeout_microsecond);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT_MS, $timeout_microsecond);
+		//curl_setopt($ch, CURLOPT_ENCODING, "");  //加速 这个地方留空就可以了
 		//curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); 	//注意：这里不同于 WithHeader
 		if(self::$basic_auth) curl_setopt($ch, CURLOPT_USERPWD, self::$basic_auth['user'] . ":" . self::$basic_auth['pass']);
@@ -487,6 +488,7 @@ class Http{
 		$ch = curl_init(trim($url));
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		//curl_setopt($ch, CURLOPT_ENCODING, "");  //加速 这个地方留空就可以了
 		//curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); 	//注意：这里不同于 WithHeader
 		curl_setopt($ch, CURLOPT_NOSIGNAL,true);
