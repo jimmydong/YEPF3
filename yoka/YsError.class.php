@@ -78,7 +78,7 @@ class YsError{
 	 * @return boolean
 	 */
 	static public function lastError(){
-		\yoka\Debug::log($caller, 'last_error: ' . $msg);
+		\yoka\Debug::log('YsError', 'last_error: ' . self::$last_error);
 		return false;
 	}
 	
