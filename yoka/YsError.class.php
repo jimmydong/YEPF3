@@ -78,7 +78,9 @@ class YsError{
 	 * @return boolean
 	 */
 	static public function lastError(){
-		\yoka\Debug::log('YsError', 'last_error: ' . self::$last_error);
+		$t = debug_backtrace(1);
+		$caller = $t[0]['file'].':'.$t[0]['line'];
+		\yoka\Debug::log('YsError: lastError', $caller);
 		return false;
 	}
 	
