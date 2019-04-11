@@ -79,7 +79,7 @@ class Widget
 		$m = Cache::getInstance(self::$default_item);
 		$mkey = "Widget_raw.{$key}";
 
-		if(SiteCacheLevel && !SiteCacheForceRefresh){
+		if( (!defined('SiteCacheLevel') || SiteCacheLevel) && (!defined('SiteCacheForceRefresh') || !SiteCacheForceRefresh)){
 			//优先尝试从memcache取出
 			$re = $m->get($mkey);
 			if($re) return $re;
