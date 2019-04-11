@@ -58,6 +58,16 @@ class Widget
 		$m->set($mkey, $name, SiteCacheTime ? SiteCacheTime : 3600 * 4);
 		return $name;
 	}
+	
+	/**
+	 * 取碎片内容
+	 * 【raw的别名函数】
+	 * @param unknown $key
+	 * @param string $html
+	 */
+	public static function get($key, $html=false){
+		return self::raw($key, $html);
+	}
 	/**
 	 * 默认读取，从widget表中读取碎片信息
 	 * @param string $key
