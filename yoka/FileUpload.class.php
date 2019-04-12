@@ -60,6 +60,7 @@ class FileUpload{
 		'xlsx' => '/\.xlsx$/i',
 		'xls' => '/\.xls$/i',
 		'txt'=> '/\.txt$/i',
+		'zip'=> '/\.zip$/i',
 	);
 	/**
 	 * 头信息
@@ -101,6 +102,7 @@ class FileUpload{
 			'/\.xml/i'=>'text/xml',
 			'/\.xsl/i'=>'text/xml',
 			'/\.xslt/i'=>'text/xml',
+			'/\.zip/i'=>'application/x-zip-compressed',
 			'/\..*/i'=>'application/octet-stream',
 	);
 	
