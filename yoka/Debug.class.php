@@ -387,6 +387,7 @@ class Debug
 	 */
 	public static function dlog($label, $result = '', $caller = '')
 	{
+		if(is_array($result)) $result = json_encode($result, JSON_UNESCAPED_UNICODE);
 		if($caller == ''){
 			$t = debug_backtrace(1);
 			$caller = $t[0]['file'].':'.$t[0]['line'];
