@@ -159,6 +159,11 @@ class Debug
 	static $fb_return = false;
 	
 	/**
+	 * 默认chrome调试不显示DB信息
+	 */
+	static $chrome_force_db = false;
+	
+	/**
 	 * @name __construct
 	 * @desc 构造函数
 	 */
@@ -719,8 +724,8 @@ class Debug
 				default: 
 					break;
 			}
-			//数据库执行时间  (chrome限制头大小)
-			if(self::_firephp() != 'chrome')switch(self::$debug_level)
+			//数据库执行信息  (chrome限制头大小)
+			if(self::_firephp() != 'chrome' && !self::$chrome_force_db)switch(self::$debug_level)
 			{
 				case self::YEPF_DEBUG_NONE:
 				case self::YEPF_DEBUG_WARNING:
@@ -755,7 +760,7 @@ class Debug
 				default: 
 					break;
 			}
-			//Cache执行时间
+			//Cache执行信息
 			if(self::_firephp() != 'chrome')switch(self::$debug_level)
 			{
 				case self::YEPF_DEBUG_NONE:
