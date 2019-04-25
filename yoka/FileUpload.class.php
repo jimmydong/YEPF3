@@ -221,6 +221,14 @@ class FileUpload{
 		return $file_path_name;
 	}
 	/**
+	 * 快捷将文件放入upload
+	 * @param unknown $file_path_name
+	 * @return string 相对于upload的路径
+	 */
+	public static function put($file_path_name){
+		return self::create(basename($file_path_name), $file_path_name);
+	}
+	/**
 	 * 读取文件
 	 * Enter description here ...
 	 * @param string $file_path_name 相对路径
