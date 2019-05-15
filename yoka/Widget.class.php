@@ -9,6 +9,8 @@ namespace yoka;
  * 【注意】
  *  在项目中，如果使用Cache::setDefault('xxx')变更缓存，必须使用 Widget::setDefault('xxx')保持一致
  */
+if(! defined('SiteCacheLevel')) define('SiteCacheLevel', '');
+if(! defined('SiteCacheForceRefresh')) define('SiteCacheForceRefresh', '');
 
 class Widget
 {
@@ -55,7 +57,7 @@ class Widget
 		$db = DB::getInstance('default');
 		$re = $db->fetchOne("select * from widget where `key`='$key' and del_flag=0");
         $name = $re['name'];
-		$m->set($mkey, $name, SiteCacheTime ? SiteCacheTime : 3600 * 4);
+		$m->set($mkey, $name, defined('SiteCacheTime') ? SiteCacheTime : 3600 * 4);
 		return $name;
 	}
 	
@@ -92,7 +94,7 @@ class Widget
 		if(!$html)$data = json_decode($re['data'],true);
 		else $data = $re['data'];
 		\yoka\Debug::log($data);
-		$m->set($mkey, $data, SiteCacheTime ? SiteCacheTime : 3600 * 4);
+		$m->set($mkey, $data, defined('SiteCacheTime') ? SiteCacheTime : 3600 * 4);
 		return $data;
 	}
 	
@@ -124,7 +126,7 @@ class Widget
 		}
 		
 		//保存到Mecache
-		$m->set($mkey, $data, SiteCacheTime ? SiteCacheTime : 3600 * 4);
+		$m->set($mkey, $data, defined('SiteCacheTime') ? SiteCacheTime : 3600 * 4);
 		return true;		
 	}
 	
@@ -163,7 +165,7 @@ class Widget
 			default:
 				break;
 		}
-		$m->set($mkey, $re, SiteCacheTime ? SiteCacheTime : 3600 * 4);
+		$m->set($mkey, $re, defined('SiteCacheTime') ? SiteCacheTime : 3600 * 4);
 		return $m;
 	}
 }
