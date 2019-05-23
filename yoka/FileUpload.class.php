@@ -438,7 +438,7 @@ class FileUpload{
 	static function mkdirs($pathStr,$mod=0755,$own='www'){
 		$path = dirname($pathStr);
 		@mkdir($path, $mod, true);
-		chown($path, $own);
+		@chown($path, $own);
 		if(!is_dir($path))return false;
 		else return true;
 		/*if(is_file($pathStr) || is_dir($pathStr)) return true;
