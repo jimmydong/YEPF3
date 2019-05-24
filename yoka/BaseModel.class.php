@@ -1023,6 +1023,9 @@ class BaseModel{
 					$info[$k] = call_user_func($define['func'], $info[$k])?:'';
 				}
 			}
+			if($strip){ //再过滤一次
+				if(!$info[$k] || $info[$k] === '0000-00-00' || $info[$k] === '0000-00-00 00:00:00') continue;
+			}
 			//是否翻译
 			if($des && $define['title']){
 				$re[$define['title']] = $info[$k];
