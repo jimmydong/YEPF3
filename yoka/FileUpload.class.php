@@ -149,6 +149,21 @@ class FileUpload{
 		
 		return true;
 	}
+	/**
+	 * 上传图片的快捷方法
+	 * @param string $name   <input type="file" name=xxx>
+	 * @param bool $full 返回全格式: [file_path, real_path, url]
+	 * @return string
+	 * 
+	 * 注意form表单： enctype="multipart/form-data"
+	 */
+	public static function uploadImage($name, $full = false){
+		if(! $file_path	= self::create($_FILES['upload']['name'], $_FILES['upload']['tmp_name'])) return \yoka\YsError::error('上传失败：无上传文件'); 
+		if(! $real_path = self::getRealPath($file_path_name)) return \yoka\YsError::error('上传失败：文件大小异常？');
+		if(! getimagesize($real_path)) return \yoka\YsError::error('上传失败：不是图形文件');
+		if($full) return ['file_path'=>$file_path, 'real_path'=>$real_path, 'url'=>self::getUrl($file_path)];
+		else return $file_path;
+	}
 	
 	/**
 	 * 创建新文件，支持的文件扩展请参照 file_ext_allowed 变量定义
