@@ -229,7 +229,8 @@ class FileUpload{
 		$base_filename = md5(basename($src_filename) . time() . rand(0,99));
 		$file_path_name = date('Ymd') . '/' . $base_filename . '.' . $ext;
 		if(!self::_mkdirs(self::$file_path_upload . '/' . $file_path_name)){
-			throw(new \Exception('创建子目录失败:' . self::$file_path_upload . '/' . $file_path_name));
+			//throw(new \Exception('创建子目录失败:' . self::$file_path_upload . '/' . $file_path_name));
+			return \yoka\YsError::error('创建目录失败');
 		}
 		Debug::flog('flog:upload', self::$file_path_upload . '/' . $file_path_name);
 		self::mkdirs(self::$file_path_upload . '/' . $file_path_name);
@@ -247,13 +248,12 @@ class FileUpload{
 			$t = copy($tmp_file_path_name, self::$file_path_upload . '/' . $file_path_name);
 			Debug::flog('flog:upload', $t);
 		}
-		if($check_image && !getimagesize(self::$file_path_upload . '/' . $file_path_name)){
-			Debug::log('Error copy', $tmp_file_path_name .'==>'. $file_path_name);
-			return false;
-		}
 		if(!file_exists(self::$file_path_upload . '/' . $file_path_name)){
-			throw(new \Exception('文件处理出错，是不是填错啦？'));
-			return false;
+			//throw(new \Exception('文件处理出错，是不是填错啦？'));
+			return \yoka\YsError::error('创建文件失败，请检查空间或权限');
+		}
+		if($check_image && !getimagesize(self::$file_path_upload . '/' . $file_path_name)){
+			return \yoka\YsError::error('文件格式错误，不是图形文件');
 		}
 		\yoka\Debug::log('fileupload', self::$file_path_upload . '/' . $file_path_name);
 		return $file_path_name;
