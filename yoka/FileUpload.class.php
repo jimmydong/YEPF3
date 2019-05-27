@@ -164,7 +164,7 @@ class FileUpload{
 	public static function uploadFile($name, $full = false){
 		if(! $file_path	= self::create($_FILES[$name]['name'], $_FILES[$name]['tmp_name'])) return \yoka\YsError::error('上传失败：无上传文件');
 		if(! $real_path = self::getRealPath($file_path_name)) return \yoka\YsError::error('上传失败：文件大小异常？');
-		if(! in_array(pathinfo($real_path, PATHINFO_EXTENSION), self::$file_ext_allowed)) return \yoka\YsError::error('上传失败：文件类型错误');
+		if(! self::$file_ext_allowed[pathinfo($real_path, PATHINFO_EXTENSION)]) return \yoka\YsError::error('上传失败：文件类型错误');
 		
 		if($full) return ['file_path'=>$file_path, 'real_path'=>$real_path, 'url'=>self::getUrl($file_path)];
 		else return $file_path;
