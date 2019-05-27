@@ -59,7 +59,11 @@ class FileUpload{
 		'doc'=>'/\.doc$/i',
 		'xlsx' => '/\.xlsx$/i',
 		'xls' => '/\.xls$/i',
+		'csv' => '/\.csv$/i',
+		'pptx' => '/\.pptx$/i',
+		'ppt' => '/\.ppt$/i',
 		'txt'=> '/\.txt$/i',
+		'rar'=> '/\.rar$/i',
 		'zip'=> '/\.zip$/i',
 	);
 	/**
