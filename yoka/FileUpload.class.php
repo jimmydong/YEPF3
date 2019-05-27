@@ -212,8 +212,8 @@ class FileUpload{
 			$t = explode('?', basename($tmp_file_path_name));
 			$src_filename = $t[0];
 		}elseif(!file_exists($tmp_file_path_name) || filesize($tmp_file_path_name)<10){
-			throw(new \Exception('文件处理出错，是不是填错啦？'));
-			return false;
+			//throw(new \Exception('文件处理出错，是不是填错啦？'));
+			return \yoka\YsError::error('文件处理出错：是不是填错啦？');
 		}
 		$ext = 'jpg';	// 默认设置为.jpg文件扩展
 		foreach(self::$file_ext_allowed as $key=> $reg){
