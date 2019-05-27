@@ -168,7 +168,7 @@ class FileUpload{
 	/**
 	 * 上传图片的快捷方法
 	 * @param string $name   <input type="file" name=xxx>
-	 * @param bool $full 返回全格式: [file_path, real_path, url]
+	 * @param bool $full 返回全格式: [file_path, real_path, url, width, height, mime]
 	 * @return string
 	 * 
 	 * 注意form表单： enctype="multipart/form-data"
@@ -176,8 +176,15 @@ class FileUpload{
 	public static function uploadImage($name, $full = false){
 		if(! $file_path	= self::create($_FILES['upload']['name'], $_FILES['upload']['tmp_name'])) return \yoka\YsError::error('上传失败：无上传文件'); 
 		if(! $real_path = self::getRealPath($file_path_name)) return \yoka\YsError::error('上传失败：文件大小异常？');
-		if(! getimagesize($real_path)) return \yoka\YsError::error('上传失败：不是图形文件');
-		if($full) return ['file_path'=>$file_path, 'real_path'=>$real_path, 'url'=>self::getUrl($file_path)];
+		if(! $info = getimagesize($real_path)) return \yoka\YsError::error('上传失败：不是图形文件');
+		if($full) return [
+				'file_path'=>$file_path, 
+				'real_path'=>$real_path, 
+				'url'=>self::getUrl($file_path),
+				'width' => $info[0],
+				'height' => $info[1],
+				'mime'	=> $info['mime'],
+		];
 		else return $file_path;
 	}
 	
