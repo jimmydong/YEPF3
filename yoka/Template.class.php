@@ -65,10 +65,6 @@ class Template extends Smarty
 			$this->registerPlugin('modifier', 'cdn', 'template_cdn_modifier');
 		}
 		
-		if(function_exists('template_upload_modifier')){
-			$this->registerPlugin('modifier', 'upload', 'template_upload_modifier');
-		}
-		
 		if(function_exists('template_modifier_nicenumber')){
 			$this->registerPlugin('modifier', 'nicenumber', 'template_modifier_nicenumber');
 		}elseif(function_exists('template_nicenumber_modifier')){
