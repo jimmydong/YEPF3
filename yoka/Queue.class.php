@@ -100,7 +100,7 @@ class Queue
     		return self::$instance[$item.'#'.$is_ssdb];
     	}else{
     		$obj = new $class($item, $is_ssdb);
-    		if($obj) $class::$instance[$item.'#'.is_ssdb] = $obj;
+    		if($obj) $class::$instance[$item.'#'.$is_ssdb] = $obj;
     		return $obj;
     	}
     }
