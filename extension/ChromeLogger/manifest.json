@@ -1,0 +1,31 @@
+{
+   "background": {
+      "scripts": [ "chromelogger.js" ]
+   },
+   "browser_action": {
+      "default_icon": "icon38_disabled.png",
+      "default_title": "Chrome Logger"
+   },
+   "content_scripts": [ {
+      "js": [ "log.js" ],
+      "matches": [ "http://*/*", "https://*/*" ],
+      "run_at": "document_start"
+   } ],
+   "description": "For server side logging and debugging in chrome console.",
+   "icons": {
+      "128": "icon128.png",
+      "16": "icon16.png",
+      "48": "icon48.png"
+   },
+   "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDm5opQ+O02idQyq7CeXGxKwGSJmtX4GFRj0uEi0f7rbFBUOgSF0KlfCLkmryiB5VtTUNne5DnH6cLuMzm/0HZef0B7sKkL1Y5ljDvZYxhHQJrZxYY97TS97SPnw0jtDTiL9o8bpDRMf37kmHAByRWum6GWX7eDfMqtcEurk2YP0QIDAQAB",
+   "manifest_version": 2,
+   "minimum_chrome_version": "17",
+   "name": "Chrome Logger",
+   "options_ui": {
+      "open_in_tab": true,
+      "page": "options.html"
+   },
+   "permissions": [ "webRequest", "tabs", "http://*/*", "https://*/*" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "4.1.2"
+}
