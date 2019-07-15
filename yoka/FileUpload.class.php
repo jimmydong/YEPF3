@@ -299,9 +299,15 @@ class FileUpload{
 		if($file_path_name == '') return self::$url_path_upload . '/404.jpg';
 		if(preg_match('/^http/i', $file_path_name))return $file_path_name; //已经是全路径URL格式
 		if($no_local){
-			//nothing
+			if(preg_match('/(^\/upload\/)/', $file_path_name)){
+				$file_path_name = substr($file_path_name, 8);
+			}
+			if(preg_match('/(^\/storage\/)/', $file_path_name)){
+				$file_path_name = substr($file_path_name, 9);
+			}
 		}else{
-			if(preg_match('/(^\/storage\/)|(^\/upload\/)/', $file_path_name)) return $file_path_name; //相对路径URL形式，不做修正
+			//已是相对路径URL形式，不处理
+			if(preg_match('/(^\/storage\/)|(^\/upload\/)/', $file_path_name)) return $file_path_name;
 		}
 		//TODO::各种相对路径的处理
 		return self::$url_path_upload . '/' . $file_path_name;
