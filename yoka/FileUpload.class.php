@@ -287,9 +287,10 @@ class FileUpload{
 	/**
 	 * 获取文件的URL地址
 	 * Enter description here ...
-	 * @param string $file_path_name
+	 * @param string $file_path_name 文件路径（建议对于upload的路径。兼容相对路径）
+	 * @param bool $no_local 不保留相对路径
 	 */
-	public static function getUrl($file_path_name){
+	public static function getUrl($file_path_name, $no_local = false){
 		self::init();
 		if(! self::$url_path_upload){
 			throw(new \Exception('URL_PATH_UPLOAD not defined!'));
@@ -297,7 +298,7 @@ class FileUpload{
 		}
 		if($file_path_name == '') return self::$url_path_upload . '/404.jpg';
 		if(preg_match('/^http/i', $file_path_name))return $file_path_name; //已经是全路径URL格式
-		if(preg_match('/(^\/storage\/)|(^\/upload\/)/', $file_path_name)) return $file_path_name; //相对路径URL形式，不做修正
+		if(!$no_local && preg_match('/(^\/storage\/)|(^\/upload\/)/', $file_path_name)) return $file_path_name; //相对路径URL形式，不做修正
 		//\yoka\Debug::log(URL_PATH_UPLOAD, $file_path_name);
 		return self::$url_path_upload . '/' . $file_path_name;
 	}
