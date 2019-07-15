@@ -288,7 +288,7 @@ class FileUpload{
 	 * 获取文件的URL地址
 	 * Enter description here ...
 	 * @param string $file_path_name 文件路径（建议对于upload的路径。兼容相对路径）
-	 * @param bool $no_local 不保留相对路径
+	 * @param bool $no_local 不保留相对路径（常见用于API等非WEB环境）
 	 */
 	public static function getUrl($file_path_name, $no_local = false){
 		self::init();
