@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * @name Utilyty.class.php
  * @desc 一些有用的函数
