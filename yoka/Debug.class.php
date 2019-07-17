@@ -644,7 +644,7 @@ class Debug
 				{
 					if(is_array($v[4])) $result = substr(var_export($v[4], true), 0, 32); //限制长度
 					else $result = $v[4];
-					if(preg_match('/insert|update|delete/i',$v[3])) $string .= "|----  ".$v[1]."  ".$v[2]."  ".$v[3]."  ". $result ."  ----|\n";
+					if(is_string($v[3]) && preg_match('/insert|update|delete/i',$v[3])) $string .= "|----  ".$v[1]."  ".$v[2]."  ".$v[3]."  ". $result ."  ----|\n";
 				}
 				if($string){
 					$string = 	"Request: " . $_SERVER['REQUEST_URI'] . "\n" . $string;
