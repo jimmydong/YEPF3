@@ -49,10 +49,20 @@ class BaseModel{
 	public $_stopAutoRefresh = false;			//禁止自动更新，用于批量操作。
 	private $ismaster = true; 					//默认使用主库
 	
-	// 数据自动过滤机制，在子类设置 $filter_fields 值（需要过滤的字段）
+	// 用于自动过滤，在子类设置 $filter_fields 值（需要过滤的字段）
 	protected $filter_str = [" ","'","\r","\n","\t",'"', '(', ')', '（', '）', ',', '，', '“', '”', '<', '>'];
 	protected $filter_fields = [];				//待过滤字段
 	protected $filter_all = false;				//如果true，过滤所有字段
+	
+	// 字段类型定义
+	const TYPE_NONE = 0;	//未定义
+	const TYPE_INT = 1;		//整数
+	const TYPE_STRING = 2;	//字符串
+	const TYPE_FLOAT = 3;	//浮点数
+	const TYPE_JSON = 4;	//JSON格式字符串
+	const TYPE_DATE = 5;	//日期
+	const TYPE_DATETIME = 6;	//日期时间
+	const TYPE_TIMESTAMP = 7;	//时间戳整数
 	
 	/**
 	 * 实例化
@@ -957,7 +967,7 @@ class BaseModel{
 	/**
 	 * 数据精简（高级定义版本）
 	 * @param array $info 待处理数据
-	 * @param string|array $filter 只输出指定的type
+	 * @param string|array $filter 只输出符合filter的字段 [支持多个]
 	 * @param bool $des 是否输出字段说明(默认返回值做映射处理，key不变。 des = true 时，key变为title值)
 	 * @param bool $no_map
 	 * @param bool $strip 去除空项
@@ -966,10 +976,11 @@ class BaseModel{
 	 *
 	 * 【注意】
 	 * 定义在 class::$define_slim,
-	 * 格式： array( col_name => [title, type, map=[id:value, ...]], referer=[class, static], func=[class, function] ...)
+	 * 格式： array( col_name => [title, type, filter, map=[id:value, ...]], referer=[class, static], func=[class, function] ...)
 	 * 其中：
-	 * 		title: 可省略
-	 * 		type: 用于过滤选取
+	 * 		title: 字段名称
+	 * 		filter: 用于过滤选取
+	 * 		type: 类型 （预定义： SELF::TYPE_INT ...）
 	 * 		map: 值映射
 	 * 		referer: 根据静态定义映射
 	 * 		func: 根据函数返回值映射
@@ -979,10 +990,10 @@ class BaseModel{
 	 'id'				=> [],
 	 'coupon_id'		=> [],
 	 'coupon_name'		=> ['title'=>'优惠券名称'],
-	 'coupon_limit_des'	=> ['title'=>'使用说明', 'type'=>1],
-	 'coupon_state'		=> ['title'=>'状态', 'type'=>2, 'map'=>[0=>'正常',1=>'锁定']],
+	 'coupon_limit_des'	=> ['title'=>'使用说明', 'filter'=>1],
+	 'coupon_state'		=> ['title'=>'状态', 'filter'=>2, 'map'=>[0=>'正常',1=>'锁定']],
 	 'coupon_platform'	=> ['title'=>'平台', 'referer'=>["\\YsConfig","platform_des"]],
-	 'user_id'			=> ['title'=>'用户', 'func'=>["\\model\\User","getNameById"]]
+	 'user_id'			=> ['title'=>'用户', 'type'=>1, 'func'=>["\\model\\User","getNameById"]]
 	 );
 	 */
 	static public function _slim($info, $filter=null, $des = false, $not_map = false, $strip = false){
@@ -996,13 +1007,13 @@ class BaseModel{
 		foreach($define_slim as $k=>$define){
 			//兼容简单设定
 			if(is_string($define)){
-				$define = array('title'=>$define, 'type'=>0);
+				$define = array('title'=>$define, 'filter'=>0);
 			}
 			//处理类型过滤
 			if($filter !== null){
 				if(is_array($filter)){
-					if(!in_array($define['type'], $filter)) continue;
-				}elseif($define['type'] != $filter) continue;
+					if(!in_array($define['filter'], $filter)) continue;
+				}elseif($define['filter'] != $filter) continue;
 			}
 			if($strip){
 				if(!$info[$k] || $info[$k] === '0000-00-00' || $info[$k] === '0000-00-00 00:00:00') continue;
