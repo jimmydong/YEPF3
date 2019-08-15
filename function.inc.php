@@ -134,7 +134,7 @@ function template_modifier_json($v){
  * 【依赖】 \tools\Util
  */
 function template_modifier_mobile($str){
-	return "<i class='protected_mobile'>" . \tools\Util::hideMobile($str) . "</i>";
+	return \tools\Util::hideMobile($str);
 }
 
 /**
