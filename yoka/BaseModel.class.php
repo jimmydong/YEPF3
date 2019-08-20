@@ -55,14 +55,14 @@ class BaseModel{
 	protected $filter_all = false;				//如果true，过滤所有字段
 	
 	// 字段类型定义
-	const TYPE_NONE = 'NONE';			//未定义
-	const TYPE_INT = 'INT';				//整数
-	const TYPE_STRING = 'STRING';		//字符串
-	const TYPE_FLOAT = 'FLOAT';			//浮点数
-	const TYPE_JSON = 'JSON';			//JSON格式字符串
-	const TYPE_DATE = 'DATE';			//日期
-	const TYPE_DATETIME = 'DATETIME';	//日期时间
-	const TYPE_TIMESTAMP = 'TIMESTAMP';	//时间戳整数
+	const TYPE_NONE = 0;	//未定义
+	const TYPE_INT = 1;		//整数
+	const TYPE_STRING = 2;	//字符串
+	const TYPE_FLOAT = 3;	//浮点数
+	const TYPE_JSON = 4;	//JSON格式字符串
+	const TYPE_DATE = 5;	//日期
+	const TYPE_DATETIME = 6;	//日期时间
+	const TYPE_TIMESTAMP = 7;	//时间戳整数
 	
 	/**
 	 * 实例化
@@ -1013,12 +1013,7 @@ class BaseModel{
 			if($filter !== null){
 				if(is_array($filter)){
 					if(!in_array($define['filter'], $filter)) continue;
-				}else{
-					if($define['type'] && is_int($define['type'])){
-						//兼容旧格式
-						if($define['type'] != $filter) continue;
-					}elseif($define['filter'] != $filter) continue;
-				}
+				}elseif($define['filter'] != $filter) continue;
 			}
 			if($strip){
 				if(!$info[$k] || $info[$k] === '0000-00-00' || $info[$k] === '0000-00-00 00:00:00') continue;
