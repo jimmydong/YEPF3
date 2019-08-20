@@ -1,6 +1,8 @@
 <?php
+/**
+ * MVC 请求封装
+ */
 namespace yoka\mvc;
-
 use \Exception;
 
 class Request implements \Iterator{
@@ -9,7 +11,7 @@ class Request implements \Iterator{
 	/**
 	 * 允许修改传入参数
 	 */
-	public $allowModify = false;
+	public $__allowModify = false;
 	/**
 	 * 自动进行add_slashes
 	 */
@@ -21,8 +23,8 @@ class Request implements \Iterator{
 	/**
 	 * for Iterator
 	 */
-	public $position = 0; 			//for iterator
-	public $entity = [];			//for iterator
+	public $__i_position = 0; 			//for iterator
+	public $__i_entity = [];			//for iterator
 	
 	/**
 	 * 防注入(参见方法： checkSafe)
@@ -35,12 +37,12 @@ class Request implements \Iterator{
 	 * 构造函数
 	 */
 	public function __construct() {
-		$this->position = 0;		//for iterator
+		$this->__i_position = 0;		//for iterator
 		foreach($_POST as $k=>$v){
-			$this->entity[] = ['key'=>$k, 'val'=>$v];
+			$this->__i_entity[] = ['key'=>$k, 'val'=>$v];
 		}
 		foreach($_GET as $k=>$v){
-			$this->entity[] = ['key'=>$k, 'val'=>$v];
+			$this->__i_entity[] = ['key'=>$k, 'val'=>$v];
 		}
 	}
 	
@@ -59,7 +61,7 @@ class Request implements \Iterator{
 	 */
 	public function getAll(){
 		$re = [];
-		foreach($this->entity as $v){
+		foreach($this->__i_entity as $v){
 			$re[$v['key']] = $v['val'];
 		}
 		return $re;
@@ -117,9 +119,9 @@ class Request implements \Iterator{
 	 * @param array $array
 	 */
 	public function set(array $array){
-		$this->allowModify = true;
+		$this->__allowModify = true;
 		foreach ($array as $k=>$v) $this->$k = $v;
-		$this->allowModify = false;
+		$this->__allowModify = false;
 	}
 	/**
 	 * 别名函数
@@ -192,7 +194,7 @@ class Request implements \Iterator{
 	}
 
 	public function __set($k, $v) {
-		if ($this->allowModify)
+		if ($this->__allowModify)
 			$this->$k = $v;
 		else
 			throw new Exception('不允许修改!');
@@ -235,18 +237,18 @@ class Request implements \Iterator{
 	
 	/* Iterator 方法 */
 	public function current (){
-		return $this->entity[$this->position]['val'];
+		return $this->__i_entity[$this->__i_position]['val'];
 	}
 	public function key (){
-		return $this->entity[$this->position]['key'];
+		return $this->__i_entity[$this->__i_position]['key'];
 	}
 	public function next (){
-		++$this->position;
+		++$this->__i_position;
 	}
 	public function rewind (){
-		$this->position = 0;
+		$this->__i_position = 0;
 	}
 	public function valid (){
-		return isset($this->entity[$this->position]);
+		return isset($this->__i_entity[$this->__i_position]);
 	}
 }
