@@ -273,15 +273,18 @@ class FileUpload{
 	/**
 	 * 读取文件
 	 * Enter description here ...
-	 * @param string $file_path_name 相对路径
+	 * @param string $file_path_name 绝对路径或相对上传路径
 	 */
 	public static function get($file_path_name){
 		self::init();
-		if(!file_exists(self::$file_path_upload . '/' . $file_path_name)){
+		if(file_exists(self::$file_path_upload . '/' . $file_path_name)){
+			$re = file_get_contents(self::$file_path_upload . '/' . $file_path_name);
+		}elseif(file_exists($file_path_name)){
+			$re = file_get_contents($file_path_name);
+		}else{
 			throw(new \Exception('文件不存在'));
 			return false;
 		}
-		$re = file_get_contents(self::$file_path_upload . '/' . $file_path_name);
 		return $re; 
 	}
 	/**
