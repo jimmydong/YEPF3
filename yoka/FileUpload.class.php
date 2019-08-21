@@ -547,8 +547,11 @@ class FileUpload{
 	 * 1，依赖 imagemagick （路径 /usr/bin/convert）
 	 * 2，覆盖原文件
 	 * @param string $file_path_name
+	 * @param int $max_width 超出的才做压缩处理（注意：width和height必须同时提供）
+	 * @param int $max_height
+	 * @param int $quality  品质
 	 */
-	public static function compressImage($file_path_name){
+	public static function compressImage($file_path_name, $max_width=1200, $max_height=1200, $quality=85){
 		if(! $source = self::get($file_path_name))return false;
 		/**
 		 * PNG压缩 每月500次处理配额
@@ -563,10 +566,12 @@ class FileUpload{
 		}
 		*/
 		
-		//TODO::判断图片大小，超过1600宽高的等比例放缩到1600
-		
 		$file = self::getRealPath($file_path_name);
-		$cmd = "/usr/bin/convert -quality 85 {$file} {$file}";
+		if($max_width && $max_height){
+			$cmd = "/usr/bin/convert -resize '{$max_width}x{$max_height}>' {$file} -quality {$quality} {$file}";
+		}else{
+			$cmd = "/usr/bin/convert -quality {$quality} {$file} {$file}";
+		}
 		ob_start();
 		passthru($cmd);
 		$re = ob_get_contents();
