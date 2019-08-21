@@ -241,7 +241,7 @@ class FileUpload{
 		if($from_net){
 			//模拟浏览器抓取
 			$referer_url = str_replace('sinaimg.cn','sina.com.cn',$tmp_file_path_name); //新浪referer限制
-			$cu = new \tools\MultiProcess(array(CURLOPT_REFERER=>$referer_url, CURLOPT_SSL_VERIFYHOST=>false, CURLOPT_SSL_VERIFYPEER=>false));
+			$cu = new \yoka\MultiProcess(array(CURLOPT_REFERER=>$referer_url, CURLOPT_SSL_VERIFYHOST=>false, CURLOPT_SSL_VERIFYPEER=>false));
 			if($content = $cu->execOne($tmp_file_path_name)){
 				file_put_contents(self::$file_path_upload . '/' . $file_path_name, $content);
 				Debug::log('curl get', self::$file_path_upload . '/' . $file_path_name);
