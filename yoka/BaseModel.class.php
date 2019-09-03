@@ -1013,7 +1013,12 @@ class BaseModel{
 			if($filter !== null){
 				if(is_array($filter)){
 					if(!in_array($define['filter'], $filter)) continue;
-				}elseif($define['filter'] != $filter) continue;
+				}else{
+					if($define['type'] && is_int($define['type'])){
+						//兼容旧格式
+						if($define['type'] != $filter) continue;
+					}elseif($define['filter'] != $filter) continue;
+				}
 			}
 			if($strip){
 				if(!$info[$k] || $info[$k] === '0000-00-00' || $info[$k] === '0000-00-00 00:00:00') continue;

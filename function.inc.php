@@ -130,6 +130,14 @@ function template_modifier_json($v){
 }
 
 /**
+ * 手机号安全处理
+ * 【依赖】 \tools\Util
+ */
+function template_modifier_mobile($str){
+	return \tools\Util::hideMobile($str);
+}
+
+/**
  * 语言转换
  * 【依赖】 \lang\BaseLang
  */
