@@ -241,7 +241,7 @@ class FileUpload{
 		if($from_net){
 			//模拟浏览器抓取
 			$referer_url = str_replace('sinaimg.cn','sina.com.cn',$tmp_file_path_name); //新浪referer限制
-			$cu = new \tools\MultiProcess(array(CURLOPT_REFERER=>$referer_url, CURLOPT_SSL_VERIFYHOST=>false, CURLOPT_SSL_VERIFYPEER=>false));
+			$cu = new \yoka\MultiProcess(array(CURLOPT_REFERER=>$referer_url, CURLOPT_SSL_VERIFYHOST=>false, CURLOPT_SSL_VERIFYPEER=>false));
 			if($content = $cu->execOne($tmp_file_path_name)){
 				file_put_contents(self::$file_path_upload . '/' . $file_path_name, $content);
 				Debug::log('curl get', self::$file_path_upload . '/' . $file_path_name);
@@ -273,15 +273,18 @@ class FileUpload{
 	/**
 	 * 读取文件
 	 * Enter description here ...
-	 * @param string $file_path_name 相对路径
+	 * @param string $file_path_name 绝对路径或相对上传路径
 	 */
 	public static function get($file_path_name){
 		self::init();
-		if(!file_exists(self::$file_path_upload . '/' . $file_path_name)){
+		if(file_exists(self::$file_path_upload . '/' . $file_path_name)){
+			$re = file_get_contents(self::$file_path_upload . '/' . $file_path_name);
+		}elseif(file_exists($file_path_name)){
+			$re = file_get_contents($file_path_name);
+		}else{
 			throw(new \Exception('文件不存在'));
 			return false;
 		}
-		$re = file_get_contents(self::$file_path_upload . '/' . $file_path_name);
 		return $re; 
 	}
 	/**
@@ -547,8 +550,11 @@ class FileUpload{
 	 * 1，依赖 imagemagick （路径 /usr/bin/convert）
 	 * 2，覆盖原文件
 	 * @param string $file_path_name
+	 * @param int $max_width 超出的才做压缩处理（注意：width和height必须同时提供）
+	 * @param int $max_height
+	 * @param int $quality  品质
 	 */
-	public static function compressImage($file_path_name){
+	public static function compressImage($file_path_name, $max_width=1200, $max_height=1200, $quality=85){
 		if(! $source = self::get($file_path_name))return false;
 		/**
 		 * PNG压缩 每月500次处理配额
@@ -563,10 +569,12 @@ class FileUpload{
 		}
 		*/
 		
-		//TODO::判断图片大小，超过1600宽高的等比例放缩到1600
-		
 		$file = self::getRealPath($file_path_name);
-		$cmd = "/usr/bin/convert -quality 85 {$file} {$file}";
+		if($max_width && $max_height){
+			$cmd = "/usr/bin/convert -resize '{$max_width}x{$max_height}>' {$file} -quality {$quality} {$file}";
+		}else{
+			$cmd = "/usr/bin/convert -quality {$quality} {$file} {$file}";
+		}
 		ob_start();
 		passthru($cmd);
 		$re = ob_get_contents();

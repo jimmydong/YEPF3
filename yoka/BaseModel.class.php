@@ -55,14 +55,14 @@ class BaseModel{
 	protected $filter_all = false;				//如果true，过滤所有字段
 	
 	// 字段类型定义
-	const TYPE_NONE = 'NONE';			//未定义
-	const TYPE_INT = 'INT';				//整数
-	const TYPE_STRING = 'STRING';		//字符串
-	const TYPE_FLOAT = 'FLOAT';			//浮点数
-	const TYPE_JSON = 'JSON';			//JSON格式字符串
-	const TYPE_DATE = 'DATE';			//日期
-	const TYPE_DATETIME = 'DATETIME';	//日期时间
-	const TYPE_TIMESTAMP = 'TIMESTAMP';	//时间戳整数
+	const TYPE_NONE = 0;	//未定义
+	const TYPE_INT = 1;		//整数
+	const TYPE_STRING = 2;	//字符串
+	const TYPE_FLOAT = 3;	//浮点数
+	const TYPE_JSON = 4;	//JSON格式字符串
+	const TYPE_DATE = 5;	//日期
+	const TYPE_DATETIME = 6;	//日期时间
+	const TYPE_TIMESTAMP = 7;	//时间戳整数
 	
 	/**
 	 * 实例化
@@ -853,7 +853,7 @@ class BaseModel{
 	/**
 	 * 查询（默认返回true/false）
 	 * @param bool $return_statement 是否返回statement(默认为true/false)
-	 * @param bool $heavy 是否禁止预缓冲(防止大量查询导致内存不足)
+	 * @param bool $heavy 是否禁止预缓冲(防止大量查询导致内存不足。注意：开启后不能嵌套查询，否则可能出错)
 	 *
 	 * 注意： 传入$return_statement=true，其结果foreach迭代出的结果数组，不是对象本身
 	 * $admin = new User();
