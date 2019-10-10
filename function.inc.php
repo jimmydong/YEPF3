@@ -26,7 +26,7 @@
  * 网页碎片（面包屑）输出
  * @param array $params = array(key=$key) OR $params = array(type=>$type, key=>$key)
  * 简易模式： <{widget key=xxxxx}>  直接从widget表读取
- * 高级模式： <{widget type=xxx param=xxxx param=xxxx}>  调用相关函数处理
+ * 高级模式： <{widget type=xxx key=xxxx html=xxxx}>  调用相关函数处理(参见Widget类)
  */
 function template_encode_widget($params){
 	//TODO: 注意对SiteCacheLevel的处理
