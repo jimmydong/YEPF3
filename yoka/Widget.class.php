@@ -86,14 +86,11 @@ class Widget
 			$re = $m->get($mkey);
 			if($re) return $re;
 		}
-		\yoka\Debug::log('here');
 		$db = DB::getInstance('default');
 		$re = $db->fetchOne("select * from widget where `key`='$key' and del_flag=0");
-		\yoka\Debug::log($html, $re);
-		\yoka\Debug::log($html, $re['data']);
 		if(!$html)$data = json_decode($re['data'],true);
 		else $data = $re['data'];
-		\yoka\Debug::log($data);
+		\yoka\Debug::log('html:' . $html, $re);
 		$m->set($mkey, $data, defined('SiteCacheTime') ? SiteCacheTime : 3600 * 4);
 		return $data;
 	}
