@@ -90,7 +90,7 @@ class Widget
 		$re = $db->fetchOne("select * from widget where `key`='$key' and del_flag=0");
 		if(!$html)$data = json_decode($re['data'],true);
 		else $data = $re['data'];
-		\yoka\Debug::log('html:' . $html, $re);
+		\yoka\Debug::log('html:' . ($html?'true':'false'), $re);
 		$m->set($mkey, $data, defined('SiteCacheTime') ? SiteCacheTime : 3600 * 4);
 		return $data;
 	}
