@@ -136,7 +136,13 @@ function template_modifier_json($v){
 function template_modifier_mobile($str){
 	return \tools\Util::hideMobile($str);
 }
-
+/**
+ * 百分比显示
+ */
+function template_modifier_percent($number){
+	$t = intval($number * 100);
+	return $t / 100;
+}
 /**
  * 语言转换
  * 【依赖】 \lang\BaseLang
