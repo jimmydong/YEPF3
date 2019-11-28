@@ -139,8 +139,8 @@ function template_modifier_mobile($str){
 /**
  * 百分比显示
  */
-function template_modifier_percent($number){
-	$t = intval($number * 100);
+function template_modifier_percent($float){
+	$t = intval($float * 10000);
 	return $t / 100;
 }
 /**
