@@ -112,6 +112,10 @@ class Template extends Smarty
 		if(function_exists('template_modifier_mobile')){
 			$this->registerPlugin('modifier', 'mobile', 'template_modifier_mobile');
 		}
+		//百分比
+		if(function_exists('template_modifier_percent')){
+			$this->registerPlugin('modifier', 'percent', 'template_modifier_percent');
+		}
 		
 		/*--------------- 传入变量 ------------------*/
 		if($response) $this->fit_sprite($response);
