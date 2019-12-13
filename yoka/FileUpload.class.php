@@ -559,7 +559,7 @@ class FileUpload{
 	}
 	
 	/**
-	 * 图片压缩
+	 * 图片尺寸与大小压缩
 	 * 注意： 
 	 * 1，依赖 imagemagick （路径 /usr/bin/convert）
 	 * 2，覆盖原文件
