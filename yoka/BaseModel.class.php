@@ -69,9 +69,9 @@ class BaseModel{
 	 * @param int $id 用户ID
 	 */
 	function __construct($id = null){
-		if($database = static::$database){
+		if(isset(static::$database)){
 			//按设定的数据库连接
-			$this->db = DB::getInstance($database);
+			$this->db = DB::getInstance(static::$database);
 			//设定的数据库只连接主库（防止slave标志混淆），需要时请 db_change_slave
 			$this->ismaster = $master;
 		}else{
@@ -136,7 +136,8 @@ class BaseModel{
 	 * 切换到主库
 	 */
 	function db_change_master(){
-		if(! $database = static::$database) $database = 'default';
+		if(isset(static::$database)) $database = static::$database;
+		else $database = 'default';
 		$this->db = DB::getInstance($database);
 	}
 	
@@ -144,7 +145,8 @@ class BaseModel{
 	 * 切换到从库
 	 */
 	function db_change_slave($name = false){
-		if(! $database = static::$database) $database = 'default';
+		if(isset(static::$database)) $database = static::$database;
+		else $database = 'default';
 		$this->db = DB::getInstance($database, $name);
 	}
 	
@@ -152,7 +154,8 @@ class BaseModel{
 	 * 切换到统计库(注意：统计专用，会关闭Debug以提高统计速度)
 	 */
 	function db_change_stat(){
-		if(! $database = static::$database) $database = 'default';
+		if(isset(static::$database)) $database = static::$database;
+		else $database = 'default';
 		$this->db = DB::getInstance($database, 'stat');
 		
 		//关闭debug提高性能
