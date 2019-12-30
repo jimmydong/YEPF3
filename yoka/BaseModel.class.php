@@ -14,13 +14,17 @@ namespace yoka;
  * 7， update 默认禁止批量更新。使用$cretia['__FORCE__'] == true可执行批量更新。
  * 8， 手写SQL时不要直接使用表名，使用"%_table_%"。
  * 9， 如必须使用表名（如JOIN操作），需在SQL后加上：";#@USE_TABLE_NAME" 标记
- * 10，请留意默认缓冲的配置(default)。
+ * 10，【重要】请留意默认缓冲的配置(default)。
+ * 
+ * [自定义主键]
+ * 1， 支持非id作为主键。在子类中定义：static $pkey 。
+ * 2， 原有id为主键的无需任何调整，完全兼容
  *
- * ************************************************** *
- *       重要：复制到其他项目时要修改缓冲配置         *
- * ************************************************** *
+ * [v3 更新]
+ * 1， 更新_slim方法，增加type/filter
+ * 2， 支持非默认数据库连接
  *
- * [更新]
+ * [v2 更新]
  * 1， 不确定id是否存在的，请使用 geteById() 方法
  * 2， update 更新非本体数据时，需使用 __FORCE__ 参数
  * 3， 高性能开发时请优先使用带缓冲的方法：
@@ -33,10 +37,6 @@ namespace yoka;
  * 7， 增加了字段自动过滤，需在子类中定义 $filter_fields 。注意：仅对 add/save/replace/update 有效
  * 8， 增加snapshop 和 slim 方法。子类中使用 $default_slim 定义默认slim字段
  * 9， 新增_slim方法取代slim。子类中使用 $define_slim 定义字段含义。（请结合db_info工具使用）
- *
- * [自定义主键]
- * 1， 支持非id作为主键。在子类中定义：static $pkey 。
- * 2， 原有id为主键的无需任何调整，完全兼容
  *
  */
 class BaseModel{
@@ -69,12 +69,21 @@ class BaseModel{
 	 * @param int $id 用户ID
 	 */
 	function __construct($id = null){
-		if(\YsConfig::$SLAVE_DB_FIRST === true) $master = false;
-		elseif(is_string(\YsConfig::$SLAVE_DB_FIRST)) $master = \YsConfig::$SLAVE_DB_FIRST;
-		else $master = true;
-		// 保存当前链接使用的是否是主库
-		$this->ismaster = $master;
-		$this->db = DB::getInstance('default', $this->ismaster);
+		if($database = static::$database){
+			//按设定的数据库连接
+			$this->db = DB::getInstance($database);
+			//设定的数据库只连接主库（防止slave标志混淆），需要时请 db_change_slave
+			$this->ismaster = $master;
+		}else{
+			if(\YsConfig::$SLAVE_DB_FIRST === true) $master = false;
+			elseif(is_string(\YsConfig::$SLAVE_DB_FIRST)) $master = \YsConfig::$SLAVE_DB_FIRST;
+			else $master = true;
+			// 保存当前链接使用的是否是主库
+			$this->ismaster = $master;
+			$this->db = DB::getInstance('default', $this->ismaster);
+		}
+		
+		// 不推荐ID实例化。建议使用： class::getById($id)
 		if($id){
 			$table = static::$table;
 			// $pkey = static::$pkey?:'id';
@@ -127,27 +136,31 @@ class BaseModel{
 	 * 切换到主库
 	 */
 	function db_change_master(){
-		$this->db = DB::getInstance('default');
+		if(! $database = static::$database) $database = 'default';
+		$this->db = DB::getInstance($database);
 	}
 	
 	/**
 	 * 切换到从库
 	 */
 	function db_change_slave($name = false){
-		$this->db = DB::getInstance('default', $name);
+		if(! $database = static::$database) $database = 'default';
+		$this->db = DB::getInstance($database, $name);
 	}
 	
 	/**
 	 * 切换到统计库(注意：统计专用，会关闭Debug以提高统计速度)
 	 */
 	function db_change_stat(){
-		$this->db = DB::getInstance('default', 'stat');
+		if(! $database = static::$database) $database = 'default';
+		$this->db = DB::getInstance($database, 'stat');
 		
 		//关闭debug提高性能
 		\yoka\Debug::stop();
 		self::stopAutoRefresh();
 		self::$_EnableBuffer = false;
 	}
+	
 	/**
 	 * 设置缓冲实例名称
 	 */
