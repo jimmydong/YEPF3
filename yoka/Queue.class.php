@@ -335,7 +335,8 @@ class Queue
     	$begin_microtime = Debug::getTime();
     	$key = $this->_getkey($queue_name);
     	if(empty($key)) return false;
-    	$queue_legnth = $this->sizeQueue($queue_name);
+    	if($this->is_ssdb) $queue_legnth= $this->object->qsize($key);
+    	else $queue_legnth= $this->object->lSize($key);
     	for($i=0;$i<$queue_legnth;$i++){
     		if($counter++ > 1000)break;
     		if($this->is_ssdb) $re[] = $this->object->qget($key, $i);
