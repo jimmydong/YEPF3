@@ -177,9 +177,9 @@ class Queue
     	
     	if($this->is_ssdb)$cnt = $this->object->qsize($key);
     	else $cnt = $this->object->lSize($key);
-    	if($cnt - $max_limit > 0){
-    		if($this->is_ssdb) $this->object->qslice($key, 0, $cnt - $max_limit - 1);
-    		else $this->object->lRange($key, 0, $cnt - $max_limit - 1);
+    	for($i = $cnt - $max_limit; $i > 0; $i--){
+    		if($this->is_ssdb) $this->object->qpop_front($key);
+    		else $this->object->lpop($key);
     	}
     	
     	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'addQueueWithMaxLimit', $re);
@@ -241,9 +241,45 @@ class Queue
     	return $re;
     }
     /**
-     * 读取队列最新N个元素
+     * 弹出1个元素(删除)
+     * @param unknown $queue_name
+     * @param unknown $n
+     * @return boolean|array
      */
-    public function getsQueueNew($queue_name, $n){
+    public function popQueue($queue_name){
+    	$begin_microtime = Debug::getTime();
+    	$key = $this->_getkey($queue_name);
+    	if(empty($key)) return false;
+    	if($this->is_ssdb) $re = $this->object->qpop_front($key);
+    	else $re = $this->object->lpop($key);
+    	if($t = json_decode($re, true)){
+    		$re = $t;
+    	}
+    	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'popQueue', $re);
+    	return $re;
+    }
+    /**
+     * 弹出最新的1个元素(删除)
+     * @param unknown $queue_name
+     * @param unknown $n
+     * @return boolean|array
+     */
+    public function popQueueNew($queue_name){
+    	$begin_microtime = Debug::getTime();
+    	$key = $this->_getkey($queue_name);
+    	if(empty($key)) return false;
+    	if($this->is_ssdb) $re = $this->object->qpop_back($key);
+    	else $re = $this->object->rPop($key);
+    	if($t = json_decode($re, true)){
+    		$re = $t;
+    	}
+    	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'popQueueNew', $re);
+    	return $re;
+    }
+    /**
+     * 读取队列最新N个元素(不删除)
+     */
+    public function getsQueueNew($queue_name, $n = 1){
     	$begin_microtime = Debug::getTime();
     	$key = $this->_getkey($queue_name);
     	if(empty($key)) return false;
@@ -265,9 +301,9 @@ class Queue
     	return $re;
     }
     /**
-     * 读取队列最旧N个元素
+     * 读取队列最旧N个元素（不删除）
      */
-    public function getsQueueOld($queue_name, $n){
+    public function getsQueueOld($queue_name, $n = 1){
     	$begin_microtime = Debug::getTime();
     	$key = $this->_getkey($queue_name);
     	if(empty($key)) return false;
