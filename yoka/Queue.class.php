@@ -19,6 +19,8 @@ namespace yoka;
  	$queue->getsQueueAll('queue_name');
 	$queue->getQueue('queue_name');
 	$queue->getQueue('queue_name');
+	[新增]
+	$queue->addQueueWithMaxLimit('queue_name', '333', 32);
  */
 
 class Queue
@@ -161,6 +163,29 @@ class Queue
         return $re;
     }
     /**
+     * 数据放入队列，同时保证队列长度不超过设定限制
+     * @param unknown $queue_name
+     * @param unknown $queue_data
+     * @param unknown $max_limit
+     */
+    public function addQueueWithMaxLimit($queue_name, $queue_data, $max_limit){
+    	$begin_microtime = Debug::getTime();
+    	$key = $this->_getkey($queue_name);
+    	if(empty($key)) return false;
+    	if($this->is_ssdb)$re = $this->object->qpush_back($key, json_encode($queue_data, JSON_UNESCAPED_UNICODE));
+    	else $re = $this->object->rPush($key, json_encode($queue_data, JSON_UNESCAPED_UNICODE));
+    	
+    	if($this->is_ssdb)$cnt = $this->object->qsize($key);
+    	else $cnt = $this->object->lSize($key);
+    	if($cnt - $max_limit > 0){
+    		if($this->is_ssdb) $this->object->qslice($key, 0, $cnt - $max_limit - 1);
+    		else $this->object->lRange($key, 0, $cnt - $max_limit - 1);
+    	}
+    	
+    	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'addQueueWithMaxLimit', $re);
+    	return $re;
+    }
+    /**
      * 获取集合列表 【注意】不含起始名字！
      * @param string $start_name 起始名字（不含）
      * @param string $end_name 结束名字（包含）
@@ -212,7 +237,6 @@ class Queue
     	if(empty($key)) return false;
     	if($this->is_ssdb)$re = $this->object->qsize($key);
     	else $re = $this->object->lSize($key);
-    	$re = json_decode($re, true);
     	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'sizeQueue', $re);
     	return $re;
     }
