@@ -175,14 +175,28 @@ class FileUpload{
 	 * 上传图片的快捷方法
 	 * @param string $name   <input type="file" name=xxx>
 	 * @param bool $full 返回全格式: [file_path, real_path, url, width, height, mime]
+	 * @param mixed $compress 进行JPG压缩 (传入整数为质量值，传入true按80处理）
 	 * @return string
 	 * 
 	 * 注意form表单： enctype="multipart/form-data"
 	 */
-	public static function uploadImage($name, $full = false){
+	public static function uploadImage($name, $full = false, $compress = false){
 		if(! $file_path	= self::create($_FILES[$name]['name'], $_FILES[$name]['tmp_name'])) return \yoka\YsError::error('上传失败：无上传文件'); 
 		if(! $real_path = self::getRealPath($file_path)) return \yoka\YsError::error('上传失败：文件大小异常？');
 		if(! $info = getimagesize($real_path)) return \yoka\YsError::error('上传失败：不是图形文件');
+		if($compress){
+			if(!is_int($compress)) $compress = 80;
+			$new_file = $real_path . "_ac.jpg";
+			$cmd = "/usr/bin/convert -quality {$compress} {$real_path} {$new_file}";
+			exec($cmd);
+			if($new_info = getimagesize($new_file)){
+				$info = $new_info;
+				$file_path = $file_path . "_ac.jpg";
+				$real_path = $new_file;
+			}else{
+				\yoka\Debug::log('FileUpload warning', 'compress fail. without convert?');
+			}
+		}
 		if($full) return [
 				'file_path'=>$file_path, 
 				'real_path'=>$real_path, 
@@ -547,7 +561,7 @@ class FileUpload{
 	}
 	
 	/**
-	 * 图片压缩
+	 * 图片尺寸与大小压缩
 	 * 注意： 
 	 * 1，依赖 imagemagick （路径 /usr/bin/convert）
 	 * 2，覆盖原文件

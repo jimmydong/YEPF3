@@ -19,6 +19,8 @@ namespace yoka;
  	$queue->getsQueueAll('queue_name');
 	$queue->getQueue('queue_name');
 	$queue->getQueue('queue_name');
+	[新增]
+	$queue->addQueueWithMaxLimit('queue_name', '333', 32);
  */
 
 class Queue
@@ -161,6 +163,29 @@ class Queue
         return $re;
     }
     /**
+     * 数据放入队列，同时保证队列长度不超过设定限制
+     * @param unknown $queue_name
+     * @param unknown $queue_data
+     * @param unknown $max_limit
+     */
+    public function addQueueWithMaxLimit($queue_name, $queue_data, $max_limit){
+    	$begin_microtime = Debug::getTime();
+    	$key = $this->_getkey($queue_name);
+    	if(empty($key)) return false;
+    	if($this->is_ssdb)$re = $this->object->qpush_back($key, json_encode($queue_data, JSON_UNESCAPED_UNICODE));
+    	else $re = $this->object->rPush($key, json_encode($queue_data, JSON_UNESCAPED_UNICODE));
+    	
+    	if($this->is_ssdb)$cnt = $this->object->qsize($key);
+    	else $cnt = $this->object->lSize($key);
+    	for($i = $cnt - $max_limit; $i > 0; $i--){
+    		if($this->is_ssdb) $this->object->qpop_front($key);
+    		else $this->object->lpop($key);
+    	}
+    	
+    	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'addQueueWithMaxLimit', $re);
+    	return $re;
+    }
+    /**
      * 获取集合列表 【注意】不含起始名字！
      * @param string $start_name 起始名字（不含）
      * @param string $end_name 结束名字（包含）
@@ -212,14 +237,49 @@ class Queue
     	if(empty($key)) return false;
     	if($this->is_ssdb)$re = $this->object->qsize($key);
     	else $re = $this->object->lSize($key);
-    	$re = json_decode($re, true);
     	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'sizeQueue', $re);
     	return $re;
     }
     /**
-     * 读取队列最新N个元素
+     * 弹出1个元素(删除)
+     * @param unknown $queue_name
+     * @param unknown $n
+     * @return boolean|array
      */
-    public function getsQueueNew($queue_name, $n){
+    public function popQueue($queue_name){
+    	$begin_microtime = Debug::getTime();
+    	$key = $this->_getkey($queue_name);
+    	if(empty($key)) return false;
+    	if($this->is_ssdb) $re = $this->object->qpop_front($key);
+    	else $re = $this->object->lpop($key);
+    	if($t = json_decode($re, true)){
+    		$re = $t;
+    	}
+    	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'popQueue', $re);
+    	return $re;
+    }
+    /**
+     * 弹出最新的1个元素(删除)
+     * @param unknown $queue_name
+     * @param unknown $n
+     * @return boolean|array
+     */
+    public function popQueueNew($queue_name){
+    	$begin_microtime = Debug::getTime();
+    	$key = $this->_getkey($queue_name);
+    	if(empty($key)) return false;
+    	if($this->is_ssdb) $re = $this->object->qpop_back($key);
+    	else $re = $this->object->rPop($key);
+    	if($t = json_decode($re, true)){
+    		$re = $t;
+    	}
+    	Debug::cache($this->serverlist, $key, Debug::getTime() - $begin_microtime, 'popQueueNew', $re);
+    	return $re;
+    }
+    /**
+     * 读取队列最新N个元素(不删除)
+     */
+    public function getsQueueNew($queue_name, $n = 1){
     	$begin_microtime = Debug::getTime();
     	$key = $this->_getkey($queue_name);
     	if(empty($key)) return false;
@@ -241,9 +301,9 @@ class Queue
     	return $re;
     }
     /**
-     * 读取队列最旧N个元素
+     * 读取队列最旧N个元素（不删除）
      */
-    public function getsQueueOld($queue_name, $n){
+    public function getsQueueOld($queue_name, $n = 1){
     	$begin_microtime = Debug::getTime();
     	$key = $this->_getkey($queue_name);
     	if(empty($key)) return false;
@@ -311,7 +371,8 @@ class Queue
     	$begin_microtime = Debug::getTime();
     	$key = $this->_getkey($queue_name);
     	if(empty($key)) return false;
-    	$queue_legnth = $this->sizeQueue($queue_name);
+    	if($this->is_ssdb) $queue_legnth= $this->object->qsize($key);
+    	else $queue_legnth= $this->object->lSize($key);
     	for($i=0;$i<$queue_legnth;$i++){
     		if($counter++ > 1000)break;
     		if($this->is_ssdb) $re[] = $this->object->qget($key, $i);
