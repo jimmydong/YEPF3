@@ -55,7 +55,7 @@ function template_encode_cutstr($params)
 {
 	extract($params);
 	if(mb_strwidth($str,'utf8') < $length) return $str;
-	if(! $suffix) $suffix = '...';
+	if(! $suffix) $suffix = '...'?:$prefix; //兼容误写为 prefix
 	if($suffix == '...') return mb_strimwidth($str,0,$length-2,'','utf8') . $suffix;
 	else return mb_strimwidth($str,0,$length,$suffix,'utf8');
 }
