@@ -13,4 +13,4 @@ define('ROOT_DOMAIN','http://127.0.0.1/YEPF/_YEPF3.0/demo/AdminRoot');
 define('YEPF_IS_DEBUG', 'yoka-inc4');
 
 //加载父站点配置
-include('../init.php');
+include(dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . '/init.php');
