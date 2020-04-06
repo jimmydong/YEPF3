@@ -15,7 +15,7 @@
  *  DocumentRoot 网站根目录
  *  AdminRoot 子站点目录
  *  PythonRoot OR Other 协同语言目录
- * @updatetime 2015-08-17
+ * @updatetime 2020-04-07
  * 【增加compose框架支持】 
  */
 
