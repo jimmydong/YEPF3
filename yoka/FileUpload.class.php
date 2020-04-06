@@ -125,6 +125,8 @@ class FileUpload{
 			self::$file_path_upload = $file_path_upload;
 		}elseif(self::$file_path_upload){
 			//已有设置，不做处理
+		}elseif(defined('FILE_UPLOAD_PATH') && file_exists(FILE_UPLOAD_PATH)){
+			self::$file_path_upload = FILE_UPLOAD_PATH;
 		}elseif(defined('FILE_PATH_UPLOAD') && file_exists(FILE_PATH_UPLOAD)){
 			self::$file_path_upload = FILE_PATH_UPLOAD;
 		}elseif(defined('ROOT_PATH') && file_exists(ROOT_PATH . '/DocumentRoot/storage')){
