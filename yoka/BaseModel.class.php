@@ -20,6 +20,10 @@ namespace yoka;
  * 1， 支持非id作为主键。在子类中定义：static $pkey 。
  * 2， 原有id为主键的无需任何调整，完全兼容
  *
+ * [2020.04.10 更新]
+ * 1， 增加cache控制
+ * 2， 更新_slime方法，增加type自动格式化
+ * 
  * [v3 更新]
  * 1， 更新_slim方法，增加type/filter
  * 2， 支持非默认数据库连接
@@ -46,6 +50,7 @@ class BaseModel{
 	public static $_BaseModel_Buffer;			//用于内存缓冲
 	public static $_DefaultCacheTime = 3600; 	//默认fetchAllCache缓冲时间，秒
 	public static $cacheName = 'default';		//缺省缓冲名称
+	public static $cacheFlag = true;			//默认使用缓冲
 	public $_stopAutoRefresh = false;			//禁止自动更新，用于批量操作。
 	private $ismaster = true; 					//默认使用主库
 	
@@ -54,7 +59,7 @@ class BaseModel{
 	protected $filter_fields = [];				//待过滤字段
 	protected $filter_all = false;				//如果true，过滤所有字段
 	
-	// 字段类型定义
+	// 字段类型定义 （用于_slim及自动处理）
 	const TYPE_NONE = 0;	//未定义
 	const TYPE_INT = 1;		//整数
 	const TYPE_STRING = 2;	//字符串
@@ -63,6 +68,35 @@ class BaseModel{
 	const TYPE_DATE = 5;	//日期
 	const TYPE_DATETIME = 6;	//日期时间
 	const TYPE_TIMESTAMP = 7;	//时间戳整数
+	//const TYPE_LIST = 8;  //逗号分隔的
+	static public function _type($type, $val){
+		switch($type){
+			case self::TYPE_INT:
+			case self::TYPE_TIMESTAMP;
+			$re = (int)$val;
+			break;
+			case self::TYPE_FLOAT:
+				$re = (float)$val;
+				break;
+			case self::TYPE_STRING:
+			case self::TYPE_JSON:
+				$re = (string)$val;
+				break;
+			case self::TYPE_DATE:
+				if(! $val) $re = '0000-00-00';
+				else $re = date('Y-m-d', strtotime($val));
+				break;
+			case self::TYPE_DATETIME:
+				if(! $val) $re = '0000-00-00 00:00:00';
+				else $re = date('Y-m-d H:i:s', strtotime($val));
+				break;
+			case self::TYPE_NONE:
+			default:
+				$re = $val;
+				break;
+		}
+		return $re;
+	}
 	
 	/**
 	 * 实例化
@@ -165,6 +199,17 @@ class BaseModel{
 	}
 	
 	/**
+	 * 是否启用缓冲
+	 * [注意] cache 与 buffer 是不同控制机制。关闭 buffer 应使用 self::$_EnableBuffer = false
+	 * @param bool $cacheFlag
+	 * @param bool $cacheName
+	 */
+	static public function setCache($cacheFlag, $cacheName = null){
+		self::$cacheFlag = $cacheFlag;
+		if($cacheName !== null) self::$cacheName = $cacheName;
+	}
+	
+	/**
 	 * 设置缓冲实例名称
 	 */
 	static public function setCacheName($name = 'default'){
@@ -181,20 +226,22 @@ class BaseModel{
 		$table = static::$table;
 		$pkey = isset(static::$pkey)?static::$pkey:'id';
 		$class = get_called_class();
-		$key = "BaseModel_Cache_" . $table . '_' . $id;
-		$cache = \yoka\Cache::getInstance(self::$cacheName);
-		if(!SiteCacheForceRefresh && !$refresh){
-			if(self::$_BaseModel_Buffer[$key]){
-				$re = new $class;
-				$re->entity = self::$_BaseModel_Buffer[$key];
-				return $re;
-			}
-			$t = $cache->get($key);
-			if($t){
-				$re = new $class;
-				$re->entity = $t;
-				if(self::$_EnableBuffer)self::$_BaseModel_Buffer[$key] = $t;
-				return $re;
+		if(self::$_BaseModel_Buffer[$key]){
+			$re = new $class;
+			$re->entity = self::$_BaseModel_Buffer[$key];
+			return $re;
+		}
+		if(self::$cacheFlag){
+			$key = "BaseModel_Cache_" . $table . '_' . $id;
+			$cache = \yoka\Cache::getInstance(self::$cacheName);
+			if(!SiteCacheForceRefresh && !$refresh){
+				$t = $cache->get($key);
+				if($t){
+					$re = new $class;
+					$re->entity = $t;
+					if(self::$_EnableBuffer)self::$_BaseModel_Buffer[$key] = $t;
+					return $re;
+				}
 			}
 		}
 		$re = new $class;
@@ -202,7 +249,7 @@ class BaseModel{
 		if($entity){
 			$re->entity = $entity;
 			if(self::$_EnableBuffer)self::$_BaseModel_Buffer[$key] = $entity;
-			$cache->set($key, $re->entity, 3600*4);
+			if(self::$cacheFlag)$cache->set($key, $re->entity, 3600*4);
 			return $re;
 		}else{
 			return false;
@@ -378,7 +425,7 @@ class BaseModel{
 		// $pkey = static::$pkey?:'id';
 		$pkey = isset(static::$pkey)?static::$pkey:'id';
 		$class = get_called_class();
-		$cache = \yoka\Cache::getInstance(self::$cacheName);
+		if(self::$cacheFlag)$cache = \yoka\Cache::getInstance(self::$cacheName);
 		
 		if($id){
 			if(! $this->db->delete($table, array($pkey=>$id), true)){
@@ -387,7 +434,7 @@ class BaseModel{
 			}
 			$this->entity = null;
 			$key = "BaseModel_Cache_" . $table . '_' . $id;
-			$cache->del($key);
+			if(self::$cacheFlag) $cache->del($key);
 			unset(self::$_BaseModel_Buffer[$key]);
 			$this->_refresh($class, $id); //调用子类中刷新方法
 			return true;
@@ -398,7 +445,7 @@ class BaseModel{
 			}
 			$this->entity[$pkey] = null;
 			$key = "BaseModel_Cache_" . $table . '_' . $this->entity[$pkey];
-			$cache->del($key);
+			if(self::$cacheFlag) $cache->del($key);
 			unset(self::$_BaseModel_Buffer[$key]);
 			$this->_refresh($class, $this->entity[$pkey]); //调用子类中刷新方法
 			return true;
@@ -449,7 +496,7 @@ class BaseModel{
 		// $pkey = static::$pkey?:'id';
 		$pkey = isset(static::$pkey)?static::$pkey:'id';
 		$class = get_called_class();
-		$cache = \yoka\Cache::getInstance(self::$cacheName);
+		if(self::$cacheFlag) $cache = \yoka\Cache::getInstance(self::$cacheName);
 		
 		//字符自动过滤
 		if ($this->$filter_all) {
@@ -484,7 +531,7 @@ class BaseModel{
 			$this->fetchOne(array($pkey=>$info[$pkey]));
 			
 			$key = "BaseModel_Cache_" . $table . '_' . $info[$pkey];
-			$cache->del($key);
+			if(self::$cacheFlag) $cache->del($key);
 			unset(self::$_BaseModel_Buffer[$key]);
 			$this->_refresh($class, $info[$pkey]); //调用子类中刷新方法
 			
@@ -500,7 +547,7 @@ class BaseModel{
 			$this->fetchOne(array($pkey=>$this->entity[$pkey]));
 			
 			$key = "BaseModel_Cache_" . $table . '_' . $this->entity[$pkey];
-			$cache->del($key);
+			if(self::$cacheFlag) $cache->del($key);
 			unset(self::$_BaseModel_Buffer[$key]);
 			$this->_refresh($class, $this->entity[$pkey]); //调用子类中刷新方法
 			
@@ -528,9 +575,9 @@ class BaseModel{
 		$re = $this->db->query("UPDATE `{$table}` SET `{$col}` = `{$col}` + {$step} WHERE {$pkey}=" . $this->entity[$pkey]);
 		$this->entity = $this->db->fetchOne("SELECT * FROM `{$table}` WHERE {$pkey}=" . $this->entity[$pkey]);
 		
-		$cache = \yoka\Cache::getInstance(self::$cacheName);
+		if(self::$cacheFlag) $cache = \yoka\Cache::getInstance(self::$cacheName);
 		$key = "BaseModel_Cache_" . $table . '_' . $this->entity[$pkey];
-		$cache->del($key);
+		if(self::$cacheFlag) $cache->del($key);
 		unset(self::$_BaseModel_Buffer[$key]);
 		$this->_refresh($class, $this->entity[$pkey]); //调用子类中刷新方法
 		
@@ -545,6 +592,7 @@ class BaseModel{
 	 * 带缓冲获取 参数同 fetchOne
 	 */
 	public function fetchOneCached($mix, $assist = []){
+		if(! self::$cacheFlag) return \yoka\YsError::error('cacheFlag已关闭');
 		$table = static::$table;
 		$key = 'fetchOne_' . $table  . '_' . self::$group_id. '_' . md5(json_encode($mix).json_encode($assist));
 		$cache = \yoka\Cache::getInstance(self::$cacheName);
@@ -821,6 +869,7 @@ class BaseModel{
 	 * @return array(array)
 	 */
 	public function fetchAllCached($mix = null, $assist = []){
+		if(! self::$cacheFlag) return \yoka\YsError::error('cacheFlag已关闭');
 		$table = static::$table;
 		$key = 'fetchAll_' . $table  . '_' . md5(json_encode($mix).json_encode($assist));
 		$cache = \yoka\Cache::getInstance(self::$cacheName);
@@ -1025,19 +1074,28 @@ class BaseModel{
 			if(is_string($define)){
 				$define = array('title'=>$define, 'filter'=>0);
 			}
-			//处理类型过滤
+			//兼容旧格式
+			if(isset($define['type']) && is_int($define['type']) && !is_set($define['filter'])){
+				$define['filter'] = $define['type'];
+				unset($define['type']);
+			}
+			//过滤不需要的
 			if($filter !== null){
 				if(is_array($filter)){
+					//数组格式
 					if(!in_array($define['filter'], $filter)) continue;
 				}else{
-					if($define['type'] && is_int($define['type'])){
-						//兼容旧格式
-						if($define['type'] != $filter) continue;
-					}elseif($define['filter'] != $filter) continue;
+					//值匹配
+					if($define['filter'] != $filter) continue;
 				}
 			}
+			//格式处理
+			if($define['type']){
+				$info[$k] = self::_type($define['type'], $info[$k]);
+			}
+			//去除空值
 			if($strip){
-				if(!$info[$k] || $info[$k] === '0000-00-00' || $info[$k] === '0000-00-00 00:00:00') continue;
+				if($info[$k] === null || trim($info[$k]) === '' || $info[$k] === '0000-00-00' || $info[$k] === '0000-00-00 00:00:00' || $info[$k] === '1970-01-01 08:00:00') continue;			
 			}
 			if(! $not_map){
 				//处理映射 - 键值自动转换
@@ -1055,8 +1113,9 @@ class BaseModel{
 					$info[$k] = call_user_func($define['func'], $info[$k])?:'';
 				}
 			}
-			if($strip){ //再过滤一次
-				if(!$info[$k] || $info[$k] === '0000-00-00' || $info[$k] === '0000-00-00 00:00:00') continue;
+			//再处理一次
+			if($strip){ 
+				if($info[$k] === null || trim($info[$k]) === '' || $info[$k] === '0000-00-00' || $info[$k] === '0000-00-00 00:00:00' || $info[$k] === '1970-01-01 08:00:00') continue;
 			}
 			//是否翻译
 			if($des && $define['title']){
