@@ -15,7 +15,7 @@
  *  DocumentRoot 网站根目录
  *  AdminRoot 子站点目录
  *  PythonRoot OR Other 协同语言目录
- * @updatetime 2015-08-17
+ * @updatetime 2020-04-07
  * 【增加compose框架支持】 
  */
 
@@ -33,7 +33,7 @@ if(!defined('YEPF_IS_DEBUG'))		define('YEPF_IS_DEBUG', 'yoka-inc4');
 if(!defined('ROOT_PATH'))			define('ROOT_PATH', dirname(__FILE__));
 if(!defined('LOG_PATH'))			define('LOG_PATH', ROOT_PATH . '/_LOG');
 //自定义错误级别,只有在调试模式下生效
-if(!defined('YEPF_ERROR_LEVEL'))    define('YEPF_ERROR_LEVEL', E_ALL & ~E_NOTICE);
+if(!defined('YEPF_ERROR_LEVEL'))    define('YEPF_ERROR_LEVEL', E_ALL & ~E_NOTICE & ~E_DEPRECATED);
 //自定义类自动加载路径
 if(!defined('CUSTOM_CLASS_PATH'))	define('CUSTOM_CLASS_PATH', ROOT_PATH . '/_CUSTOM_CLASS');
 
