@@ -1075,7 +1075,7 @@ class BaseModel{
 				$define = array('title'=>$define, 'filter'=>0);
 			}
 			//兼容旧格式
-			if(isset($define['type']) && is_int($define['type']) && !is_set($define['filter'])){
+			if(isset($define['type']) && is_int($define['type']) && !isset($define['filter'])){
 				$define['filter'] = $define['type'];
 				unset($define['type']);
 			}
