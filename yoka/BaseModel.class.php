@@ -107,7 +107,7 @@ class BaseModel{
 			//按设定的数据库连接
 			$this->db = DB::getInstance(static::$database);
 			//设定的数据库只连接主库（防止slave标志混淆），需要时请 db_change_slave
-			$this->ismaster = $master;
+			$this->ismaster = true;
 		}else{
 			if(\YsConfig::$SLAVE_DB_FIRST === true) $master = false;
 			elseif(is_string(\YsConfig::$SLAVE_DB_FIRST)) $master = \YsConfig::$SLAVE_DB_FIRST;
