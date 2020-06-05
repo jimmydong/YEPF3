@@ -1,5 +1,23 @@
 <?php
 /**
+ * 
+ * @deprecated
+ * 
+ * 【废弃】 请使用 \yoka\Util 和 \yoka\UtilArray
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
  * @name Utilyty.class.php
  * @desc 一些有用的函数
  * @author caoxd
