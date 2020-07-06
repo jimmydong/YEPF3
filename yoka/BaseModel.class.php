@@ -59,6 +59,34 @@ class BaseModel{
 	protected $filter_fields = [];				//待过滤字段
 	protected $filter_all = false;				//如果true，过滤所有字段
 	
+	//隐私字段处理
+	const PROTECT_NONE = 0; 	//未定义
+	const PROTECT_MOBILE = 1;	//手机号
+	const PROTECT_NAME = 2;		//姓名（短字符串）
+	const PROTECT_STRING = 3;	//长字符串（例：地址）
+	const PROTECT_HIDE = 11;	//强制隐藏
+	static public function _protect($protect, $val){
+		switch($protect){
+			case self::PROTECT_MOBILE:
+				$re = Util::hideMiddle($val);
+				break;
+			case self::PROTECT_NAME:
+				$re = Util::hideMiddle($val);
+				break;
+			case self::PROTECT_STRING:
+				$re = Util::hideMiddle($val);
+				break;
+			case self::PROTECT_HIDE:
+				$re = "***数据保护***";
+				break;
+			case self::PROTECT_NONE:
+			default:
+				$re = $val;
+				break;
+		}
+		return $re;
+	}
+	
 	// 字段类型定义 （用于_slim及自动处理）
 	const TYPE_NONE = 0;	//未定义
 	const TYPE_INT = 1;		//整数
@@ -1097,6 +1125,7 @@ class BaseModel{
 			if($strip){
 				if($info[$k] === null || trim($info[$k]) === '' || $info[$k] === '0000-00-00' || $info[$k] === '0000-00-00 00:00:00' || $info[$k] === '1970-01-01 08:00:00') continue;			
 			}
+			//map处理
 			if(! $not_map){
 				//处理映射 - 键值自动转换
 				if(is_array($define['map'])){
@@ -1112,6 +1141,10 @@ class BaseModel{
 				if($define['func']){
 					$info[$k] = call_user_func($define['func'], $info[$k])?:'';
 				}
+			}
+			//隐私保护
+			if($define['protect']){
+				$info[$k] = self::_protect($define['protect'], $info[$k]);
 			}
 			//再处理一次
 			if($strip){ 
