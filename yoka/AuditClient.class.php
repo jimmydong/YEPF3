@@ -63,6 +63,7 @@ class AuditClient{
 	 * @param unknown $data
 	 */
 	public function logAdmin($type, $name, $ip, $data){
+		//if(defined('IS_TEST') && IS_TEST) return true; //测试环境不做记录
 		return $this->_call('log','admin',[
 				'type'	=> $type,
 				'name'	=> $name,
