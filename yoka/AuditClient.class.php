@@ -62,12 +62,12 @@ class AuditClient{
 	 * @param unknown $ip
 	 * @param unknown $data
 	 */
-	public function logAdmin($type, $name, $ip, $data){
+	public function logAdmin($type, $name, $data){
 		//if(defined('IS_TEST') && IS_TEST) return true; //测试环境不做记录
 		return $this->_call('log','admin',[
 				'type'	=> $type,
 				'name'	=> $name,
-				'ip'	=> $ip,
+				'ip'	=> \yoka\Util::getIp(),
 				'json'	=> json_encode($data, JSON_UNESCAPED_UNICODE)
 		]);
 	}
