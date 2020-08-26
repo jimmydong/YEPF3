@@ -1388,6 +1388,8 @@ abstract class BaseMongoRecord implements MongoRecord
         	$this->attributes[$property] = $property_value;
         	return $this;
         }else{
+            //未定义字段，不会被保存
+            \yoka\Debug::log('_set未定义字段' . $property, '如未设置allowGhost，数据不会被保存');
 			$this->$property_name = $property_value;
             return $this;
         }
