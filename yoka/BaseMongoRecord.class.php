@@ -1388,9 +1388,7 @@ abstract class BaseMongoRecord implements MongoRecord
         	$this->attributes[$property] = $property_value;
         	return $this;
         }else{
-			//注意：仅在原型中保存数据，不会被存储
-			\yoka\Debug::log('mdbao: warning',"$property will not be saved");
-            $this->$property_name = $property_value;
+			$this->$property_name = $property_value;
             return $this;
         }
     }
