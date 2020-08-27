@@ -1895,13 +1895,6 @@ abstract class BaseMongo implements MongoRecord
         else return $ret;
     }
 
-
-
-    public function getentity()
-    {
-        return $this->entity;
-    }
-
     /**
      * 检查一个给定的mongoid是否是有效的格式
      * @author xwarrior at 2012.5.17
