@@ -327,7 +327,7 @@ class Debug
 	 * @desc 记录用户自定义变量
 	 * @param string $label 自定义变量显示名称
 	 * @param mixed $results 自定义变量结果
-	 * @param string $callfile 调用记录用户自定义变量的文件名
+	 * @param string $caller 默认为报错的位置，可选： full 全报错栈 | pre 前一个（用于错误统一处理函数内）| 其他自定义字符串 
 	 * @return null
 	 * @access public
 	 */
@@ -337,11 +337,14 @@ class Debug
 		{
 			return ;
 		}
-		if($caller == ''){
+		if($caller == 'full'){
+			$caller = debug_backtrace(5);
+		}elseif($caller == 'pre'){
+			$t = debug_backtrace(1);
+			$caller = $t[1]['file'].':'.$t[1]['line'];
+		}elseif($caller === ''){
 			$t = debug_backtrace(1);
 			$caller = $t[0]['file'].':'.$t[0]['line'];
-		}elseif($caller == 'full'){
-			$caller = debug_backtrace(5);
 		}
 // 		if(is_string($results) && strlen($results)>120 && strpos(' ', substr($results,0,120))===false){
 // 			//超长且没有空格
