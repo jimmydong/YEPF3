@@ -37,7 +37,7 @@ use \yoka\Debug;
 		$obj = new \MONGODAO\Test();
 		$obj->name = 'test';
 		$obj->save();
-		//增加字段
+		//临时增加字段（不推荐）
 		$obj = new \MONGODAO\Test();
 		$obj->enableGhost(); //允许动态新增字段
 		$obj->name = 'test2';
@@ -59,8 +59,20 @@ use \yoka\Debug;
 		//删除
 		//$obj->destroy();
 		//按条件删除
-		//$obj->remove(['_id',$obj->getID()]);		
-		
+		//\MongoDAO\Test::remove(['_id',$obj->getID()]);		
+ *
+ *
+ * cretia写法示例：
+ * 
+ * name=xxx or ename=xxx
+ * 	['or'=>['name'=>'xxx', 'ename'=>'xxx']]
+ * 
+ * create_time > xxxx and create_time < xxx 
+ * 	['create_time'=>['$gt'=>'xxx', '$lt'=>'xxx']]
+ * 
+ * name!=xxx
+ * 	['name'=>['$ne'=>'xxx']
+ * 
  *
  */
 interface MongoRecord
