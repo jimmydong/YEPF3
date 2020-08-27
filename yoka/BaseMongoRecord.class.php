@@ -10,12 +10,14 @@ use \Exception;
 use \yoka\Debug;
 
 /**
+ * 【注意：建议使用新版本：\yoka\BaseMongo】
+ * 
  * 定义Mongo操作接口
  * @author jimmy.dong@gmail.com
  * 
  * 注意：
  * 1，依赖WORK-ENV的配置项: [MONGODB] ...
- * 2，注意数据库授权。eg:db.createUser({user:"yisheng",pwd:"yisheng@2015",roles:[{role:"dbAdmin",db:"health"},{role:"readWrite",db:"health"}]});
+ * 2，注意数据库授权。eg:db.createUser({user:"username",pwd:"password",roles:[{role:"dbAdmin",db:"health"},{role:"readWrite",db:"health"}]});
  *
  * 类型与传值：
 	  	objectid: 字符串 OR MongoId
