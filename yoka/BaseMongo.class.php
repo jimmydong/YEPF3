@@ -113,7 +113,7 @@ interface MongoRecord
 	/**
 	 * 批量更新符合query条件的数据，用fields中指定的字段值
 	 * @param unknown_type $query  mongo  查询字段 		   array( filed1=>condition1,field2=>condition2,...)
-	 * @param unknown_type $new_object  要更新的对象值必须继承自BaseMongoRecord，注：如果_id字段有值有可能导致更新失败
+	 * @param unknown_type $new_object  要更新的对象值必须继承自BaseMongo，注：如果_id字段有值有可能导致更新失败
 	*/
 	public static function updateAll($query = array() , $new_object , $options = null);
 
@@ -783,7 +783,7 @@ abstract class BaseMongo implements MongoRecord
             $colname = $collection->getName();
         }
         $logquery = '[' . $method . '] query:' . json_encode( $query, JSON_UNESCAPED_UNICODE ) . ',  options:'.  json_encode($options)  . "	###stack### $stacktrace";
-        \yoka\Debug::db('mongodb://' . BaseMongoRecord::$connection ,  BaseMongoRecord::$database . ':' . $colname ,$logquery, Debug::getTime() - $begin_microtime, $ret);
+        \yoka\Debug::db('mongodb://' . self::$connection ,  self::$database . ':' . $colname ,$logquery, Debug::getTime() - $begin_microtime, $ret);
 
     }
 
@@ -1592,7 +1592,7 @@ abstract class BaseMongo implements MongoRecord
             $ext = isset($ext_schema[$k])?$ext_schema[$k]:array();
             //检查是否必须非空值
             if(isset($ext['essential']) && $ext['essential'] && $current_var===null){
-                throw new \Exception("BaseMongoRecord: $k must have value!");
+                throw new \Exception("BaseMongo: $k must have value!");
                 break;
             }
 
@@ -1631,7 +1631,7 @@ abstract class BaseMongo implements MongoRecord
 	                        $this->$k = $tmp;
                         }
                     }elseif(gettype($current_var) != $v && $current_var !== null) {
-                        throw new \Exception("BaseMongoRecord: '$k' must be $v !");
+                        throw new \Exception("BaseMongo: '$k' must be $v !");
                         return false;
                     }
                     //长度检查
@@ -1639,7 +1639,7 @@ abstract class BaseMongo implements MongoRecord
                         if('string' == $v) $l=strlen($current_var);
                         else $l=$current_var;
                         if($l < $ext['min']){
-                            throw new \Exception("BaseMongoRecord: '$k' = $current_var length not enough!");
+                            throw new \Exception("BaseMongo: '$k' = $current_var length not enough!");
                             return false;
                         }
                     }
@@ -1647,7 +1647,7 @@ abstract class BaseMongo implements MongoRecord
                         if('string' == $v) $l=strlen($current_var);
                         else $l=$current_var;
                         if($l > $ext['max']){
-                            throw new \Exception("BaseMongoRecord: '$k' => $current_var length over max!");
+                            throw new \Exception("BaseMongo: '$k' => $current_var length over max!");
                             return false;
                         }
                     }
@@ -1694,9 +1694,9 @@ abstract class BaseMongo implements MongoRecord
         }
         //配置检查
         if ($className::$database == null)
-            throw new \Exception("BaseMongoRecord::database must be initialized to a proper database string");
+            throw new \Exception("BaseMongo::database must be initialized to a proper database string");
         if ($className::$connection == null)
-            throw new \Exception("BaseMongoRecord::connection must be initialized to a valid Mongo object");
+            throw new \Exception("BaseMongo::connection must be initialized to a valid Mongo object");
 
         $className::$connection->connect();
         return $className::$connection->selectCollection($className::$database, $collectionName);
@@ -1843,7 +1843,7 @@ abstract class BaseMongo implements MongoRecord
     /**
      * 批量更新符合query条件的一批数据，用fields中指定的字段值
      * @param array   $query  mongo  查询字段 		   array( filed1=>condition1,field2=>condition2,...)
-     * @param object $new_object  要更新的对象值必须继承自BaseMongoRecord (为了数据验证需要)
+     * @param object $new_object  要更新的对象值必须继承自BaseMongo (为了数据验证需要)
      * @param  array  $options array("upsert" => <boolean>,"multiple" => <boolean>,"safe" => <boolean|int>,"fsync" => <boolean>, "timeout" => <milliseconds>)
      * //废弃 @return 如果设置了safe=true,返回了包含 status的数组，如果safe=false,只要$new_object的值不是空就返回true
      * @return 默认返回更新条数 //by jimmy
