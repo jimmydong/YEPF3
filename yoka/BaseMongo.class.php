@@ -31,24 +31,36 @@ use \yoka\Debug;
 	  	array	: ['key'=>'value', ...] 
 	  	object	: $obj  OR  json_encode($obj)
  *	  	
- * 使用参考：
+ * 使用参考： (另有实例代码： \MONGODAO\Test.class.php)
  *
-		//增/删/改
-		$obj = new \MONGODAO\Demo();
-		$obj->enableGhost(); //允许动态新增字段
+		//增
+		$obj = new \MONGODAO\Test();
 		$obj->name = 'test';
 		$obj->save();
-		$obj->name = 'new';
+		//增加字段
+		$obj = new \MONGODAO\Test();
+		$obj->enableGhost(); //允许动态新增字段
+		$obj->name = 'test2';
+		$obj->ext_col = 'haha';
 		$obj->save();
-		//$obj->destroy();
-		//$obj->remove(array('_id',$obj->getID()));
+		//快捷增加
+		\MONGODAO\Test::add(['name'=>'test3']);
 		
 		//查
-		$re = \MONGODAO\Demo::findOne(array('name'=>'new'));
-		$info = $re->getEntity();
-		var_dump(\MONGODAO\Demo::getEntityById($info['_id']));
-		$rows = \MONGODAO\Demo::findAll();
+		$obj = \MONGODAO\Test::findOne(['name'=>'test']);
+		//获取内容
+		$info = $obj->getEntity();
+		//批量获取内容
+		$rows = \MONGODAO\Test::findAll();
 		var_dump($rows);
+		
+		//通过ID直接获取内容
+		var_dump(\MONGODAO\Test::getEntityById($info['_id']));
+		//删除
+		//$obj->destroy();
+		//按条件删除
+		//$obj->remove(['_id',$obj->getID()]);		
+		
  *
  */
 interface MongoRecord
@@ -133,6 +145,15 @@ abstract class BaseMongo implements MongoRecord
      * @var Array:
      */
     protected static $schema = null;
+    
+    const TYPE_ID 			= 'objectid'; 	//MongoId
+    const TYPE_STRING 		= 'string';		//字符串
+    const TYPE_INT 			= 'integer';	//数字 OR 字符串
+    const TYPE_FLOAT 		= 'float';		//数字 OR 字符串
+    const TYPE_DOUBLE 		= 'double';		//数字 OR 字符串
+    const TYPE_DATETIME		= 'datetime';	//时间：date('Y-m-d H:i:s') OR 毫秒时间戳
+    const TYPE_ARRAY		= 'array';		//数组: ['key'=>'value', ...]
+    const TYPE_OBJECT		= 'object';		//对象: $obj  OR  json_encode($obj))
     
     /**
      * 默认配置项
@@ -618,7 +639,7 @@ abstract class BaseMongo implements MongoRecord
 
     /**
      * 执行一个查询，并返回所有的文档结果数组
-     * @param   $query   查询条件  array( field1=>condition,field2=>array($op=>condition),field3...)
+     * @param   $query   cretia格式查询条件  array( field1=>condition,field2=>array($op=>condition),field3...)
      * @param   $fields  查询字段  array( 'field1','field2',... )
      * @param   $options  查找选项 array ( sort=>array(field1=>1,field2=>-1,...),skip=>int,limit=>int )
      */
@@ -1413,7 +1434,7 @@ abstract class BaseMongo implements MongoRecord
         	return $this;
         }else{
 			//注意：仅在原型中保存数据，不会被存储
-			\yoka\Debug::log('mdbao: warning',"$property will not be saved");
+			\yoka\Debug::log('MONGODAO: warning',"$property will not be saved");
             $this->$property_name = $property_value;
             return $this;
         }
