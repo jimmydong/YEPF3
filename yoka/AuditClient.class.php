@@ -103,8 +103,8 @@ class AuditClient{
 			$url = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; //TODO::未考虑 https 和 port
 		}
 		return $this->_call('log','debug',[
-				'label'		=> label,
-				'result'	=> result,
+				'label'		=> $label,
+				'result'	=> $result,
 				'ip'		=> \yoka\Util::getIp(),
 				'caller'	=> $caller,
 				'url'		=> $url
