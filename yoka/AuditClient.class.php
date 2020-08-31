@@ -102,7 +102,7 @@ class AuditClient{
 			$url = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; //TODO::未考虑 https 和 port
 		}
 		if(defined('IS_TEST') && IS_TEST) return true; //测试环境不做记录
-		return $this->_call('debug','log',[
+		return $this->_call('log','debug',[
 				'label'		=> label,
 				'result'	=> result,
 				'ip'		=> \yoka\Util::getIp(),
