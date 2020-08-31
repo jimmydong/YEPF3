@@ -80,7 +80,7 @@ class AuditClient{
 	 * @return null
 	 * @access public
 	 */
-	public function debug($label, $result, $caller = '', $url = '')
+	public function debug($label, $result = '', $caller = '', $url = '')
 	{
 		if($caller == 'full'){
 			$caller = debug_backtrace(5);
