@@ -71,5 +71,44 @@ class AuditClient{
 				'json'	=> json_encode($data, JSON_UNESCAPED_UNICODE)
 		]);
 	}
+	/**
+	 * 跟踪数据
+	 * @param string $label 显示名称
+	 * @param mixed $result 内容结果
+	 * @param string $caller 默认为报错的位置，可选： full 全报错栈 | pre 前一个（用于错误统一处理函数内）| 其他自定义字符串
+	 * @param string $url 链接
+	 * @return null
+	 * @access public
+	 */
+	public function debug($label, $result, $caller = '', $url = '')
+	{
+		if($caller == 'full'){
+			$caller = debug_backtrace(5);
+		}elseif($caller == 'pre'){
+			$t = debug_backtrace(1);
+			$caller = $t[1]['file'].':'.$t[1]['line'];
+		}elseif($caller === ''){
+			$t = debug_backtrace(1);
+			$caller = $t[0]['file'].':'.$t[0]['line'];
+		}
+		if(is_string($result) && strlen($result)>120 && strpos(' ', substr($result,0,120))===false){
+			//超长且没有空格
+			$result = chunk_split($result, 120, ' ');
+		}
+		if(is_string($result) && mb_detect_encoding($string, 'UTF-8') !== 'UTF-8') {
+			$result = '非UTF-8编码，长度：' . strlen($result);
+		}
+		if(! $url){
+			$url = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; //TODO::未考虑 https 和 port
+		}
+		if(defined('IS_TEST') && IS_TEST) return true; //测试环境不做记录
+		return $this->_call('debug','log',[
+				'label'		=> label,
+				'result'	=> result,
+				'ip'		=> \yoka\Util::getIp(),
+				'caller'	=> $caller,
+				'url'		=> $url
+		]);
+	}
 
 }
