@@ -47,6 +47,8 @@ class AuditClient{
 		return $sign;
 	}
 	public function _call($_c, $_a, $data){
+		//if(defined('IS_TEST') && IS_TEST) return true; //测试环境不做记录
+		
 		$url = self::$auditUrl . "/?_c={$_c}&_a={$_a}";
 		$param['sign'] = $this->_sign($data);
 		$param['platform'] = $this->platform;
@@ -63,7 +65,6 @@ class AuditClient{
 	 * @param unknown $data
 	 */
 	public function logAdmin($type, $name, $data){
-		//if(defined('IS_TEST') && IS_TEST) return true; //测试环境不做记录
 		return $this->_call('log','admin',[
 				'type'	=> $type,
 				'name'	=> $name,
@@ -101,7 +102,6 @@ class AuditClient{
 		if(! $url){
 			$url = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; //TODO::未考虑 https 和 port
 		}
-		if(defined('IS_TEST') && IS_TEST) return true; //测试环境不做记录
 		return $this->_call('log','debug',[
 				'label'		=> label,
 				'result'	=> result,
