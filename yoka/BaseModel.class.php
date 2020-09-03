@@ -945,6 +945,7 @@ class BaseModel{
 	
 	/**
 	 * 查询（默认返回true/false）
+	 * 【注意】不建议使用query进行update/delete
 	 * @param bool $return_statement 是否返回statement(默认为true/false)
 	 * @param bool $heavy 是否禁止预缓冲(防止大量查询导致内存不足。注意：开启后不能嵌套查询，否则可能出错)
 	 *
@@ -1080,13 +1081,13 @@ class BaseModel{
 	 *
 	 * 实例:
 	 public static $define_slim = array(
-	 'id'				=> [],
-	 'coupon_id'		=> [],
-	 'coupon_name'		=> ['title'=>'优惠券名称'],
-	 'coupon_limit_des'	=> ['title'=>'使用说明', 'filter'=>1],
-	 'coupon_state'		=> ['title'=>'状态', 'filter'=>2, 'map'=>[0=>'正常',1=>'锁定']],
-	 'coupon_platform'	=> ['title'=>'平台', 'referer'=>["\\YsConfig","platform_des"]],
-	 'user_id'			=> ['title'=>'用户', 'type'=>1, 'func'=>["\\model\\User","getNameById"]]
+		 'id'				=> [],
+		 'coupon_id'		=> [],
+		 'coupon_name'		=> ['title'=>'优惠券名称'],
+		 'coupon_limit_des'	=> ['title'=>'使用说明', 'filter'=>1],
+		 'coupon_state'		=> ['title'=>'状态', 'filter'=>2, 'map'=>[0=>'正常',1=>'锁定']],
+		 'coupon_platform'	=> ['title'=>'平台', 'referer'=>["\\YsConfig","platform_des"]],
+		 'user_id'			=> ['title'=>'用户', 'type'=>1, 'func'=>["\\model\\User","getNameById"]]
 	 );
 	 */
 	static public function _slim($info, $filter=null, $des = false, $not_map = false, $strip = false){
