@@ -51,6 +51,7 @@ class BaseModel{
 	public static $_DefaultCacheTime = 3600; 	//默认fetchAllCache缓冲时间，秒
 	public static $cacheName = 'default';		//缺省缓冲名称
 	public static $cacheFlag = true;			//默认使用缓冲
+	public static $singleton = [];				//兼容保留，不推荐
 	public $_stopAutoRefresh = false;			//禁止自动更新，用于批量操作。
 	private $ismaster = true; 					//默认使用主库
 	
@@ -245,6 +246,23 @@ class BaseModel{
 	}
 	
 	/**
+	 * 单例
+	 * 【注意： 与实例对象的设计思想不相符，也不能有效提高性能，不推荐使用】
+	 * @return self
+	 */
+	public static function getSingleton(){
+		$table = static::$table;
+		$class = get_called_class();
+		if(self::$singleton[$table] instanceof self){
+			return self::$singleton[$table];
+		}else{
+			$singleton =  new $class;
+			self::$singleton[$table] = $singleton;
+			return $singleton;
+		}
+	}
+	
+	/**
 	 * 缓冲获取实例（请留意自动刷新机制）
 	 * @param int $id
 	 * @param bool $refresh 强制刷新
@@ -305,6 +323,21 @@ class BaseModel{
 			$model->entity = $re;
 			return $model;
 		}
+	}
+	
+	/**
+	 * 通过主键批量获取信息
+	 * 【注意：返回为二级数组，不是对象数组】
+	 * @param string $ids 数组或逗号分隔
+	 * @return array
+	 */
+	static function getByIds($ids) {
+		if ($ids === '') {
+			return [];
+		}
+		is_array($ids) && $ids = join(',', $ids);
+		$self = new static();
+		return $self->fetchAll("select * from %_table_% where id in ($ids)");
 	}
 	
 	/**
