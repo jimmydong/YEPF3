@@ -21,7 +21,7 @@ namespace yoka;
  * 2， 原有id为主键的无需任何调整，完全兼容
  *
  * [2020.04.10 更新]
- * 1， 增加cache控制
+ * 1， 增加cache控制：A，禁止Cache可直接关闭；B，开启Cache，如果没有默认cache，应在第二个参数指明
  * 2， 更新_slime方法，增加type自动格式化
  * 
  * [v3 更新]
