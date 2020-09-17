@@ -1065,7 +1065,7 @@ class BaseModel{
 	 * @return array [id=>field]
 	 */
 	static function getFieldListByIds($ids, $fieldName){
-		$rows=self::listRowById($ids, "id,`{$fieldName}` ",false);
+		$rows=self::getListByIds($ids, "id,`{$fieldName}` ",false);
 		return $rows ? array_column($rows, $fieldName, 'id'):[];
 	}
 	
