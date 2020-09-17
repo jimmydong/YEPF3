@@ -1057,6 +1057,73 @@ class BaseModel{
 		}
 		return $list;
 	}
+	
+	/**
+	 * 根据id列表，读取指定字段
+	 * @param array $ids ID列表，同时支持数组或逗号分隔字符串
+	 * @param string $fieldName 字段名
+	 * @return array [id=>field]
+	 */
+	static function getFieldListByIds($ids, $fieldName){
+		$rows=self::listRowById($ids, "id,`{$fieldName}` ",false);
+		return $rows ? array_column($rows, $fieldName, 'id'):[];
+	}
+	
+	/**
+	 * 根据id读取对应行列表
+	 * @param array $ids ID列表，同时支持数组或逗号分隔字符串
+	 * @param array $fields 字段列表
+	 * @return array
+	 * @author sux
+	 * - 批量读取和定义字段,减少内存占用
+	 */
+	static function getListByIds($ids,$fields='*',$isMapById=true){
+		if(is_string($ids)) $ids = explode(',', $ids);
+		if(! count($ids)) return \yoka\YsError::error('列表为空');
+		
+		$rt=[];
+		// var $chunks 分块25K处理,假设id是哈希32个位,默认max_allowed_packet是1M,配置时最好优化max_allowed_packet
+		$chunks = array_chunk((array)$ids,25000);
+		$model=new static;
+		// 分块查询后合并
+		foreach ($chunks as $chunk){
+			$in=self::_get_sql_in($chunk);
+			if($in){
+				$sql="select $fields from %_table_% where id in($in)";
+				if($rs=$model->fetchAll($sql)){
+					$rt=array_merge($rt,$rs);
+				}
+			}
+		}
+		// 默认以id字段为键
+		if($isMapById && $rt){
+			$firstRow=current($rt);
+			if(isset($firstRow['id'])){
+				$rt=array_column($rt,null,'id');
+			}
+		}
+		return $rt;
+	}
+	
+	/**
+	 * 辅助函数：把数组转换成in条件
+	 * @author sux
+	 * @return string
+	 */
+	static function _get_sql_in($ids){
+		$ids=array_unique(array_filter((array)$ids));
+		$rt='0'; // 防止id为空出错,最好 if($in) $sql.=" and 0 "
+		if($ids){
+			$rt= join(',',$ids);
+			$isString=preg_match('/[a-z]/i',$rt); // 如果是字符串这样处理
+			if($isString){
+				$rt="'".str_replace(',',"','",$rt)."'";
+			}
+		}
+		return $rt;
+	}
+	
+	
 	/**
 	 * 获取快照【注意：与slim的区别】
 	 */
