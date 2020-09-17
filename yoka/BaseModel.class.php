@@ -1074,7 +1074,6 @@ class BaseModel{
 	 * @param array $ids ID列表，同时支持数组或逗号分隔字符串
 	 * @param array $fields 字段列表
 	 * @return array
-	 * @author sux
 	 * - 批量读取和定义字段,减少内存占用
 	 */
 	static function getListByIds($ids,$fields='*',$isMapById=true){
@@ -1107,7 +1106,7 @@ class BaseModel{
 	
 	/**
 	 * 辅助函数：把数组转换成in条件
-	 * @author sux
+	 * @param array $ids
 	 * @return string
 	 */
 	static function _get_sql_in($ids){
