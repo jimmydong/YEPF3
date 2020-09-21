@@ -446,7 +446,7 @@ class BaseModel{
 		$sql = "REPLACE INTO `".$table."` SET " ;
 		
 		//字符自动过滤
-		if ($this->$filter_all) {
+		if ($this->filter_all) {
 			$arr = str_replace($this->filter_str, '', $arr);
 		}elseif ($this->filter_fields) {
 			foreach ($this->filter_fields as $field) {
@@ -560,7 +560,7 @@ class BaseModel{
 		if(self::$cacheFlag) $cache = \yoka\Cache::getInstance(self::$cacheName);
 		
 		//字符自动过滤
-		if ($this->$filter_all) {
+		if ($this->filter_all) {
 			$info= str_replace($this->filter_str, '', $info);
 		}elseif ($this->filter_fields) {
 			foreach ($this->filter_fields as $field) {
