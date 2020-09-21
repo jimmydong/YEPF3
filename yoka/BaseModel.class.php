@@ -407,7 +407,7 @@ class BaseModel{
 		$class = get_called_class();
 		
 		//字符自动过滤
-		if ($this->$filter_all) {
+		if ($this->filter_all) {
 			$arr = str_replace($this->filter_str, '', $arr);
 		}elseif ($this->filter_fields) {
 			foreach ($this->filter_fields as $field) {
