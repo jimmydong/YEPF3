@@ -517,6 +517,11 @@ class BaseModel{
 	}
 	
 	/**
+	 * 
+	 * @deprecated 应明确使用： add / update 
+	 * 
+	 * 【注意】自动字段（update_time）必须从对象属性中手工去除
+	 * 
 	 * 保存（更新）对象
 	 * @param bool $addslashes  是否进行 addslashes （仅全部内容为form提交时可忽略）
 	 * @return self
