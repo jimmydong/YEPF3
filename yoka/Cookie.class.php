@@ -9,11 +9,10 @@ namespace yoka;
  */
 
 class Cookie{
-		private static $expire = 8640000; 	//默认cookie时间：100天
-		private static $domain = '';
-		private static $cookiepath = '/';
+		public static $expire = 8640000; 	//默认cookie时间：100天
+		public static $domain = '';
+		public static $cookiepath = '/';
 		public static $cookiepre = 'YEPFV3';
-
 
 		private function __construct($config)
 		{
