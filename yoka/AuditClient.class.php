@@ -65,6 +65,8 @@ class AuditClient{
 	 * @param unknown $data
 	 */
 	public function logAdmin($type, $name, $data){
+		if(! $name) $name = 'no_name';
+		if(! $data) $data = 'no_data';
 		return $this->_call('log','admin',[
 				'type'	=> $type,
 				'name'	=> $name,
