@@ -153,7 +153,7 @@ class YEPFCore {
 			else $class_path = '../' . $class_name . '.php';
 			if(file_exists($class_path)) return include_once($class_path);
 		}
-        //\yoka\Debug::log('autoload fail:' . $class_name, array($class_path, $class_path2, $class_path3));
+        \yoka\Debug::log('autoload fail:' . $class_name, array($class_path, $class_path2, $class_path3));
         return false;
     }
 }
