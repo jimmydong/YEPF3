@@ -19,6 +19,7 @@ interface CacheInterface
      * @return Boolean
      */
 	public function add($cacheKey, $cacheValue, $lifetime = 0);
+	
     /**
 	 * @name set
 	 * @desc 将数据插入缓冲中
@@ -29,6 +30,7 @@ interface CacheInterface
 	 *
 	 */
 	public function set($cacheKey, $cacheValue, $lifetime = 0);
+	
     /**
      * @name clear
      * @desc 将数据在缓冲中清除
@@ -37,6 +39,7 @@ interface CacheInterface
      * @access public
      **/
 	public function clear($cacheKey);
+	
     /**
 	 * @name get
 	 * @desc 从缓冲中取得数据
