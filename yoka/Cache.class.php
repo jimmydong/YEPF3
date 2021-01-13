@@ -85,7 +85,7 @@ class Cache implements \yoka\CacheInterface
 			//后备服务器：只有主力服务器全部添加失败时使用。集群设计应充分考虑数据一致性！
 			if(!empty($backupList) && !$this->cache->set('Y_CHECK_SERVER_ALIVE',1))
 			{
-				\yoka\Debug::log("Cache Warnning", $this->cache->getResultMessage()?:($this->serverlist[0]['ip'] . " is down, using backup now!"));
+				\yoka\Debug::log("Cache Warnning", $this->serverlist[0]['ip'] . ($this->cache->getResultMessage()?:"server is down, using backup now!"));
 				if($this->memcacheType == 'Memcache') $this->cache = new \yoka\Memcached();
 				else $this->cache = new Memcached();
 				$this->serverlist = array();
@@ -121,7 +121,7 @@ class Cache implements \yoka\CacheInterface
     {
     	if($item === null || $item == 'default') $item = self::$default_item;
     	global $CACHE;
-    	$obj = Cache::$instance;
+    	$obj = self::$instance;
     	if(!isset($obj[$item]))
     	{
     		$key = "";
@@ -136,8 +136,8 @@ class Cache implements \yoka\CacheInterface
 				\yoka\Debug::log('Cache Error','无配置项:' . $item);
 				return false;
 			}
-			$obj[$item] = new Cache($item, $list, $backup);
-			Cache::$instance = $obj;
+			$obj[$item] = new self($item, $list, $backup);
+			self::$instance = $obj;
 		}
     	return $obj[$item];
     }
