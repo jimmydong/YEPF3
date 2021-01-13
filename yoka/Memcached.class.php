@@ -154,6 +154,13 @@ class Memcached
         return $this->errorDesc;
     }
     
+    /**
+     * 与memcached函数名保持一致
+     * @return string
+     */
+    public function getResultMessage(){
+    	return $this->errorDesc;
+    }
     
     /**
 	 * @name __destruct
