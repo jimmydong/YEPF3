@@ -148,7 +148,7 @@ function template_modifier_percent($float){
  * 转为HTML
  */
 function template_modifier_html($string){
-    $string = htmlspecialchars($string);
+    $re = htmlspecialchars($string);
     $re = str_replace("\n\r", "\n", $re);
     $re = str_replace("\n", "<br>", $re);
     $re = str_replace("\r", "<br>", $re);
