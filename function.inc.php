@@ -145,6 +145,19 @@ function template_modifier_percent($float){
 	return $t / 100;
 }
 /**
+ * 转为HTML
+ */
+function template_modifier_html($string){
+    $string = htmlspecialchars($string);
+    $re = str_replace("\n\r", "\n", $re);
+    $re = str_replace("\n", "<br>", $re);
+    $re = str_replace("\r", "<br>", $re);
+    $re = str_replace(" ", "&nbsp;", $re);
+    $re = str_replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;", $re);
+    
+    return $re;
+}
+/**
  * 语言转换
  * 【依赖】 \lang\BaseLang
  */
