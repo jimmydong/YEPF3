@@ -116,7 +116,7 @@ class Template extends Smarty
 		if(function_exists('template_modifier_percent')){
 			$this->registerPlugin('modifier', 'percent', 'template_modifier_percent');
 		}
-		//转为HTML
+		//转为HTML格式
 		if(function_exists('template_modifier_percent')){
 		    $this->registerPlugin('modifier', 'html', 'template_modifier_html');
 		}
