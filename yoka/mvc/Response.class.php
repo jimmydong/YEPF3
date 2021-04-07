@@ -19,8 +19,8 @@ class Response {
     public function toArray(){
         $list = get_object_vars($this);
         foreach($list as $k=>$v){
-            if(is_object($var)){
-                $list[$k] = $this->_toArray($var);
+            if(is_object($v)){
+                $list[$k] = $this->_toArray($v);
             }
         }
     }
