@@ -8,7 +8,7 @@ class Response {
     public function clear(){
         $list = \ReflectionClass::getProperties($this);
         foreach($list as $v){
-            $t = $property->getName();
+            $t = $v->getName();
             unset($this->$t);
         }        
     }
