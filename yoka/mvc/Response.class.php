@@ -6,11 +6,19 @@ class Response {
      * 清空所有属性
      */
     public function clear(){
-        $list = \ReflectionClass::getProperties($this);
+        $reflect = new \ReflectionClass($this);
+        $list = $reflect->getProperties();
         foreach($list as $v){
             $t = $v->getName();
             unset($this->$t);
-        }        
+        }
+        return $this;
+    }
+    /**
+     * 别名
+     */
+    public function clean(){
+        return $this->clear();
     }
     
     /**
@@ -23,6 +31,7 @@ class Response {
                 $list[$k] = $this->_toArray($v);
             }
         }
+        return $list;
     }
     
     /**
