@@ -675,12 +675,15 @@ class Http{
 			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
 		}
 	
-		$h = ['Content-Type: application/json'];
 		if($header){
-			foreach($header as $k=>$v){
+		    if(! $header['Content-Type'] && !$header['Content-type']) $h = ['Content-Type: application/json'];
+		    foreach($header as $k=>$v){
 				$h[] = $v.": ".$k;  //注意： 不做urlencode
 			}
+		}else{
+		  $h = ['Content-Type: application/json'];
 		}
+		
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $h);
 		
 		if($cookie){
