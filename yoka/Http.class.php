@@ -265,7 +265,7 @@ class Http{
 		if($header){
 			$h = array();
 			foreach($header as $k=>$v){
-				$h[] = $k . ":" . $v; //注意：不做urlencode
+				$h[$k] = $v; //注意：不做urlencode
 			}
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $h);
 		}
@@ -338,7 +338,7 @@ class Http{
 		if($header){
 			$h = array();
 			foreach($header as $k=>$v){
-				$h[] = $k . ":" . $v; //注意：不做urlencode
+				$h[$k] = $v; //注意：不做urlencode
 			}
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $h);
 		}
@@ -427,7 +427,7 @@ class Http{
 		if($header){
 			$h = array();
 			foreach($header as $k=>$v){
-				$h[]= urlencode($k) .":" . urlencode($v);
+				$h[$k] = $v;
 			}
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $h);
 		}
@@ -503,7 +503,7 @@ class Http{
 		if($header){
 			$h = array();
 			foreach($header as $k=>$v){
-				$h[]= urlencode($k) .":" . urlencode($v);
+				$h[$k] = $v;
 			}
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $h);
 		}
@@ -583,7 +583,7 @@ class Http{
 		if($header){
 			$h = array();
 			foreach($header as $k=>$v){
-				$h[]= urlencode($k) .":" . urlencode($v);
+				$h[$k] = $v;
 			}
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $h);
 		}
@@ -678,7 +678,7 @@ class Http{
 		$h = ['Content-Type'=>'application/json'];
 		if($header){
 			foreach($header as $k=>$v){
-				$h[]= $k .":" . $v;  //注意： 不做urlencode
+				$h[$k] = $v;  //注意： 不做urlencode
 			}
 		}
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $h);
