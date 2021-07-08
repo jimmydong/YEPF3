@@ -754,7 +754,6 @@ class DB
 	public static function _buildQuery($creteria , $trim = true, $strict = false, $connector = 'AND', $addslashes = false){
 		$debug = false;
 		if(!is_array($creteria)){
-        	Debug::log("_buildWhere Error", $creteria);
         	return false;
         }
 		if($debug)Debug::log('creteria', $creteria);
