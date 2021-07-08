@@ -50,7 +50,9 @@ class App {
 			$obj->after($this->_controller, $this->_action);
 		} catch (Exception $e) {
 			if(defined('IS_TEST') && IS_TEST){
-				var_dump($e);
+				echo "<pre>";
+			    var_export($e);
+			    echo "</pre>";
 			}else{
 				\yoka\Debug::log('Error',strip_tags($e));
 				\yoka\Debug::flog('*** Exception ***', strip_tags($e));
