@@ -192,7 +192,7 @@ function template_modifier_trans($str){
  */
 function getCustomConstants($constants_name)
 {
-	return defined('SUB_' . $constants_name) ? constant('SUB_' . $constants_name) : constant($constants_name);
+	return defined('SUB_' . $constants_name) ? : constant($constants_name);
 }
 
 /**
