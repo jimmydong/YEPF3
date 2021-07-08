@@ -73,7 +73,7 @@ class Cookie{
 		 */
 		public static function get($name, $raw = false)
 		{
-			if(get_magic_quotes_gpc() || (!defined('YEPF_FORCE_CLOSE_ADDSLASHES') || YEPF_FORCE_CLOSE_ADDSLASHES !== true)){
+			if((phpversion() < 7.4 && get_magic_quotes_gpc()) || (!defined('YEPF_FORCE_CLOSE_ADDSLASHES') || YEPF_FORCE_CLOSE_ADDSLASHES !== true)){
 				if($raw) return @stripslashes($_COOKIE[$name]);
 				return @stripslashes($_COOKIE[self::$cookiepre.$name]);
 			}else{
