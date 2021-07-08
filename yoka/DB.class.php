@@ -114,6 +114,7 @@ class DB
 			if(file_exists($t))$path=$t;
 			elseif(file_exists('/WORK/LOG'))$path='/WORK/LOG';
 			else $path=dirname(dirname(__FILE__)). DIRECTORY_SEPARATOR . 'demo' . DIRECTORY_SEPARATOR . '_LOG';
+			
 			self::$log_filename = $path . DIRECTORY_SEPARATOR . 'sql_error_' . date('Ym') . '.log';
 		}
 	}
@@ -572,7 +573,7 @@ class DB
 	public function err($sql = '')
 	{
 		$t = $this->getError();
-		if(self::$debug)Debug::db($this->db_host, $this->db_name, $sql, 'Mysql Errno: ' . $t[0], 'Mysql Error:' . $t[2]);
+		if(self::$debug)Debug::db($this->db_host, $this->db_name, $sql, 0, 'Mysql Errno: ' . $t[0]. ', Mysql Error:' . $t[2]);
 		$this->logError('err: '.$sql, $t[2]);
 		throw new Exception($t[2]);
 	}
