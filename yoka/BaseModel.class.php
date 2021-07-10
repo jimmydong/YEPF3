@@ -364,7 +364,7 @@ class BaseModel{
 	 */
 	static public function updateById($id, $info, $addslashes=false){
 	    if(! $obj = static::getById($id)) return \yoka\YsError::error('id错误。' . $id);
-	    return $obj->update($info, $cretia, $addslashes);
+	    return $obj->update($info, null, $addslashes);
 	}
 	
 	/**
