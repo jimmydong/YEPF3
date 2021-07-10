@@ -20,8 +20,12 @@ namespace yoka;
  * 1， 支持非id作为主键。在子类中定义：static $pkey 。
  * 2， 原有id为主键的无需任何调整，完全兼容
  *
+ * [2021.07.07 更新]
+ * 1,   增加updateById方法
+ * 2， 增加entityToObj方法
+ * 
  * [2020.04.10 更新]
- * 1， 增加cache控制：A，setCache可关闭cache；B，cache项不是'default'，使用setCacheName指定
+ * 1， 增加cache控制：A，setCache可关闭cache；B，如果cache项不是'default'，使用setCacheName指定
  * 2， 更新_slime方法，增加type自动格式化
  * 
  * [v3 更新]
@@ -352,6 +356,27 @@ class BaseModel{
 		else return $obj->getEntity();
 	}
 	
+	/**
+	 * 直接按ID进行更新操作
+	 * @param int $id
+	 * @param 其他参数参见 update 方法
+	 * @return boolean|\yoka\BaseModel
+	 */
+	static public function updateById($id, $info, $cretia=null, $addslashes=false){
+	    if(! $obj = static::getById($id)) return \yoka\YsError::error('id错误。' . $id);
+	    return $obj->update($info, $cretia, $addslashes);
+	}
+	
+	/**
+	 * 根据entity返回实例
+	 * @param array $entity
+	 * @return \yoka\BaseModel
+	 */
+	static public function entityToObj($entity){
+	    $obj = new static();
+	    $obj->entity = $entity;
+	    return $obj;
+	}
 	
 	/**
 	 * 取当前对象数据
