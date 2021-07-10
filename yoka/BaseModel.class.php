@@ -609,7 +609,7 @@ class BaseModel{
 				throw new \Exception('错误：不允许修改该对象之外的记录。请参考\$cretia["__FORCE__"]', -1);
 				return false;
 			}
-		}elseif($info[$pkey]){
+		}elseif($info[$pkey]){ //注： 防止id被修改，所以放在$this->entity[$pkey]前面
 			//\yoka\Debug::log('update:info', $info);
 			/*注意：保护update_time自动变量字段*/
 			if(isset($info['update_time']))unset($info['update_time']);
