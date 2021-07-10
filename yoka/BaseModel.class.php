@@ -359,10 +359,10 @@ class BaseModel{
 	/**
 	 * 直接按ID进行更新操作
 	 * @param int $id
-	 * @param 其他参数参见 update 方法
+	 * @param boolean $addslashes
 	 * @return boolean|\yoka\BaseModel
 	 */
-	static public function updateById($id, $info, $cretia=null, $addslashes=false){
+	static public function updateById($id, $info, $addslashes=false){
 	    if(! $obj = static::getById($id)) return \yoka\YsError::error('id错误。' . $id);
 	    return $obj->update($info, $cretia, $addslashes);
 	}
