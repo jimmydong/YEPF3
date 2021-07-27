@@ -50,22 +50,19 @@ class Cache implements \yoka\CacheInterface
 	 * @var object
 	 */
 	private $cache; 
+	
     /**
 	 * @name __construct
 	 * @desc 构造函数
 	 * @param void
-	 * @return \yoka\Cache
-	 * @access protected
-	 *
+	 * @return self
 	 */
-	
-    private function __construct($item = '', $serverList = array(), $backupList = array(), $type = 'memcached')
+    function __construct($item = '', $serverList = array(), $backupList = array(), $type = 'memcached')
     {
     	if(class_exists('Memcached') && method_exists('Memcached', 'setOption')) $this->memcacheType = 'Memcached';
     	else $this->memcacheType = 'Memcache';
     	
-    	if('memcached' == $type)
-    	{
+    	if('memcached' == $type){
 			if($this->memcacheType == 'Memcache') $this->cache = new \yoka\Memcached();		//早期 Mecache 封装，不推荐
 			else $this->cache = new Memcached();
 			
@@ -75,17 +72,19 @@ class Cache implements \yoka\CacheInterface
 				foreach($serverList as $v)
 				{
 					$this->cache->addServer($v['host'],$v['port']?:'11211');
+					$this->setOption(Memcached::OPT_COMPRESSION, false); //关闭压缩功能
+					$this->setOption(Memcached::OPT_BINARY_PROTOCOL, true); //使用binary二进制协议
+					$this->setOption(Memcached::OPT_TCP_NODELAY, true); //重要，php memcached有个bug，当get的值不存在，有固定40ms延迟，开启这个参数，可以避免这个bug
 					if($v['user'] && $v['pass']) {
-						$this->cache->setOption(Memcached::OPT_BINARY_PROTOCOL, true);		//认证需二进制
 						$this->cache->setSaslAuthData($v['user'], $v['pass']);
 					}
-					$this->serverlist[] = array('ip' => $v['host'], 'port' => $v['port'], 'is_sucess'=>$is_sucess);				
+					$this->serverlist[] = $v;				
 				}
 			}
 			//后备服务器：只有主力服务器全部添加失败时使用。集群设计应充分考虑数据一致性！
 			if(!empty($backupList) && !$this->cache->set('Y_CHECK_SERVER_ALIVE',1))
 			{
-				\yoka\Debug::log("Cache Warnning", $this->serverlist[0]['ip'] . ": " . ($this->cache->getResultMessage()?:"server is down, using backup now!"));
+				\yoka\Debug::log("Cache Warnning", $this->serverlist[0]['host'] . ": " . ($this->cache->getResultMessage()?:"server is down, using backup now!"));
 				if($this->memcacheType == 'Memcache') $this->cache = new \yoka\Memcached();
 				else $this->cache = new Memcached();
 				$this->serverlist = array();
@@ -96,9 +95,15 @@ class Cache implements \yoka\CacheInterface
 						$this->cache->setOption(Memcached::OPT_BINARY_PROTOCOL, true);
 						$this->cache->setSaslAuthData($v['user'], $v['pass']);
 					}
-					$this->serverlist[] = array('ip' => $v['host'], 'port' => $v['port'], 'is_sucess'=>$is_sucess);
+					$this->serverlist[] = $v;
 				}
 			}
+    	}elseif('redis' == $type){
+    	    //TODO:: 兼容redis
+    	    return \yoka\YsError::error('暂不支持redis');
+    	}else{
+    	    //TODO:: 其他类型
+    	    return \yoka\YsError::error('暂不支持其他类型 ' . $type);
     	}
 		$this->prefix = $item;
     }
@@ -124,14 +129,12 @@ class Cache implements \yoka\CacheInterface
     	$obj = self::$instance;
     	if(!isset($obj[$item]))
     	{
-    		$key = "";
     		$list = array();
 			if(isset($CACHE['memcached'][$item]))
 			{
 				$config = $CACHE['memcached'][$item];
 				$list = $config['server'];
 				$backup = $config['backup'];
-				$key = $item;
 			}else{
 				\yoka\Debug::log('Cache Error','无配置项:' . $item);
 				return false;
@@ -310,10 +313,8 @@ class Cache implements \yoka\CacheInterface
      * @desc 格式化Cache类中所需key
      * @param string $key
      * @return string $key
-     * @access private
-     *
-     **/
-    private function getKey($key)
+     */
+    function getKey($key)
     {
     	if(!empty($this->prefix))
     	{
@@ -361,9 +362,9 @@ class Cache implements \yoka\CacheInterface
      * 辅助函数
      */
     public function _getServer(){
-    	if(count($this->serverlist) == 1) return $this->serverlist[0]['ip'] . ':' . $this->serverlist[0]['port'];
+    	if(count($this->serverlist) == 1) return $this->serverlist[0]['host'] . ':' . $this->serverlist[0]['port'];
     	foreach($this->serverlist as $server){
-    		$re[] = $server['ip'] . ':' . $server['port'];
+    		$re[] = $server['host'] . ':' . $server['port'];
     	}
     	return $re;
     }

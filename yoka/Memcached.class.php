@@ -7,7 +7,7 @@ namespace yoka;
  * @createtime 2008-9-10 10:54
  * @updatetime 2014-09-16 by jimmy.dong@gmail.com  
  * 
- * 注：依赖memcached扩展，同时兼容早期memcache扩展。
+ * 注：适用于兼容早期memcache扩展，模拟Memcached扩展。
  */
 use \Memcache;
 class Memcached
