@@ -50,7 +50,7 @@ namespace yoka;
 class BaseModel{
 	public $db;
 	public $entity;
-	public static $_EnableBuffer = true;		//防止大数据量处理时内存不足
+	public static $_EnableBuffer = false;		//是否启用默认内存缓冲
 	public static $_BaseModel_Buffer;			//用于内存缓冲
 	public static $_DefaultCacheTime = 3600; 	//默认fetchAllCache缓冲时间，秒
 	public static $cacheName = 'default';		//缺省缓冲名称
@@ -276,13 +276,15 @@ class BaseModel{
 		$table = static::$table;
 		$pkey = isset(static::$pkey)?static::$pkey:'id';
 		$class = get_called_class();
-		if(self::$_BaseModel_Buffer[$key]){
+		$key = "BaseModel_Cache_" . $table . '_' . $id;
+		//使用内存缓冲
+		if(self::$_EnableBuffer && self::$_BaseModel_Buffer[$key]){
 			$re = new $class;
 			$re->entity = self::$_BaseModel_Buffer[$key];
 			return $re;
 		}
+		//使用cache缓冲
 		if(self::$cacheFlag){
-			$key = "BaseModel_Cache_" . $table . '_' . $id;
 			$cache = \yoka\Cache::getInstance(self::$cacheName);
 			if(!SiteCacheForceRefresh && !$refresh){
 				$t = $cache->get($key);
@@ -1009,6 +1011,7 @@ class BaseModel{
 	/**
 	 * 查询（默认返回true/false）
 	 * 【注意】不建议使用query进行update/delete
+	 * @param mixed $mix query字符串或creteria(默认为select)
 	 * @param bool $return_statement 是否返回statement(默认为true/false)
 	 * @param bool $heavy 是否禁止预缓冲(防止大量查询导致内存不足。注意：开启后不能嵌套查询，否则可能出错)
 	 *
@@ -1019,7 +1022,7 @@ class BaseModel{
 	public function query($mix, $return_statement = false, $heavy = null){
 		$table = static::$table;
 		if(is_array($mix)){
-			$where = \yoka\DB::_buildQuery($creteria, $trim, $strict, $connector, $addslashes);
+			$where = \yoka\DB::_buildQuery($mix);
 			$sql = "SELECT * FROM `{$table}` " . $where;
 		}else{
 			$sql = str_replace('%_table_%', "`{$table}`", $mix);
