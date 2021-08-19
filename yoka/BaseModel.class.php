@@ -981,7 +981,7 @@ class BaseModel{
 	 * 对fetchAll返回结果进行排序
 	 * @param array $data 待排序二维数组
 	 * @param string $col 排序的字段
-	 * @param mix $sort 默认正序。倒序： -1,DESC,SORT_DESC
+	 * @param mixed $sort 默认正序。倒序： -1,DESC,SORT_DESC
 	 * @param string $type SORT_REGULAR, SORT_NUMBER, SORT_STRING
 	 */
 	static public function sort($data, $col='id', $sort='', $type=''){
