@@ -985,7 +985,7 @@ class BaseModel{
 	 * @param string $type SORT_REGULAR, SORT_NUMBER, SORT_STRING
 	 */
 	static public function sort($data, $col='id', $sort='', $type=''){
-		if($sort == -1 || strtolower($sort) == 'desc' || $srot == SORT_DESC || strtolower($sort) == 'sort_desc')$sort = SORT_DESC;
+		if($sort == -1 || strtolower($sort) == 'desc' || $sort == SORT_DESC || strtolower($sort) == 'sort_desc')$sort = SORT_DESC;
 		else $sort = SORT_ASC;
 		foreach($data as $key=>$val){
 			$tmp[$key] = $val[$col];
