@@ -29,6 +29,9 @@
  * @update by jimmy.dong@gmail.com
  * 增加页面Debug支持，通过 ?debug=page 或  Debug::debug_page = true 开启
  * 
+ * @notice 
+ * 留意代码中fastcgi_finish_request()会阻止register_shutdown_function注册的回调
+ * 
  * 已知BUG：
  * 当多级数组 + 下级数组仅一个元素 + 元素的key为默认 + 元素的值为0或1 => Variable Viewer 会将 array('0'=>0) 错误显示为 0
  * eg: \yoka\Debug::log('bug',['test'=>[0]])
