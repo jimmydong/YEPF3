@@ -162,7 +162,7 @@ class FileUpload{
 	 * @param string $reg  eg:'/\.tar$/i'
 	 */
 	public static function addFileExtAllowed($name, $reg){
-	    self::$file_ext_allowed[] = [$name=>$reg];
+	    self::$file_ext_allowed[$name] = $reg;
 	}
 	
 	/**
