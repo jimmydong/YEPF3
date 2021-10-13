@@ -155,6 +155,16 @@ class FileUpload{
 		
 		return true;
 	}
+	
+	/**
+	 * 添加许可的文件扩展名
+	 * @param string $name  eg:'tar'
+	 * @param string $reg  eg:'/\.tar$/i'
+	 */
+	public static function addFileExtAllowed($name, $reg){
+	    self::$file_ext_allowed[] = [$name=>$reg];
+	}
+	
 	/**
 	 * 上传文件的快捷方法
 	 * @param string $name   <input type="file" name=xxx>
