@@ -1000,6 +1000,56 @@ class UtilArray {
 		}
 		return $re;
 	}
+	
+	/**
+	 * 为接口进行数据整理：
+	 * 		1，数字转为字符串
+	 * 		2，null转为''
+	 *
+	 * @param mixed $data
+	 */
+	static public function toStr($data){
+	    if(is_array($data)){
+	        //递归
+	        $re = [];
+	        foreach($data as $key=>$val){
+	            $re[$key] = self::_toStr($val);
+	        }
+	    }elseif(is_null($data)){
+	        $re = '';
+	    }elseif(is_numeric($data)){
+	        $re = strval($data);
+	    }else{
+	        $re = $data;
+	    }
+	    return $re;
+	}
+	
+	/**
+	 * 去除主键（生成JSON的 {} => []）
+	 * 【注意】非递归
+	 * @param unknown $array
+	 */
+	static public function toList($array){
+	    $re = [];
+	    foreach($array as $k=>$v){
+	        $re[] = $v;
+	    }
+	    return $re;
+	}
+	
+	/**
+	 * 增加主键（生成JSON的 [] => []）
+	 * 【注意】非递归
+	 * @param unknown $array
+	 */
+	static public function toObject($array){
+	    $re = new \stdClass();
+	    foreach($array as $k=>$v){
+	        $re->$k = $v;
+	    }
+	    return $re;
+	}
 
 	/**
 	 * 去掉数字键的值（例如：用于 mysql->query返回的结果）
