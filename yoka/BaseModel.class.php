@@ -93,14 +93,14 @@ class BaseModel{
 	}
 	
 	// 字段类型定义 （用于_slim及自动处理）
-	const TYPE_NONE = 0;	//未定义
-	const TYPE_INT = 1;		//整数
-	const TYPE_STRING = 2;	//字符串
-	const TYPE_FLOAT = 3;	//浮点数
-	const TYPE_JSON = 4;	//JSON格式字符串
-	const TYPE_DATE = 5;	//日期
-	const TYPE_DATETIME = 6;	//日期时间
-	const TYPE_TIMESTAMP = 7;	//时间戳整数
+	const TYPE_NONE = 0;	          //未定义
+	const TYPE_INT = 1;		          //整数
+	const TYPE_STRING = 2;	          //字符串
+	const TYPE_FLOAT = 3;	         //浮点数
+	const TYPE_JSON = 4;	             //JSON格式字符串
+	const TYPE_DATE = 5;	              //日期
+	const TYPE_DATETIME = 6;	      //日期时间
+	const TYPE_TIMESTAMP = 7;	  //时间戳整数
 	//const TYPE_LIST = 8;  //逗号分隔的
 	static public function _type($type, $val){
 		switch($type){
