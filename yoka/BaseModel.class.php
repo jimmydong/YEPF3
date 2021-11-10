@@ -1294,6 +1294,25 @@ class BaseModel{
 	}
 	
 	/**
+	 * 对数据按defineSlim进行格式整理。用于：Mysql严格模式，插入修改必须格式相符
+	 * @param array $data
+	 * @return array
+	 */
+	static public function _prepare_type($data){
+	    $class = get_called_class();
+	    if(isset($class::$defineSlim))$defineSlim = $class::$defineSlim;
+	    else return $data;
+	    
+	    foreach($data as $k=>$v){
+	        if($defineSlim[$k] && $defineSlim[$k]['type']){
+	            $data[$k] = self::_type($defineSlim[$k]['type'], $v);
+	        }
+	    }
+	    
+	    return $data;
+	}
+	
+	/**
 	 * 关闭或开启 query_buffer。用于大量请求防止内存耗尽。
 	 * @param unknown $bool
 	 */
