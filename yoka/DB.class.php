@@ -212,8 +212,8 @@ class DB
 			elseif(is_array($v)){
 				//自动转json 强制addslashes防止出错
 				$s .= '`'.$k . "` = '" . addslashes(json_encode($v, JSON_UNESCAPED_UNICODE)) . "',";
-			}elseif(is_numeric($v)){
-			    $s .= '`'.$k . "` = " . $v . ",";
+// 			}elseif(is_numeric($v)){      //数字可以不做特殊处理
+// 			    $s .= '`'.$k . "` = " . $v . ",";
 			}elseif($addslashes){
 			    $s .= '`'.$k . "` = '" . addslashes($v) . "',";
 			}else{
