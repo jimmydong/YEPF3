@@ -1300,7 +1300,8 @@ class BaseModel{
 	 */
 	static public function _prepare_type($data){
 	    $class = get_called_class();
-	    if(isset($class::$defineSlim))$defineSlim = $class::$defineSlim;
+	    if(isset($class::$defineSlim))$define_slim = $class::$defineSlim;
+	    elseif(isset($class::$define_slim))$define_slim = $class::$define_slim;	 //兼容旧写法
 	    else return $data;
 	    
 	    foreach($data as $k=>$v){
