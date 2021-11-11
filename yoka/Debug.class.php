@@ -98,7 +98,7 @@ class Debug
 	 ALTER TABLE `debug_log` ADD PRIMARY KEY (`id`);
 	 ALTER TABLE `debug_log` MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 	 */
-	static $log_mysql = false;			//日志数据库配置 array('db'=>'default','master'=>'true')
+	static $log_mysql = false;			//日志数据库配置 array('db'=>'default', 'master'=>'true', 'skip'=>['admin__logs'])
 	static $db_log_mysql = false;		//记录到数据库中 
 	static $debug_log_mysql = false;	//记录到数据库中。所需表结构见下：
 	/*
@@ -994,14 +994,35 @@ class Debug
 			try{
 				$db = \yoka\DB::getInstance(self::$log_mysql['db'], self::$log_mysql['master']);
 				if($db){
-					if(self::$db_log_mysql)foreach (self::$db_table as $v){
-						if(! preg_match('/insert|update|delete/i',$v[3])) continue; //全部记录太大了
-						if(preg_match('/^INSERT INTO debug_log SET/i',$v[3])) continue; //dlog不做重复记录
-						$values[] = "('".self::get_real_ip()."','".$_SERVER["SERVER_ADDR"]."','db','','','".addslashes($_SERVER["REQUEST_URI"])."','" .addslashes($v[0]). ":" .addslashes($v[1]). "','" .addslashes($v[2]). "','" .addslashes($v[3]). "','" .addslashes(var_export($v[4], true)). "')";
-					}
-					if(self::$debug_log_mysql)foreach (self::$log_table as $v){
-						$values[] = "('".self::get_real_ip()."','".$_SERVER["SERVER_ADDR"]."','log','".addslashes($v[0])."','".addslashes(var_export($v[1], true))."','".addslashes($v[2])."','','','','')";
-					}
+				    //准备SQL数据
+				    if(self::$db_log_mysql){
+				        foreach (self::$db_table as $v){
+    						if(! preg_match('/insert|update|delete/i',$v[3])) continue; //只记录数据变动
+    						if(preg_match('/^INSERT INTO debug_log SET/i',$v[3])) continue; //dlog不做重复记录
+    						if(self::$log_mysql['skip']){
+    						    if(is_array(self::$log_mysql['skip'])){
+    						        $find_flag = false;
+    						        foreach(self::$log_mysql['skip'] as $v){
+    						            if(strpos($v[3], self::$log_mysql['skip']) !== false){
+    						                $find_flag = true;
+    						                break;
+    						            }
+    						        }
+    						        if($find_flag) continue;
+    						    }else{
+    						        if(strpos($v[3], self::$log_mysql['skip']) !== false) continue;
+    						    }
+    						}
+    						$values[] = "('".self::get_real_ip()."', '".$_SERVER["SERVER_ADDR"]."', 'db', '', '', '".addslashes($_SERVER["REQUEST_URI"])."', '" .addslashes($v[0]). ":" .addslashes($v[1]). "', '" .addslashes($v[2]). "', '" .addslashes($v[3]). "','" .addslashes(var_export($v[4], true)). "')";
+    					}
+				    }
+				    //准备调试数据
+				    if(self::$debug_log_mysql){
+				        foreach (self::$log_table as $v){
+    						$values[] = "('".self::get_real_ip()."','".$_SERVER["SERVER_ADDR"]."','log','".addslashes($v[0])."','".addslashes(var_export($v[1], true))."','".addslashes($v[2])."','','','','')";
+    					}
+				    }
+				    //写入日志库
 					if($values){
 						$sql = "INSERT INTO debug_log (`ip`,`server`,`type`,`label`,`results`,`caller`,`db`,`time`,`query`,`query_results`) VALUES " . implode(',', $values);
 						$db->query($sql);
@@ -1013,6 +1034,10 @@ class Debug
 			}
 		}
 	}
+	/**
+	 * 获取真实IP
+	 * @return string|unknown
+	 */
 	public static function get_real_ip() {
 		if ($HTTP_SERVER_VARS[ "HTTP_X_FORWARDED_FOR"]){
 			$ip = $HTTP_SERVER_VARS[ "HTTP_X_FORWARDED_FOR"];
