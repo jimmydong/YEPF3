@@ -30,7 +30,7 @@ namespace yoka;
  * 
  * [v3 更新]
  * 1， 更新_slim方法，增加type/filter
- * 2， 支持非默认数据库连接
+ * 2， 支持非默认数据库连接 -- 在model类中声明。eg:  public static $database = 'log'
  *
  * [v2 更新]
  * 1， 不确定id是否存在的，请使用 geteById() 方法
@@ -41,7 +41,7 @@ namespace yoka;
  * 			fetchAllCached()
  * 4， 默认fetchAll仅获取1000条数据。获取数据较多时，可用fetchAllRaw提高性能(注意返回值不是id作为主键)。
  * 5， 获取大量数据时，应使用 query(xql, true) 方法获取迭代对象进行操作
- * 6,  批量更新较多数据时，应使用 stopAutoRefresh() ... restartAutoRefresh() 屏蔽缓存操作提高效率
+ * 6， 批量更新较多数据时，应使用 stopAutoRefresh() ... restartAutoRefresh() 屏蔽缓存操作提高效率
  * 7， 增加了字段自动过滤，需在子类中定义 $filter_fields 。注意：仅对 add/save/replace/update 有效
  * 8， 增加snapshop 和 slim 方法。子类中使用 $default_slim 定义默认slim字段
  * 9， 新增_slim方法取代slim。子类中使用 $define_slim 定义字段含义。（请结合db_info工具使用）
