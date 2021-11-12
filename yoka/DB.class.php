@@ -90,8 +90,12 @@ class DB
 				//兼容原有参数格式
 				$t = explode(':', $host);
 				$uri = "mysql:host={$t[0]};dbname={$database}" . ($t[1]?';port='.$t[1]:'');
-				if($pconnect) $this->db = new PDO($uri,$user,$password, array( PDO::ATTR_PERSISTENT => true, PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'", PDO::ATTR_TIMEOUT => self::$timeout));
-				else $this->db = new PDO($uri,$user,$password,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'", PDO::ATTR_TIMEOUT => self::$timeout));  
+				try{
+    				if($pconnect) $this->db = new PDO($uri,$user,$password, array( PDO::ATTR_PERSISTENT => true, PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'", PDO::ATTR_TIMEOUT => self::$timeout));
+    				else $this->db = new PDO($uri,$user,$password,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'", PDO::ATTR_TIMEOUT => self::$timeout));  
+				} catch (\PDOException $e) {
+				    \yoka\Debug::log('DB::_construct Error!', $e->getMessage());
+				}
 				$this->db->setAttribute (PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
 				$this->db_host = $host ;
 				$this->db_name = $database;
