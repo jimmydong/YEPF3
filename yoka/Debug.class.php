@@ -1002,8 +1002,8 @@ class Debug
     						if(self::$log_mysql['skip']){
     						    if(is_array(self::$log_mysql['skip'])){
     						        $find_flag = false;
-    						        foreach(self::$log_mysql['skip'] as $v){
-    						            if(strpos($v[3], $v) !== false){
+    						        foreach(self::$log_mysql['skip'] as $skip){
+    						            if(strpos($v[3], $skip) !== false){
     						                $find_flag = true;
     						                break;
     						            }
