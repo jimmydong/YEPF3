@@ -526,7 +526,7 @@ class BaseModel{
 			unset(self::$_BaseModel_Buffer[$key]);
 			$this->_refresh($class, $id); //调用子类中刷新方法
 			return true;
-		}elseif($this->entity[$pkey]){
+		}elseif(isset($this->entity[$pkey])){
 			if(! $this->db->delete($table, array($pkey=>$this->entity[$pkey]), true)){
 				//操作失败
 				return false;
