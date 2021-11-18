@@ -427,7 +427,8 @@ class Http{
 		if($header){
 			$h = array();
 			foreach($header as $k=>$v){
-				$h[] = $k.": ".$v;
+			    if(! $k) $h[] = $v;
+			    else $h[] = $k.": ".$v;
 			}
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $h);
 		}
@@ -503,7 +504,8 @@ class Http{
 		if($header){
 			$h = array();
 			foreach($header as $k=>$v){
-				$h[] = $k.": ".$v;
+			    if(! $k) $h[] = $v;
+			    else $h[] = $k.": ".$v;
 			}
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $h);
 		}
@@ -583,7 +585,8 @@ class Http{
 		if($header){
 			$h = array();
 			foreach($header as $k=>$v){
-				$h[] = $k.": ".$v;
+			    if(! $k) $h[] = $v;
+			    else $h[] = $k.": ".$v;
 			}
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $h);
 		}
@@ -678,7 +681,8 @@ class Http{
 		if($header){
 		    if(! $header['Content-Type'] && !$header['Content-type']) $h = ['Content-Type: application/json'];
 		    foreach($header as $k=>$v){
-				$h[] = $k.": ".$v;  //注意： 不做urlencode
+				if(! $k) $h[] = $v;
+		        else $h[] = $k.": ".$v;  //注意： 不做urlencode
 			}
 		}else{
 		  $h = ['Content-Type: application/json'];
