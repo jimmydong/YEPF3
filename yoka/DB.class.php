@@ -339,8 +339,7 @@ class DB
 					$this->err($sql);
 					return false;
 				}
-			}
-			else{
+			}else{
 				$status = $this->db->query($sql);	//Mysql封装内置了失效重连，此处无需再次处理
 			}
 		}
