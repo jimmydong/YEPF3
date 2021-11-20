@@ -91,7 +91,7 @@ function isMobile()
 		// 找不到为flase,否则为true
 		return stristr($_SERVER['HTTP_VIA'], "wap") ? true : false;
 	}
-	// 脑残法，判断手机发送的客户端标志,兼容性有待提高
+	// 判断手机发送的客户端标志,兼容性有待提高
 	if (isset ($_SERVER['HTTP_USER_AGENT']))
 	{
 		$clientkeywords = array ('nokia',

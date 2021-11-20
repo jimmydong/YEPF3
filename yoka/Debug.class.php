@@ -653,7 +653,7 @@ class Debug
 					if(is_string($v[3]) && preg_match('/insert|update|delete/i',$v[3])) $string .= "|----  ".$v[1]."  ".$v[2]."  ".$v[3]."  ". $result ."  ----|\n";
 				}
 				if($string){
-					$string = 	"Request: " . $_SERVER['REQUEST_URI'] . "\n" . $string;
+					$string = 	"Request: " . addslashes($_SERVER['REQUEST_URI']) . "\n" . $string;
 					$filename = "debug_db_" . date("Ymd") . ".log";
 					Log::customLog($filename, $string);
 				}

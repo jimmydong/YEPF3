@@ -11,7 +11,7 @@ namespace yoka;
  *
  */
 class AntiDdos{
-	public static $whiteList=['10.','192.','121.69.30.230','1.202'];
+	public static $whiteList=['10.','192.'];
 	
 	/**
 	 * 过滤
