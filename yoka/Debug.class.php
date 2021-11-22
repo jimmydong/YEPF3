@@ -376,7 +376,7 @@ class Debug
 			$label = 'Debug:flog';
 		}
 		if(false === self::$open) return false;
-		$string 	= 	"Debug::flog: ".$_SERVER['REQUEST_URI'];
+		$string 	= 	"Debug::flog: " . addslashes($_SERVER['REQUEST_URI']);
 		if($caller == ''){
 			$t = debug_backtrace(1);
 			$caller = $t[0]['file'].':'.$t[0]['line'];
