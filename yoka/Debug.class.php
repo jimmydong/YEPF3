@@ -392,7 +392,7 @@ class Debug
 	
 	/**
 	 * 即时写入日志数据库（self::$debug_log_mysql必须已有设置）
-	 * @param unknown $label
+	 * @param string $label
 	 * @param string $result
 	 * @param string $caller
 	 */
