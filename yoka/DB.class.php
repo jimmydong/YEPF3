@@ -608,7 +608,11 @@ class DB
 				$caller = $t[0]['file'].' , line:'.$t[0]['line'];
 				if($t[1]) $caller .= ' <- ' . $t[1]['file'].' , line:'.$t[1]['line'];
 			}
-				
+			
+			//Debug显示：
+			\yoka\Debug::log($this->db->errorInfo()[2], $sql);
+			
+			//记录到日志：
 			$string  = "#[".date('Y-m-d H:i:s')."] " . $sql . "\n";
 			$string .= " - " . $this->db->errorInfo()[2];
 			$string .= " - {$caller} ";
