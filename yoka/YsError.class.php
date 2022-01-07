@@ -34,7 +34,7 @@ class YsError{
 		self::$last_error_no = $no;
 		$t = debug_backtrace(1);
 		$caller = $t[0]['file'].':'.$t[0]['line'];
-		\yoka\Debug::log('YsError: ' . $msg, $caller);
+		\yoka\Debug::log('YsError: ' . $msg, $data?:'-', $caller);
 		
 		if(self::$log_file){
 			\yoka\Log::customLog(self::$log_file, json_encode([
