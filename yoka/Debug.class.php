@@ -999,7 +999,7 @@ class Debug
 				        foreach (self::$db_table as $v){
     						if(! preg_match('/insert|update|delete/i',$v[3])) continue; //只记录数据变动
     						if(preg_match('/^INSERT INTO debug_log SET/i',$v[3])) continue; //dlog不做重复记录
-    						if(preg_match('/^INSERT INTO `admin__logs` SET/i',$v[3])) continue; //admin__logs不做重复记录
+    						//if(preg_match('/^INSERT INTO `admin__logs` SET/i',$v[3])) continue; // 需要跳过的数据表，应通过 Debug::$log_mysql['skip']进行配置
     						if(self::$log_mysql['skip']){
     						    if(is_array(self::$log_mysql['skip'])){
     						        $find_flag = false;
