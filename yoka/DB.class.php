@@ -97,6 +97,7 @@ class DB
 				    \yoka\Debug::log('DB::_construct Error!', $e->getMessage());
 				}
 				$this->db->setAttribute (PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
+				$this->db->setAttribute (PDO::ATTR_AUTOCOMMIT, 1);  //默认自动提交
 				$this->db_host = $host ;
 				$this->db_name = $database;
 				$this->connect_param = array(
@@ -705,15 +706,20 @@ class DB
      * 事务处理相关
      * 注意：仅支持pdo模式下
      */
-    // 开始一个事务
+	//手工设置自动提交（关闭后commit才能生效，不推荐）
+	public function setAutoCommit($flag = null){
+	    if($flag === null) $flag = 1; //默认开启
+	    return $this->db->setAttribute(PDO::ATTR_AUTOCOMMIT, $flag);
+	}
+	// 开始一个事务（自动关闭AUTOCOMMIT，无需人工干预）
 	public function beginTransaction() {
         return $this->db->beginTransaction();
     }
-    // 提交一个事务
+    // 提交一个事务（提交后自动开启AUTOCOMMIT）
     public function commit() {
         return $this->db->commit();
     }
-    // 回退一个事务
+    // 回退一个事务（回滚后自动开启AUTOCOMMIT）
     public function rollBack() {
         return $this->db->rollBack();
     }

@@ -200,6 +200,34 @@ class BaseModel{
 	}
 	
 	/**
+	 * 开启事务（默认为autocommit）
+	 */
+	function beginTransaction(){
+	    return $this->db->beginTransaction();
+	}
+	
+	/**
+	 * 提交事务
+	 */
+	function commit(){
+	    return $this->db->commit();
+	}
+	
+	/**
+	 * 回滚事务
+	 */
+	function rollBack(){
+	    return $this->db->rollBack();
+	}
+	
+	/**
+	 * 手动设置自动提交（不推荐）
+	 */
+	function setAutoCommit($flag = null){
+	    return $this->db->setAutoCommit($flag);
+	}
+	
+	/**
 	 * 切换到主库
 	 */
 	function db_change_master(){
