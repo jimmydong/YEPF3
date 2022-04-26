@@ -524,7 +524,7 @@ class DB
 	/**
 	 * @name getError
 	 * @desc 获得错误信息
-	 * @return string
+	 * @return array
 	 * @access public
 	 */
 	public function getError()

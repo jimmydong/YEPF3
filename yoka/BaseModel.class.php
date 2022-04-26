@@ -260,6 +260,14 @@ class BaseModel{
 	}
 	
 	/**
+	 * 获取最近操作的错误信息
+	 * @return array
+	 */
+	function getErrorMsg(){
+	    return $this->db->getError();
+	}
+	
+	/**
 	 * 是否启用缓冲
 	 * [注意] cache 与 buffer 是不同控制机制。关闭 buffer 应使用 self::$_EnableBuffer = false
 	 * @param bool $cacheFlag
