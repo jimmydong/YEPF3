@@ -1267,7 +1267,31 @@ class BaseModel{
 		
 		$re = [];
 		foreach($define_slim as $k=>$define){
+		    //兼容旧格式
+		    if(isset($define['type']) && is_int($define['type']) && !isset($define['filter'])){
+		        $define['filter'] = $define['type'];
+		        unset($define['type']);
+		    }
+		    //过滤不需要的
+		    if($filter !== null){
+		        if(is_array($filter)){
+		            //数组格式
+		            if(!in_array($define['filter'], $filter)) continue;
+		        }else{
+		            //值匹配
+		            if($define['filter'] != $filter) continue;
+		        }
+		    }
+		    //去除空值
+		    if($strip){
+		        if($info[$k] === null || trim($info[$k]) === '' || $info[$k] === '0000-00-00' || $info[$k] === '0000-00-00 00:00:00' || $info[$k] === '1970-01-01 08:00:00') continue;
+		    }
+		    //转换
             $info[$k] = self::_slimRender($info[$k], $define, $filter, $not_map, $strip);
+            //再处理一次
+            if($strip){
+                if($info[$k] === null || trim($info[$k]) === '' || $info[$k] === '0000-00-00' || $info[$k] === '0000-00-00 00:00:00' || $info[$k] === '1970-01-01 08:00:00') continue;
+            }
 			//是否翻译
 			if($des && $define['title']){
 				$re[$define['title']] = $info[$k];
@@ -1280,24 +1304,15 @@ class BaseModel{
 	/**
 	 * 辅助转换
 	 */
-	static public function _slimRender($data, $define, $filter=null, $not_map=false, $strip=false){
+	static public function _slimRender($data, $define, $not_map=false){
 	    //兼容简单设定
 	    if(is_string($define)){
 	        $define = array('title'=>$define, 'filter'=>0);
-	    }
-	    //兼容旧格式
-	    if(isset($define['type']) && is_int($define['type']) && !isset($define['filter'])){
-	        $define['filter'] = $define['type'];
-	        unset($define['type']);
 	    }
 
 	    //格式处理
 	    if($define['type']){
 	        $data = self::_type($define['type'], $data);
-	    }
-	    //去除空值
-	    if($strip){
-	        if($data === null || trim($data) === '' || $data === '0000-00-00' || $data === '0000-00-00 00:00:00' || $data === '1970-01-01 08:00:00') continue;
 	    }
 	    //map处理
 	    if(! $not_map){
@@ -1319,12 +1334,7 @@ class BaseModel{
 	    //隐私保护
 	    if($define['protect']){
 	        $data = self::_protect($define['protect'], $data);
-	    }
-	    //再处理一次
-	    if($strip){
-	        if($data === null || trim($data) === '' || $data === '0000-00-00' || $data === '0000-00-00 00:00:00' || $data === '1970-01-01 08:00:00') continue;
-	    }
-	    
+	    }	    
 	    return $data;
 	}
 	
