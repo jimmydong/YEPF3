@@ -1290,16 +1290,7 @@ class BaseModel{
 	        $define['filter'] = $define['type'];
 	        unset($define['type']);
 	    }
-	    //过滤不需要的
-	    if($filter !== null){
-	        if(is_array($filter)){
-	            //数组格式
-	            if(!in_array($define['filter'], $filter)) continue;
-	        }else{
-	            //值匹配
-	            if($define['filter'] != $filter) continue;
-	        }
-	    }
+
 	    //格式处理
 	    if($define['type']){
 	        $data = self::_type($define['type'], $data);
