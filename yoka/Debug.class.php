@@ -356,7 +356,7 @@ class Debug
 		if($results === 'Temporary Value'){
            array_push(self::$log_table, array('[临时调试]', $label, $caller));
         }else{
-        	if(is_string($results) && mb_detect_encoding($string, 'UTF-8') !== 'UTF-8') {
+        	if(is_string($results) && mb_detect_encoding($results, 'UTF-8') !== 'UTF-8') {
         		$results = '非UTF-8编码，长度：' . strlen($results);
         	}
         	array_push(self::$log_table, array($label, $results, $caller));
