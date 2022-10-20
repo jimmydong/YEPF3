@@ -310,8 +310,12 @@ class DB
 		$sql .= " WHERE " . $where ;
 		$re = $this->exec($sql);
 		if($compat) {
-			if($re === false) return false; //区分 statement===0
-			else return true;
+			if($re === false) {
+				$this->logError($sql, $this->getError()[2]);
+				return false; //区分 statement===0
+			}else{
+				return true;
+			} 
 		}
 		else return $re;
 	}
