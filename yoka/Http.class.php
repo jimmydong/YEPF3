@@ -402,10 +402,10 @@ class Http{
 	public static function curlPostFile($url, $file, $data=array(), $timeout_microsecond = null, $header = null, $cookie = null, $proxy = null){
 		if(is_array($file)){
 			foreach($file as $k=>$v){
-				$data[$k] = new \CURLFile(realpath($v));
+				$data[$k] = new \CURLFile(realpath($v), null, basename($v));
 			}
 		}else{
-			$data['upload'] = new \CURLFile(realpath($file));
+			$data['upload'] = new \CURLFile(realpath($file), null, basename($file));
 		}
 		\yoka\Debug::log('curlPostFile', $url);
 		\yoka\Debug::log('curlPost:file', $file);
