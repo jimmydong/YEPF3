@@ -66,22 +66,24 @@ class Widget
 	 * 【raw的别名函数】
 	 * @param unknown $key
 	 * @param string $html
+	 * @param bool $nocache 不使用缓冲（取数据库真实数据）
 	 */
-	public static function getRaw($key, $html=false){
-		return self::raw($key, $html);
+	public static function getRaw($key, $html = false, $nocache = false){
+		return self::raw($key, $html, $nocache);
 	}
 	/**
 	 * 默认读取，从widget表中读取碎片信息
 	 * @param string $key
 	 * @param bool $html 是否HTML格式。默认：Json格式
+	 * @param bool $nocache 不使用缓冲（取数据库真实数据）
 	 */
-	public static function raw($key, $html=false)
+	public static function raw($key, $html = false, $nocache = false)
 	{
 		if($key === '') return "Error: 没有KEY";
 		$m = Cache::getInstance(self::$default_item);
 		$mkey = "Widget_raw.{$key}";
 
-		if( (!defined('SiteCacheLevel') || SiteCacheLevel) && (!defined('SiteCacheForceRefresh') || !SiteCacheForceRefresh)){
+		if(!$nocache && (!defined('SiteCacheLevel') || SiteCacheLevel) && (!defined('SiteCacheForceRefresh') || !SiteCacheForceRefresh)){
 			//优先尝试从memcache取出
 			$re = $m->get($mkey);
 			if($re) return $re;
