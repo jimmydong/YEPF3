@@ -81,7 +81,7 @@ class QuickCache{
 	 * 保存当前地址
 	 * _c,_a,page 自动保存，其他参数需在数组中指定
 	 * @param obj $request  框架request对象 OR 参数数组
-	 * @param array $arr	需要保存的参数（配合request对象）
+	 * @param array $arr	需要保存的参数（配合request对象，默认只传递_c,_a,page）
 	 * @param boolean $strict 是否保存空值的参数
 	 */
 	public static function saveBackUrl($request, $arr = array(), $strict = false){

@@ -659,7 +659,7 @@ class Http{
 	 * @param mixed $proxy
 	 * @return boolean|string
 	 */
-	public static function curlPostJson($url, $data=array(), $timeout_microsecond = null, $header = null, $cookie = null, $proxy = null){
+	public static function curlPostJson($url, $data=array(), $timeout_microsecond = null, $header = null, $cookie = null, $proxy = null, $checkHttpCode = null){
 		\yoka\Debug::log('curlPostJson', $url);
 		\yoka\Debug::log('curlPost:param', $data);
 		if(! $timeout_microsecond) $timeout_microsecond = self::$timeout_microsecond;
@@ -720,11 +720,13 @@ class Http{
 		$data = curl_exec($ch);
 		$curl_errno = curl_errno($ch);
 		$curl_error = curl_error($ch);
+		$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		curl_close($ch);
 		if($curl_errno >0){
 			\yoka\Debug::log('Http::curlPostJson Error',$curl_error);
 			return false;
 		}else{
+			if($checkHttpCode && $checkHttpCode != $httpCode) return \yoka\YsError::error("HTTP_CODE: {$httpCode} != {$checkHttpCode}", 0, $data);
 			return $data;
 		}
 	}
