@@ -79,7 +79,7 @@ class DB
 	 * @param string $database 数据库名称
 	 * @param string $dbtype 数据库类型
 	 */
-	public function __construct($host, $user, $password, $database, $dbtype = 'mysql', $charset = 'utf-8', $pconnect = false)
+	public function __construct($host, $user, $password, $database, $dbtype = 'mysql', $charset = 'utf8', $pconnect = false)
 	{
 		if(class_exists('PDO'))$this->pdo = true;
 		else $this->pdo = false;
@@ -91,8 +91,8 @@ class DB
 				$t = explode(':', $host);
 				$uri = "mysql:host={$t[0]};dbname={$database}" . ($t[1]?';port='.$t[1]:'');
 				try{
-    				if($pconnect) $this->db = new PDO($uri,$user,$password, array( PDO::ATTR_PERSISTENT => true, PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'", PDO::ATTR_TIMEOUT => self::$timeout));
-    				else $this->db = new PDO($uri,$user,$password,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'", PDO::ATTR_TIMEOUT => self::$timeout));  
+    				if($pconnect) $this->db = new PDO($uri,$user,$password, array( PDO::ATTR_PERSISTENT => true, PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES '{$charset}'", PDO::ATTR_TIMEOUT => self::$timeout));
+    				else $this->db = new PDO($uri,$user,$password,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES '{$charset}'", PDO::ATTR_TIMEOUT => self::$timeout));  
 				} catch (\PDOException $e) {
 				    \yoka\Debug::log('DB::_construct Error!', $e->getMessage());
 				}
@@ -104,6 +104,7 @@ class DB
 						'uri' => $uri,
 						'user'=> $user,
 						'password' => $password,
+						'charset' => $charset
 				);
 			}else{
 				$this->db = new \yoka\Mysql($host, $user , $password, $database, $charset, $pconnect) ;
@@ -672,7 +673,12 @@ class DB
 		$this->close();
 		sleep(1);
 		try{
-			return $this->db = new PDO($this->connect_param['uri'],$this->connect_param['user'],$this->connect_param['password'],array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
+			return $this->db = new PDO(
+				$this->connect_param['uri'],
+				$this->connect_param['user'],
+				$this->connect_param['password'],
+				[PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES '".$this->connect_param['charset']."'"]
+			);
 		}catch(\Exception $e){
 			return $this->reconnect_try($counter++);
 		}
