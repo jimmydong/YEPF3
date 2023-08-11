@@ -1231,7 +1231,7 @@ class FirePHP {
                 return $this->jsonEncode($Object, $skipObjectEncode);
             }
         }
-        return $re?:'[{"Type":"TABLE","File":"","Line":""},["FirePHP: JsonEncodeError - Not Utf-8",[["Description","Time","Caller"]]]]';
+        return $re?:'["FirePHP: JsonEncodeError - Not Utf-8",[["Description","Time","Caller"]]]';
     }
 
     /**

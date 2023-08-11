@@ -386,19 +386,19 @@ class DB
 				if($info === false && $this->db->errorInfo()[1] == 2013 || $this->db->errorInfo()[1] == 2006){
 					throw new Exception('Mysql goneaway : timeout');
 				}
-			}else $info = $this->db->fetch($query);
+			}else $info = $this->db->fetch();
 		}
 		catch (Exception $e)
 		{
-			$this->halt($e, $sql);
+			$this->halt($e, 'fetch error');
 			return false;
 		}
 		if(self::$debug){
 			if($this->connect_param['charset'] != '' && strtolower($this->connect_param['charset']) != 'utf8'){
 				//避免乱码
-				Debug::db($this->db_host, $this->db_name, $query, Debug::getTime() - $begin_microtime, '');
+				Debug::db($this->db_host, $this->db_name, 'fetch', Debug::getTime() - $begin_microtime, 'not utf8');
 			}else{
-				Debug::db($this->db_host, $this->db_name, $query, Debug::getTime() - $begin_microtime, $info);
+				Debug::db($this->db_host, $this->db_name, 'fetch', Debug::getTime() - $begin_microtime, $info);
 			}
 		}
 		//if(!$info)$this->logError($sql, $info);
@@ -450,7 +450,7 @@ class DB
 		if(self::$debug){
 			if($this->connect_param['charset'] != '' && strtolower($this->connect_param['charset']) != 'utf8'){
 				//避免乱码
-				Debug::db($this->db_host, $this->db_name, $sql, Debug::getTime() - $begin_microtime, '');
+				Debug::db($this->db_host, $this->db_name, 'not utf8', Debug::getTime() - $begin_microtime, $sql);
 			}else{
 				Debug::db($this->db_host, $this->db_name, $sql, Debug::getTime() - $begin_microtime, $info);
 			}
@@ -538,7 +538,7 @@ class DB
 		if(self::$debug){
 			if($this->connect_param['charset'] != '' && strtolower($this->connect_param['charset']) != 'utf8'){
 				//避免乱码
-				Debug::db($this->db_host, $this->db_name, $sql, Debug::getTime() - $begin_microtime, '');
+				Debug::db($this->db_host, $this->db_name, 'not utf8', Debug::getTime() - $begin_microtime, $sql);
 			}else{
 				Debug::db($this->db_host, $this->db_name, $sql, Debug::getTime() - $begin_microtime, $info);
 			}
