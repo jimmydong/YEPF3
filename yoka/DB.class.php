@@ -543,7 +543,6 @@ class DB
 				Debug::db($this->db_host, $this->db_name, $sql, Debug::getTime() - $begin_microtime, $info);
 			}
 		}
-		Debug::db($this->db_host, $this->db_name, $sql, Debug::getTime() - $begin_microtime, $info);
 		//if(!$info)$this->logError($sql, $info);
 		return $info;
 	}
