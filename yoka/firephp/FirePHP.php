@@ -1224,14 +1224,14 @@ class FirePHP {
         } else {
             $re = $this->json_encode($Object);
         }
-	//hack by jimmy.dong@gmail.com  - in case None Utf-8
-	if(!$re){
-		if($Object['Class']=='ErrorException' && $Object['Trace']){
-			unset($Object['Trace']);
-			 return $this->jsonEncode($Object, $skipObjectEncode);
-		}
-	}
-        return $re?:'{"Class":"Exception","Message":"JsonEncodeError - Not Utf-8","File":"","Line":0,"Type":"throw","Trace":[]}';
+        //hack by jimmy.dong@gmail.com  - in case None Utf-8
+        if(!$re){
+            if($Object['Class']=='ErrorException' && $Object['Trace']){
+                unset($Object['Trace']);
+                return $this->jsonEncode($Object, $skipObjectEncode);
+            }
+        }
+        return $re?:'[{"Type":"TABLE","File":"","Line":""},["FirePHP: JsonEncodeError - Not Utf-8",[["Description","Time","Caller"]]]]';
     }
 
     /**
