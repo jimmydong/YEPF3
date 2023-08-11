@@ -393,7 +393,14 @@ class DB
 			$this->halt($e, $sql);
 			return false;
 		}
-		if(self::$debug)Debug::db($this->db_host, $this->db_name, $query, Debug::getTime() - $begin_microtime, $info);
+		if(self::$debug){
+			if($this->connect_param['charset'] != '' && strtolower($this->connect_param['charset']) != 'utf8'){
+				//避免乱码
+				Debug::db($this->db_host, $this->db_name, $query, Debug::getTime() - $begin_microtime, '');
+			}else{
+				Debug::db($this->db_host, $this->db_name, $query, Debug::getTime() - $begin_microtime, $info);
+			}
+		}
 		//if(!$info)$this->logError($sql, $info);
 		return $info;
 	}
@@ -440,7 +447,14 @@ class DB
 			$this->halt($e, $sql);
 			return false;
 		}
-		if(self::$debug)Debug::db($this->db_host, $this->db_name, $sql, Debug::getTime() - $begin_microtime, $info);
+		if(self::$debug){
+			if($this->connect_param['charset'] != '' && strtolower($this->connect_param['charset']) != 'utf8'){
+				//避免乱码
+				Debug::db($this->db_host, $this->db_name, $sql, Debug::getTime() - $begin_microtime, '');
+			}else{
+				Debug::db($this->db_host, $this->db_name, $sql, Debug::getTime() - $begin_microtime, $info);
+			}
+		}
 		//if(!$info)$this->logError($sql, $info);
 		return $info;
 	}
@@ -513,16 +527,23 @@ class DB
 				$this->statement->closeCursor();
 				$this->statement = null;
 			}else{
-				$info = $this->db->fetchAll($sql, $id);
+				$info = $this->db->fetchAll($sql);
 			}
 		}
 		catch (Exception $e)
 		{
-			
 			$this->halt($e, $sql);
 			return false;
 		}
-		if(self::$debug)Debug::db($this->db_host, $this->db_name, $sql, Debug::getTime() - $begin_microtime, $info);
+		if(self::$debug){
+			if($this->connect_param['charset'] != '' && strtolower($this->connect_param['charset']) != 'utf8'){
+				//避免乱码
+				Debug::db($this->db_host, $this->db_name, $sql, Debug::getTime() - $begin_microtime, '');
+			}else{
+				Debug::db($this->db_host, $this->db_name, $sql, Debug::getTime() - $begin_microtime, $info);
+			}
+		}
+		Debug::db($this->db_host, $this->db_name, $sql, Debug::getTime() - $begin_microtime, $info);
 		//if(!$info)$this->logError($sql, $info);
 		return $info;
 	}
