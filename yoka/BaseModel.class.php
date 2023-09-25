@@ -719,8 +719,8 @@ class BaseModel{
 	
 	/**
 	 * 带缓冲获取 参数同 fetchOne
-	 * 注意: 1, 默认使用从库; 2, 返回值为数组
-	 * @return array
+	 * 注意: 默认使用从库
+	 * @return self
 	 */
 	public function fetchOneCached($mix, $assist = []){
 		if(! self::$cacheFlag) return \yoka\YsError::error('cacheFlag已关闭');
