@@ -719,11 +719,13 @@ class BaseModel{
 	
 	/**
 	 * 带缓冲获取 参数同 fetchOne
+	 * 注意: 1, 默认使用从库; 2, 返回值为数组
+	 * @return array
 	 */
 	public function fetchOneCached($mix, $assist = []){
 		if(! self::$cacheFlag) return \yoka\YsError::error('cacheFlag已关闭');
 		$table = static::$table;
-		$key = 'fetchOne_' . $table  . '_' . self::$group_id. '_' . md5(json_encode($mix).json_encode($assist));
+		$key = 'fetchOne_' . $table  . '_' . md5(json_encode($mix).json_encode($assist));
 		$cache = \yoka\Cache::getInstance(self::$cacheName);
 		if(!SiteCacheForceRefresh){
 			$re = $cache->get($key);
@@ -735,7 +737,7 @@ class BaseModel{
 		// 强制使用从库（可缓冲意味着及时性不重要）
 		$this->db = DB::getInstance('default', true);
 		if($re = $this->fetchOne($mix, $assist)){
-			$cache->set($key, $re->entity);
+			$cache->set($key, $re->entity, 3600*24); //默认缓冲有效期：1天
 		}else{
 			$cache->set($key, []);
 		}
