@@ -31,7 +31,9 @@ class Util{
 			} else {  
 				$ip = getenv('REMOTE_ADDR');  
 			}  
-		}  
+		}
+		$t = explode(',', $ip);
+		$ip = $t[0];
 		if(trim($ip)=="::1"){  
 			$ip="127.0.0.1";  
 		}  
