@@ -48,10 +48,16 @@ class Http{
 	 * 代理设定
 	 */
 	public static $socks_proxy = [];
+
+	/**
+	 * 额外参数（注意：使用后请清除，避免影响后续请求）
+	 * 测试：当前仅支持curlPostJson
+	 */
+	public static $curlOpt = [];
 	
 	/**
 	 * 简单模式。高级模式请使用：curlGet
-	 * @param unknown $url
+	 * @param string $url
 	 * @param int $timeout_second 超时（单位：秒）
 	 * @param string $type 使用方法 （默认：file_get_contents）
 	 */
@@ -83,14 +89,14 @@ class Http{
 	 * @param int $timeout
 	 * @param string $type 默认 curl
 	 */
-	public static function post($url, $post, $timeout = null, $type = null){
+	public static function post($url, $post, $timeout_second = null, $type = null){
 		if($type == 'socket'){
 			if($timeout_second)self::$socket_timeout = $timeout_second * 1000;
 			return self::socket('POST', $url, $post);
 		}else{
 			//curl模式，如果未安装curl则使用socket替换
 			if(is_callable('curl_init')){
-				return self::curlPost($url, $post, $timeout * 1000);
+				return self::curlPost($url, $post, $timeout_second * 1000);
 			}else{
 				return self::socket('POST', $url, $post);
 			}
@@ -152,7 +158,7 @@ class Http{
 	 *
 	 */
 	public static function curlMultiGet($url_array, $timeout_microsecond = null, $proxy = false){
-		\yoka\Debug::log('curlMultiGet', $url);
+		\yoka\Debug::log('curlMultiGet', $url_array);
 		if(! $timeout_microsecond) $timeout_microsecond = self::$timeout_multi;
 		
 		$begin_micro_time = self::getMicroTime();
@@ -200,9 +206,10 @@ class Http{
 				usleep(100);
 				if( (self::getMicroTime() - $begin_micro_time) > $timeout_microsecond ) break;
 			}
+			$counter = 0;
 			do {
 				$mrc = curl_multi_exec($mh, $active);
-				if($counter++>1000){
+				if($counter++ > 1000){
 					$counter = 0;
 					if( (self::getMicroTime() - $begin_micro_time) > $timeout_microsecond ) break 2;
 				}
@@ -390,14 +397,14 @@ class Http{
 	
 	/**
 	 * 上传文件
-	 * @param unknown $url
+	 * @param string $url
 	 * @param array $file 数组或字符串
 	 * eg: [ 'file1'=>'/tmp/test1.jpg', 'file2'='/tmp/test2.jpg']
 	 * @param array $data
 	 * @param number $timeout_microsecond
-	 * @param unknown $header
-	 * @param unknown $cookie
-	 * @param unknown $proxy
+	 * @param array $header
+	 * @param array $cookie
+	 * @param array $proxy
 	 */
 	public static function curlPostFile($url, $file, $data=array(), $timeout_microsecond = null, $header = null, $cookie = null, $proxy = null){
 		if(is_array($file)){
@@ -556,12 +563,12 @@ class Http{
 	}
 	/**
 	 * 毫秒级超时 Curl Post （返回含头信息）
-	 * @param unknown $url
+	 * @param string $url
 	 * @param array $data
 	 * @param number $timeout_microsecond
-	 * @param unknown $header
-	 * @param unknown $cookie
-	 * @param unknown $proxy
+	 * @param array $header
+	 * @param array $cookie
+	 * @param array $proxy
 	 */
 	public static function curlPostWithHeader($url, $data=array(), $timeout_microsecond = null, $header = null, $cookie = null, $proxy = null){
 		\yoka\Debug::log('curlPost', $url);
@@ -672,6 +679,7 @@ class Http{
 		curl_setopt($ch, CURLOPT_NOSIGNAL,true);
 		curl_setopt($ch, CURLOPT_TIMEOUT_MS, $timeout_microsecond);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT_MS, $timeout_microsecond);
+		foreach(self::$curlOpt as $k=>$v) curl_setopt($ch, $k, $v);
 		if(self::$basic_auth) curl_setopt($ch, CURLOPT_USERPWD, self::$basic_auth['user'] . ":" . self::$basic_auth['pass']);
 		if (stripos($url, 'https://') === 0) {
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
