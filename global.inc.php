@@ -72,7 +72,7 @@ define("YEPF_BEGIN_TIME",microtime());
 date_default_timezone_set('PRC');
 include YEPF_PATH.'/function.inc.php';
 //默认自动转义,可能会对html及其它正则带来影响
-if(!get_magic_quotes_gpc() && (!defined('YEPF_FORCE_CLOSE_ADDSLASHES') || YEPF_FORCE_CLOSE_ADDSLASHES !== true))
+if(!(PHP_VERSION < 8 && get_magic_quotes_gpc()) && (!defined('YEPF_FORCE_CLOSE_ADDSLASHES') || YEPF_FORCE_CLOSE_ADDSLASHES !== true))
 {
 	foreach (array('_REQUEST', '_GET', '_POST', '_FILES', '_COOKIE') as $_v)
 	{
