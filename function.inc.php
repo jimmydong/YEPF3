@@ -205,7 +205,7 @@ function getCustomConstants($constants_name)
  */
 function yaddslashes($string)
 {
-	if(!get_magic_quotes_gpc())
+	if(! (PHP_VERSION < 8 && get_magic_quotes_gpc()) )
 	{
 		if(is_array($string)) {
 			foreach($string as $key => $val) {
