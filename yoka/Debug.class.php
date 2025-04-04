@@ -757,7 +757,7 @@ class Debug
 						$db_total_times = 0 ;
 						foreach (self::$db_table as $v)
 						{
-							$db_total_times += $v[2];
+							$db_total_times += intval($v[2]);
 							$i++;
 						}
 						array_unshift(self::$db_table, array('IP', 'Database', 'Time', 'SQL Statement','Results'));
